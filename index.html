@@ -1,0 +1,3543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="meta.title">VoiceSketch - Transform Voice into Visual Learning</title>
+    <meta name="description" content="VoiceSketch converts spoken content into AI-powered visual summaries. Record lectures, meetings, or discussions and get beautiful visual notes.">
+    <meta name="keywords" content="voice notes, AI summaries, visual learning, lecture notes, transcription, iOS app">
+    <meta property="og:title" content="VoiceSketch - Transform Voice into Visual Learning">
+    <meta property="og:description" content="Convert spoken content into AI-powered visual summaries with VoiceSketch.">
+    <meta property="og:image" content="assets/logo.png">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/png" href="assets/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gradient-start: #FF9A3C;
+            --gradient-mid: #FF6B35;
+            --gradient-end: #E53935;
+            --primary-red: #E53935;
+            --text-light: #ffffff;
+            --text-dark: #1a1a2e;
+            --card-bg: rgba(255, 255, 255, 0.95);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .nav.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+            padding: 0.75rem 2rem;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text-dark);
+        }
+
+        .nav-logo img {
+            width: 36px;
+            height: 36px;
+        }
+
+        .nav-logo span {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+            opacity: 0.8;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-red);
+            opacity: 1;
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white !important;
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            opacity: 1 !important;
+            font-size: 0.85rem;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(229, 57, 53, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links a:not(.nav-cta) {
+                display: none;
+            }
+
+            .nav-links {
+                gap: 0.75rem;
+            }
+
+            .nav-links .nav-cta {
+                display: none;
+            }
+
+            .lang-selector {
+                margin-left: 0;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe8e0 50%, #fff 100%);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            overflow: hidden;
+        }
+
+        /* Animated background shapes */
+        .bg-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .bg-shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float-shape 20s ease-in-out infinite;
+        }
+
+        .bg-shape:nth-child(1) {
+            width: 400px;
+            height: 400px;
+            background: var(--primary-red);
+            top: -100px;
+            right: -100px;
+            animation-delay: 0s;
+        }
+
+        .bg-shape:nth-child(2) {
+            width: 300px;
+            height: 300px;
+            background: var(--gradient-start);
+            bottom: -50px;
+            left: -50px;
+            animation-delay: -5s;
+        }
+
+        .bg-shape:nth-child(3) {
+            width: 200px;
+            height: 200px;
+            background: var(--gradient-mid);
+            top: 50%;
+            left: 10%;
+            animation-delay: -10s;
+        }
+
+        @keyframes float-shape {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(20px, -20px) scale(1.05); }
+            50% { transform: translate(-10px, 20px) scale(0.95); }
+            75% { transform: translate(-20px, -10px) scale(1.02); }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+            max-width: 900px;
+        }
+
+        .logo-container {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .logo {
+            width: 160px;
+            height: auto;
+            animation: logo-entrance 1s ease-out;
+        }
+
+        @keyframes logo-entrance {
+            0% { opacity: 0; transform: scale(0.5) rotate(-10deg); }
+            100% { opacity: 1; transform: scale(1) rotate(0deg); }
+        }
+
+        /* Sound wave animation around logo */
+        .sound-waves {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            pointer-events: none;
+        }
+
+        .wave {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px solid var(--primary-red);
+            border-radius: 50%;
+            opacity: 0;
+            animation: wave-pulse 3s ease-out infinite;
+        }
+
+        .wave:nth-child(1) { animation-delay: 0s; }
+        .wave:nth-child(2) { animation-delay: 1s; }
+        .wave:nth-child(3) { animation-delay: 2s; }
+
+        @keyframes wave-pulse {
+            0% { width: 160px; height: 160px; opacity: 0.6; }
+            100% { width: 300px; height: 300px; opacity: 0; }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            animation: fade-up 0.8s ease-out 0.3s both;
+        }
+
+        .hero .tagline {
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
+            color: #666;
+            margin-bottom: 2rem;
+            font-weight: 500;
+            animation: fade-up 0.8s ease-out 0.5s both;
+        }
+
+        @keyframes fade-up {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .badge-container {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2.5rem;
+            animation: fade-up 0.8s ease-out 0.7s both;
+        }
+
+        .badge {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: var(--text-light);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(229, 57, 53, 0.3);
+            animation: fade-up 0.8s ease-out 0.9s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 50px rgba(229, 57, 53, 0.4);
+        }
+
+        .cta-button svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Demo Animation Section */
+        .demo-section {
+            padding: 4rem 2rem 6rem;
+            background: #fff;
+            position: relative;
+        }
+
+        .demo-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .demo-phone {
+            width: 280px;
+            height: 560px;
+            background: #1a1a2e;
+            border-radius: 40px;
+            padding: 12px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .demo-screen {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, #f8f9fa 0%, #fff 100%);
+            border-radius: 30px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .demo-header {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            padding: 2rem 1.5rem 1.5rem;
+            color: white;
+        }
+
+        .demo-header h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Animated transcription */
+        .transcription-box {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 0.75rem;
+            font-size: 0.75rem;
+            min-height: 60px;
+        }
+
+        .typing-text {
+            overflow: hidden;
+            white-space: nowrap;
+            animation: typing 4s steps(40) infinite;
+        }
+
+        @keyframes typing {
+            0%, 100% { width: 0; }
+            50%, 90% { width: 100%; }
+        }
+
+        .demo-content {
+            padding: 1rem;
+        }
+
+        /* Animated visual cards in demo */
+        .visual-card {
+            background: white;
+            border-radius: 16px;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            display: flex;
+            gap: 0.75rem;
+            animation: card-slide 0.5s ease-out both;
+            opacity: 0;
+        }
+
+        .visual-card:nth-child(1) { animation-delay: 1s; }
+        .visual-card:nth-child(2) { animation-delay: 2s; }
+        .visual-card:nth-child(3) { animation-delay: 3s; }
+
+        @keyframes card-slide {
+            0% { opacity: 0; transform: translateX(-20px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        .card-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .card-image.orange { background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end)); }
+        .card-image.blue { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+        .card-image.purple { background: linear-gradient(135deg, #667eea, #764ba2); }
+
+        .card-text {
+            flex: 1;
+        }
+
+        .card-text h5 {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .card-text p {
+            font-size: 0.6rem;
+            color: #888;
+            line-height: 1.4;
+        }
+
+        /* Floating elements around demo */
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .float-item {
+            position: absolute;
+            background: white;
+            border-radius: 16px;
+            padding: 1rem 1.5rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            animation: float-item 6s ease-in-out infinite;
+        }
+
+        /* Position floating items randomly around the phone */
+        .float-item.mic {
+            top: 5%;
+            left: 18%;
+            animation-delay: 0s;
+            animation-duration: 4.2s;
+        }
+
+        .float-item.ai {
+            top: 12%;
+            right: 15%;
+            animation-delay: -0.7s;
+            animation-duration: 5.1s;
+        }
+
+        .float-item.language {
+            top: 22%;
+            left: 22%;
+            animation-delay: -1.3s;
+            animation-duration: 4.8s;
+        }
+
+        .float-item.summary {
+            top: 18%;
+            right: 20%;
+            animation-delay: -2.1s;
+            animation-duration: 5.5s;
+        }
+
+        .float-item.visual {
+            top: 42%;
+            left: 15%;
+            animation-delay: -0.4s;
+            animation-duration: 4.5s;
+        }
+
+        .float-item.pdf {
+            top: 38%;
+            right: 18%;
+            animation-delay: -1.8s;
+            animation-duration: 5.2s;
+        }
+
+        .float-item.realtime {
+            top: 58%;
+            left: 20%;
+            animation-delay: -2.5s;
+            animation-duration: 4.9s;
+        }
+
+        .float-item.gpt {
+            top: 55%;
+            right: 16%;
+            animation-delay: -0.9s;
+            animation-duration: 5.3s;
+        }
+
+        .float-item.export {
+            top: 75%;
+            left: 17%;
+            animation-delay: -1.5s;
+            animation-duration: 4.6s;
+        }
+
+        .float-item.cloud {
+            top: 72%;
+            right: 19%;
+            animation-delay: -2.8s;
+            animation-duration: 5s;
+        }
+
+        @keyframes float-item {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-8px) rotate(1deg); }
+            50% { transform: translateY(-12px) rotate(-1deg); }
+            75% { transform: translateY(-5px) rotate(0.5deg); }
+        }
+
+        @media (max-width: 1200px) {
+            .float-item {
+                transform: scale(0.85);
+                padding: 0.75rem 1rem;
+            }
+            .float-item.mic { left: 12%; }
+            .float-item.ai { right: 10%; }
+            .float-item.language { left: 14%; }
+            .float-item.summary { right: 12%; }
+            .float-item.visual { left: 10%; }
+            .float-item.pdf { right: 11%; }
+            .float-item.realtime { left: 13%; }
+            .float-item.gpt { right: 10%; }
+            .float-item.export { left: 11%; }
+            .float-item.cloud { right: 12%; }
+            .float-icon {
+                font-size: 1.25rem;
+            }
+            .float-label {
+                font-size: 0.7rem;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .float-item {
+                transform: scale(0.75);
+            }
+            .float-item.language,
+            .float-item.summary,
+            .float-item.realtime,
+            .float-item.gpt {
+                display: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .float-item {
+                display: none;
+            }
+        }
+
+        .float-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .float-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, #fafafa 0%, #fff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .features::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            right: -200px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .features::after {
+            content: '';
+            position: absolute;
+            bottom: -150px;
+            left: -150px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(229, 57, 53, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .features .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Decorative shapes in features */
+        .features-bg-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .features-bg-shapes .shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.5;
+        }
+
+        .features-bg-shapes .shape-1 {
+            width: 20px;
+            height: 20px;
+            background: var(--gradient-start);
+            top: 15%;
+            left: 5%;
+            animation: float-shape 15s ease-in-out infinite;
+        }
+
+        .features-bg-shapes .shape-2 {
+            width: 12px;
+            height: 12px;
+            background: var(--gradient-end);
+            top: 40%;
+            right: 8%;
+            animation: float-shape 12s ease-in-out infinite reverse;
+        }
+
+        .features-bg-shapes .shape-3 {
+            width: 16px;
+            height: 16px;
+            background: var(--gradient-mid);
+            bottom: 20%;
+            left: 10%;
+            animation: float-shape 18s ease-in-out infinite;
+        }
+
+        .features-bg-shapes .shape-4 {
+            width: 24px;
+            height: 24px;
+            background: var(--gradient-start);
+            bottom: 30%;
+            right: 15%;
+            animation: float-shape 14s ease-in-out infinite reverse;
+        }
+
+        .features-bg-shapes .shape-line {
+            position: absolute;
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.3), transparent);
+            transform: rotate(-45deg);
+        }
+
+        .features-bg-shapes .shape-line-1 {
+            top: 25%;
+            right: 20%;
+        }
+
+        .features-bg-shapes .shape-line-2 {
+            bottom: 35%;
+            left: 15%;
+            transform: rotate(45deg);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 5vw, 2.75rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .section-header p {
+            font-size: 1.15rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .feature-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+        }
+
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-icon::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s ease-in-out infinite;
+        }
+
+        @keyframes shine {
+            0%, 100% { transform: translateX(-100%) rotate(45deg); }
+            50% { transform: translateX(100%) rotate(45deg); }
+        }
+
+        .feature-icon svg {
+            width: 30px;
+            height: 30px;
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--text-dark);
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* How It Works - Timeline */
+        .how-it-works {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, #fff 0%, #fafafa 100%);
+            position: relative;
+        }
+
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, var(--gradient-start), var(--gradient-end));
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .timeline-number {
+            width: 64px;
+            height: 64px;
+            min-width: 64px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            box-shadow: 0 10px 30px rgba(229, 57, 53, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .timeline-content {
+            flex: 1;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .timeline-content h3 {
+            font-size: 1.35rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .timeline-content p {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        /* Step Demo Boxes */
+        .step-demo {
+            margin-top: 1.5rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+            border-radius: 16px;
+            padding: 1.25rem;
+            border: 1px solid rgba(0,0,0,0.06);
+            min-height: 140px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Step 1: Recording Demo */
+        .recording-demo {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .recording-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .record-btn {
+            width: 36px;
+            height: 36px;
+            background: var(--primary-red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse-record 1.5s ease-in-out infinite;
+        }
+
+        .record-btn::after {
+            content: '';
+            width: 12px;
+            height: 12px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        @keyframes pulse-record {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(229, 57, 53, 0.4); }
+            50% { box-shadow: 0 0 0 12px rgba(229, 57, 53, 0); }
+        }
+
+        .mic-waves {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .mic-bar {
+            width: 3px;
+            background: linear-gradient(180deg, var(--gradient-start), var(--gradient-end));
+            border-radius: 2px;
+            animation: mic-wave 0.8s ease-in-out infinite;
+        }
+
+        .mic-bar:nth-child(1) { height: 12px; animation-delay: 0s; }
+        .mic-bar:nth-child(2) { height: 20px; animation-delay: 0.1s; }
+        .mic-bar:nth-child(3) { height: 16px; animation-delay: 0.2s; }
+        .mic-bar:nth-child(4) { height: 24px; animation-delay: 0.3s; }
+        .mic-bar:nth-child(5) { height: 18px; animation-delay: 0.4s; }
+        .mic-bar:nth-child(6) { height: 14px; animation-delay: 0.5s; }
+        .mic-bar:nth-child(7) { height: 22px; animation-delay: 0.6s; }
+        .mic-bar:nth-child(8) { height: 16px; animation-delay: 0.7s; }
+
+        @keyframes mic-wave {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(0.4); }
+        }
+
+        .transcription-line {
+            background: white;
+            border-radius: 8px;
+            padding: 0.75rem;
+            font-size: 0.8rem;
+            color: #555;
+            border-left: 3px solid var(--primary-red);
+        }
+
+        .typing-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 14px;
+            background: var(--primary-red);
+            margin-left: 2px;
+            animation: blink 0.8s step-end infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Step 2: AI Processing Demo */
+        .ai-demo {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .ai-brain {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .input-text {
+            background: white;
+            padding: 0.5rem 0.75rem;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            color: #888;
+            max-width: 80px;
+            text-align: center;
+            border: 1px solid #eee;
+        }
+
+        .ai-core {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            position: relative;
+            animation: ai-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes ai-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(229, 57, 53, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(229, 57, 53, 0.6); }
+        }
+
+        .ai-core::before,
+        .ai-core::after {
+            content: '';
+            position: absolute;
+            border: 2px dashed rgba(229, 57, 53, 0.3);
+            border-radius: 50%;
+            animation: orbit 3s linear infinite;
+        }
+
+        .ai-core::before {
+            width: 80px;
+            height: 80px;
+        }
+
+        .ai-core::after {
+            width: 100px;
+            height: 100px;
+            animation-direction: reverse;
+            animation-duration: 4s;
+        }
+
+        @keyframes orbit {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .output-cards {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+
+        .mini-card {
+            width: 50px;
+            height: 35px;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            animation: card-pop 2s ease-in-out infinite;
+        }
+
+        .mini-card:nth-child(1) { animation-delay: 0s; }
+        .mini-card:nth-child(2) { animation-delay: 0.3s; }
+        .mini-card:nth-child(3) { animation-delay: 0.6s; }
+
+        @keyframes card-pop {
+            0%, 100% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+
+        .arrow-flow {
+            color: var(--primary-red);
+            font-size: 1.2rem;
+            animation: arrow-pulse 1s ease-in-out infinite;
+        }
+
+        @keyframes arrow-pulse {
+            0%, 100% { opacity: 0.5; transform: translateX(0); }
+            50% { opacity: 1; transform: translateX(3px); }
+        }
+
+        /* Step 3: Export Demo */
+        .export-demo {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .export-preview {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            align-items: flex-end;
+        }
+
+        .export-file {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            animation: float-file 3s ease-in-out infinite;
+        }
+
+        .export-file:nth-child(1) { animation-delay: 0s; }
+        .export-file:nth-child(2) { animation-delay: 0.5s; }
+        .export-file:nth-child(3) { animation-delay: 1s; }
+
+        @keyframes float-file {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .file-icon {
+            width: 50px;
+            height: 65px;
+            background: white;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .file-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 15px;
+            height: 15px;
+            background: linear-gradient(135deg, #e0e0e0 50%, white 50%);
+        }
+
+        .file-icon.pdf { border-color: #e53935; }
+        .file-icon.png { border-color: #43a047; }
+        .file-icon.rtf { border-color: #1e88e5; }
+
+        .file-icon span {
+            font-size: 0.6rem;
+            font-weight: 700;
+            margin-top: 0.5rem;
+        }
+
+        .file-icon.pdf span { color: #e53935; }
+        .file-icon.png span { color: #43a047; }
+        .file-icon.rtf span { color: #1e88e5; }
+
+        .file-icon .file-preview {
+            width: 30px;
+            height: 25px;
+            background: linear-gradient(180deg, #f5f5f5 0%, #eee 100%);
+            border-radius: 3px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            padding: 4px;
+        }
+
+        .file-preview-line {
+            height: 2px;
+            background: #ddd;
+            border-radius: 1px;
+        }
+
+        .file-preview-line:nth-child(2) { width: 70%; }
+        .file-preview-line:nth-child(3) { width: 85%; }
+
+        .file-label {
+            font-size: 0.7rem;
+            color: #888;
+            font-weight: 500;
+        }
+
+        .share-icons {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            padding-top: 0.5rem;
+            border-top: 1px dashed #eee;
+        }
+
+        .share-icon {
+            width: 32px;
+            height: 32px;
+            background: #f5f5f5;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .share-icon:hover {
+            background: var(--primary-red);
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .step-demo {
+                min-height: 120px;
+                padding: 1rem;
+            }
+
+            .ai-core {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+
+            .ai-core::before {
+                width: 70px;
+                height: 70px;
+            }
+
+            .ai-core::after {
+                width: 90px;
+                height: 90px;
+            }
+
+            .file-icon {
+                width: 45px;
+                height: 58px;
+            }
+        }
+
+        /* Use Cases */
+        .use-cases {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-mid) 50%, var(--gradient-end) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .use-cases::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            pointer-events: none;
+        }
+
+        .use-cases .section-header h2,
+        .use-cases .section-header p {
+            color: var(--text-light);
+        }
+
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .use-case-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            transition: all 0.4s ease;
+            cursor: default;
+        }
+
+        .use-case-card:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-8px) scale(1.02);
+        }
+
+        .use-case-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.25rem;
+            font-size: 2rem;
+        }
+
+        .use-case-card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .use-case-card p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.95rem;
+        }
+
+        /* Stats Section with counter animation */
+        .stats {
+            padding: 5rem 2rem;
+            background: #fff;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            padding: 1.5rem;
+        }
+
+        .stat-value {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 2rem;
+            background: #1a1a2e;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(229, 57, 53, 0.1) 0%, transparent 50%);
+            animation: cta-glow 10s ease-in-out infinite;
+        }
+
+        @keyframes cta-glow {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(10%, 10%); }
+        }
+
+        .cta-section h2 {
+            font-size: clamp(2rem, 5vw, 2.75rem);
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.15rem;
+            margin-bottom: 2.5rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section .cta-button {
+            position: relative;
+            z-index: 1;
+            animation: none;
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem;
+            background: #141425;
+            text-align: center;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand svg {
+            width: 20px;
+            height: 20px;
+            color: var(--gradient-mid);
+        }
+
+        .footer-brand span {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .footer-brand a {
+            color: var(--gradient-mid);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .footer-brand a:hover {
+            color: var(--gradient-start);
+        }
+
+        footer p {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.85rem;
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        .scroll-indicator svg {
+            width: 32px;
+            height: 32px;
+            color: var(--primary-red);
+            opacity: 0.6;
+        }
+
+        /* Language Selector */
+        .lang-selector {
+            position: relative;
+            z-index: 1000;
+            margin-left: 1rem;
+        }
+
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            padding: 0.5rem 0.875rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+            color: var(--text-dark);
+        }
+
+        .lang-btn:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            background: white;
+        }
+
+        .lang-btn svg:first-child {
+            width: 16px;
+            height: 16px;
+        }
+
+        .lang-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .lang-dropdown {
+            position: absolute;
+            top: calc(100% + 0.5rem);
+            right: 0;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            min-width: 160px;
+        }
+
+        .lang-dropdown.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .lang-option {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+        }
+
+        .lang-option:hover {
+            background: #f5f5f5;
+        }
+
+        .lang-option.active {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+        }
+
+        .lang-flag {
+            font-size: 1.2rem;
+        }
+
+        /* Mobile sticky CTA */
+        .mobile-cta {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+            z-index: 998;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-cta.visible {
+            transform: translateY(0);
+        }
+
+        .mobile-cta .cta-button {
+            width: 100%;
+            justify-content: center;
+            animation: none;
+            padding: 0.875rem 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-cta {
+                display: block;
+            }
+        }
+
+        /* App Preview Section */
+        .app-preview {
+            padding: 4rem 2rem;
+            background: linear-gradient(180deg, #fafafa 0%, #fff 100%);
+            text-align: center;
+        }
+
+        .preview-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .preview-phone {
+            width: 220px;
+            height: 440px;
+            background: #1a1a2e;
+            border-radius: 32px;
+            padding: 8px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            transform: perspective(1000px) rotateY(-5deg);
+            transition: all 0.4s ease;
+        }
+
+        .preview-phone:nth-child(2) {
+            transform: perspective(1000px) rotateY(0deg) scale(1.05);
+            z-index: 1;
+        }
+
+        .preview-phone:nth-child(3) {
+            transform: perspective(1000px) rotateY(5deg);
+        }
+
+        .preview-phone:hover {
+            transform: perspective(1000px) rotateY(0deg) scale(1.08);
+            z-index: 2;
+        }
+
+        .preview-screen {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, #f0f0f0 0%, #fff 100%);
+            border-radius: 26px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .preview-screen-header {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            padding: 1.5rem 1rem 1rem;
+            color: white;
+        }
+
+        .preview-screen-header h5 {
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .preview-screen-content {
+            flex: 1;
+            padding: 0.75rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .preview-card {
+            background: white;
+            border-radius: 12px;
+            padding: 0.75rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .preview-card-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .preview-card-text {
+            flex: 1;
+        }
+
+        .preview-card-text h6 {
+            font-size: 0.6rem;
+            font-weight: 600;
+            margin-bottom: 0.15rem;
+            color: var(--text-dark);
+        }
+
+        .preview-card-text p {
+            font-size: 0.5rem;
+            color: #888;
+            line-height: 1.3;
+        }
+
+        /* Testimonials Section - Rotating Gallery */
+        .testimonials {
+            padding: 5rem 2rem;
+            background: linear-gradient(180deg, #fff 0%, #fafafa 100%);
+            overflow: hidden;
+        }
+
+        .testimonials-carousel {
+            position: relative;
+            max-width: 650px;
+            margin: 0 auto;
+            height: auto;
+            min-height: 280px;
+        }
+
+        .testimonial-track {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .testimonial-card {
+            min-width: 100%;
+            padding: 0 1rem;
+            box-sizing: border-box;
+        }
+
+        .testimonial-content {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem 2rem 1.5rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            position: relative;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .testimonial-content::before {
+            content: '"';
+            position: absolute;
+            top: 1rem;
+            left: 1.5rem;
+            font-size: 4rem;
+            color: var(--primary-red);
+            opacity: 0.1;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .testimonial-text {
+            font-size: 1.05rem;
+            color: #444;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+            font-style: italic;
+            margin-bottom: 1.25rem;
+            min-height: 85px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .testimonial-avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(229, 57, 53, 0.3);
+        }
+
+        .testimonial-info h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .testimonial-info p {
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        .star-rating {
+            color: #FFB800;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        /* Carousel Navigation */
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .carousel-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 2px solid rgba(229, 57, 53, 0.2);
+            background: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            color: var(--primary-red);
+        }
+
+        .carousel-btn:hover {
+            background: var(--primary-red);
+            color: white;
+            border-color: var(--primary-red);
+            transform: scale(1.1);
+        }
+
+        .carousel-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .carousel-dots {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(229, 57, 53, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-dot.active {
+            background: var(--primary-red);
+            transform: scale(1.2);
+        }
+
+        .carousel-dot:hover {
+            background: rgba(229, 57, 53, 0.5);
+        }
+
+        /* Auto-play indicator */
+        .carousel-progress {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: rgba(229, 57, 53, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .carousel-progress-bar {
+            height: 100%;
+            background: var(--primary-red);
+            width: 0%;
+            animation: progress 4s linear infinite;
+        }
+
+        @keyframes progress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        .carousel-dots {
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 120px;
+        }
+
+        @media (max-width: 768px) {
+            .testimonials-carousel {
+                min-height: 260px;
+            }
+
+            .testimonial-content {
+                padding: 1.5rem;
+            }
+
+            .testimonial-text {
+                font-size: 0.95rem;
+                min-height: 70px;
+                margin-bottom: 1rem;
+            }
+
+            .testimonial-avatar {
+                width: 44px;
+                height: 44px;
+                font-size: 1.2rem;
+            }
+
+            .star-rating {
+                font-size: 0.85rem;
+                margin-bottom: 0.75rem;
+            }
+        }
+
+        /* Improved responsive */
+        @media (max-width: 768px) {
+            .preview-container {
+                gap: 1rem;
+            }
+
+            .preview-phone {
+                width: 160px;
+                height: 320px;
+                transform: none !important;
+            }
+
+            .preview-phone:hover {
+                transform: scale(1.02) !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .preview-phone:first-child,
+            .preview-phone:last-child {
+                display: none;
+            }
+
+            .preview-phone:nth-child(2) {
+                transform: none;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .demo-container {
+                flex-direction: column;
+            }
+
+            .float-item {
+                display: none;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-number {
+                width: 44px;
+                height: 44px;
+                min-width: 44px;
+                font-size: 1.1rem;
+            }
+
+            .timeline-item {
+                gap: 1rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .step-illustration {
+                display: none;
+            }
+        }
+
+        /* Intersection Observer animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <a href="#" class="nav-logo">
+            <img src="assets/logo.png" alt="VoiceSketch">
+            <span>VoiceSketch</span>
+        </a>
+        <div class="nav-links">
+            <a href="#features" data-i18n="nav.features">Features</a>
+            <a href="#how-it-works" data-i18n="nav.howItWorks">How It Works</a>
+            <a href="#testimonials" data-i18n="nav.reviews">Reviews</a>
+            <!-- Language Selector -->
+            <div class="lang-selector">
+                <button class="lang-btn" onclick="toggleLangDropdown()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="2" y1="12" x2="22" y2="12"/>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                    </svg>
+                    <span id="current-lang">EN</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;">
+                        <path d="M6 9l6 6 6-6"/>
+                    </svg>
+                </button>
+                <div class="lang-dropdown" id="lang-dropdown">
+                    <div class="lang-option active" onclick="setLanguage('en')">
+                        <span class="lang-flag">🇺🇸</span> English
+                    </div>
+                    <div class="lang-option" onclick="setLanguage('zh-TW')">
+                        <span class="lang-flag">🇹🇼</span> 繁體中文
+                    </div>
+                    <div class="lang-option" onclick="setLanguage('zh-CN')">
+                        <span class="lang-flag">🇨🇳</span> 简体中文
+                    </div>
+                    <div class="lang-option" onclick="setLanguage('ja')">
+                        <span class="lang-flag">🇯🇵</span> 日本語
+                    </div>
+                    <div class="lang-option" onclick="setLanguage('ko')">
+                        <span class="lang-flag">🇰🇷</span> 한국어
+                    </div>
+                    <div class="lang-option" onclick="setLanguage('fr')">
+                        <span class="lang-flag">🇫🇷</span> Français
+                    </div>
+                    <div class="lang-option" onclick="setLanguage('es')">
+                        <span class="lang-flag">🇪🇸</span> Español
+                    </div>
+                    <div class="lang-option" onclick="setLanguage('it')">
+                        <span class="lang-flag">🇮🇹</span> Italiano
+                    </div>
+                </div>
+            </div>
+            <a href="#" class="nav-cta" data-i18n="hero.cta">Download</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="bg-shapes">
+            <div class="bg-shape"></div>
+            <div class="bg-shape"></div>
+            <div class="bg-shape"></div>
+        </div>
+        <div class="hero-content">
+            <div class="logo-container">
+                <div class="sound-waves">
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                </div>
+                <img src="assets/logo.png" alt="VoiceSketch Logo" class="logo">
+            </div>
+            <h1>VoiceSketch</h1>
+            <p class="tagline" data-i18n="hero.tagline">Transform voice into visual notes</p>
+            <div class="badge-container">
+                <span class="badge">iOS 17.0+</span>
+                <span class="badge" data-i18n="hero.badge.ai">AI Powered</span>
+                <span class="badge" data-i18n="hero.badge.languages">60+ Languages</span>
+            </div>
+            <a href="#" class="cta-button">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                </svg>
+                <span data-i18n="hero.cta">Download on App Store</span>
+            </a>
+        </div>
+        <div class="scroll-indicator">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 5v14M5 12l7 7 7-7"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section class="demo-section">
+        <div class="floating-elements">
+            <div class="float-item mic">
+                <div class="float-icon">🎙️</div>
+                <div class="float-label" data-i18n="demo.record">Record</div>
+            </div>
+            <div class="float-item ai">
+                <div class="float-icon">✨</div>
+                <div class="float-label" data-i18n="demo.aiMagic">AI Magic</div>
+            </div>
+            <div class="float-item export">
+                <div class="float-icon">📄</div>
+                <div class="float-label" data-i18n="demo.export">Export</div>
+            </div>
+            <div class="float-item language">
+                <div class="float-icon">🌍</div>
+                <div class="float-label" data-i18n="demo.languages">60+ Languages</div>
+            </div>
+            <div class="float-item summary">
+                <div class="float-icon">📝</div>
+                <div class="float-label" data-i18n="demo.summary">AI Summary</div>
+            </div>
+            <div class="float-item cloud">
+                <div class="float-icon">☁️</div>
+                <div class="float-label" data-i18n="demo.cloud">Cloud Sync</div>
+            </div>
+            <div class="float-item visual">
+                <div class="float-icon">🖼️</div>
+                <div class="float-label" data-i18n="demo.visual">Visual Notes</div>
+            </div>
+            <div class="float-item pdf">
+                <div class="float-icon">📑</div>
+                <div class="float-label" data-i18n="demo.pdf">PDF Export</div>
+            </div>
+            <div class="float-item realtime">
+                <div class="float-icon">⚡</div>
+                <div class="float-label" data-i18n="demo.realtime">Real-time</div>
+            </div>
+            <div class="float-item gpt">
+                <div class="float-icon">🤖</div>
+                <div class="float-label" data-i18n="demo.gpt">GPT Powered</div>
+            </div>
+        </div>
+        <div class="demo-container">
+            <div class="demo-phone">
+                <div class="demo-screen">
+                    <div class="demo-header">
+                        <h4 data-i18n="demo.recording">Recording...</h4>
+                        <div class="transcription-box">
+                            <div class="typing-text" data-i18n="demo.transcription">The mitochondria is the powerhouse of the cell...</div>
+                        </div>
+                    </div>
+                    <div class="demo-content">
+                        <div class="visual-card">
+                            <div class="card-image orange">🔬</div>
+                            <div class="card-text">
+                                <h5 data-i18n="demo.card1.title">Cell Biology</h5>
+                                <p data-i18n="demo.card1.desc">Mitochondria produces ATP through cellular respiration</p>
+                            </div>
+                        </div>
+                        <div class="visual-card">
+                            <div class="card-image blue">⚡</div>
+                            <div class="card-text">
+                                <h5 data-i18n="demo.card2.title">Energy Production</h5>
+                                <p data-i18n="demo.card2.desc">ATP is the primary energy currency of cells</p>
+                            </div>
+                        </div>
+                        <div class="visual-card">
+                            <div class="card-image purple">🧬</div>
+                            <div class="card-text">
+                                <h5 data-i18n="demo.card3.title">DNA & Genetics</h5>
+                                <p data-i18n="demo.card3.desc">Mitochondria contains its own circular DNA</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="features-bg-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+            <div class="shape-line shape-line-1"></div>
+            <div class="shape-line shape-line-2"></div>
+        </div>
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2 data-i18n="features.title">Powerful Features</h2>
+                <p data-i18n="features.subtitle">Everything you need to transform audio into visual knowledge</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                            <line x1="12" y1="19" x2="12" y2="23"/>
+                            <line x1="8" y1="23" x2="16" y2="23"/>
+                        </svg>
+                    </div>
+                    <h3 data-i18n="features.voice.title">Voice Recording</h3>
+                    <p data-i18n="features.voice.desc">Real-time audio capture with live transcription. Record lectures, meetings, or any spoken content effortlessly.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5"/>
+                            <path d="M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <h3 data-i18n="features.ai.title">AI Summarization</h3>
+                    <p data-i18n="features.ai.desc">Powered by GPT, automatically generate concise summaries that capture the essence of your content.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                            <circle cx="8.5" cy="8.5" r="1.5"/>
+                            <polyline points="21 15 16 10 5 21"/>
+                        </svg>
+                    </div>
+                    <h3 data-i18n="features.visual.title">Visual Notes</h3>
+                    <p data-i18n="features.visual.desc">AI-generated images for each summary segment, creating memorable visual anchors for better retention.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                            <line x1="16" y1="13" x2="8" y2="13"/>
+                            <line x1="16" y1="17" x2="8" y2="17"/>
+                        </svg>
+                    </div>
+                    <h3 data-i18n="features.text.title">Text Analysis</h3>
+                    <p data-i18n="features.text.desc">Paste any text to generate visual summaries. Perfect for articles, documents, or study materials.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="2" y1="12" x2="22" y2="12"/>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                        </svg>
+                    </div>
+                    <h3 data-i18n="features.lang.title">Multi-language</h3>
+                    <p data-i18n="features.lang.desc">Support for 60+ transcription languages and 10 UI languages. Learn in your native language.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="17 8 12 3 7 8"/>
+                            <line x1="12" y1="3" x2="12" y2="15"/>
+                        </svg>
+                    </div>
+                    <h3 data-i18n="features.cloud.title">Cloud Sync & Export</h3>
+                    <p data-i18n="features.cloud.desc">Firebase backup keeps your notes safe across devices. Export to PDF, PNG, or RTF formats.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2 data-i18n="howItWorks.title">How It Works</h2>
+                <p data-i18n="howItWorks.subtitle">Three simple steps to visual learning</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-number">1</div>
+                    <div class="timeline-content">
+                        <h3 data-i18n="howItWorks.step1.title">Record or Paste</h3>
+                        <p data-i18n="howItWorks.step1.desc">Start recording your lecture, meeting, or discussion. You can also paste text directly for analysis. VoiceSketch transcribes in real-time with support for 60+ languages.</p>
+                        <div class="step-demo">
+                            <div class="recording-demo">
+                                <div class="recording-header">
+                                    <div class="record-btn"></div>
+                                    <div class="mic-waves">
+                                        <div class="mic-bar"></div>
+                                        <div class="mic-bar"></div>
+                                        <div class="mic-bar"></div>
+                                        <div class="mic-bar"></div>
+                                        <div class="mic-bar"></div>
+                                        <div class="mic-bar"></div>
+                                        <div class="mic-bar"></div>
+                                        <div class="mic-bar"></div>
+                                    </div>
+                                    <span style="color: var(--primary-red); font-size: 0.8rem; font-weight: 600;">00:42</span>
+                                </div>
+                                <div class="transcription-line">
+                                    The key concept here is that mitochondria...<span class="typing-cursor"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-number">2</div>
+                    <div class="timeline-content">
+                        <h3 data-i18n="howItWorks.step2.title">AI Processing</h3>
+                        <p data-i18n="howItWorks.step2.desc">Our GPT-powered AI analyzes your content, extracting key concepts and creating concise summaries. Each segment is paired with a unique AI-generated visual.</p>
+                        <div class="step-demo">
+                            <div class="ai-demo">
+                                <div class="ai-brain">
+                                    <div class="input-text">Raw Text</div>
+                                    <span class="arrow-flow">→</span>
+                                    <div class="ai-core">🧠</div>
+                                    <span class="arrow-flow">→</span>
+                                    <div class="input-text">Summary</div>
+                                </div>
+                                <div class="output-cards">
+                                    <div class="mini-card">📝</div>
+                                    <div class="mini-card">🖼️</div>
+                                    <div class="mini-card">💡</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-number">3</div>
+                    <div class="timeline-content">
+                        <h3 data-i18n="howItWorks.step3.title">Review & Export</h3>
+                        <p data-i18n="howItWorks.step3.desc">Browse your visual notes, sync across devices with Firebase, and export to PDF, PNG, or RTF. Your knowledge, beautifully organized.</p>
+                        <div class="step-demo">
+                            <div class="export-demo">
+                                <div class="export-preview">
+                                    <div class="export-file">
+                                        <div class="file-icon pdf">
+                                            <div class="file-preview">
+                                                <div class="file-preview-line"></div>
+                                                <div class="file-preview-line"></div>
+                                                <div class="file-preview-line"></div>
+                                            </div>
+                                            <span>PDF</span>
+                                        </div>
+                                        <div class="file-label">Document</div>
+                                    </div>
+                                    <div class="export-file">
+                                        <div class="file-icon png">
+                                            <div class="file-preview">
+                                                <div class="file-preview-line"></div>
+                                                <div class="file-preview-line"></div>
+                                                <div class="file-preview-line"></div>
+                                            </div>
+                                            <span>PNG</span>
+                                        </div>
+                                        <div class="file-label">Image</div>
+                                    </div>
+                                    <div class="export-file">
+                                        <div class="file-icon rtf">
+                                            <div class="file-preview">
+                                                <div class="file-preview-line"></div>
+                                                <div class="file-preview-line"></div>
+                                                <div class="file-preview-line"></div>
+                                            </div>
+                                            <span>RTF</span>
+                                        </div>
+                                        <div class="file-label">Rich Text</div>
+                                    </div>
+                                </div>
+                                <div class="share-icons">
+                                    <div class="share-icon">📧</div>
+                                    <div class="share-icon">💬</div>
+                                    <div class="share-icon">☁️</div>
+                                    <div class="share-icon">📱</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section class="use-cases">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2 data-i18n="useCases.title">Perfect For</h2>
+                <p data-i18n="useCases.subtitle">Enhance learning and retention in any context</p>
+            </div>
+            <div class="use-cases-grid">
+                <div class="use-case-card">
+                    <div class="use-case-icon">🎓</div>
+                    <h3 data-i18n="useCases.students.title">Students</h3>
+                    <p data-i18n="useCases.students.desc">Transform lectures into visual study guides for better exam preparation</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon">💼</div>
+                    <h3 data-i18n="useCases.professionals.title">Professionals</h3>
+                    <p data-i18n="useCases.professionals.desc">Capture meeting insights with visual summaries for quick reference</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon">🎙️</div>
+                    <h3 data-i18n="useCases.podcast.title">Podcast Listeners</h3>
+                    <p data-i18n="useCases.podcast.desc">Turn audio content into memorable visual notes you can review</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon">📚</div>
+                    <h3 data-i18n="useCases.researchers.title">Researchers</h3>
+                    <p data-i18n="useCases.researchers.desc">Organize findings with visual documentation for easier analysis</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item animate-on-scroll">
+                    <div class="stat-value">60+</div>
+                    <div class="stat-label" data-i18n="stats.languages">Transcription Languages</div>
+                </div>
+                <div class="stat-item animate-on-scroll">
+                    <div class="stat-value">10</div>
+                    <div class="stat-label" data-i18n="stats.ui">UI Languages</div>
+                </div>
+                <div class="stat-item animate-on-scroll">
+                    <div class="stat-value">3</div>
+                    <div class="stat-label" data-i18n="stats.export">Export Formats</div>
+                </div>
+                <div class="stat-item animate-on-scroll">
+                    <div class="stat-value">GPT</div>
+                    <div class="stat-label" data-i18n="stats.ai">AI Powered</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2 data-i18n="testimonials.title">What Users Say</h2>
+                <p data-i18n="testimonials.subtitle">Join thousands of learners transforming their notes</p>
+            </div>
+            <div class="testimonials-carousel">
+                <div class="testimonial-track" id="testimonial-track">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <div class="star-rating">★★★★★</div>
+                            <p class="testimonial-text" data-i18n="testimonials.review1.text">"VoiceSketch has completely changed how I study. The visual summaries make complex topics so much easier to remember!"</p>
+                            <div class="testimonial-author">
+                                <div class="testimonial-avatar">👩‍🎓</div>
+                                <div class="testimonial-info">
+                                    <h4 data-i18n="testimonials.review1.name">Sarah M.</h4>
+                                    <p data-i18n="testimonials.review1.role">Medical Student</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <div class="star-rating">★★★★★</div>
+                            <p class="testimonial-text" data-i18n="testimonials.review2.text">"I use it for every meeting now. The AI summaries capture key points I would have missed, and the visuals help me recall discussions weeks later."</p>
+                            <div class="testimonial-author">
+                                <div class="testimonial-avatar">👨‍💼</div>
+                                <div class="testimonial-info">
+                                    <h4 data-i18n="testimonials.review2.name">David K.</h4>
+                                    <p data-i18n="testimonials.review2.role">Product Manager</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <div class="star-rating">★★★★★</div>
+                            <p class="testimonial-text" data-i18n="testimonials.review3.text">"The multi-language support is amazing! I can record lectures in Japanese and get summaries in English. Perfect for my research."</p>
+                            <div class="testimonial-author">
+                                <div class="testimonial-avatar">👨‍🔬</div>
+                                <div class="testimonial-info">
+                                    <h4 data-i18n="testimonials.review3.name">James L.</h4>
+                                    <p data-i18n="testimonials.review3.role">PhD Researcher</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <div class="star-rating">★★★★★</div>
+                            <p class="testimonial-text" data-i18n="testimonials.review4.text">"As a podcast creator, I use VoiceSketch to generate show notes automatically. It saves me hours every week and my audience loves the visual summaries!"</p>
+                            <div class="testimonial-author">
+                                <div class="testimonial-avatar">🎧</div>
+                                <div class="testimonial-info">
+                                    <h4 data-i18n="testimonials.review4.name">Emily R.</h4>
+                                    <p data-i18n="testimonials.review4.role">Podcast Host</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <div class="star-rating">★★★★★</div>
+                            <p class="testimonial-text" data-i18n="testimonials.review5.text">"The export feature is fantastic. I can share my visual notes as PDFs with my study group. We've all improved our grades since using VoiceSketch!"</p>
+                            <div class="testimonial-author">
+                                <div class="testimonial-avatar">👨‍💻</div>
+                                <div class="testimonial-info">
+                                    <h4 data-i18n="testimonials.review5.name">Michael T.</h4>
+                                    <p data-i18n="testimonials.review5.role">Computer Science Student</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <div class="star-rating">★★★★★</div>
+                            <p class="testimonial-text" data-i18n="testimonials.review6.text">"I attend conferences worldwide and VoiceSketch helps me capture every presentation. The visual notes make it easy to share insights with my team back home."</p>
+                            <div class="testimonial-author">
+                                <div class="testimonial-avatar">👩‍💼</div>
+                                <div class="testimonial-info">
+                                    <h4 data-i18n="testimonials.review6.name">Anna S.</h4>
+                                    <p data-i18n="testimonials.review6.role">Marketing Director</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-progress">
+                    <div class="carousel-progress-bar" id="carousel-progress-bar"></div>
+                </div>
+            </div>
+            <div class="carousel-nav">
+                <button class="carousel-btn" id="carousel-prev" aria-label="Previous">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                </button>
+                <div class="carousel-dots" id="carousel-dots">
+                    <div class="carousel-dot active" data-index="0"></div>
+                    <div class="carousel-dot" data-index="1"></div>
+                    <div class="carousel-dot" data-index="2"></div>
+                    <div class="carousel-dot" data-index="3"></div>
+                    <div class="carousel-dot" data-index="4"></div>
+                    <div class="carousel-dot" data-index="5"></div>
+                </div>
+                <button class="carousel-btn" id="carousel-next" aria-label="Next">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 18l6-6-6-6"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 data-i18n="cta.title">Start Learning Visually</h2>
+            <p data-i18n="cta.subtitle">Download VoiceSketch and transform how you capture and retain knowledge.</p>
+            <a href="#" class="cta-button">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                </svg>
+                <span data-i18n="hero.cta">Download on App Store</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-brand">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+            </svg>
+            <span data-i18n="footer.from">from</span> <a href="https://kairos.ai" target="_blank">Kairos.ai</a>
+        </div>
+        <p data-i18n="footer.copyright">&copy; 2026 VoiceSketch. All rights reserved.</p>
+    </footer>
+
+    <!-- Mobile Sticky CTA -->
+    <div class="mobile-cta" id="mobile-cta">
+        <a href="#" class="cta-button">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+            </svg>
+            <span data-i18n="hero.cta">Download on App Store</span>
+        </a>
+    </div>
+
+    <script>
+        // Translations
+        const translations = {
+            en: {
+                "nav.features": "Features",
+                "nav.howItWorks": "How It Works",
+                "nav.reviews": "Reviews",
+                "meta.title": "VoiceSketch - Transform Voice into Visual Learning",
+                "hero.tagline": "Transform voice into visual notes",
+                "hero.badge.ai": "AI Powered",
+                "hero.badge.languages": "60+ Languages",
+                "hero.cta": "Download on App Store",
+                "demo.record": "Record",
+                "demo.aiMagic": "AI Magic",
+                "demo.export": "Export",
+                "demo.languages": "60+ Languages",
+                "demo.summary": "AI Summary",
+                "demo.cloud": "Cloud Sync",
+                "demo.visual": "Visual Notes",
+                "demo.pdf": "PDF Export",
+                "demo.realtime": "Real-time",
+                "demo.gpt": "GPT Powered",
+                "demo.recording": "Recording...",
+                "demo.transcription": "The mitochondria is the powerhouse of the cell...",
+                "demo.card1.title": "Cell Biology",
+                "demo.card1.desc": "Mitochondria produces ATP through cellular respiration",
+                "demo.card2.title": "Energy Production",
+                "demo.card2.desc": "ATP is the primary energy currency of cells",
+                "demo.card3.title": "DNA & Genetics",
+                "demo.card3.desc": "Mitochondria contains its own circular DNA",
+                "features.title": "Powerful Features",
+                "features.subtitle": "Everything you need to transform audio into visual knowledge",
+                "features.voice.title": "Voice Recording",
+                "features.voice.desc": "Real-time audio capture with live transcription. Record lectures, meetings, or any spoken content effortlessly.",
+                "features.ai.title": "AI Summarization",
+                "features.ai.desc": "Powered by GPT, automatically generate concise summaries that capture the essence of your content.",
+                "features.visual.title": "Visual Notes",
+                "features.visual.desc": "AI-generated images for each summary segment, creating memorable visual anchors for better retention.",
+                "features.text.title": "Text Analysis",
+                "features.text.desc": "Paste any text to generate visual summaries. Perfect for articles, documents, or study materials.",
+                "features.lang.title": "Multi-language",
+                "features.lang.desc": "Support for 60+ transcription languages and 10 UI languages. Learn in your native language.",
+                "features.cloud.title": "Cloud Sync & Export",
+                "features.cloud.desc": "Firebase backup keeps your notes safe across devices. Export to PDF, PNG, or RTF formats.",
+                "howItWorks.title": "How It Works",
+                "howItWorks.subtitle": "Three simple steps to visual learning",
+                "howItWorks.step1.title": "Record or Paste",
+                "howItWorks.step1.desc": "Start recording your lecture, meeting, or discussion. You can also paste text directly for analysis. VoiceSketch transcribes in real-time with support for 60+ languages.",
+                "howItWorks.step2.title": "AI Processing",
+                "howItWorks.step2.desc": "Our GPT-powered AI analyzes your content, extracting key concepts and creating concise summaries. Each segment is paired with a unique AI-generated visual.",
+                "howItWorks.step3.title": "Review & Export",
+                "howItWorks.step3.desc": "Browse your visual notes, sync across devices with Firebase, and export to PDF, PNG, or RTF. Your knowledge, beautifully organized.",
+                "howItWorks.processing": "Processing...",
+                "useCases.title": "Perfect For",
+                "useCases.subtitle": "Enhance learning and retention in any context",
+                "useCases.students.title": "Students",
+                "useCases.students.desc": "Transform lectures into visual study guides for better exam preparation",
+                "useCases.professionals.title": "Professionals",
+                "useCases.professionals.desc": "Capture meeting insights with visual summaries for quick reference",
+                "useCases.podcast.title": "Podcast Listeners",
+                "useCases.podcast.desc": "Turn audio content into memorable visual notes you can review",
+                "useCases.researchers.title": "Researchers",
+                "useCases.researchers.desc": "Organize findings with visual documentation for easier analysis",
+                "stats.languages": "Transcription Languages",
+                "stats.ui": "UI Languages",
+                "stats.export": "Export Formats",
+                "stats.ai": "AI Powered",
+                "cta.title": "Start Learning Visually",
+                "cta.subtitle": "Download VoiceSketch and transform how you capture and retain knowledge.",
+                "testimonials.title": "What Users Say",
+                "testimonials.subtitle": "Join thousands of learners transforming their notes",
+                "testimonials.review1.text": "\"VoiceSketch has completely changed how I study. The visual summaries make complex topics so much easier to remember!\"",
+                "testimonials.review1.name": "Sarah M.",
+                "testimonials.review1.role": "Medical Student",
+                "testimonials.review2.text": "\"I use it for every meeting now. The AI summaries capture key points I would have missed, and the visuals help me recall discussions weeks later.\"",
+                "testimonials.review2.name": "David K.",
+                "testimonials.review2.role": "Product Manager",
+                "testimonials.review3.text": "\"The multi-language support is amazing! I can record lectures in Japanese and get summaries in English. Perfect for my research.\"",
+                "testimonials.review3.name": "James L.",
+                "testimonials.review3.role": "PhD Researcher",
+                "testimonials.review4.text": "\"As a podcast creator, I use VoiceSketch to generate show notes automatically. It saves me hours every week and my audience loves the visual summaries!\"",
+                "testimonials.review4.name": "Emily R.",
+                "testimonials.review4.role": "Podcast Host",
+                "testimonials.review5.text": "\"The export feature is fantastic. I can share my visual notes as PDFs with my study group. We've all improved our grades since using VoiceSketch!\"",
+                "testimonials.review5.name": "Michael T.",
+                "testimonials.review5.role": "Computer Science Student",
+                "testimonials.review6.text": "\"I attend conferences worldwide and VoiceSketch helps me capture every presentation. The visual notes make it easy to share insights with my team back home.\"",
+                "testimonials.review6.name": "Anna S.",
+                "testimonials.review6.role": "Marketing Director",
+                "footer.from": "from",
+                "footer.copyright": "© 2026 VoiceSketch. All rights reserved."
+            },
+            "zh-TW": {
+                "nav.features": "功能特色",
+                "nav.howItWorks": "使用方式",
+                "nav.reviews": "使用者評價",
+                "meta.title": "VoiceSketch - 將語音轉化為視覺學習",
+                "hero.tagline": "將語音轉化為視覺筆記",
+                "hero.badge.ai": "AI 驅動",
+                "hero.badge.languages": "支援 60+ 種語言",
+                "hero.cta": "在 App Store 下載",
+                "demo.record": "錄音",
+                "demo.aiMagic": "AI 魔法",
+                "demo.export": "匯出",
+                "demo.languages": "60+ 種語言",
+                "demo.summary": "AI 摘要",
+                "demo.cloud": "雲端同步",
+                "demo.visual": "視覺筆記",
+                "demo.pdf": "PDF 匯出",
+                "demo.realtime": "即時轉錄",
+                "demo.gpt": "GPT 驅動",
+                "demo.recording": "錄音中...",
+                "demo.transcription": "粒線體是細胞的發電廠...",
+                "demo.card1.title": "細胞生物學",
+                "demo.card1.desc": "粒線體透過細胞呼吸產生 ATP",
+                "demo.card2.title": "能量產生",
+                "demo.card2.desc": "ATP 是細胞的主要能量貨幣",
+                "demo.card3.title": "DNA 與遺傳學",
+                "demo.card3.desc": "粒線體擁有自己的環狀 DNA",
+                "features.title": "強大功能",
+                "features.subtitle": "將音訊轉化為視覺知識所需的一切",
+                "features.voice.title": "語音錄製",
+                "features.voice.desc": "即時音訊捕捉與即時轉錄。輕鬆錄製講座、會議或任何口語內容。",
+                "features.ai.title": "AI 摘要",
+                "features.ai.desc": "由 GPT 驅動，自動生成精簡摘要，捕捉內容精華。",
+                "features.visual.title": "視覺筆記",
+                "features.visual.desc": "為每個摘要段落生成 AI 圖像，創造令人難忘的視覺錨點，增強記憶。",
+                "features.text.title": "文字分析",
+                "features.text.desc": "貼上任何文字即可生成視覺摘要。適用於文章、文件或學習資料。",
+                "features.lang.title": "多語言支援",
+                "features.lang.desc": "支援 60+ 種轉錄語言和 10 種介面語言。用您的母語學習。",
+                "features.cloud.title": "雲端同步與匯出",
+                "features.cloud.desc": "Firebase 備份確保跨裝置筆記安全。支援匯出 PDF、PNG 或 RTF 格式。",
+                "howItWorks.title": "使用方式",
+                "howItWorks.subtitle": "三個簡單步驟實現視覺學習",
+                "howItWorks.step1.title": "錄音或貼上",
+                "howItWorks.step1.desc": "開始錄製您的講座、會議或討論。您也可以直接貼上文字進行分析。VoiceSketch 支援 60+ 種語言的即時轉錄。",
+                "howItWorks.step2.title": "AI 處理",
+                "howItWorks.step2.desc": "我們的 GPT 驅動 AI 分析您的內容，提取關鍵概念並創建精簡摘要。每個段落都配有獨特的 AI 生成視覺圖像。",
+                "howItWorks.step3.title": "檢視與匯出",
+                "howItWorks.step3.desc": "瀏覽您的視覺筆記，透過 Firebase 跨裝置同步，並匯出為 PDF、PNG 或 RTF。您的知識，精美整理。",
+                "howItWorks.processing": "處理中...",
+                "useCases.title": "適用對象",
+                "useCases.subtitle": "在任何情境下增強學習與記憶",
+                "useCases.students.title": "學生",
+                "useCases.students.desc": "將講座轉化為視覺學習指南，更好地準備考試",
+                "useCases.professionals.title": "專業人士",
+                "useCases.professionals.desc": "用視覺摘要捕捉會議洞見，便於快速參考",
+                "useCases.podcast.title": "Podcast 聽眾",
+                "useCases.podcast.desc": "將音訊內容轉化為可複習的視覺筆記",
+                "useCases.researchers.title": "研究人員",
+                "useCases.researchers.desc": "用視覺化文件整理研究發現，便於分析",
+                "stats.languages": "轉錄語言",
+                "stats.ui": "介面語言",
+                "stats.export": "匯出格式",
+                "stats.ai": "AI 驅動",
+                "cta.title": "開始視覺學習",
+                "cta.subtitle": "下載 VoiceSketch，轉變您捕捉和保留知識的方式。",
+                "testimonials.title": "使用者怎麼說",
+                "testimonials.subtitle": "加入數千名正在轉變筆記方式的學習者",
+                "testimonials.review1.text": "「VoiceSketch 徹底改變了我的學習方式。視覺摘要讓複雜的主題更容易記住！」",
+                "testimonials.review1.name": "小美",
+                "testimonials.review1.role": "醫學系學生",
+                "testimonials.review2.text": "「我現在每次開會都會用它。AI 摘要能捕捉我可能錯過的重點，視覺圖像幫助我在數週後回想起討論內容。」",
+                "testimonials.review2.name": "大衛",
+                "testimonials.review2.role": "產品經理",
+                "testimonials.review3.text": "「多語言支援太棒了！我可以用日語錄製講座，然後獲得英語摘要。非常適合我的研究工作。」",
+                "testimonials.review3.name": "志明",
+                "testimonials.review3.role": "博士研究員",
+                "testimonials.review4.text": "「作為播客創作者，我用 VoiceSketch 自動生成節目筆記。每週節省我數小時，聽眾也很喜歡視覺摘要！」",
+                "testimonials.review4.name": "小雯",
+                "testimonials.review4.role": "播客主持人",
+                "testimonials.review5.text": "「匯出功能太棒了。我可以將視覺筆記以 PDF 形式分享給讀書會。自從使用 VoiceSketch，我們的成績都進步了！」",
+                "testimonials.review5.name": "阿傑",
+                "testimonials.review5.role": "資工系學生",
+                "testimonials.review6.text": "「我參加世界各地的研討會，VoiceSketch 幫我記錄每場演講。視覺筆記讓我能輕鬆與團隊分享洞見。」",
+                "testimonials.review6.name": "安妮",
+                "testimonials.review6.role": "行銷總監",
+                "footer.from": "來自",
+                "footer.copyright": "© 2026 VoiceSketch. 保留所有權利。"
+            },
+            "zh-CN": {
+                "nav.features": "功能特色",
+                "nav.howItWorks": "使用方式",
+                "nav.reviews": "用户评价",
+                "meta.title": "VoiceSketch - 将语音转化为视觉学习",
+                "hero.tagline": "将语音转化为视觉笔记",
+                "hero.badge.ai": "AI 驱动",
+                "hero.badge.languages": "支持 60+ 种语言",
+                "hero.cta": "在 App Store 下载",
+                "demo.record": "录音",
+                "demo.aiMagic": "AI 魔法",
+                "demo.export": "导出",
+                "demo.languages": "60+ 种语言",
+                "demo.summary": "AI 摘要",
+                "demo.cloud": "云端同步",
+                "demo.visual": "视觉笔记",
+                "demo.pdf": "PDF 导出",
+                "demo.realtime": "实时转录",
+                "demo.gpt": "GPT 驱动",
+                "demo.recording": "录音中...",
+                "demo.transcription": "线粒体是细胞的发电站...",
+                "demo.card1.title": "细胞生物学",
+                "demo.card1.desc": "线粒体通过细胞呼吸产生 ATP",
+                "demo.card2.title": "能量生产",
+                "demo.card2.desc": "ATP 是细胞的主要能量货币",
+                "demo.card3.title": "DNA 与遗传学",
+                "demo.card3.desc": "线粒体拥有自己的环状 DNA",
+                "features.title": "强大功能",
+                "features.subtitle": "将音频转化为视觉知识所需的一切",
+                "features.voice.title": "语音录制",
+                "features.voice.desc": "实时音频捕获与即时转录。轻松录制讲座、会议或任何口语内容。",
+                "features.ai.title": "AI 摘要",
+                "features.ai.desc": "由 GPT 驱动，自动生成精炼摘要，捕捉内容精华。",
+                "features.visual.title": "视觉笔记",
+                "features.visual.desc": "为每个摘要段落生成 AI 图像，创造令人难忘的视觉锚点，增强记忆。",
+                "features.text.title": "文本分析",
+                "features.text.desc": "粘贴任何文本即可生成视觉摘要。适用于文章、文档或学习资料。",
+                "features.lang.title": "多语言支持",
+                "features.lang.desc": "支持 60+ 种转录语言和 10 种界面语言。用您的母语学习。",
+                "features.cloud.title": "云端同步与导出",
+                "features.cloud.desc": "Firebase 备份确保跨设备笔记安全。支持导出 PDF、PNG 或 RTF 格式。",
+                "howItWorks.title": "使用方式",
+                "howItWorks.subtitle": "三个简单步骤实现视觉学习",
+                "howItWorks.step1.title": "录音或粘贴",
+                "howItWorks.step1.desc": "开始录制您的讲座、会议或讨论。您也可以直接粘贴文本进行分析。VoiceSketch 支持 60+ 种语言的实时转录。",
+                "howItWorks.step2.title": "AI 处理",
+                "howItWorks.step2.desc": "我们的 GPT 驱动 AI 分析您的内容，提取关键概念并创建精炼摘要。每个段落都配有独特的 AI 生成视觉图像。",
+                "howItWorks.step3.title": "查看与导出",
+                "howItWorks.step3.desc": "浏览您的视觉笔记，通过 Firebase 跨设备同步，并导出为 PDF、PNG 或 RTF。您的知识，精美整理。",
+                "howItWorks.processing": "处理中...",
+                "useCases.title": "适用对象",
+                "useCases.subtitle": "在任何情境下增强学习与记忆",
+                "useCases.students.title": "学生",
+                "useCases.students.desc": "将讲座转化为视觉学习指南，更好地准备考试",
+                "useCases.professionals.title": "专业人士",
+                "useCases.professionals.desc": "用视觉摘要捕捉会议洞见，便于快速参考",
+                "useCases.podcast.title": "播客听众",
+                "useCases.podcast.desc": "将音频内容转化为可复习的视觉笔记",
+                "useCases.researchers.title": "研究人员",
+                "useCases.researchers.desc": "用可视化文档整理研究发现，便于分析",
+                "stats.languages": "转录语言",
+                "stats.ui": "界面语言",
+                "stats.export": "导出格式",
+                "stats.ai": "AI 驱动",
+                "cta.title": "开始视觉学习",
+                "cta.subtitle": "下载 VoiceSketch，转变您捕获和保留知识的方式。",
+                "testimonials.title": "用户怎么说",
+                "testimonials.subtitle": "加入数千名正在转变笔记方式的学习者",
+                "testimonials.review1.text": "「VoiceSketch 彻底改变了我的学习方式。视觉摘要让复杂的主题更容易记住！」",
+                "testimonials.review1.name": "小美",
+                "testimonials.review1.role": "医学系学生",
+                "testimonials.review2.text": "「我现在每次开会都会用它。AI 摘要能捕捉我可能错过的重点，视觉图像帮助我在数周后回想起讨论内容。」",
+                "testimonials.review2.name": "大卫",
+                "testimonials.review2.role": "产品经理",
+                "testimonials.review3.text": "「多语言支持太棒了！我可以用日语录制讲座，然后获得英语摘要。非常适合我的研究工作。」",
+                "testimonials.review3.name": "志明",
+                "testimonials.review3.role": "博士研究员",
+                "testimonials.review4.text": "「作为播客创作者，我用 VoiceSketch 自动生成节目笔记。每周节省我数小时，听众也很喜欢视觉摘要！」",
+                "testimonials.review4.name": "小雯",
+                "testimonials.review4.role": "播客主持人",
+                "testimonials.review5.text": "「导出功能太棒了。我可以将视觉笔记以 PDF 形式分享给学习小组。自从使用 VoiceSketch，我们的成绩都进步了！」",
+                "testimonials.review5.name": "阿杰",
+                "testimonials.review5.role": "计算机系学生",
+                "testimonials.review6.text": "「我参加世界各地的研讨会，VoiceSketch 帮我记录每场演讲。视觉笔记让我能轻松与团队分享洞见。」",
+                "testimonials.review6.name": "安妮",
+                "testimonials.review6.role": "市场总监",
+                "footer.from": "来自",
+                "footer.copyright": "© 2026 VoiceSketch. 保留所有权利。"
+            },
+            ja: {
+                "nav.features": "機能",
+                "nav.howItWorks": "使い方",
+                "nav.reviews": "レビュー",
+                "meta.title": "VoiceSketch - 音声をビジュアル学習に変換",
+                "hero.tagline": "音声をビジュアルノートに変換",
+                "hero.badge.ai": "AI搭載",
+                "hero.badge.languages": "60以上の言語",
+                "hero.cta": "App Storeでダウンロード",
+                "demo.record": "録音",
+                "demo.aiMagic": "AIマジック",
+                "demo.export": "エクスポート",
+                "demo.languages": "60以上の言語",
+                "demo.summary": "AI要約",
+                "demo.cloud": "クラウド同期",
+                "demo.visual": "ビジュアルノート",
+                "demo.pdf": "PDF出力",
+                "demo.realtime": "リアルタイム",
+                "demo.gpt": "GPT搭載",
+                "demo.recording": "録音中...",
+                "demo.transcription": "ミトコンドリアは細胞の発電所です...",
+                "demo.card1.title": "細胞生物学",
+                "demo.card1.desc": "ミトコンドリアは細胞呼吸でATPを生成",
+                "demo.card2.title": "エネルギー生産",
+                "demo.card2.desc": "ATPは細胞の主要なエネルギー通貨",
+                "demo.card3.title": "DNAと遺伝学",
+                "demo.card3.desc": "ミトコンドリアは独自の環状DNAを持つ",
+                "features.title": "強力な機能",
+                "features.subtitle": "音声をビジュアル知識に変換するために必要なすべて",
+                "features.voice.title": "音声録音",
+                "features.voice.desc": "リアルタイム音声キャプチャとライブ文字起こし。講義、会議、あらゆる会話を簡単に録音。",
+                "features.ai.title": "AI要約",
+                "features.ai.desc": "GPT搭載で、コンテンツの本質を捉えた簡潔な要約を自動生成。",
+                "features.visual.title": "ビジュアルノート",
+                "features.visual.desc": "各要約セグメントにAI生成画像を作成し、記憶を強化する視覚的アンカーを提供。",
+                "features.text.title": "テキスト分析",
+                "features.text.desc": "テキストを貼り付けてビジュアル要約を生成。記事、文書、学習資料に最適。",
+                "features.lang.title": "多言語対応",
+                "features.lang.desc": "60以上の文字起こし言語と10のUI言語をサポート。母国語で学習。",
+                "features.cloud.title": "クラウド同期とエクスポート",
+                "features.cloud.desc": "Firebaseバックアップでデバイス間でノートを安全に保管。PDF、PNG、RTF形式でエクスポート。",
+                "howItWorks.title": "使い方",
+                "howItWorks.subtitle": "3つの簡単なステップでビジュアル学習",
+                "howItWorks.step1.title": "録音または貼り付け",
+                "howItWorks.step1.desc": "講義、会議、ディスカッションの録音を開始。テキストを直接貼り付けて分析することも可能。VoiceSketchは60以上の言語でリアルタイム文字起こしをサポート。",
+                "howItWorks.step2.title": "AI処理",
+                "howItWorks.step2.desc": "GPT搭載AIがコンテンツを分析し、重要な概念を抽出して簡潔な要約を作成。各セグメントにユニークなAI生成ビジュアルを付与。",
+                "howItWorks.step3.title": "確認とエクスポート",
+                "howItWorks.step3.desc": "ビジュアルノートを閲覧し、Firebaseでデバイス間同期、PDF、PNG、RTFでエクスポート。知識を美しく整理。",
+                "howItWorks.processing": "処理中...",
+                "useCases.title": "こんな方に最適",
+                "useCases.subtitle": "あらゆる場面で学習と記憶を強化",
+                "useCases.students.title": "学生",
+                "useCases.students.desc": "講義をビジュアル学習ガイドに変換し、試験準備を強化",
+                "useCases.professionals.title": "ビジネスパーソン",
+                "useCases.professionals.desc": "会議の洞察をビジュアル要約でキャプチャし、すぐに参照",
+                "useCases.podcast.title": "ポッドキャストリスナー",
+                "useCases.podcast.desc": "音声コンテンツを復習可能なビジュアルノートに変換",
+                "useCases.researchers.title": "研究者",
+                "useCases.researchers.desc": "研究成果をビジュアルドキュメントで整理し、分析を容易に",
+                "stats.languages": "文字起こし言語",
+                "stats.ui": "UI言語",
+                "stats.export": "エクスポート形式",
+                "stats.ai": "AI搭載",
+                "cta.title": "ビジュアル学習を始めよう",
+                "cta.subtitle": "VoiceSketchをダウンロードして、知識の獲得と定着の方法を変革しましょう。",
+                "testimonials.title": "ユーザーの声",
+                "testimonials.subtitle": "ノートの取り方を変革している何千人もの学習者に参加しよう",
+                "testimonials.review1.text": "「VoiceSketchは私の勉強方法を完全に変えました。ビジュアル要約のおかげで、複雑なトピックがずっと覚えやすくなりました！」",
+                "testimonials.review1.name": "佐藤美咲",
+                "testimonials.review1.role": "医学生",
+                "testimonials.review2.text": "「今では毎回の会議で使っています。AI要約が見逃していたかもしれない重要なポイントをキャッチし、ビジュアルが数週間後でも議論を思い出す助けになります。」",
+                "testimonials.review2.name": "田中健一",
+                "testimonials.review2.role": "プロダクトマネージャー",
+                "testimonials.review3.text": "「多言語サポートが素晴らしい！日本語で講義を録音して、英語で要約を取得できます。研究に最適です。」",
+                "testimonials.review3.name": "山田太郎",
+                "testimonials.review3.role": "博士研究員",
+                "testimonials.review4.text": "「ポッドキャスト制作者として、VoiceSketchで番組ノートを自動生成しています。毎週何時間も節約でき、リスナーもビジュアル要約を気に入っています！」",
+                "testimonials.review4.name": "鈴木花子",
+                "testimonials.review4.role": "ポッドキャストホスト",
+                "testimonials.review5.text": "「エクスポート機能が素晴らしい。ビジュアルノートをPDFで勉強グループと共有できます。VoiceSketchを使い始めてから、みんな成績が上がりました！」",
+                "testimonials.review5.name": "高橋翔",
+                "testimonials.review5.role": "情報工学科の学生",
+                "testimonials.review6.text": "「世界中のカンファレンスに参加していますが、VoiceSketchですべてのプレゼンを記録できます。ビジュアルノートでチームと簡単に共有できます。」",
+                "testimonials.review6.name": "伊藤めぐみ",
+                "testimonials.review6.role": "マーケティングディレクター",
+                "footer.from": "提供",
+                "footer.copyright": "© 2026 VoiceSketch. All rights reserved."
+            },
+            ko: {
+                "nav.features": "기능",
+                "nav.howItWorks": "사용 방법",
+                "nav.reviews": "리뷰",
+                "meta.title": "VoiceSketch - 음성을 시각적 학습으로 변환",
+                "hero.tagline": "음성을 시각적 노트로 변환",
+                "hero.badge.ai": "AI 기반",
+                "hero.badge.languages": "60개 이상 언어",
+                "hero.cta": "App Store에서 다운로드",
+                "demo.record": "녹음",
+                "demo.aiMagic": "AI 마법",
+                "demo.export": "내보내기",
+                "demo.languages": "60개 이상 언어",
+                "demo.summary": "AI 요약",
+                "demo.cloud": "클라우드 동기화",
+                "demo.visual": "시각적 노트",
+                "demo.pdf": "PDF 내보내기",
+                "demo.realtime": "실시간",
+                "demo.gpt": "GPT 기반",
+                "demo.recording": "녹음 중...",
+                "demo.transcription": "미토콘드리아는 세포의 발전소입니다...",
+                "demo.card1.title": "세포 생물학",
+                "demo.card1.desc": "미토콘드리아는 세포 호흡을 통해 ATP를 생성",
+                "demo.card2.title": "에너지 생산",
+                "demo.card2.desc": "ATP는 세포의 주요 에너지 화폐",
+                "demo.card3.title": "DNA와 유전학",
+                "demo.card3.desc": "미토콘드리아는 자체 원형 DNA를 보유",
+                "features.title": "강력한 기능",
+                "features.subtitle": "오디오를 시각적 지식으로 변환하는 데 필요한 모든 것",
+                "features.voice.title": "음성 녹음",
+                "features.voice.desc": "실시간 오디오 캡처와 라이브 전사. 강의, 회의 또는 모든 음성 콘텐츠를 손쉽게 녹음.",
+                "features.ai.title": "AI 요약",
+                "features.ai.desc": "GPT 기반으로 콘텐츠의 본질을 포착하는 간결한 요약을 자동 생성.",
+                "features.visual.title": "시각적 노트",
+                "features.visual.desc": "각 요약 세그먼트에 AI 생성 이미지를 제공하여 기억력을 강화하는 시각적 앵커 생성.",
+                "features.text.title": "텍스트 분석",
+                "features.text.desc": "텍스트를 붙여넣어 시각적 요약을 생성. 기사, 문서 또는 학습 자료에 적합.",
+                "features.lang.title": "다국어 지원",
+                "features.lang.desc": "60개 이상의 전사 언어와 10개의 UI 언어 지원. 모국어로 학습.",
+                "features.cloud.title": "클라우드 동기화 및 내보내기",
+                "features.cloud.desc": "Firebase 백업으로 장치 간 노트를 안전하게 보관. PDF, PNG 또는 RTF 형식으로 내보내기.",
+                "howItWorks.title": "사용 방법",
+                "howItWorks.subtitle": "시각적 학습을 위한 세 가지 간단한 단계",
+                "howItWorks.step1.title": "녹음 또는 붙여넣기",
+                "howItWorks.step1.desc": "강의, 회의 또는 토론 녹음을 시작하세요. 분석을 위해 텍스트를 직접 붙여넣을 수도 있습니다. VoiceSketch는 60개 이상의 언어로 실시간 전사를 지원합니다.",
+                "howItWorks.step2.title": "AI 처리",
+                "howItWorks.step2.desc": "GPT 기반 AI가 콘텐츠를 분석하고 핵심 개념을 추출하여 간결한 요약을 생성합니다. 각 세그먼트에 고유한 AI 생성 비주얼이 제공됩니다.",
+                "howItWorks.step3.title": "검토 및 내보내기",
+                "howItWorks.step3.desc": "시각적 노트를 탐색하고 Firebase로 장치 간 동기화하며 PDF, PNG 또는 RTF로 내보내기. 지식을 아름답게 정리.",
+                "howItWorks.processing": "처리 중...",
+                "useCases.title": "이런 분께 적합",
+                "useCases.subtitle": "모든 상황에서 학습과 기억력 강화",
+                "useCases.students.title": "학생",
+                "useCases.students.desc": "강의를 시각적 학습 가이드로 변환하여 시험 준비 강화",
+                "useCases.professionals.title": "전문가",
+                "useCases.professionals.desc": "회의 인사이트를 시각적 요약으로 캡처하여 빠르게 참조",
+                "useCases.podcast.title": "팟캐스트 청취자",
+                "useCases.podcast.desc": "오디오 콘텐츠를 복습 가능한 시각적 노트로 변환",
+                "useCases.researchers.title": "연구자",
+                "useCases.researchers.desc": "연구 결과를 시각적 문서로 정리하여 분석 용이",
+                "stats.languages": "전사 언어",
+                "stats.ui": "UI 언어",
+                "stats.export": "내보내기 형식",
+                "stats.ai": "AI 기반",
+                "cta.title": "시각적 학습 시작하기",
+                "cta.subtitle": "VoiceSketch를 다운로드하고 지식을 캡처하고 유지하는 방식을 혁신하세요.",
+                "testimonials.title": "사용자 후기",
+                "testimonials.subtitle": "노트 방식을 혁신하고 있는 수천 명의 학습자와 함께하세요",
+                "testimonials.review1.text": "\"VoiceSketch는 제 공부 방식을 완전히 바꿨어요. 시각적 요약 덕분에 복잡한 주제도 훨씬 기억하기 쉬워졌습니다!\"",
+                "testimonials.review1.name": "김서연",
+                "testimonials.review1.role": "의대생",
+                "testimonials.review2.text": "\"이제 모든 회의에서 사용합니다. AI 요약이 놓칠 뻔한 핵심 포인트를 캡처하고, 시각 자료가 몇 주 후에도 토론 내용을 기억하는 데 도움이 됩니다.\"",
+                "testimonials.review2.name": "이민준",
+                "testimonials.review2.role": "프로덕트 매니저",
+                "testimonials.review3.text": "\"다국어 지원이 정말 놀라워요! 일본어로 강의를 녹음하고 영어로 요약을 받을 수 있어요. 연구에 완벽합니다.\"",
+                "testimonials.review3.name": "박지훈",
+                "testimonials.review3.role": "박사 연구원",
+                "testimonials.review4.text": "\"팟캐스트 크리에이터로서 VoiceSketch로 쇼 노트를 자동 생성합니다. 매주 몇 시간을 절약하고 청취자들도 시각적 요약을 좋아해요!\"",
+                "testimonials.review4.name": "최수진",
+                "testimonials.review4.role": "팟캐스트 호스트",
+                "testimonials.review5.text": "\"내보내기 기능이 정말 좋아요. 시각적 노트를 PDF로 스터디 그룹과 공유할 수 있어요. VoiceSketch를 사용한 이후로 성적이 모두 올랐어요!\"",
+                "testimonials.review5.name": "정민혁",
+                "testimonials.review5.role": "컴퓨터공학과 학생",
+                "testimonials.review6.text": "\"전 세계 컨퍼런스에 참석하는데, VoiceSketch가 모든 발표를 캡처해줘요. 시각적 노트로 팀과 쉽게 인사이트를 공유할 수 있어요.\"",
+                "testimonials.review6.name": "한소영",
+                "testimonials.review6.role": "마케팅 디렉터",
+                "footer.from": "제공",
+                "footer.copyright": "© 2026 VoiceSketch. All rights reserved."
+            },
+            fr: {
+                "nav.features": "Fonctionnalités",
+                "nav.howItWorks": "Comment ça marche",
+                "nav.reviews": "Avis",
+                "meta.title": "VoiceSketch - Transformez la voix en apprentissage visuel",
+                "hero.tagline": "Transformez la voix en notes visuelles",
+                "hero.badge.ai": "Propulsé par l'IA",
+                "hero.badge.languages": "60+ langues",
+                "hero.cta": "Télécharger sur l'App Store",
+                "demo.record": "Enregistrer",
+                "demo.aiMagic": "Magie IA",
+                "demo.export": "Exporter",
+                "demo.languages": "60+ langues",
+                "demo.summary": "Résumé IA",
+                "demo.cloud": "Sync cloud",
+                "demo.visual": "Notes visuelles",
+                "demo.pdf": "Export PDF",
+                "demo.realtime": "Temps réel",
+                "demo.gpt": "Propulsé GPT",
+                "demo.recording": "Enregistrement...",
+                "demo.transcription": "La mitochondrie est la centrale énergétique de la cellule...",
+                "demo.card1.title": "Biologie cellulaire",
+                "demo.card1.desc": "Les mitochondries produisent l'ATP par respiration cellulaire",
+                "demo.card2.title": "Production d'énergie",
+                "demo.card2.desc": "L'ATP est la principale monnaie énergétique des cellules",
+                "demo.card3.title": "ADN et génétique",
+                "demo.card3.desc": "Les mitochondries contiennent leur propre ADN circulaire",
+                "features.title": "Fonctionnalités puissantes",
+                "features.subtitle": "Tout ce dont vous avez besoin pour transformer l'audio en connaissances visuelles",
+                "features.voice.title": "Enregistrement vocal",
+                "features.voice.desc": "Capture audio en temps réel avec transcription en direct. Enregistrez conférences, réunions ou tout contenu parlé sans effort.",
+                "features.ai.title": "Résumé IA",
+                "features.ai.desc": "Propulsé par GPT, génère automatiquement des résumés concis qui capturent l'essence de votre contenu.",
+                "features.visual.title": "Notes visuelles",
+                "features.visual.desc": "Images générées par IA pour chaque segment de résumé, créant des ancres visuelles mémorables pour une meilleure rétention.",
+                "features.text.title": "Analyse de texte",
+                "features.text.desc": "Collez n'importe quel texte pour générer des résumés visuels. Parfait pour les articles, documents ou supports d'étude.",
+                "features.lang.title": "Multilingue",
+                "features.lang.desc": "Support de 60+ langues de transcription et 10 langues d'interface. Apprenez dans votre langue maternelle.",
+                "features.cloud.title": "Sync cloud et export",
+                "features.cloud.desc": "La sauvegarde Firebase garde vos notes en sécurité sur tous les appareils. Exportez en PDF, PNG ou RTF.",
+                "howItWorks.title": "Comment ça marche",
+                "howItWorks.subtitle": "Trois étapes simples pour l'apprentissage visuel",
+                "howItWorks.step1.title": "Enregistrez ou collez",
+                "howItWorks.step1.desc": "Commencez à enregistrer votre conférence, réunion ou discussion. Vous pouvez aussi coller du texte directement pour analyse. VoiceSketch transcrit en temps réel avec support de 60+ langues.",
+                "howItWorks.step2.title": "Traitement IA",
+                "howItWorks.step2.desc": "Notre IA propulsée par GPT analyse votre contenu, extrait les concepts clés et crée des résumés concis. Chaque segment est accompagné d'un visuel IA unique.",
+                "howItWorks.step3.title": "Révisez et exportez",
+                "howItWorks.step3.desc": "Parcourez vos notes visuelles, synchronisez sur tous les appareils avec Firebase et exportez en PDF, PNG ou RTF. Vos connaissances, magnifiquement organisées.",
+                "howItWorks.processing": "Traitement...",
+                "useCases.title": "Parfait pour",
+                "useCases.subtitle": "Améliorez l'apprentissage et la rétention dans tout contexte",
+                "useCases.students.title": "Étudiants",
+                "useCases.students.desc": "Transformez les cours en guides d'étude visuels pour mieux préparer vos examens",
+                "useCases.professionals.title": "Professionnels",
+                "useCases.professionals.desc": "Capturez les insights de réunion avec des résumés visuels pour référence rapide",
+                "useCases.podcast.title": "Auditeurs de podcasts",
+                "useCases.podcast.desc": "Transformez le contenu audio en notes visuelles mémorables à réviser",
+                "useCases.researchers.title": "Chercheurs",
+                "useCases.researchers.desc": "Organisez vos découvertes avec une documentation visuelle pour faciliter l'analyse",
+                "stats.languages": "Langues de transcription",
+                "stats.ui": "Langues d'interface",
+                "stats.export": "Formats d'export",
+                "stats.ai": "Propulsé par l'IA",
+                "cta.title": "Commencez l'apprentissage visuel",
+                "cta.subtitle": "Téléchargez VoiceSketch et transformez votre façon de capturer et retenir les connaissances.",
+                "testimonials.title": "Ce que disent les utilisateurs",
+                "testimonials.subtitle": "Rejoignez des milliers d'apprenants qui transforment leurs notes",
+                "testimonials.review1.text": "\"VoiceSketch a complètement changé ma façon d'étudier. Les résumés visuels rendent les sujets complexes tellement plus faciles à retenir !\"",
+                "testimonials.review1.name": "Sophie M.",
+                "testimonials.review1.role": "Étudiante en médecine",
+                "testimonials.review2.text": "\"Je l'utilise maintenant pour chaque réunion. Les résumés IA capturent les points clés que j'aurais manqués, et les visuels m'aident à me souvenir des discussions des semaines plus tard.\"",
+                "testimonials.review2.name": "Pierre D.",
+                "testimonials.review2.role": "Chef de produit",
+                "testimonials.review3.text": "\"Le support multilingue est incroyable ! Je peux enregistrer des cours en japonais et obtenir des résumés en anglais. Parfait pour ma recherche.\"",
+                "testimonials.review3.name": "Jean L.",
+                "testimonials.review3.role": "Doctorant",
+                "testimonials.review4.text": "\"En tant que créatrice de podcast, j'utilise VoiceSketch pour générer automatiquement les notes d'émission. Ça me fait gagner des heures chaque semaine et mon public adore les résumés visuels !\"",
+                "testimonials.review4.name": "Marie C.",
+                "testimonials.review4.role": "Animatrice de podcast",
+                "testimonials.review5.text": "\"La fonction d'export est fantastique. Je peux partager mes notes visuelles en PDF avec mon groupe d'étude. Nos notes ont toutes augmenté depuis qu'on utilise VoiceSketch !\"",
+                "testimonials.review5.name": "Thomas B.",
+                "testimonials.review5.role": "Étudiant en informatique",
+                "testimonials.review6.text": "\"J'assiste à des conférences dans le monde entier et VoiceSketch m'aide à capturer chaque présentation. Les notes visuelles facilitent le partage avec mon équipe.\"",
+                "testimonials.review6.name": "Claire D.",
+                "testimonials.review6.role": "Directrice marketing",
+                "footer.from": "de",
+                "footer.copyright": "© 2026 VoiceSketch. Tous droits réservés."
+            },
+            es: {
+                "nav.features": "Características",
+                "nav.howItWorks": "Cómo funciona",
+                "nav.reviews": "Reseñas",
+                "meta.title": "VoiceSketch - Transforma la voz en aprendizaje visual",
+                "hero.tagline": "Transforma la voz en notas visuales",
+                "hero.badge.ai": "Potenciado por IA",
+                "hero.badge.languages": "60+ idiomas",
+                "hero.cta": "Descargar en App Store",
+                "demo.record": "Grabar",
+                "demo.aiMagic": "Magia IA",
+                "demo.export": "Exportar",
+                "demo.languages": "60+ idiomas",
+                "demo.summary": "Resumen IA",
+                "demo.cloud": "Sync nube",
+                "demo.visual": "Notas visuales",
+                "demo.pdf": "Exportar PDF",
+                "demo.realtime": "Tiempo real",
+                "demo.gpt": "GPT Powered",
+                "demo.recording": "Grabando...",
+                "demo.transcription": "La mitocondria es la central energética de la célula...",
+                "demo.card1.title": "Biología celular",
+                "demo.card1.desc": "Las mitocondrias producen ATP mediante respiración celular",
+                "demo.card2.title": "Producción de energía",
+                "demo.card2.desc": "El ATP es la principal moneda energética de las células",
+                "demo.card3.title": "ADN y genética",
+                "demo.card3.desc": "Las mitocondrias contienen su propio ADN circular",
+                "features.title": "Características potentes",
+                "features.subtitle": "Todo lo que necesitas para transformar audio en conocimiento visual",
+                "features.voice.title": "Grabación de voz",
+                "features.voice.desc": "Captura de audio en tiempo real con transcripción en vivo. Graba conferencias, reuniones o cualquier contenido hablado sin esfuerzo.",
+                "features.ai.title": "Resumen con IA",
+                "features.ai.desc": "Potenciado por GPT, genera automáticamente resúmenes concisos que capturan la esencia de tu contenido.",
+                "features.visual.title": "Notas visuales",
+                "features.visual.desc": "Imágenes generadas por IA para cada segmento de resumen, creando anclas visuales memorables para mejor retención.",
+                "features.text.title": "Análisis de texto",
+                "features.text.desc": "Pega cualquier texto para generar resúmenes visuales. Perfecto para artículos, documentos o materiales de estudio.",
+                "features.lang.title": "Multiidioma",
+                "features.lang.desc": "Soporte para 60+ idiomas de transcripción y 10 idiomas de interfaz. Aprende en tu idioma nativo.",
+                "features.cloud.title": "Sync en la nube y exportación",
+                "features.cloud.desc": "El respaldo de Firebase mantiene tus notas seguras en todos los dispositivos. Exporta a PDF, PNG o RTF.",
+                "howItWorks.title": "Cómo funciona",
+                "howItWorks.subtitle": "Tres pasos simples para el aprendizaje visual",
+                "howItWorks.step1.title": "Graba o pega",
+                "howItWorks.step1.desc": "Comienza a grabar tu conferencia, reunión o discusión. También puedes pegar texto directamente para análisis. VoiceSketch transcribe en tiempo real con soporte para 60+ idiomas.",
+                "howItWorks.step2.title": "Procesamiento IA",
+                "howItWorks.step2.desc": "Nuestra IA potenciada por GPT analiza tu contenido, extrae conceptos clave y crea resúmenes concisos. Cada segmento se acompaña de un visual único generado por IA.",
+                "howItWorks.step3.title": "Revisa y exporta",
+                "howItWorks.step3.desc": "Explora tus notas visuales, sincroniza entre dispositivos con Firebase y exporta a PDF, PNG o RTF. Tu conocimiento, bellamente organizado.",
+                "howItWorks.processing": "Procesando...",
+                "useCases.title": "Perfecto para",
+                "useCases.subtitle": "Mejora el aprendizaje y la retención en cualquier contexto",
+                "useCases.students.title": "Estudiantes",
+                "useCases.students.desc": "Transforma conferencias en guías de estudio visuales para mejor preparación de exámenes",
+                "useCases.professionals.title": "Profesionales",
+                "useCases.professionals.desc": "Captura insights de reuniones con resúmenes visuales para referencia rápida",
+                "useCases.podcast.title": "Oyentes de podcasts",
+                "useCases.podcast.desc": "Convierte contenido de audio en notas visuales memorables para revisar",
+                "useCases.researchers.title": "Investigadores",
+                "useCases.researchers.desc": "Organiza hallazgos con documentación visual para facilitar el análisis",
+                "stats.languages": "Idiomas de transcripción",
+                "stats.ui": "Idiomas de interfaz",
+                "stats.export": "Formatos de exportación",
+                "stats.ai": "Potenciado por IA",
+                "cta.title": "Comienza el aprendizaje visual",
+                "cta.subtitle": "Descarga VoiceSketch y transforma cómo capturas y retienes conocimiento.",
+                "testimonials.title": "Lo que dicen los usuarios",
+                "testimonials.subtitle": "Únete a miles de estudiantes que transforman sus notas",
+                "testimonials.review1.text": "\"VoiceSketch ha cambiado completamente cómo estudio. ¡Los resúmenes visuales hacen que los temas complejos sean mucho más fáciles de recordar!\"",
+                "testimonials.review1.name": "María G.",
+                "testimonials.review1.role": "Estudiante de medicina",
+                "testimonials.review2.text": "\"Ahora lo uso en cada reunión. Los resúmenes de IA capturan puntos clave que habría perdido, y los visuales me ayudan a recordar discusiones semanas después.\"",
+                "testimonials.review2.name": "Carlos R.",
+                "testimonials.review2.role": "Gerente de producto",
+                "testimonials.review3.text": "\"¡El soporte multilingüe es increíble! Puedo grabar conferencias en japonés y obtener resúmenes en inglés. Perfecto para mi investigación.\"",
+                "testimonials.review3.name": "Antonio L.",
+                "testimonials.review3.role": "Investigador doctoral",
+                "testimonials.review4.text": "\"Como creadora de podcasts, uso VoiceSketch para generar notas del programa automáticamente. ¡Me ahorra horas cada semana y a mi audiencia le encantan los resúmenes visuales!\"",
+                "testimonials.review4.name": "Laura M.",
+                "testimonials.review4.role": "Presentadora de podcast",
+                "testimonials.review5.text": "\"La función de exportación es fantástica. Puedo compartir mis notas visuales como PDF con mi grupo de estudio. ¡Todos hemos mejorado nuestras notas desde que usamos VoiceSketch!\"",
+                "testimonials.review5.name": "Pablo S.",
+                "testimonials.review5.role": "Estudiante de informática",
+                "testimonials.review6.text": "\"Asisto a conferencias en todo el mundo y VoiceSketch me ayuda a capturar cada presentación. Las notas visuales facilitan compartir con mi equipo.\"",
+                "testimonials.review6.name": "Isabel R.",
+                "testimonials.review6.role": "Directora de marketing",
+                "footer.from": "de",
+                "footer.copyright": "© 2026 VoiceSketch. Todos los derechos reservados."
+            },
+            it: {
+                "nav.features": "Funzionalità",
+                "nav.howItWorks": "Come funziona",
+                "nav.reviews": "Recensioni",
+                "meta.title": "VoiceSketch - Trasforma la voce in apprendimento visivo",
+                "hero.tagline": "Trasforma la voce in note visive",
+                "hero.badge.ai": "Alimentato da IA",
+                "hero.badge.languages": "60+ lingue",
+                "hero.cta": "Scarica dall'App Store",
+                "demo.record": "Registra",
+                "demo.aiMagic": "Magia IA",
+                "demo.export": "Esporta",
+                "demo.languages": "60+ lingue",
+                "demo.summary": "Riassunto IA",
+                "demo.cloud": "Sync cloud",
+                "demo.visual": "Note visive",
+                "demo.pdf": "Esporta PDF",
+                "demo.realtime": "Tempo reale",
+                "demo.gpt": "GPT Powered",
+                "demo.recording": "Registrazione...",
+                "demo.transcription": "Il mitocondrio è la centrale energetica della cellula...",
+                "demo.card1.title": "Biologia cellulare",
+                "demo.card1.desc": "I mitocondri producono ATP attraverso la respirazione cellulare",
+                "demo.card2.title": "Produzione di energia",
+                "demo.card2.desc": "L'ATP è la principale valuta energetica delle cellule",
+                "demo.card3.title": "DNA e genetica",
+                "demo.card3.desc": "I mitocondri contengono il proprio DNA circolare",
+                "features.title": "Funzionalità potenti",
+                "features.subtitle": "Tutto ciò di cui hai bisogno per trasformare l'audio in conoscenza visiva",
+                "features.voice.title": "Registrazione vocale",
+                "features.voice.desc": "Cattura audio in tempo reale con trascrizione dal vivo. Registra lezioni, riunioni o qualsiasi contenuto parlato senza sforzo.",
+                "features.ai.title": "Riassunto IA",
+                "features.ai.desc": "Alimentato da GPT, genera automaticamente riassunti concisi che catturano l'essenza del tuo contenuto.",
+                "features.visual.title": "Note visive",
+                "features.visual.desc": "Immagini generate dall'IA per ogni segmento di riassunto, creando ancore visive memorabili per una migliore ritenzione.",
+                "features.text.title": "Analisi del testo",
+                "features.text.desc": "Incolla qualsiasi testo per generare riassunti visivi. Perfetto per articoli, documenti o materiali di studio.",
+                "features.lang.title": "Multilingue",
+                "features.lang.desc": "Supporto per 60+ lingue di trascrizione e 10 lingue dell'interfaccia. Impara nella tua lingua madre.",
+                "features.cloud.title": "Sync cloud ed esportazione",
+                "features.cloud.desc": "Il backup Firebase mantiene le tue note al sicuro su tutti i dispositivi. Esporta in PDF, PNG o RTF.",
+                "howItWorks.title": "Come funziona",
+                "howItWorks.subtitle": "Tre semplici passaggi per l'apprendimento visivo",
+                "howItWorks.step1.title": "Registra o incolla",
+                "howItWorks.step1.desc": "Inizia a registrare la tua lezione, riunione o discussione. Puoi anche incollare testo direttamente per l'analisi. VoiceSketch trascrive in tempo reale con supporto per 60+ lingue.",
+                "howItWorks.step2.title": "Elaborazione IA",
+                "howItWorks.step2.desc": "La nostra IA alimentata da GPT analizza il tuo contenuto, estrae i concetti chiave e crea riassunti concisi. Ogni segmento è accompagnato da un visual unico generato dall'IA.",
+                "howItWorks.step3.title": "Rivedi ed esporta",
+                "howItWorks.step3.desc": "Sfoglia le tue note visive, sincronizza tra dispositivi con Firebase ed esporta in PDF, PNG o RTF. La tua conoscenza, splendidamente organizzata.",
+                "howItWorks.processing": "Elaborazione...",
+                "useCases.title": "Perfetto per",
+                "useCases.subtitle": "Migliora l'apprendimento e la ritenzione in ogni contesto",
+                "useCases.students.title": "Studenti",
+                "useCases.students.desc": "Trasforma le lezioni in guide di studio visive per una migliore preparazione agli esami",
+                "useCases.professionals.title": "Professionisti",
+                "useCases.professionals.desc": "Cattura gli insight delle riunioni con riassunti visivi per un riferimento rapido",
+                "useCases.podcast.title": "Ascoltatori di podcast",
+                "useCases.podcast.desc": "Trasforma i contenuti audio in note visive memorabili da rivedere",
+                "useCases.researchers.title": "Ricercatori",
+                "useCases.researchers.desc": "Organizza le scoperte con documentazione visiva per facilitare l'analisi",
+                "stats.languages": "Lingue di trascrizione",
+                "stats.ui": "Lingue dell'interfaccia",
+                "stats.export": "Formati di esportazione",
+                "stats.ai": "Alimentato da IA",
+                "cta.title": "Inizia l'apprendimento visivo",
+                "cta.subtitle": "Scarica VoiceSketch e trasforma il modo in cui catturi e mantieni la conoscenza.",
+                "testimonials.title": "Cosa dicono gli utenti",
+                "testimonials.subtitle": "Unisciti a migliaia di studenti che stanno trasformando i loro appunti",
+                "testimonials.review1.text": "\"VoiceSketch ha completamente cambiato il mio modo di studiare. I riassunti visivi rendono gli argomenti complessi molto più facili da ricordare!\"",
+                "testimonials.review1.name": "Giulia M.",
+                "testimonials.review1.role": "Studentessa di medicina",
+                "testimonials.review2.text": "\"Ora lo uso per ogni riunione. I riassunti IA catturano punti chiave che avrei perso, e i visual mi aiutano a ricordare le discussioni settimane dopo.\"",
+                "testimonials.review2.name": "Marco R.",
+                "testimonials.review2.role": "Product Manager",
+                "testimonials.review3.text": "\"Il supporto multilingue è fantastico! Posso registrare lezioni in giapponese e ottenere riassunti in inglese. Perfetto per la mia ricerca.\"",
+                "testimonials.review3.name": "Luca B.",
+                "testimonials.review3.role": "Dottorando",
+                "testimonials.review4.text": "\"Come creatrice di podcast, uso VoiceSketch per generare automaticamente le note delle puntate. Mi fa risparmiare ore ogni settimana e il mio pubblico adora i riassunti visivi!\"",
+                "testimonials.review4.name": "Sara P.",
+                "testimonials.review4.role": "Conduttrice di podcast",
+                "testimonials.review5.text": "\"La funzione di esportazione è fantastica. Posso condividere le mie note visive come PDF con il mio gruppo di studio. I nostri voti sono tutti migliorati da quando usiamo VoiceSketch!\"",
+                "testimonials.review5.name": "Andrea F.",
+                "testimonials.review5.role": "Studente di informatica",
+                "testimonials.review6.text": "\"Partecipo a conferenze in tutto il mondo e VoiceSketch mi aiuta a catturare ogni presentazione. Le note visive rendono facile condividere con il mio team.\"",
+                "testimonials.review6.name": "Chiara N.",
+                "testimonials.review6.role": "Direttrice marketing",
+                "footer.from": "da",
+                "footer.copyright": "© 2026 VoiceSketch. Tutti i diritti riservati."
+            }
+        };
+
+        const langNames = {
+            en: "EN",
+            "zh-TW": "繁中",
+            "zh-CN": "简中",
+            ja: "日本語",
+            ko: "한국어",
+            fr: "FR",
+            es: "ES",
+            it: "IT"
+        };
+
+        let currentLang = localStorage.getItem('voicesketch-lang') || 'en';
+
+        function toggleLangDropdown() {
+            document.getElementById('lang-dropdown').classList.toggle('active');
+        }
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('voicesketch-lang', lang);
+            applyTranslations(lang);
+            document.getElementById('current-lang').textContent = langNames[lang];
+            document.getElementById('lang-dropdown').classList.remove('active');
+
+            // Update active state
+            document.querySelectorAll('.lang-option').forEach(opt => {
+                opt.classList.remove('active');
+                if (opt.onclick.toString().includes(`'${lang}'`)) {
+                    opt.classList.add('active');
+                }
+            });
+        }
+
+        function applyTranslations(lang) {
+            const t = translations[lang] || translations.en;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key]) {
+                    el.textContent = t[key];
+                }
+            });
+            // Update page title
+            if (t['meta.title']) {
+                document.title = t['meta.title'];
+            }
+            // Update html lang attribute
+            document.documentElement.lang = lang;
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.lang-selector')) {
+                document.getElementById('lang-dropdown').classList.remove('active');
+            }
+        });
+
+        // Initialize language on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Detect browser language
+            const browserLang = navigator.language || navigator.userLanguage;
+            const savedLang = localStorage.getItem('voicesketch-lang');
+
+            if (!savedLang) {
+                // Try to match browser language
+                if (browserLang.startsWith('zh-TW') || browserLang === 'zh-Hant') {
+                    currentLang = 'zh-TW';
+                } else if (browserLang.startsWith('zh')) {
+                    currentLang = 'zh-CN';
+                } else if (browserLang.startsWith('ja')) {
+                    currentLang = 'ja';
+                } else if (browserLang.startsWith('ko')) {
+                    currentLang = 'ko';
+                } else if (browserLang.startsWith('fr')) {
+                    currentLang = 'fr';
+                } else if (browserLang.startsWith('es')) {
+                    currentLang = 'es';
+                } else if (browserLang.startsWith('it')) {
+                    currentLang = 'it';
+                }
+            }
+
+            setLanguage(currentLang);
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.feature-card, .timeline-item, .animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Stagger feature card animations
+        document.querySelectorAll('.feature-card').forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.1}s`;
+        });
+
+        // Stagger timeline animations
+        document.querySelectorAll('.timeline-item').forEach((item, index) => {
+            item.style.transitionDelay = `${index * 0.2}s`;
+        });
+
+        // Restart demo card animations periodically
+        function restartDemoAnimation() {
+            const cards = document.querySelectorAll('.visual-card');
+            cards.forEach(card => {
+                card.style.animation = 'none';
+                card.offsetHeight; // Trigger reflow
+                card.style.animation = null;
+            });
+        }
+
+        setInterval(restartDemoAnimation, 8000);
+
+        // Navigation scroll effect
+        const nav = document.getElementById('nav');
+        const mobileCta = document.getElementById('mobile-cta');
+        let lastScrollY = window.scrollY;
+
+        window.addEventListener('scroll', () => {
+            const currentScrollY = window.scrollY;
+
+            // Nav background on scroll
+            if (currentScrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+
+            // Mobile CTA visibility (show after scrolling past hero)
+            if (currentScrollY > window.innerHeight * 0.8) {
+                mobileCta.classList.add('visible');
+            } else {
+                mobileCta.classList.remove('visible');
+            }
+
+            lastScrollY = currentScrollY;
+        });
+
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Testimonials Carousel
+        const track = document.getElementById('testimonial-track');
+        const dots = document.querySelectorAll('.carousel-dot');
+        const prevBtn = document.getElementById('carousel-prev');
+        const nextBtn = document.getElementById('carousel-next');
+        const progressBar = document.getElementById('carousel-progress-bar');
+        let currentSlide = 0;
+        const totalSlides = 6;
+        let autoplayInterval;
+        let progressAnimation;
+
+        function goToSlide(index) {
+            currentSlide = index;
+            if (currentSlide < 0) currentSlide = totalSlides - 1;
+            if (currentSlide >= totalSlides) currentSlide = 0;
+
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentSlide);
+            });
+
+            // Reset progress bar animation
+            resetProgress();
+        }
+
+        function nextSlide() {
+            goToSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            goToSlide(currentSlide - 1);
+        }
+
+        function resetProgress() {
+            progressBar.style.animation = 'none';
+            progressBar.offsetHeight; // Trigger reflow
+            progressBar.style.animation = 'progress 4s linear';
+        }
+
+        // Event listeners
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            resetAutoplay();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            resetAutoplay();
+        });
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                goToSlide(index);
+                resetAutoplay();
+            });
+        });
+
+        // Autoplay
+        function startAutoplay() {
+            autoplayInterval = setInterval(nextSlide, 4000);
+        }
+
+        function resetAutoplay() {
+            clearInterval(autoplayInterval);
+            startAutoplay();
+        }
+
+        // Touch/swipe support
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        track.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        track.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    nextSlide();
+                } else {
+                    prevSlide();
+                }
+                resetAutoplay();
+            }
+        }
+
+        // Pause autoplay on hover
+        const carousel = document.querySelector('.testimonials-carousel');
+        carousel.addEventListener('mouseenter', () => {
+            clearInterval(autoplayInterval);
+            progressBar.style.animationPlayState = 'paused';
+        });
+
+        carousel.addEventListener('mouseleave', () => {
+            startAutoplay();
+            progressBar.style.animationPlayState = 'running';
+        });
+
+        // Start autoplay
+        startAutoplay();
+    </script>
+</body>
+</html>
