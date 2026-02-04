@@ -1,6 +1,19 @@
 # VoiceSketch Product Page
 
-A modern, animated promotional landing page for [VoiceSketch](https://github.com/your-repo/voicesketch) - the iOS app that transforms voice into visual learning materials.
+<p align="center">
+  <img src="assets/logo.png" alt="VoiceSketch Logo" width="120">
+</p>
+
+<p align="center">
+  <strong>Transform Voice into Visual Learning</strong>
+</p>
+
+<p align="center">
+  <a href="https://voicesketch.kairosaitech.com">Live Site</a> •
+  <a href="https://www.kairosaitech.com">Kairos.ai</a>
+</p>
+
+A modern, animated promotional landing page for VoiceSketch - the iOS app that transforms voice into visual learning materials.
 
 ## Features
 
@@ -22,14 +35,17 @@ Open `index.html` in a browser to preview locally.
 4. Select `main` branch and `/ (root)` folder
 5. Click **Save**
 
-Your page will be available at `https://<username>.github.io/<repo-name>/`
+Your page will be available at `https://voicesketch.kairosaitech.com/`
 
 ## Project Structure
 
 ```
 ├── index.html      # Main landing page (fully self-contained)
+├── sitemap.xml     # SEO sitemap
+├── robots.txt      # Search engine directives
 ├── assets/
 │   └── logo.png    # VoiceSketch app logo
+├── CLAUDE.md       # Development guide
 └── README.md
 ```
 
@@ -44,7 +60,7 @@ Your page will be available at `https://<username>.github.io/<repo-name>/`
 7. **Stats** - Key numbers with gradient styling
 8. **Testimonials** - User reviews with ratings
 9. **CTA** - Final call-to-action section
-10. **Footer** - Kairos.ai branding
+10. **Footer** - Contact info & Kairos.ai branding
 
 ## Supported Languages
 
