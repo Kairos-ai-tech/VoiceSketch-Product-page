@@ -4,12 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-i18n="meta.title">VoiceSketch - Transform Voice into Visual Learning</title>
-    <meta name="description" content="VoiceSketch converts spoken content into AI-powered visual summaries. Record lectures, meetings, or discussions and get beautiful visual notes.">
-    <meta name="keywords" content="voice notes, AI summaries, visual learning, lecture notes, transcription, iOS app">
-    <meta property="og:title" content="VoiceSketch - Transform Voice into Visual Learning">
-    <meta property="og:description" content="Convert spoken content into AI-powered visual summaries with VoiceSketch.">
-    <meta property="og:image" content="assets/logo.png">
+    <meta name="description" content="VoiceSketch converts spoken content into AI-powered visual summaries. Record lectures, meetings, or discussions and get beautiful visual notes instantly.">
+    <meta name="keywords" content="voice notes, AI summaries, visual learning, lecture notes, transcription, iOS app, voice to text, audio notes, meeting notes, study app">
+    <meta name="author" content="Kairos.ai">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <link rel="canonical" href="https://kairos-ai-tech.github.io/VoiceSketch-Product-page/">
+
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kairos-ai-tech.github.io/VoiceSketch-Product-page/">
+    <meta property="og:title" content="VoiceSketch - Transform Voice into Visual Learning">
+    <meta property="og:description" content="Convert spoken content into AI-powered visual summaries with VoiceSketch. Available on iOS.">
+    <meta property="og:image" content="https://kairos-ai-tech.github.io/VoiceSketch-Product-page/assets/logo.png">
+    <meta property="og:site_name" content="VoiceSketch">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="zh_TW">
+    <meta property="og:locale:alternate" content="zh_CN">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="ko_KR">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="es_ES">
+    <meta property="og:locale:alternate" content="it_IT">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="VoiceSketch - Transform Voice into Visual Learning">
+    <meta name="twitter:description" content="Convert spoken content into AI-powered visual summaries with VoiceSketch.">
+    <meta name="twitter:image" content="https://kairos-ai-tech.github.io/VoiceSketch-Product-page/assets/logo.png">
+
+    <!-- Apple specific -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="VoiceSketch">
+    <link rel="apple-touch-icon" href="assets/logo.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "VoiceSketch",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "iOS",
+        "description": "Transform voice into visual learning materials with AI-powered summaries",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "1000"
+        },
+        "author": {
+            "@type": "Organization",
+            "name": "Kairos.ai"
+        }
+    }
+    </script>
+
     <link rel="icon" type="image/png" href="assets/logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1512,9 +1567,6 @@
         }
 
         .lang-option {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
             padding: 0.75rem 1rem;
             cursor: pointer;
             transition: background 0.2s ease;
@@ -1531,9 +1583,6 @@
             color: white;
         }
 
-        .lang-flag {
-            font-size: 1.2rem;
-        }
 
         /* Mobile sticky CTA */
         .mobile-cta {
@@ -1988,30 +2037,14 @@
                     </svg>
                 </button>
                 <div class="lang-dropdown" id="lang-dropdown">
-                    <div class="lang-option active" onclick="setLanguage('en')">
-                        <span class="lang-flag">🇺🇸</span> English
-                    </div>
-                    <div class="lang-option" onclick="setLanguage('zh-TW')">
-                        <span class="lang-flag">🇹🇼</span> 繁體中文
-                    </div>
-                    <div class="lang-option" onclick="setLanguage('zh-CN')">
-                        <span class="lang-flag">🇨🇳</span> 简体中文
-                    </div>
-                    <div class="lang-option" onclick="setLanguage('ja')">
-                        <span class="lang-flag">🇯🇵</span> 日本語
-                    </div>
-                    <div class="lang-option" onclick="setLanguage('ko')">
-                        <span class="lang-flag">🇰🇷</span> 한국어
-                    </div>
-                    <div class="lang-option" onclick="setLanguage('fr')">
-                        <span class="lang-flag">🇫🇷</span> Français
-                    </div>
-                    <div class="lang-option" onclick="setLanguage('es')">
-                        <span class="lang-flag">🇪🇸</span> Español
-                    </div>
-                    <div class="lang-option" onclick="setLanguage('it')">
-                        <span class="lang-flag">🇮🇹</span> Italiano
-                    </div>
+                    <div class="lang-option active" onclick="setLanguage('en')">English</div>
+                    <div class="lang-option" onclick="setLanguage('zh-TW')">繁體中文</div>
+                    <div class="lang-option" onclick="setLanguage('zh-CN')">简体中文</div>
+                    <div class="lang-option" onclick="setLanguage('ja')">日本語</div>
+                    <div class="lang-option" onclick="setLanguage('ko')">한국어</div>
+                    <div class="lang-option" onclick="setLanguage('fr')">Français</div>
+                    <div class="lang-option" onclick="setLanguage('es')">Español</div>
+                    <div class="lang-option" onclick="setLanguage('it')">Italiano</div>
                 </div>
             </div>
             <a href="#" class="nav-cta" data-i18n="hero.cta">Download</a>

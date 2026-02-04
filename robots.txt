@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kairos-ai-tech.github.io/VoiceSketch-Product-page/sitemap.xml
