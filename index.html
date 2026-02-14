@@ -11,6 +11,17 @@
     <meta name="googlebot" content="index, follow">
     <link rel="canonical" href="https://voicesketch.kairosaitech.com/">
 
+    <!-- Hreflang tags for international SEO -->
+    <link rel="alternate" hreflang="en" href="https://voicesketch.kairosaitech.com/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://voicesketch.kairosaitech.com/?lang=zh-TW">
+    <link rel="alternate" hreflang="zh-Hans" href="https://voicesketch.kairosaitech.com/?lang=zh-CN">
+    <link rel="alternate" hreflang="ja" href="https://voicesketch.kairosaitech.com/?lang=ja">
+    <link rel="alternate" hreflang="ko" href="https://voicesketch.kairosaitech.com/?lang=ko">
+    <link rel="alternate" hreflang="fr" href="https://voicesketch.kairosaitech.com/?lang=fr">
+    <link rel="alternate" hreflang="es" href="https://voicesketch.kairosaitech.com/?lang=es">
+    <link rel="alternate" hreflang="it" href="https://voicesketch.kairosaitech.com/?lang=it">
+    <link rel="alternate" hreflang="x-default" href="https://voicesketch.kairosaitech.com/">
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://voicesketch.kairosaitech.com/">
@@ -3312,12 +3323,45 @@
             document.getElementById('lang-dropdown').classList.toggle('active');
         }
 
+        // Mapping from internal lang codes to hreflang codes
+        const hreflangMap = {
+            en: 'en',
+            'zh-TW': 'zh-Hant',
+            'zh-CN': 'zh-Hans',
+            ja: 'ja',
+            ko: 'ko',
+            fr: 'fr',
+            es: 'es',
+            it: 'it'
+        };
+
+        const baseUrl = 'https://voicesketch.kairosaitech.com/';
+
+        function getLangUrl(lang) {
+            return lang === 'en' ? baseUrl : baseUrl + '?lang=' + lang;
+        }
+
+        function updateCanonicalAndHreflang(lang) {
+            // Update canonical to self-reference
+            const canonical = document.querySelector('link[rel="canonical"]');
+            if (canonical) {
+                canonical.href = getLangUrl(lang);
+            }
+
+            // Update URL without reload
+            const newUrl = lang === 'en' ? window.location.pathname : window.location.pathname + '?lang=' + lang;
+            history.replaceState(null, '', newUrl);
+        }
+
         function setLanguage(lang) {
             currentLang = lang;
             localStorage.setItem('voicesketch-lang', lang);
             applyTranslations(lang);
             document.getElementById('current-lang').textContent = langNames[lang];
             document.getElementById('lang-dropdown').classList.remove('active');
+
+            // Update canonical tag and URL
+            updateCanonicalAndHreflang(lang);
 
             // Update active state
             document.querySelectorAll('.lang-option').forEach(opt => {
@@ -3353,26 +3397,36 @@
 
         // Initialize language on page load
         document.addEventListener('DOMContentLoaded', () => {
-            // Detect browser language
-            const browserLang = navigator.language || navigator.userLanguage;
-            const savedLang = localStorage.getItem('voicesketch-lang');
+            const supportedLangs = ['en', 'zh-TW', 'zh-CN', 'ja', 'ko', 'fr', 'es', 'it'];
 
-            if (!savedLang) {
-                // Try to match browser language
-                if (browserLang.startsWith('zh-TW') || browserLang === 'zh-Hant') {
-                    currentLang = 'zh-TW';
-                } else if (browserLang.startsWith('zh')) {
-                    currentLang = 'zh-CN';
-                } else if (browserLang.startsWith('ja')) {
-                    currentLang = 'ja';
-                } else if (browserLang.startsWith('ko')) {
-                    currentLang = 'ko';
-                } else if (browserLang.startsWith('fr')) {
-                    currentLang = 'fr';
-                } else if (browserLang.startsWith('es')) {
-                    currentLang = 'es';
-                } else if (browserLang.startsWith('it')) {
-                    currentLang = 'it';
+            // Priority 1: URL ?lang= parameter (important for SEO/Google indexing)
+            const urlParams = new URLSearchParams(window.location.search);
+            const urlLang = urlParams.get('lang');
+
+            if (urlLang && supportedLangs.includes(urlLang)) {
+                currentLang = urlLang;
+            } else {
+                // Priority 2: Saved preference
+                const savedLang = localStorage.getItem('voicesketch-lang');
+
+                if (!savedLang) {
+                    // Priority 3: Browser language detection
+                    const browserLang = navigator.language || navigator.userLanguage;
+                    if (browserLang.startsWith('zh-TW') || browserLang === 'zh-Hant') {
+                        currentLang = 'zh-TW';
+                    } else if (browserLang.startsWith('zh')) {
+                        currentLang = 'zh-CN';
+                    } else if (browserLang.startsWith('ja')) {
+                        currentLang = 'ja';
+                    } else if (browserLang.startsWith('ko')) {
+                        currentLang = 'ko';
+                    } else if (browserLang.startsWith('fr')) {
+                        currentLang = 'fr';
+                    } else if (browserLang.startsWith('es')) {
+                        currentLang = 'es';
+                    } else if (browserLang.startsWith('it')) {
+                        currentLang = 'it';
+                    }
                 }
             }
 
