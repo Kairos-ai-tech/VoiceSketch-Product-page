@@ -2013,6 +2013,134 @@
             }
         }
 
+        /* Privacy Policy Section */
+        .privacy-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(180deg, #fff 0%, #f8f5f2 100%);
+        }
+
+        .privacy-section .section-title {
+            text-align: center;
+            font-size: clamp(2rem, 5vw, 2.75rem);
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .privacy-section .section-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .privacy-last-updated {
+            text-align: center;
+            color: #999;
+            font-size: 0.85rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .privacy-grid {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .privacy-card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .privacy-card:hover {
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .privacy-card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .privacy-card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(229, 57, 53, 0.1), rgba(255, 154, 60, 0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .privacy-card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            flex: 1;
+        }
+
+        .privacy-card-toggle {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+            color: #999;
+        }
+
+        .privacy-card.open .privacy-card-toggle {
+            transform: rotate(180deg);
+        }
+
+        .privacy-card-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+        }
+
+        .privacy-card.open .privacy-card-body {
+            max-height: 600px;
+            padding-top: 1rem;
+        }
+
+        .privacy-card-content {
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 1.8;
+            white-space: pre-line;
+        }
+
+        .privacy-contact-link {
+            color: var(--primary-red);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .privacy-contact-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .privacy-section {
+                padding: 3rem 1rem;
+            }
+
+            .privacy-card {
+                padding: 1.25rem;
+            }
+        }
+
         /* Intersection Observer animations */
         .animate-on-scroll {
             opacity: 0;
@@ -2037,6 +2165,7 @@
             <a href="#features" data-i18n="nav.features">Features</a>
             <a href="#how-it-works" data-i18n="nav.howItWorks">How It Works</a>
             <a href="#testimonials" data-i18n="nav.reviews">Reviews</a>
+            <a href="#privacy" data-i18n="nav.privacy">Privacy</a>
             <!-- Language Selector -->
             <div class="lang-selector">
                 <button class="lang-btn" onclick="toggleLangDropdown()" aria-label="Select Language">
@@ -2571,6 +2700,243 @@
         </div>
     </section>
 
+    <!-- Privacy Policy Section -->
+    <section class="privacy-section" id="privacy">
+        <h2 class="section-title animate-on-scroll" data-i18n="privacy.title">Privacy Policy</h2>
+        <p class="section-subtitle animate-on-scroll" data-i18n="privacy.subtitle">Your privacy matters to us</p>
+        <p class="privacy-last-updated animate-on-scroll" data-i18n="privacy.lastUpdated">Last updated: February 7, 2026</p>
+
+        <div class="privacy-grid">
+            <!-- Information We Collect -->
+            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
+                <div class="privacy-card-header">
+                    <div class="privacy-card-icon">&#128269;</div>
+                    <span class="privacy-card-title" data-i18n="privacy.collect.title">Information We Collect</span>
+                    <div class="privacy-card-toggle">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </div>
+                <div class="privacy-card-body">
+                    <div class="privacy-card-content" data-i18n="privacy.collect.content">&#8226; Account Information: Email address, display name, and authentication data
+&#8226; Audio Recordings: Voice recordings you choose to process (stored locally by default)
+&#8226; Transcriptions: Text converted from your audio recordings
+&#8226; Usage Data: App features used, session duration, and performance metrics
+&#8226; Device Information: Device type, operating system version, and app version
+&#8226; Location Data: Only if explicitly granted for meeting location features (optional)
+
+We do NOT collect:
+&#8226; Personal conversations unless you explicitly record them
+&#8226; Background audio when the app is not in use
+&#8226; Contacts, photos, or other personal files without permission</div>
+                </div>
+            </div>
+
+            <!-- How We Use Your Information -->
+            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
+                <div class="privacy-card-header">
+                    <div class="privacy-card-icon">&#9881;</div>
+                    <span class="privacy-card-title" data-i18n="privacy.use.title">How We Use Your Information</span>
+                    <div class="privacy-card-toggle">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </div>
+                <div class="privacy-card-body">
+                    <div class="privacy-card-content" data-i18n="privacy.use.content">&#8226; Provide Core Services: Process audio, generate transcriptions and summaries
+&#8226; Improve User Experience: Enhance app functionality and performance
+&#8226; Account Management: Authenticate users and sync data across devices
+&#8226; Customer Support: Respond to inquiries and troubleshoot issues
+&#8226; Legal Compliance: Meet legal obligations and protect user rights
+&#8226; Security: Detect and prevent fraud, abuse, and security threats
+
+We will NEVER:
+&#8226; Sell your personal information to third parties
+&#8226; Use your recordings for advertising purposes
+&#8226; Share your content without explicit consent
+&#8226; Access your recordings without your permission</div>
+                </div>
+            </div>
+
+            <!-- Data Storage and Security -->
+            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
+                <div class="privacy-card-header">
+                    <div class="privacy-card-icon">&#128274;</div>
+                    <span class="privacy-card-title" data-i18n="privacy.storage.title">Data Storage and Security</span>
+                    <div class="privacy-card-toggle">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </div>
+                <div class="privacy-card-body">
+                    <div class="privacy-card-content" data-i18n="privacy.storage.content">&#8226; Local Storage: Audio recordings and transcriptions are stored locally on your device by default
+&#8226; Cloud Storage: Optional premium feature with end-to-end encryption
+&#8226; Data Encryption: All data is encrypted both in transit and at rest
+&#8226; Access Controls: Strict access controls limit who can access your data
+&#8226; Regular Security Audits: We regularly review and update our security measures
+&#8226; Data Minimization: We only collect and store data necessary for app functionality
+
+Your recordings remain private and are never accessed for training AI models without explicit consent.</div>
+                </div>
+            </div>
+
+            <!-- Third-Party Services -->
+            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
+                <div class="privacy-card-header">
+                    <div class="privacy-card-icon">&#127760;</div>
+                    <span class="privacy-card-title" data-i18n="privacy.thirdParty.title">Third-Party Services</span>
+                    <div class="privacy-card-toggle">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </div>
+                <div class="privacy-card-body">
+                    <div class="privacy-card-content" data-i18n="privacy.thirdParty.content">VoiceSketch integrates with the following third-party services:
+
+&#8226; OpenAI: For text summarization and image generation (content is processed but not stored)
+&#8226; Firebase (Google): For authentication, cloud storage, and analytics
+&#8226; Apple Services: For in-app purchases and speech recognition
+
+We ensure all partners meet our privacy and security standards.</div>
+                </div>
+            </div>
+
+            <!-- Your Rights and Controls -->
+            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
+                <div class="privacy-card-header">
+                    <div class="privacy-card-icon">&#9995;</div>
+                    <span class="privacy-card-title" data-i18n="privacy.rights.title">Your Rights and Controls</span>
+                    <div class="privacy-card-toggle">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </div>
+                <div class="privacy-card-body">
+                    <div class="privacy-card-content">You have the right to:
+
+&#8226; Access: View all personal data we have about you
+&#8226; Correct: Update or correct inaccurate information
+&#8226; Delete: Request deletion of your account and associated data
+&#8226; Export: Download your data in a portable format
+&#8226; Restrict: Limit how we process your information
+&#8226; Object: Opt out of certain data processing activities
+&#8226; Withdraw Consent: Revoke previously given permissions
+
+To exercise these rights, contact us at <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">kairos.ai.tech@gmail.com</a> or use the data management tools in the app.</div>
+                </div>
+            </div>
+
+            <!-- Children's Privacy (COPPA) -->
+            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
+                <div class="privacy-card-header">
+                    <div class="privacy-card-icon">&#128106;</div>
+                    <span class="privacy-card-title" data-i18n="privacy.children.title">Children's Privacy (COPPA)</span>
+                    <div class="privacy-card-toggle">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </div>
+                <div class="privacy-card-body">
+                    <div class="privacy-card-content" data-i18n="privacy.children.content">VoiceSketch is not intended for children under 13 years of age. We do not knowingly collect personal information from children under 13.
+
+If you are a parent or guardian and believe your child has provided personal information:
+&#8226; Contact us immediately at kairos.ai.tech@gmail.com
+&#8226; We will promptly delete the information
+&#8226; We may require verification of your identity
+
+For users aged 13-17:
+&#8226; Parental consent may be required in some jurisdictions
+&#8226; Special protection measures apply to accounts of minors
+&#8226; Educational use requires school administrator approval</div>
+                </div>
+            </div>
+
+            <!-- International Users (GDPR) -->
+            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
+                <div class="privacy-card-header">
+                    <div class="privacy-card-icon">&#127758;</div>
+                    <span class="privacy-card-title" data-i18n="privacy.gdpr.title">International Users (GDPR)</span>
+                    <div class="privacy-card-toggle">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </div>
+                <div class="privacy-card-body">
+                    <div class="privacy-card-content" data-i18n="privacy.gdpr.content">For users in the European Union, we comply with the General Data Protection Regulation (GDPR):
+
+&#8226; Lawful Basis: We process data based on consent, contract performance, or legitimate interests
+&#8226; Data Protection Officer: Available at kairos.ai.tech@gmail.com
+&#8226; Supervisory Authority: You can lodge complaints with your local data protection authority
+&#8226; Data Transfers: International transfers are protected by appropriate safeguards
+&#8226; Automated Decision Making: We do not make automated decisions that significantly affect you
+
+EU users have enhanced rights under GDPR, including the right to data portability and the right to be forgotten.</div>
+                </div>
+            </div>
+
+            <!-- California Privacy Rights (CCPA) -->
+            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
+                <div class="privacy-card-header">
+                    <div class="privacy-card-icon">&#128205;</div>
+                    <span class="privacy-card-title" data-i18n="privacy.ccpa.title">California Privacy Rights (CCPA)</span>
+                    <div class="privacy-card-toggle">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </div>
+                <div class="privacy-card-body">
+                    <div class="privacy-card-content" data-i18n="privacy.ccpa.content">For California residents, we comply with the California Consumer Privacy Act (CCPA):
+
+&#8226; Right to Know: What personal information we collect and how it's used
+&#8226; Right to Delete: Request deletion of personal information
+&#8226; Right to Opt-Out: Opt out of the sale of personal information (we don't sell data)
+&#8226; Right to Non-Discrimination: We won't discriminate for exercising CCPA rights
+
+To exercise CCPA rights:
+&#8226; Email: kairos.ai.tech@gmail.com
+&#8226; Subject line: "CCPA Rights Request"
+&#8226; Include: Full name, email address, and specific request</div>
+                </div>
+            </div>
+
+            <!-- Data Retention -->
+            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
+                <div class="privacy-card-header">
+                    <div class="privacy-card-icon">&#128197;</div>
+                    <span class="privacy-card-title" data-i18n="privacy.retention.title">Data Retention</span>
+                    <div class="privacy-card-toggle">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </div>
+                <div class="privacy-card-body">
+                    <div class="privacy-card-content" data-i18n="privacy.retention.content">We retain your information only as long as necessary:
+
+&#8226; Account Data: Retained while your account is active
+&#8226; Recordings: Deleted according to your settings (default: 30 days)
+&#8226; Usage Analytics: Aggregated and anonymized after 2 years
+&#8226; Legal Requirements: May be retained longer if required by law
+&#8226; Deleted Accounts: All data permanently deleted within 30 days
+
+You can adjust retention settings in the app or request immediate deletion.</div>
+                </div>
+            </div>
+
+            <!-- Contact Us -->
+            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
+                <div class="privacy-card-header">
+                    <div class="privacy-card-icon">&#9993;</div>
+                    <span class="privacy-card-title" data-i18n="privacy.contact.title">Contact Us</span>
+                    <div class="privacy-card-toggle">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </div>
+                <div class="privacy-card-body">
+                    <div class="privacy-card-content">For privacy-related questions or concerns:
+
+Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">kairos.ai.tech@gmail.com</a>
+Subject: Include "Privacy Inquiry" or "GDPR Request" or "CCPA Request"
+
+We respond to privacy inquiries within 30 days (or sooner as required by law).
+
+Data Protection Officer (EU):
+Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">kairos.ai.tech@gmail.com</a></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div class="footer-brand">
@@ -2580,6 +2946,7 @@
             <span data-i18n="footer.from">from</span> <a href="https://www.kairosaitech.com" target="_blank">Kairos.ai</a>
         </div>
         <p data-i18n="footer.copyright">&copy; 2026 VoiceSketch. All rights reserved.</p>
+        <p style="margin-top: 0.5rem;"><a href="#privacy" style="color: rgba(255,255,255,0.5); font-size: 0.8rem; text-decoration: none;" data-i18n="nav.privacy">Privacy Policy</a></p>
     </footer>
 
     <!-- Mobile Sticky CTA -->
@@ -2681,6 +3048,28 @@
                 "testimonials.review6.text": "\"I attend conferences worldwide and VoiceSketch helps me capture every presentation. The visual notes make it easy to share insights with my team back home.\"",
                 "testimonials.review6.name": "Anna S.",
                 "testimonials.review6.role": "Marketing Director",
+                "nav.privacy": "Privacy",
+                "privacy.title": "Privacy Policy",
+                "privacy.subtitle": "Your privacy matters to us",
+                "privacy.lastUpdated": "Last updated: February 7, 2026",
+                "privacy.collect.title": "Information We Collect",
+                "privacy.collect.content": "\u2022 Account Information: Email address, display name, and authentication data\n\u2022 Audio Recordings: Voice recordings you choose to process (stored locally by default)\n\u2022 Transcriptions: Text converted from your audio recordings\n\u2022 Usage Data: App features used, session duration, and performance metrics\n\u2022 Device Information: Device type, operating system version, and app version\n\u2022 Location Data: Only if explicitly granted for meeting location features (optional)\n\nWe do NOT collect:\n\u2022 Personal conversations unless you explicitly record them\n\u2022 Background audio when the app is not in use\n\u2022 Contacts, photos, or other personal files without permission",
+                "privacy.use.title": "How We Use Your Information",
+                "privacy.use.content": "\u2022 Provide Core Services: Process audio, generate transcriptions and summaries\n\u2022 Improve User Experience: Enhance app functionality and performance\n\u2022 Account Management: Authenticate users and sync data across devices\n\u2022 Customer Support: Respond to inquiries and troubleshoot issues\n\u2022 Legal Compliance: Meet legal obligations and protect user rights\n\u2022 Security: Detect and prevent fraud, abuse, and security threats\n\nWe will NEVER:\n\u2022 Sell your personal information to third parties\n\u2022 Use your recordings for advertising purposes\n\u2022 Share your content without explicit consent\n\u2022 Access your recordings without your permission",
+                "privacy.storage.title": "Data Storage and Security",
+                "privacy.storage.content": "\u2022 Local Storage: Audio recordings and transcriptions are stored locally on your device by default\n\u2022 Cloud Storage: Optional premium feature with end-to-end encryption\n\u2022 Data Encryption: All data is encrypted both in transit and at rest\n\u2022 Access Controls: Strict access controls limit who can access your data\n\u2022 Regular Security Audits: We regularly review and update our security measures\n\u2022 Data Minimization: We only collect and store data necessary for app functionality\n\nYour recordings remain private and are never accessed for training AI models without explicit consent.",
+                "privacy.thirdParty.title": "Third-Party Services",
+                "privacy.thirdParty.content": "VoiceSketch integrates with the following third-party services:\n\n\u2022 OpenAI: For text summarization and image generation (content is processed but not stored)\n\u2022 Firebase (Google): For authentication, cloud storage, and analytics\n\u2022 Apple Services: For in-app purchases and speech recognition\n\nWe ensure all partners meet our privacy and security standards.",
+                "privacy.rights.title": "Your Rights and Controls",
+                "privacy.children.title": "Children's Privacy (COPPA)",
+                "privacy.children.content": "VoiceSketch is not intended for children under 13 years of age. We do not knowingly collect personal information from children under 13.\n\nIf you are a parent or guardian and believe your child has provided personal information:\n\u2022 Contact us immediately at kairos.ai.tech@gmail.com\n\u2022 We will promptly delete the information\n\u2022 We may require verification of your identity\n\nFor users aged 13-17:\n\u2022 Parental consent may be required in some jurisdictions\n\u2022 Special protection measures apply to accounts of minors\n\u2022 Educational use requires school administrator approval",
+                "privacy.gdpr.title": "International Users (GDPR)",
+                "privacy.gdpr.content": "For users in the European Union, we comply with the General Data Protection Regulation (GDPR):\n\n\u2022 Lawful Basis: We process data based on consent, contract performance, or legitimate interests\n\u2022 Data Protection Officer: Available at kairos.ai.tech@gmail.com\n\u2022 Supervisory Authority: You can lodge complaints with your local data protection authority\n\u2022 Data Transfers: International transfers are protected by appropriate safeguards\n\u2022 Automated Decision Making: We do not make automated decisions that significantly affect you\n\nEU users have enhanced rights under GDPR, including the right to data portability and the right to be forgotten.",
+                "privacy.ccpa.title": "California Privacy Rights (CCPA)",
+                "privacy.ccpa.content": "For California residents, we comply with the California Consumer Privacy Act (CCPA):\n\n\u2022 Right to Know: What personal information we collect and how it's used\n\u2022 Right to Delete: Request deletion of personal information\n\u2022 Right to Opt-Out: Opt out of the sale of personal information (we don't sell data)\n\u2022 Right to Non-Discrimination: We won't discriminate for exercising CCPA rights\n\nTo exercise CCPA rights:\n\u2022 Email: kairos.ai.tech@gmail.com\n\u2022 Subject line: \"CCPA Rights Request\"\n\u2022 Include: Full name, email address, and specific request",
+                "privacy.retention.title": "Data Retention",
+                "privacy.retention.content": "We retain your information only as long as necessary:\n\n\u2022 Account Data: Retained while your account is active\n\u2022 Recordings: Deleted according to your settings (default: 30 days)\n\u2022 Usage Analytics: Aggregated and anonymized after 2 years\n\u2022 Legal Requirements: May be retained longer if required by law\n\u2022 Deleted Accounts: All data permanently deleted within 30 days\n\nYou can adjust retention settings in the app or request immediate deletion.",
+                "privacy.contact.title": "Contact Us",
                 "footer.from": "from",
                 "footer.copyright": "© 2026 VoiceSketch. All rights reserved."
             },
@@ -2770,6 +3159,28 @@
                 "testimonials.review6.text": "「我參加世界各地的研討會，VoiceSketch 幫我記錄每場演講。視覺筆記讓我能輕鬆與團隊分享洞見。」",
                 "testimonials.review6.name": "安妮",
                 "testimonials.review6.role": "行銷總監",
+                "nav.privacy": "隱私政策",
+                "privacy.title": "隱私政策",
+                "privacy.subtitle": "我們重視您的隱私",
+                "privacy.lastUpdated": "最後更新：2026年2月7日",
+                "privacy.collect.title": "我們收集的資訊",
+                "privacy.collect.content": "\u2022 帳戶資訊：電子郵件地址、顯示名稱和認證資料\n\u2022 錄音：您選擇處理的語音錄音（預設儲存在本地）\n\u2022 轉錄文字：從您的錄音轉換的文字\n\u2022 使用數據：使用的應用程式功能、工作階段時長和效能指標\n\u2022 裝置資訊：裝置類型、作業系統版本和應用程式版本\n\u2022 位置資料：僅在明確授權會議位置功能時（選填）\n\n我們不會收集：\n\u2022 除非您主動錄製，否則不會收集個人對話\n\u2022 應用程式未使用時的背景音訊\n\u2022 未經許可的聯絡人、照片或其他個人檔案",
+                "privacy.use.title": "我們如何使用您的資訊",
+                "privacy.use.content": "\u2022 提供核心服務：處理音訊、產生轉錄和摘要\n\u2022 改善用戶體驗：增強應用程式功能和效能\n\u2022 帳戶管理：驗證用戶並跨裝置同步資料\n\u2022 客戶支援：回應查詢和解決問題\n\u2022 法律合規：履行法律義務和保護用戶權利\n\u2022 安全：偵測和防範詐欺、濫用和安全威脅\n\n我們絕不會：\n\u2022 將您的個人資訊出售給第三方\n\u2022 將您的錄音用於廣告目的\n\u2022 未經明確同意分享您的內容\n\u2022 未經您的許可存取您的錄音",
+                "privacy.storage.title": "資料儲存與安全",
+                "privacy.storage.content": "\u2022 本地儲存：錄音和轉錄文字預設儲存在您的裝置上\n\u2022 雲端儲存：可選的進階功能，採用端對端加密\n\u2022 資料加密：所有資料在傳輸和靜態時均進行加密\n\u2022 存取控制：嚴格的存取控制限制誰能存取您的資料\n\u2022 定期安全審計：我們定期檢視和更新安全措施\n\u2022 資料最小化：我們僅收集和儲存應用程式功能所需的資料\n\n您的錄音保持私密，未經明確同意不會用於訓練 AI 模型。",
+                "privacy.thirdParty.title": "第三方服務",
+                "privacy.thirdParty.content": "VoiceSketch 整合以下第三方服務：\n\n\u2022 OpenAI：用於文字摘要和圖像生成（內容會被處理但不會被儲存）\n\u2022 Firebase（Google）：用於認證、雲端儲存和分析\n\u2022 Apple 服務：用於應用程式內購買和語音辨識\n\n我們確保所有合作夥伴符合我們的隱私和安全標準。",
+                "privacy.rights.title": "您的權利與控制",
+                "privacy.children.title": "兒童隱私（COPPA）",
+                "privacy.children.content": "VoiceSketch 不適用於 13 歲以下的兒童。我們不會故意收集 13 歲以下兒童的個人資訊。\n\n如果您是家長或監護人，認為您的孩子提供了個人資訊：\n\u2022 請立即聯繫我們：kairos.ai.tech@gmail.com\n\u2022 我們將立即刪除該資訊\n\u2022 我們可能需要驗證您的身份\n\n13-17 歲的用戶：\n\u2022 某些司法管轄區可能需要家長同意\n\u2022 未成年人帳戶適用特殊保護措施\n\u2022 教育用途需要學校管理員批准",
+                "privacy.gdpr.title": "國際用戶（GDPR）",
+                "privacy.gdpr.content": "對於歐盟用戶，我們遵守《一般資料保護規範》（GDPR）：\n\n\u2022 合法基礎：我們基於同意、合約履行或正當利益處理資料\n\u2022 資料保護官：kairos.ai.tech@gmail.com\n\u2022 監管機構：您可以向當地資料保護機構提出投訴\n\u2022 資料傳輸：國際傳輸受到適當保障措施的保護\n\u2022 自動化決策：我們不會做出對您產生重大影響的自動化決策\n\n歐盟用戶在 GDPR 下享有增強的權利，包括資料可攜權和被遺忘權。",
+                "privacy.ccpa.title": "加州隱私權（CCPA）",
+                "privacy.ccpa.content": "對於加州居民，我們遵守《加州消費者隱私法》（CCPA）：\n\n\u2022 知情權：了解我們收集哪些個人資訊及其用途\n\u2022 刪除權：請求刪除個人資訊\n\u2022 退出權：選擇退出個人資訊的出售（我們不出售資料）\n\u2022 不歧視權：我們不會因行使 CCPA 權利而歧視\n\n行使 CCPA 權利：\n\u2022 電子郵件：kairos.ai.tech@gmail.com\n\u2022 主旨：「CCPA 權利請求」\n\u2022 包含：全名、電子郵件地址和具體請求",
+                "privacy.retention.title": "資料保留",
+                "privacy.retention.content": "我們僅在必要時保留您的資訊：\n\n\u2022 帳戶資料：在帳戶啟用期間保留\n\u2022 錄音：根據您的設定刪除（預設：30 天）\n\u2022 使用分析：2 年後進行匯總和匿名化\n\u2022 法律要求：法律要求時可能保留更長時間\n\u2022 已刪除帳戶：30 天內永久刪除所有資料\n\n您可以在應用程式中調整保留設定或請求立即刪除。",
+                "privacy.contact.title": "聯絡我們",
                 "footer.from": "來自",
                 "footer.copyright": "© 2026 VoiceSketch. 保留所有權利。"
             },
@@ -2859,6 +3270,28 @@
                 "testimonials.review6.text": "「我参加世界各地的研讨会，VoiceSketch 帮我记录每场演讲。视觉笔记让我能轻松与团队分享洞见。」",
                 "testimonials.review6.name": "安妮",
                 "testimonials.review6.role": "市场总监",
+                "nav.privacy": "隐私政策",
+                "privacy.title": "隐私政策",
+                "privacy.subtitle": "我们重视您的隐私",
+                "privacy.lastUpdated": "最后更新：2026年2月7日",
+                "privacy.collect.title": "我们收集的信息",
+                "privacy.collect.content": "\u2022 账户信息：电子邮件地址、显示名称和认证数据\n\u2022 录音：您选择处理的语音录音（默认存储在本地）\n\u2022 转录文字：从您的录音转换的文字\n\u2022 使用数据：使用的应用功能、会话时长和性能指标\n\u2022 设备信息：设备类型、操作系统版本和应用版本\n\u2022 位置数据：仅在明确授权会议位置功能时（可选）\n\n我们不会收集：\n\u2022 除非您主动录制，否则不会收集个人对话\n\u2022 应用未使用时的后台音频\n\u2022 未经许可的联系人、照片或其他个人文件",
+                "privacy.use.title": "我们如何使用您的信息",
+                "privacy.use.content": "\u2022 提供核心服务：处理音频、生成转录和摘要\n\u2022 改善用户体验：增强应用功能和性能\n\u2022 账户管理：验证用户并跨设备同步数据\n\u2022 客户支持：回应查询和解决问题\n\u2022 法律合规：履行法律义务和保护用户权利\n\u2022 安全：检测和防范欺诈、滥用和安全威胁\n\n我们绝不会：\n\u2022 将您的个人信息出售给第三方\n\u2022 将您的录音用于广告目的\n\u2022 未经明确同意分享您的内容\n\u2022 未经您的许可访问您的录音",
+                "privacy.storage.title": "数据存储与安全",
+                "privacy.storage.content": "\u2022 本地存储：录音和转录文字默认存储在您的设备上\n\u2022 云端存储：可选的高级功能，采用端到端加密\n\u2022 数据加密：所有数据在传输和静态时均进行加密\n\u2022 访问控制：严格的访问控制限制谁能访问您的数据\n\u2022 定期安全审计：我们定期审查和更新安全措施\n\u2022 数据最小化：我们仅收集和存储应用功能所需的数据\n\n您的录音保持私密，未经明确同意不会用于训练 AI 模型。",
+                "privacy.thirdParty.title": "第三方服务",
+                "privacy.thirdParty.content": "VoiceSketch 集成以下第三方服务：\n\n\u2022 OpenAI：用于文本摘要和图像生成（内容会被处理但不会被存储）\n\u2022 Firebase（Google）：用于认证、云端存储和分析\n\u2022 Apple 服务：用于应用内购买和语音识别\n\n我们确保所有合作伙伴符合我们的隐私和安全标准。",
+                "privacy.rights.title": "您的权利与控制",
+                "privacy.children.title": "儿童隐私（COPPA）",
+                "privacy.children.content": "VoiceSketch 不适用于 13 岁以下的儿童。我们不会故意收集 13 岁以下儿童的个人信息。\n\n如果您是家长或监护人，认为您的孩子提供了个人信息：\n\u2022 请立即联系我们：kairos.ai.tech@gmail.com\n\u2022 我们将立即删除该信息\n\u2022 我们可能需要验证您的身份\n\n13-17 岁的用户：\n\u2022 某些司法管辖区可能需要家长同意\n\u2022 未成年人账户适用特殊保护措施\n\u2022 教育用途需要学校管理员批准",
+                "privacy.gdpr.title": "国际用户（GDPR）",
+                "privacy.gdpr.content": "对于欧盟用户，我们遵守《通用数据保护条例》（GDPR）：\n\n\u2022 合法基础：我们基于同意、合同履行或正当利益处理数据\n\u2022 数据保护官：kairos.ai.tech@gmail.com\n\u2022 监管机构：您可以向当地数据保护机构提出投诉\n\u2022 数据传输：国际传输受到适当保障措施的保护\n\u2022 自动化决策：我们不会做出对您产生重大影响的自动化决策\n\n欧盟用户在 GDPR 下享有增强的权利，包括数据可携权和被遗忘权。",
+                "privacy.ccpa.title": "加州隐私权（CCPA）",
+                "privacy.ccpa.content": "对于加州居民，我们遵守《加州消费者隐私法》（CCPA）：\n\n\u2022 知情权：了解我们收集哪些个人信息及其用途\n\u2022 删除权：请求删除个人信息\n\u2022 退出权：选择退出个人信息的出售（我们不出售数据）\n\u2022 不歧视权：我们不会因行使 CCPA 权利而歧视\n\n行使 CCPA 权利：\n\u2022 电子邮件：kairos.ai.tech@gmail.com\n\u2022 主题：「CCPA 权利请求」\n\u2022 包含：全名、电子邮件地址和具体请求",
+                "privacy.retention.title": "数据保留",
+                "privacy.retention.content": "我们仅在必要时保留您的信息：\n\n\u2022 账户数据：在账户激活期间保留\n\u2022 录音：根据您的设置删除（默认：30 天）\n\u2022 使用分析：2 年后进行汇总和匿名化\n\u2022 法律要求：法律要求时可能保留更长时间\n\u2022 已删除账户：30 天内永久删除所有数据\n\n您可以在应用中调整保留设置或请求立即删除。",
+                "privacy.contact.title": "联系我们",
                 "footer.from": "来自",
                 "footer.copyright": "© 2026 VoiceSketch. 保留所有权利。"
             },
@@ -2948,6 +3381,28 @@
                 "testimonials.review6.text": "「世界中のカンファレンスに参加していますが、VoiceSketchですべてのプレゼンを記録できます。ビジュアルノートでチームと簡単に共有できます。」",
                 "testimonials.review6.name": "伊藤めぐみ",
                 "testimonials.review6.role": "マーケティングディレクター",
+                "nav.privacy": "プライバシー",
+                "privacy.title": "プライバシーポリシー",
+                "privacy.subtitle": "お客様のプライバシーを大切にしています",
+                "privacy.lastUpdated": "最終更新：2026年2月7日",
+                "privacy.collect.title": "収集する情報",
+                "privacy.collect.content": "\u2022 アカウント情報：メールアドレス、表示名、認証データ\n\u2022 音声録音：処理を選択した音声録音（デフォルトではローカルに保存）\n\u2022 文字起こし：音声録音から変換されたテキスト\n\u2022 使用データ：使用したアプリ機能、セッション時間、パフォーマンス指標\n\u2022 デバイス情報：デバイスの種類、OSバージョン、アプリバージョン\n\u2022 位置情報：会議場所機能のために明示的に許可された場合のみ（任意）\n\n収集しない情報：\n\u2022 明示的に録音しない限り、個人的な会話\n\u2022 アプリ未使用時のバックグラウンド音声\n\u2022 許可なしの連絡先、写真、その他の個人ファイル",
+                "privacy.use.title": "情報の利用方法",
+                "privacy.use.content": "\u2022 コアサービスの提供：音声処理、文字起こしと要約の生成\n\u2022 ユーザー体験の向上：アプリの機能とパフォーマンスの強化\n\u2022 アカウント管理：ユーザー認証とデバイス間のデータ同期\n\u2022 カスタマーサポート：お問い合わせへの対応と問題解決\n\u2022 法的遵守：法的義務の履行とユーザー権利の保護\n\u2022 セキュリティ：詐欺、悪用、セキュリティ脅威の検出と防止\n\n以下のことは決して行いません：\n\u2022 個人情報を第三者に販売すること\n\u2022 録音を広告目的で使用すること\n\u2022 明示的な同意なしにコンテンツを共有すること\n\u2022 許可なく録音にアクセスすること",
+                "privacy.storage.title": "データの保管とセキュリティ",
+                "privacy.storage.content": "\u2022 ローカル保存：音声録音と文字起こしはデフォルトでデバイスにローカル保存\n\u2022 クラウド保存：エンドツーエンド暗号化を備えたオプションのプレミアム機能\n\u2022 データ暗号化：すべてのデータは転送中および保存中に暗号化\n\u2022 アクセス制御：厳格なアクセス制御によりデータへのアクセスを制限\n\u2022 定期的なセキュリティ監査：セキュリティ対策を定期的に見直し更新\n\u2022 データ最小化：アプリ機能に必要なデータのみを収集・保存\n\n録音はプライベートに保たれ、明示的な同意なしにAIモデルのトレーニングには使用されません。",
+                "privacy.thirdParty.title": "サードパーティサービス",
+                "privacy.thirdParty.content": "VoiceSketchは以下のサードパーティサービスと連携しています：\n\n\u2022 OpenAI：テキスト要約と画像生成（コンテンツは処理されますが保存されません）\n\u2022 Firebase（Google）：認証、クラウドストレージ、アナリティクス\n\u2022 Appleサービス：アプリ内課金と音声認識\n\nすべてのパートナーが当社のプライバシーとセキュリティ基準を満たしていることを確認しています。",
+                "privacy.rights.title": "お客様の権利と管理",
+                "privacy.children.title": "子どものプライバシー（COPPA）",
+                "privacy.children.content": "VoiceSketchは13歳未満のお子様を対象としていません。13歳未満のお子様から故意に個人情報を収集することはありません。\n\n保護者の方で、お子様が個人情報を提供したと思われる場合：\n\u2022 kairos.ai.tech@gmail.com まで直ちにご連絡ください\n\u2022 速やかに情報を削除いたします\n\u2022 本人確認が必要な場合があります\n\n13〜17歳のユーザー：\n\u2022 一部の地域では保護者の同意が必要な場合があります\n\u2022 未成年者のアカウントには特別な保護措置が適用されます\n\u2022 教育目的での使用には学校管理者の承認が必要です",
+                "privacy.gdpr.title": "国際ユーザー（GDPR）",
+                "privacy.gdpr.content": "欧州連合のユーザーに対して、一般データ保護規則（GDPR）を遵守しています：\n\n\u2022 法的根拠：同意、契約の履行、または正当な利益に基づいてデータを処理\n\u2022 データ保護責任者：kairos.ai.tech@gmail.com\n\u2022 監督機関：お住まいの地域のデータ保護機関に苦情を申し立てることができます\n\u2022 データ移転：国際移転は適切な保護措置により保護されています\n\u2022 自動化された意思決定：お客様に重大な影響を与える自動化された意思決定は行いません\n\nEUユーザーはGDPRに基づき、データポータビリティの権利や忘れられる権利などの強化された権利を有します。",
+                "privacy.ccpa.title": "カリフォルニアプライバシー権（CCPA）",
+                "privacy.ccpa.content": "カリフォルニア州居住者に対して、カリフォルニア消費者プライバシー法（CCPA）を遵守しています：\n\n\u2022 知る権利：収集する個人情報とその使用方法\n\u2022 削除の権利：個人情報の削除を要求\n\u2022 オプトアウトの権利：個人情報の販売のオプトアウト（データは販売しません）\n\u2022 差別されない権利：CCPA権利の行使による差別はありません\n\nCCPA権利を行使するには：\n\u2022 メール：kairos.ai.tech@gmail.com\n\u2022 件名：「CCPA権利リクエスト」\n\u2022 含める情報：氏名、メールアドレス、具体的なリクエスト",
+                "privacy.retention.title": "データ保持",
+                "privacy.retention.content": "必要な期間のみ情報を保持します：\n\n\u2022 アカウントデータ：アカウントがアクティブな間保持\n\u2022 録音：設定に従って削除（デフォルト：30日）\n\u2022 使用分析：2年後に集約・匿名化\n\u2022 法的要件：法律で要求される場合はより長く保持される場合があります\n\u2022 削除済みアカウント：30日以内にすべてのデータを完全に削除\n\nアプリで保持設定を調整するか、即時削除をリクエストできます。",
+                "privacy.contact.title": "お問い合わせ",
                 "footer.from": "提供",
                 "footer.copyright": "© 2026 VoiceSketch. All rights reserved."
             },
@@ -3037,6 +3492,28 @@
                 "testimonials.review6.text": "\"전 세계 컨퍼런스에 참석하는데, VoiceSketch가 모든 발표를 캡처해줘요. 시각적 노트로 팀과 쉽게 인사이트를 공유할 수 있어요.\"",
                 "testimonials.review6.name": "한소영",
                 "testimonials.review6.role": "마케팅 디렉터",
+                "nav.privacy": "개인정보",
+                "privacy.title": "개인정보 처리방침",
+                "privacy.subtitle": "귀하의 개인정보를 소중히 여깁니다",
+                "privacy.lastUpdated": "최종 업데이트: 2026년 2월 7일",
+                "privacy.collect.title": "수집하는 정보",
+                "privacy.collect.content": "\u2022 계정 정보: 이메일 주소, 표시 이름 및 인증 데이터\n\u2022 음성 녹음: 처리를 선택한 음성 녹음 (기본적으로 로컬에 저장)\n\u2022 전사: 음성 녹음에서 변환된 텍스트\n\u2022 사용 데이터: 사용한 앱 기능, 세션 시간 및 성능 지표\n\u2022 기기 정보: 기기 유형, 운영체제 버전 및 앱 버전\n\u2022 위치 데이터: 회의 위치 기능을 명시적으로 허용한 경우에만 (선택사항)\n\n수집하지 않는 정보:\n\u2022 명시적으로 녹음하지 않는 한 개인 대화\n\u2022 앱이 사용되지 않을 때의 백그라운드 오디오\n\u2022 허가 없는 연락처, 사진 또는 기타 개인 파일",
+                "privacy.use.title": "정보 사용 방법",
+                "privacy.use.content": "\u2022 핵심 서비스 제공: 오디오 처리, 전사 및 요약 생성\n\u2022 사용자 경험 개선: 앱 기능 및 성능 향상\n\u2022 계정 관리: 사용자 인증 및 기기 간 데이터 동기화\n\u2022 고객 지원: 문의 응답 및 문제 해결\n\u2022 법적 준수: 법적 의무 이행 및 사용자 권리 보호\n\u2022 보안: 사기, 남용 및 보안 위협 감지 및 방지\n\n절대 하지 않는 일:\n\u2022 개인 정보를 제3자에게 판매\n\u2022 녹음을 광고 목적으로 사용\n\u2022 명시적 동의 없이 콘텐츠 공유\n\u2022 허가 없이 녹음에 접근",
+                "privacy.storage.title": "데이터 저장 및 보안",
+                "privacy.storage.content": "\u2022 로컬 저장: 음성 녹음 및 전사는 기본적으로 기기에 로컬 저장\n\u2022 클라우드 저장: 종단 간 암호화가 적용된 선택적 프리미엄 기능\n\u2022 데이터 암호화: 모든 데이터는 전송 중 및 저장 시 암호화\n\u2022 접근 제어: 엄격한 접근 제어로 데이터 접근 제한\n\u2022 정기 보안 감사: 보안 조치를 정기적으로 검토 및 업데이트\n\u2022 데이터 최소화: 앱 기능에 필요한 데이터만 수집 및 저장\n\n녹음은 비공개로 유지되며, 명시적 동의 없이 AI 모델 훈련에 사용되지 않습니다.",
+                "privacy.thirdParty.title": "제3자 서비스",
+                "privacy.thirdParty.content": "VoiceSketch는 다음 제3자 서비스와 통합됩니다:\n\n\u2022 OpenAI: 텍스트 요약 및 이미지 생성 (콘텐츠는 처리되지만 저장되지 않음)\n\u2022 Firebase (Google): 인증, 클라우드 스토리지 및 분석\n\u2022 Apple 서비스: 인앱 구매 및 음성 인식\n\n모든 파트너가 당사의 개인정보 보호 및 보안 표준을 충족하는지 확인합니다.",
+                "privacy.rights.title": "귀하의 권리 및 통제",
+                "privacy.children.title": "아동 개인정보 보호 (COPPA)",
+                "privacy.children.content": "VoiceSketch는 13세 미만 어린이를 대상으로 하지 않습니다. 13세 미만 어린이의 개인 정보를 고의로 수집하지 않습니다.\n\n부모 또는 보호자로서 자녀가 개인 정보를 제공했다고 생각되는 경우:\n\u2022 kairos.ai.tech@gmail.com으로 즉시 연락해 주세요\n\u2022 해당 정보를 즉시 삭제하겠습니다\n\u2022 본인 확인이 필요할 수 있습니다\n\n13-17세 사용자:\n\u2022 일부 관할권에서는 부모 동의가 필요할 수 있습니다\n\u2022 미성년자 계정에는 특별 보호 조치가 적용됩니다\n\u2022 교육 목적 사용에는 학교 관리자 승인이 필요합니다",
+                "privacy.gdpr.title": "국제 사용자 (GDPR)",
+                "privacy.gdpr.content": "유럽연합 사용자를 위해 일반 데이터 보호 규정(GDPR)을 준수합니다:\n\n\u2022 합법적 근거: 동의, 계약 이행 또는 정당한 이익에 기반하여 데이터 처리\n\u2022 데이터 보호 책임자: kairos.ai.tech@gmail.com\n\u2022 감독 기관: 지역 데이터 보호 기관에 불만을 제기할 수 있습니다\n\u2022 데이터 이전: 국제 이전은 적절한 보호 조치로 보호됩니다\n\u2022 자동화된 의사결정: 귀하에게 중대한 영향을 미치는 자동화된 결정을 내리지 않습니다\n\nEU 사용자는 GDPR에 따라 데이터 이동권과 잊힐 권리를 포함한 강화된 권리를 가집니다.",
+                "privacy.ccpa.title": "캘리포니아 개인정보 보호권 (CCPA)",
+                "privacy.ccpa.content": "캘리포니아 거주자를 위해 캘리포니아 소비자 개인정보 보호법(CCPA)을 준수합니다:\n\n\u2022 알 권리: 수집하는 개인 정보와 사용 방법\n\u2022 삭제 권리: 개인 정보 삭제 요청\n\u2022 옵트아웃 권리: 개인 정보 판매 거부 (데이터를 판매하지 않음)\n\u2022 차별 금지 권리: CCPA 권리 행사로 차별하지 않습니다\n\nCCPA 권리 행사:\n\u2022 이메일: kairos.ai.tech@gmail.com\n\u2022 제목: \"CCPA 권리 요청\"\n\u2022 포함: 성명, 이메일 주소 및 구체적인 요청",
+                "privacy.retention.title": "데이터 보존",
+                "privacy.retention.content": "필요한 기간 동안만 정보를 보존합니다:\n\n\u2022 계정 데이터: 계정이 활성 상태인 동안 보존\n\u2022 녹음: 설정에 따라 삭제 (기본값: 30일)\n\u2022 사용 분석: 2년 후 집계 및 익명화\n\u2022 법적 요구사항: 법률에 의해 요구되는 경우 더 오래 보존될 수 있음\n\u2022 삭제된 계정: 30일 이내 모든 데이터 영구 삭제\n\n앱에서 보존 설정을 조정하거나 즉시 삭제를 요청할 수 있습니다.",
+                "privacy.contact.title": "문의하기",
                 "footer.from": "제공",
                 "footer.copyright": "© 2026 VoiceSketch. All rights reserved."
             },
@@ -3126,6 +3603,28 @@
                 "testimonials.review6.text": "\"J'assiste à des conférences dans le monde entier et VoiceSketch m'aide à capturer chaque présentation. Les notes visuelles facilitent le partage avec mon équipe.\"",
                 "testimonials.review6.name": "Claire D.",
                 "testimonials.review6.role": "Directrice marketing",
+                "nav.privacy": "Confidentialité",
+                "privacy.title": "Politique de confidentialité",
+                "privacy.subtitle": "Votre vie privée nous tient à cœur",
+                "privacy.lastUpdated": "Dernière mise à jour : 7 février 2026",
+                "privacy.collect.title": "Informations collectées",
+                "privacy.collect.content": "\u2022 Informations du compte : Adresse e-mail, nom d'affichage et données d'authentification\n\u2022 Enregistrements audio : Enregistrements vocaux que vous choisissez de traiter (stockés localement par défaut)\n\u2022 Transcriptions : Texte converti à partir de vos enregistrements audio\n\u2022 Données d'utilisation : Fonctionnalités utilisées, durée des sessions et métriques de performance\n\u2022 Informations sur l'appareil : Type d'appareil, version du système d'exploitation et version de l'application\n\u2022 Données de localisation : Uniquement si explicitement autorisé pour les fonctionnalités de lieu de réunion (optionnel)\n\nNous ne collectons PAS :\n\u2022 Les conversations personnelles sauf si vous les enregistrez explicitement\n\u2022 L'audio en arrière-plan lorsque l'application n'est pas utilisée\n\u2022 Les contacts, photos ou autres fichiers personnels sans autorisation",
+                "privacy.use.title": "Comment nous utilisons vos informations",
+                "privacy.use.content": "\u2022 Fournir les services principaux : Traitement audio, génération de transcriptions et de résumés\n\u2022 Améliorer l'expérience utilisateur : Renforcer les fonctionnalités et les performances de l'application\n\u2022 Gestion du compte : Authentifier les utilisateurs et synchroniser les données entre les appareils\n\u2022 Support client : Répondre aux demandes et résoudre les problèmes\n\u2022 Conformité légale : Respecter les obligations légales et protéger les droits des utilisateurs\n\u2022 Sécurité : Détecter et prévenir la fraude, les abus et les menaces de sécurité\n\nNous ne ferons JAMAIS :\n\u2022 Vendre vos informations personnelles à des tiers\n\u2022 Utiliser vos enregistrements à des fins publicitaires\n\u2022 Partager votre contenu sans consentement explicite\n\u2022 Accéder à vos enregistrements sans votre autorisation",
+                "privacy.storage.title": "Stockage et sécurité des données",
+                "privacy.storage.content": "\u2022 Stockage local : Les enregistrements audio et les transcriptions sont stockés localement sur votre appareil par défaut\n\u2022 Stockage cloud : Fonctionnalité premium optionnelle avec chiffrement de bout en bout\n\u2022 Chiffrement des données : Toutes les données sont chiffrées en transit et au repos\n\u2022 Contrôles d'accès : Des contrôles d'accès stricts limitent l'accès à vos données\n\u2022 Audits de sécurité réguliers : Nous révisons et mettons à jour régulièrement nos mesures de sécurité\n\u2022 Minimisation des données : Nous ne collectons et stockons que les données nécessaires au fonctionnement de l'application\n\nVos enregistrements restent privés et ne sont jamais utilisés pour entraîner des modèles d'IA sans consentement explicite.",
+                "privacy.thirdParty.title": "Services tiers",
+                "privacy.thirdParty.content": "VoiceSketch s'intègre aux services tiers suivants :\n\n\u2022 OpenAI : Pour la synthèse de texte et la génération d'images (le contenu est traité mais non stocké)\n\u2022 Firebase (Google) : Pour l'authentification, le stockage cloud et l'analyse\n\u2022 Services Apple : Pour les achats intégrés et la reconnaissance vocale\n\nNous nous assurons que tous les partenaires respectent nos normes de confidentialité et de sécurité.",
+                "privacy.rights.title": "Vos droits et contrôles",
+                "privacy.children.title": "Protection des enfants (COPPA)",
+                "privacy.children.content": "VoiceSketch n'est pas destiné aux enfants de moins de 13 ans. Nous ne collectons pas sciemment d'informations personnelles auprès d'enfants de moins de 13 ans.\n\nSi vous êtes parent ou tuteur et pensez que votre enfant a fourni des informations personnelles :\n\u2022 Contactez-nous immédiatement à kairos.ai.tech@gmail.com\n\u2022 Nous supprimerons rapidement les informations\n\u2022 Nous pouvons exiger une vérification de votre identité\n\nPour les utilisateurs de 13 à 17 ans :\n\u2022 Le consentement parental peut être requis dans certaines juridictions\n\u2022 Des mesures de protection spéciales s'appliquent aux comptes de mineurs\n\u2022 L'utilisation éducative nécessite l'approbation de l'administrateur scolaire",
+                "privacy.gdpr.title": "Utilisateurs internationaux (RGPD)",
+                "privacy.gdpr.content": "Pour les utilisateurs de l'Union européenne, nous respectons le Règlement général sur la protection des données (RGPD) :\n\n\u2022 Base légale : Nous traitons les données sur la base du consentement, de l'exécution du contrat ou des intérêts légitimes\n\u2022 Délégué à la protection des données : kairos.ai.tech@gmail.com\n\u2022 Autorité de contrôle : Vous pouvez déposer des plaintes auprès de votre autorité locale de protection des données\n\u2022 Transferts de données : Les transferts internationaux sont protégés par des garanties appropriées\n\u2022 Prise de décision automatisée : Nous ne prenons pas de décisions automatisées ayant un impact significatif sur vous\n\nLes utilisateurs de l'UE bénéficient de droits renforcés en vertu du RGPD, notamment le droit à la portabilité des données et le droit à l'oubli.",
+                "privacy.ccpa.title": "Droits de confidentialité en Californie (CCPA)",
+                "privacy.ccpa.content": "Pour les résidents de Californie, nous respectons la loi californienne sur la protection de la vie privée des consommateurs (CCPA) :\n\n\u2022 Droit de savoir : Quelles informations personnelles nous collectons et comment elles sont utilisées\n\u2022 Droit de suppression : Demander la suppression des informations personnelles\n\u2022 Droit de refus : Refuser la vente d'informations personnelles (nous ne vendons pas de données)\n\u2022 Droit à la non-discrimination : Nous ne discriminons pas pour l'exercice des droits CCPA\n\nPour exercer vos droits CCPA :\n\u2022 E-mail : kairos.ai.tech@gmail.com\n\u2022 Objet : « Demande de droits CCPA »\n\u2022 Inclure : Nom complet, adresse e-mail et demande spécifique",
+                "privacy.retention.title": "Conservation des données",
+                "privacy.retention.content": "Nous ne conservons vos informations que le temps nécessaire :\n\n\u2022 Données du compte : Conservées tant que votre compte est actif\n\u2022 Enregistrements : Supprimés selon vos paramètres (par défaut : 30 jours)\n\u2022 Analyses d'utilisation : Agrégées et anonymisées après 2 ans\n\u2022 Exigences légales : Peuvent être conservées plus longtemps si la loi l'exige\n\u2022 Comptes supprimés : Toutes les données définitivement supprimées dans les 30 jours\n\nVous pouvez ajuster les paramètres de conservation dans l'application ou demander une suppression immédiate.",
+                "privacy.contact.title": "Nous contacter",
                 "footer.from": "de",
                 "footer.copyright": "© 2026 VoiceSketch. Tous droits réservés."
             },
@@ -3215,6 +3714,28 @@
                 "testimonials.review6.text": "\"Asisto a conferencias en todo el mundo y VoiceSketch me ayuda a capturar cada presentación. Las notas visuales facilitan compartir con mi equipo.\"",
                 "testimonials.review6.name": "Isabel R.",
                 "testimonials.review6.role": "Directora de marketing",
+                "nav.privacy": "Privacidad",
+                "privacy.title": "Política de privacidad",
+                "privacy.subtitle": "Tu privacidad nos importa",
+                "privacy.lastUpdated": "Última actualización: 7 de febrero de 2026",
+                "privacy.collect.title": "Información que recopilamos",
+                "privacy.collect.content": "\u2022 Información de la cuenta: Dirección de correo electrónico, nombre para mostrar y datos de autenticación\n\u2022 Grabaciones de audio: Grabaciones de voz que eliges procesar (almacenadas localmente por defecto)\n\u2022 Transcripciones: Texto convertido de tus grabaciones de audio\n\u2022 Datos de uso: Funciones de la aplicación utilizadas, duración de la sesión y métricas de rendimiento\n\u2022 Información del dispositivo: Tipo de dispositivo, versión del sistema operativo y versión de la aplicación\n\u2022 Datos de ubicación: Solo si se otorga explícitamente para funciones de ubicación de reuniones (opcional)\n\nNO recopilamos:\n\u2022 Conversaciones personales a menos que las grabes explícitamente\n\u2022 Audio en segundo plano cuando la aplicación no está en uso\n\u2022 Contactos, fotos u otros archivos personales sin permiso",
+                "privacy.use.title": "Cómo usamos tu información",
+                "privacy.use.content": "\u2022 Proporcionar servicios principales: Procesar audio, generar transcripciones y resúmenes\n\u2022 Mejorar la experiencia del usuario: Mejorar la funcionalidad y el rendimiento de la aplicación\n\u2022 Gestión de cuentas: Autenticar usuarios y sincronizar datos entre dispositivos\n\u2022 Soporte al cliente: Responder consultas y solucionar problemas\n\u2022 Cumplimiento legal: Cumplir obligaciones legales y proteger los derechos de los usuarios\n\u2022 Seguridad: Detectar y prevenir fraude, abuso y amenazas de seguridad\n\nNUNCA haremos:\n\u2022 Vender tu información personal a terceros\n\u2022 Usar tus grabaciones con fines publicitarios\n\u2022 Compartir tu contenido sin consentimiento explícito\n\u2022 Acceder a tus grabaciones sin tu permiso",
+                "privacy.storage.title": "Almacenamiento y seguridad de datos",
+                "privacy.storage.content": "\u2022 Almacenamiento local: Las grabaciones de audio y transcripciones se almacenan localmente en tu dispositivo por defecto\n\u2022 Almacenamiento en la nube: Función premium opcional con cifrado de extremo a extremo\n\u2022 Cifrado de datos: Todos los datos están cifrados tanto en tránsito como en reposo\n\u2022 Controles de acceso: Controles de acceso estrictos limitan quién puede acceder a tus datos\n\u2022 Auditorías de seguridad regulares: Revisamos y actualizamos regularmente nuestras medidas de seguridad\n\u2022 Minimización de datos: Solo recopilamos y almacenamos datos necesarios para la funcionalidad de la aplicación\n\nTus grabaciones permanecen privadas y nunca se accede a ellas para entrenar modelos de IA sin consentimiento explícito.",
+                "privacy.thirdParty.title": "Servicios de terceros",
+                "privacy.thirdParty.content": "VoiceSketch se integra con los siguientes servicios de terceros:\n\n\u2022 OpenAI: Para resumen de texto y generación de imágenes (el contenido se procesa pero no se almacena)\n\u2022 Firebase (Google): Para autenticación, almacenamiento en la nube y análisis\n\u2022 Servicios de Apple: Para compras dentro de la aplicación y reconocimiento de voz\n\nNos aseguramos de que todos los socios cumplan con nuestros estándares de privacidad y seguridad.",
+                "privacy.rights.title": "Tus derechos y controles",
+                "privacy.children.title": "Privacidad de los niños (COPPA)",
+                "privacy.children.content": "VoiceSketch no está destinado a niños menores de 13 años. No recopilamos intencionalmente información personal de niños menores de 13 años.\n\nSi eres padre o tutor y crees que tu hijo ha proporcionado información personal:\n\u2022 Contáctanos inmediatamente en kairos.ai.tech@gmail.com\n\u2022 Eliminaremos la información de inmediato\n\u2022 Podemos requerir verificación de tu identidad\n\nPara usuarios de 13 a 17 años:\n\u2022 El consentimiento parental puede ser necesario en algunas jurisdicciones\n\u2022 Se aplican medidas de protección especiales a las cuentas de menores\n\u2022 El uso educativo requiere la aprobación del administrador escolar",
+                "privacy.gdpr.title": "Usuarios internacionales (RGPD)",
+                "privacy.gdpr.content": "Para los usuarios de la Unión Europea, cumplimos con el Reglamento General de Protección de Datos (RGPD):\n\n\u2022 Base legal: Procesamos datos basándonos en el consentimiento, la ejecución del contrato o los intereses legítimos\n\u2022 Delegado de protección de datos: kairos.ai.tech@gmail.com\n\u2022 Autoridad supervisora: Puedes presentar quejas ante tu autoridad local de protección de datos\n\u2022 Transferencias de datos: Las transferencias internacionales están protegidas por garantías apropiadas\n\u2022 Toma de decisiones automatizada: No tomamos decisiones automatizadas que te afecten significativamente\n\nLos usuarios de la UE tienen derechos reforzados bajo el RGPD, incluyendo el derecho a la portabilidad de datos y el derecho al olvido.",
+                "privacy.ccpa.title": "Derechos de privacidad de California (CCPA)",
+                "privacy.ccpa.content": "Para los residentes de California, cumplimos con la Ley de Privacidad del Consumidor de California (CCPA):\n\n\u2022 Derecho a saber: Qué información personal recopilamos y cómo se utiliza\n\u2022 Derecho a eliminar: Solicitar la eliminación de información personal\n\u2022 Derecho a optar por no participar: Optar por no vender información personal (no vendemos datos)\n\u2022 Derecho a no discriminación: No discriminaremos por ejercer los derechos CCPA\n\nPara ejercer los derechos CCPA:\n\u2022 Correo electrónico: kairos.ai.tech@gmail.com\n\u2022 Asunto: \"Solicitud de derechos CCPA\"\n\u2022 Incluir: Nombre completo, dirección de correo electrónico y solicitud específica",
+                "privacy.retention.title": "Retención de datos",
+                "privacy.retention.content": "Solo conservamos tu información el tiempo necesario:\n\n\u2022 Datos de la cuenta: Conservados mientras tu cuenta esté activa\n\u2022 Grabaciones: Eliminadas según tu configuración (por defecto: 30 días)\n\u2022 Análisis de uso: Agregados y anonimizados después de 2 años\n\u2022 Requisitos legales: Pueden conservarse más tiempo si la ley lo exige\n\u2022 Cuentas eliminadas: Todos los datos eliminados permanentemente en 30 días\n\nPuedes ajustar la configuración de retención en la aplicación o solicitar la eliminación inmediata.",
+                "privacy.contact.title": "Contáctanos",
                 "footer.from": "de",
                 "footer.copyright": "© 2026 VoiceSketch. Todos los derechos reservados."
             },
@@ -3304,6 +3825,28 @@
                 "testimonials.review6.text": "\"Partecipo a conferenze in tutto il mondo e VoiceSketch mi aiuta a catturare ogni presentazione. Le note visive rendono facile condividere con il mio team.\"",
                 "testimonials.review6.name": "Chiara N.",
                 "testimonials.review6.role": "Direttrice marketing",
+                "nav.privacy": "Privacy",
+                "privacy.title": "Informativa sulla privacy",
+                "privacy.subtitle": "La tua privacy è importante per noi",
+                "privacy.lastUpdated": "Ultimo aggiornamento: 7 febbraio 2026",
+                "privacy.collect.title": "Informazioni raccolte",
+                "privacy.collect.content": "\u2022 Informazioni sull'account: Indirizzo e-mail, nome visualizzato e dati di autenticazione\n\u2022 Registrazioni audio: Registrazioni vocali che scegli di elaborare (archiviate localmente per impostazione predefinita)\n\u2022 Trascrizioni: Testo convertito dalle tue registrazioni audio\n\u2022 Dati di utilizzo: Funzionalità dell'app utilizzate, durata della sessione e metriche di prestazione\n\u2022 Informazioni sul dispositivo: Tipo di dispositivo, versione del sistema operativo e versione dell'app\n\u2022 Dati sulla posizione: Solo se esplicitamente concesso per le funzionalità di luogo delle riunioni (opzionale)\n\nNON raccogliamo:\n\u2022 Conversazioni personali a meno che non le registri esplicitamente\n\u2022 Audio in background quando l'app non è in uso\n\u2022 Contatti, foto o altri file personali senza autorizzazione",
+                "privacy.use.title": "Come utilizziamo le tue informazioni",
+                "privacy.use.content": "\u2022 Fornire servizi principali: Elaborare audio, generare trascrizioni e riassunti\n\u2022 Migliorare l'esperienza utente: Potenziare funzionalità e prestazioni dell'app\n\u2022 Gestione account: Autenticare gli utenti e sincronizzare i dati tra dispositivi\n\u2022 Assistenza clienti: Rispondere alle richieste e risolvere i problemi\n\u2022 Conformità legale: Adempiere agli obblighi legali e proteggere i diritti degli utenti\n\u2022 Sicurezza: Rilevare e prevenire frodi, abusi e minacce alla sicurezza\n\nNon faremo MAI:\n\u2022 Vendere le tue informazioni personali a terzi\n\u2022 Utilizzare le tue registrazioni per scopi pubblicitari\n\u2022 Condividere i tuoi contenuti senza consenso esplicito\n\u2022 Accedere alle tue registrazioni senza la tua autorizzazione",
+                "privacy.storage.title": "Archiviazione e sicurezza dei dati",
+                "privacy.storage.content": "\u2022 Archiviazione locale: Le registrazioni audio e le trascrizioni sono archiviate localmente sul tuo dispositivo per impostazione predefinita\n\u2022 Archiviazione cloud: Funzionalità premium opzionale con crittografia end-to-end\n\u2022 Crittografia dei dati: Tutti i dati sono crittografati sia in transito che a riposo\n\u2022 Controlli di accesso: Controlli di accesso rigorosi limitano chi può accedere ai tuoi dati\n\u2022 Audit di sicurezza regolari: Rivediamo e aggiorniamo regolarmente le nostre misure di sicurezza\n\u2022 Minimizzazione dei dati: Raccogliamo e archiviamo solo i dati necessari per il funzionamento dell'app\n\nLe tue registrazioni rimangono private e non vengono mai utilizzate per addestrare modelli di IA senza consenso esplicito.",
+                "privacy.thirdParty.title": "Servizi di terze parti",
+                "privacy.thirdParty.content": "VoiceSketch si integra con i seguenti servizi di terze parti:\n\n\u2022 OpenAI: Per la sintesi del testo e la generazione di immagini (il contenuto viene elaborato ma non archiviato)\n\u2022 Firebase (Google): Per autenticazione, archiviazione cloud e analisi\n\u2022 Servizi Apple: Per acquisti in-app e riconoscimento vocale\n\nCi assicuriamo che tutti i partner soddisfino i nostri standard di privacy e sicurezza.",
+                "privacy.rights.title": "I tuoi diritti e controlli",
+                "privacy.children.title": "Privacy dei minori (COPPA)",
+                "privacy.children.content": "VoiceSketch non è destinato a bambini di età inferiore ai 13 anni. Non raccogliamo consapevolmente informazioni personali da bambini sotto i 13 anni.\n\nSe sei un genitore o tutore e ritieni che tuo figlio abbia fornito informazioni personali:\n\u2022 Contattaci immediatamente a kairos.ai.tech@gmail.com\n\u2022 Elimineremo prontamente le informazioni\n\u2022 Potremmo richiedere la verifica della tua identità\n\nPer utenti di età compresa tra 13 e 17 anni:\n\u2022 Il consenso dei genitori potrebbe essere richiesto in alcune giurisdizioni\n\u2022 Misure di protezione speciali si applicano agli account dei minori\n\u2022 L'uso educativo richiede l'approvazione dell'amministratore scolastico",
+                "privacy.gdpr.title": "Utenti internazionali (GDPR)",
+                "privacy.gdpr.content": "Per gli utenti dell'Unione Europea, rispettiamo il Regolamento generale sulla protezione dei dati (GDPR):\n\n\u2022 Base giuridica: Elaboriamo i dati sulla base del consenso, dell'esecuzione del contratto o degli interessi legittimi\n\u2022 Responsabile della protezione dei dati: kairos.ai.tech@gmail.com\n\u2022 Autorità di vigilanza: Puoi presentare reclami alla tua autorità locale per la protezione dei dati\n\u2022 Trasferimento dei dati: I trasferimenti internazionali sono protetti da garanzie appropriate\n\u2022 Processo decisionale automatizzato: Non prendiamo decisioni automatizzate che ti riguardano in modo significativo\n\nGli utenti dell'UE hanno diritti rafforzati ai sensi del GDPR, incluso il diritto alla portabilità dei dati e il diritto all'oblio.",
+                "privacy.ccpa.title": "Diritti sulla privacy in California (CCPA)",
+                "privacy.ccpa.content": "Per i residenti della California, rispettiamo il California Consumer Privacy Act (CCPA):\n\n\u2022 Diritto di sapere: Quali informazioni personali raccogliamo e come vengono utilizzate\n\u2022 Diritto di cancellazione: Richiedere la cancellazione delle informazioni personali\n\u2022 Diritto di opt-out: Rinunciare alla vendita di informazioni personali (non vendiamo dati)\n\u2022 Diritto alla non discriminazione: Non discrimineremo per l'esercizio dei diritti CCPA\n\nPer esercitare i diritti CCPA:\n\u2022 E-mail: kairos.ai.tech@gmail.com\n\u2022 Oggetto: \"Richiesta diritti CCPA\"\n\u2022 Includere: Nome completo, indirizzo e-mail e richiesta specifica",
+                "privacy.retention.title": "Conservazione dei dati",
+                "privacy.retention.content": "Conserviamo le tue informazioni solo per il tempo necessario:\n\n\u2022 Dati dell'account: Conservati finché il tuo account è attivo\n\u2022 Registrazioni: Eliminate secondo le tue impostazioni (predefinito: 30 giorni)\n\u2022 Analisi di utilizzo: Aggregate e anonimizzate dopo 2 anni\n\u2022 Requisiti legali: Possono essere conservati più a lungo se richiesto dalla legge\n\u2022 Account eliminati: Tutti i dati eliminati permanentemente entro 30 giorni\n\nPuoi regolare le impostazioni di conservazione nell'app o richiedere l'eliminazione immediata.",
+                "privacy.contact.title": "Contattaci",
                 "footer.from": "da",
                 "footer.copyright": "© 2026 VoiceSketch. Tutti i diritti riservati."
             }
