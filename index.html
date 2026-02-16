@@ -2131,8 +2131,37 @@
             text-decoration: underline;
         }
 
+        /* Terms of Service Section */
+        .terms-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(180deg, #f8f5f2 0%, #fff 100%);
+        }
+
+        .terms-section .section-title {
+            text-align: center;
+            font-size: clamp(2rem, 5vw, 2.75rem);
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .terms-section .section-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .terms-last-updated {
+            text-align: center;
+            color: #999;
+            font-size: 0.85rem;
+            margin-bottom: 2.5rem;
+        }
+
         @media (max-width: 768px) {
-            .privacy-section {
+            .privacy-section,
+            .terms-section {
                 padding: 3rem 1rem;
             }
 
@@ -2937,6 +2966,388 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
         </div>
     </section>
 
+    <!-- Terms of Service Section -->
+    <section class="terms-section" id="terms">
+        <h2 class="section-title animate-on-scroll" data-i18n="terms.title">Terms of Service</h2>
+        <p class="section-subtitle animate-on-scroll" data-i18n="terms.subtitle">Please read these terms carefully before using VoiceSketch</p>
+        <p class="terms-last-updated animate-on-scroll" data-i18n="terms.lastUpdated">Last updated: February 7, 2026</p>
+
+        <div class="privacy-grid">
+            <!-- Acceptance of Terms -->
+            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
+                <div class="privacy-card-header">
+                    <div class="privacy-card-icon">&#9989;</div>
+                    <span class="privacy-card-title" data-i18n="terms.acceptance.title">Acceptance of Terms</span>
+                    <div class="privacy-card-toggle">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </div>
+                <div class="privacy-card-body">
+                    <div class="privacy-card-content" data-i18n="terms.acceptance.content">By downloading, installing, or using VoiceSketch ("the App"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, please do not use the App.
+
+These Terms constitute a legally binding agreement between you and VoiceSketch ("we," "us," or "our"). Your use of the App is also governed by our Privacy Policy, which is incorporated by reference into these Terms.
+
+You must be at least 13 years old to use this App. If you are under 18, you confirm that you have obtained parental or guardian consent to use the App.</div>
+                </div>
+            </div>
+
+            <!-- Description of Service -->
+            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
+                <div class="privacy-card-header">
+                    <div class="privacy-card-icon">&#128241;</div>
+                    <span class="privacy-card-title" data-i18n="terms.service.title">Description of Service</span>
+                    <div class="privacy-card-toggle">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </div>
+                <div class="privacy-card-body">
+                    <div class="privacy-card-content" data-i18n="terms.service.content">VoiceSketch is a mobile application that provides:
+
+&#8226; Real-time audio recording and transcription services
+&#8226; AI-powered text summarization capabilities
+&#8226; Visual representation generation from meeting content
+&#8226; Cloud storage and synchronization (premium feature)
+&#8226; Export functionality for transcripts, summaries, and visualizations
+
+The App integrates with third-party services including OpenAI for AI processing and Firebase for data storage and authentication. We reserve the right to modify, suspend, or discontinue any aspect of the service at any time.</div>
+                </div>
+            </div>
+
+            <!-- User Accounts and Registration -->
+            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
+                <div class="privacy-card-header">
+                    <div class="privacy-card-icon">&#128100;</div>
+                    <span class="privacy-card-title" data-i18n="terms.accounts.title">User Accounts and Registration</span>
+                    <div class="privacy-card-toggle">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </div>
+                <div class="privacy-card-body">
+                    <div class="privacy-card-content" data-i18n="terms.accounts.content">Account Creation:
+&#8226; You must provide accurate and complete registration information
+&#8226; You are responsible for maintaining the confidentiality of your account credentials
+&#8226; You must be at least 13 years old to create an account
+&#8226; Each user may maintain only one account
+
+Account Security:
+&#8226; You are solely responsible for all activities under your account
+&#8226; Notify us immediately of any unauthorized use of your account
+&#8226; We are not liable for losses due to unauthorized account access
+
+Account Verification:
+&#8226; Email verification is required for full account functionality
+&#8226; Unverified accounts have limited access to features</div>
+                </div>
+            </div>
+
+            <!-- Acceptable Use Policy -->
+            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
+                <div class="privacy-card-header">
+                    <div class="privacy-card-icon">&#128077;</div>
+                    <span class="privacy-card-title" data-i18n="terms.acceptableUse.title">Acceptable Use Policy</span>
+                    <div class="privacy-card-toggle">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </div>
+                <div class="privacy-card-body">
+                    <div class="privacy-card-content" data-i18n="terms.acceptableUse.content">You agree NOT to use VoiceSketch for:
+
+Prohibited Activities:
+&#8226; Illegal activities or violation of applicable laws
+&#8226; Recording conversations without proper consent
+&#8226; Harassment, threats, or abusive behavior
+&#8226; Sharing copyrighted content without permission
+&#8226; Uploading malicious code or attempting to hack the service
+&#8226; Creating fake accounts or impersonating others
+&#8226; Spamming or sending unsolicited communications
+&#8226; Commercial use without proper licensing
+
+Content Restrictions:
+&#8226; No hate speech, discriminatory, or offensive content
+&#8226; No personal information of others without consent
+&#8226; No content that violates privacy rights
+&#8226; No misleading or fraudulent information
+
+Violation of these terms may result in account suspension or termination.</div>
+                </div>
+            </div>
+
+            <!-- Content and Intellectual Property -->
+            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
+                <div class="privacy-card-header">
+                    <div class="privacy-card-icon">&#128196;</div>
+                    <span class="privacy-card-title" data-i18n="terms.ip.title">Content and Intellectual Property</span>
+                    <div class="privacy-card-toggle">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </div>
+                <div class="privacy-card-body">
+                    <div class="privacy-card-content" data-i18n="terms.ip.content">VoiceSketch Intellectual Property:
+&#8226; The App, including design, code, and features, is owned by VoiceSketch
+&#8226; All trademarks, logos, and service marks are our property
+&#8226; You may not copy, modify, or distribute our intellectual property
+
+Your Content:
+&#8226; You retain ownership of your original recordings and content
+&#8226; You grant us a license to process your content to provide services
+&#8226; You are responsible for ensuring you have rights to all uploaded content
+&#8226; We do not claim ownership of your personal recordings or transcriptions
+
+AI-Generated Content:
+&#8226; Summaries and visualizations are generated using AI services
+&#8226; You have rights to AI-generated content based on your input
+&#8226; We do not use your content to train AI models without consent
+
+Third-Party Content:
+&#8226; Respect copyright and intellectual property rights of others
+&#8226; Obtain proper permissions before recording others</div>
+                </div>
+            </div>
+
+            <!-- Privacy and Data Protection -->
+            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
+                <div class="privacy-card-header">
+                    <div class="privacy-card-icon">&#128274;</div>
+                    <span class="privacy-card-title" data-i18n="terms.privacyData.title">Privacy and Data Protection</span>
+                    <div class="privacy-card-toggle">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </div>
+                <div class="privacy-card-body">
+                    <div class="privacy-card-content" data-i18n="terms.privacyData.content">Your privacy is important to us. Our data practices are governed by our Privacy Policy, which includes:
+
+Data Collection:
+&#8226; We collect minimal data necessary for app functionality
+&#8226; Audio recordings are stored locally by default
+&#8226; Cloud storage is optional and encrypted
+
+Data Use:
+&#8226; Personal data is used only to provide and improve services
+&#8226; We do not sell personal information to third parties
+&#8226; Analytics data is anonymized and aggregated
+
+Data Protection:
+&#8226; Industry-standard encryption for data in transit and at rest
+&#8226; Regular security audits and updates
+&#8226; Compliance with GDPR, CCPA, and other privacy regulations
+
+Your Rights:
+&#8226; Access, correct, or delete your personal information
+&#8226; Export your data in portable formats
+&#8226; Opt out of optional data collection
+
+For complete details, please review our Privacy Policy.</div>
+                </div>
+            </div>
+
+            <!-- Subscription and Payments -->
+            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
+                <div class="privacy-card-header">
+                    <div class="privacy-card-icon">&#128179;</div>
+                    <span class="privacy-card-title" data-i18n="terms.subscription.title">Subscription and Payments</span>
+                    <div class="privacy-card-toggle">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </div>
+                <div class="privacy-card-body">
+                    <div class="privacy-card-content" data-i18n="terms.subscription.content">Premium Subscriptions:
+&#8226; Premium features are available through in-app purchase subscriptions
+&#8226; Subscriptions automatically renew unless cancelled
+&#8226; Pricing and features are subject to change with notice
+
+Payment Terms:
+&#8226; Payments are processed through Apple's App Store
+&#8226; All fees are non-refundable unless required by law
+&#8226; Prices include applicable taxes where required
+
+Cancellation:
+&#8226; Cancel anytime through your App Store account settings
+&#8226; Access to premium features continues until the end of the current billing period
+&#8226; No partial refunds for unused subscription time
+
+Free Trial:
+&#8226; Free trials may be offered for premium features
+&#8226; Trial converts to paid subscription unless cancelled
+&#8226; Previous trial users may not be eligible for additional trials
+
+Changes to Pricing:
+&#8226; We may change subscription prices with 30 days notice
+&#8226; Price changes apply to new subscriptions and renewals</div>
+                </div>
+            </div>
+
+            <!-- Disclaimers and Limitations -->
+            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
+                <div class="privacy-card-header">
+                    <div class="privacy-card-icon">&#9888;</div>
+                    <span class="privacy-card-title" data-i18n="terms.disclaimers.title">Disclaimers and Limitations</span>
+                    <div class="privacy-card-toggle">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </div>
+                <div class="privacy-card-body">
+                    <div class="privacy-card-content" data-i18n="terms.disclaimers.content">Service Disclaimers:
+&#8226; VoiceSketch is provided "as is" without warranties of any kind
+&#8226; We do not guarantee 100% accuracy of transcriptions or AI-generated content
+&#8226; Service availability may be subject to interruptions or maintenance
+&#8226; Third-party integrations may affect app functionality
+
+Limitation of Liability:
+&#8226; Our liability is limited to the amount paid for the service
+&#8226; We are not liable for indirect, incidental, or consequential damages
+&#8226; We are not responsible for data loss due to device failure or user error
+&#8226; Users are responsible for maintaining backups of important data
+
+AI and Transcription Accuracy:
+&#8226; AI-generated summaries and transcriptions may contain errors
+&#8226; Users should review all generated content for accuracy
+&#8226; We recommend human verification for critical or sensitive content
+&#8226; Accuracy may vary based on audio quality, accents, and technical terms
+
+Third-Party Services:
+&#8226; We are not responsible for third-party service interruptions
+&#8226; OpenAI, Firebase, and other integrations have their own terms
+&#8226; Changes to third-party services may affect app functionality</div>
+                </div>
+            </div>
+
+            <!-- Indemnification -->
+            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
+                <div class="privacy-card-header">
+                    <div class="privacy-card-icon">&#128737;</div>
+                    <span class="privacy-card-title" data-i18n="terms.indemnification.title">Indemnification</span>
+                    <div class="privacy-card-toggle">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </div>
+                <div class="privacy-card-body">
+                    <div class="privacy-card-content" data-i18n="terms.indemnification.content">You agree to indemnify, defend, and hold harmless VoiceSketch and its officers, directors, employees, and agents from and against any claims, damages, losses, or expenses arising from:
+
+&#8226; Your use of the App in violation of these Terms
+&#8226; Your violation of any applicable laws or regulations
+&#8226; Recording others without proper consent or authorization
+&#8226; Copyright infringement or intellectual property violations
+&#8226; Any content you upload, share, or process through the App
+&#8226; Unauthorized use of your account due to your negligence
+
+This indemnification survives termination of your account and these Terms.</div>
+                </div>
+            </div>
+
+            <!-- Termination -->
+            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
+                <div class="privacy-card-header">
+                    <div class="privacy-card-icon">&#10060;</div>
+                    <span class="privacy-card-title" data-i18n="terms.termination.title">Termination</span>
+                    <div class="privacy-card-toggle">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </div>
+                <div class="privacy-card-body">
+                    <div class="privacy-card-content" data-i18n="terms.termination.content">Termination by You:
+&#8226; You may delete your account at any time through the app settings
+&#8226; Cancellation of subscriptions must be done through the App Store
+&#8226; Your data will be deleted according to our data retention policy
+
+Termination by Us:
+&#8226; We may suspend or terminate accounts for Terms violations
+&#8226; Termination may be immediate for serious violations
+&#8226; We will provide notice when possible, except for immediate safety concerns
+
+Effect of Termination:
+&#8226; Access to the App and services will be immediately revoked
+&#8226; Your data will be deleted according to our Privacy Policy
+&#8226; Premium subscription benefits will cease immediately
+&#8226; These Terms survive termination where applicable
+
+Data Recovery:
+&#8226; Deleted accounts cannot be recovered
+&#8226; Export your data before account deletion
+&#8226; We may retain some data as required by law</div>
+                </div>
+            </div>
+
+            <!-- Governing Law and Disputes -->
+            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
+                <div class="privacy-card-header">
+                    <div class="privacy-card-icon">&#9878;</div>
+                    <span class="privacy-card-title" data-i18n="terms.governingLaw.title">Governing Law and Disputes</span>
+                    <div class="privacy-card-toggle">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </div>
+                <div class="privacy-card-body">
+                    <div class="privacy-card-content" data-i18n="terms.governingLaw.content">These Terms are governed by and construed in accordance with the laws of the State of California, United States, without regard to conflict of law principles.
+
+Dispute Resolution:
+&#8226; Informal Resolution: Contact us first to resolve disputes informally
+&#8226; Arbitration: Disputes will be resolved through binding arbitration
+&#8226; Class Action Waiver: You waive the right to participate in class actions
+&#8226; Jurisdiction: Courts in the State of California have exclusive jurisdiction
+
+Exceptions to Arbitration:
+&#8226; Small claims court matters under jurisdictional limits
+&#8226; Intellectual property disputes
+&#8226; Injunctive relief requests
+
+Apple App Store:
+&#8226; Apple is not a party to these Terms
+&#8226; Apple has no warranty obligations regarding the App
+&#8226; You acknowledge Apple's right to enforce these Terms</div>
+                </div>
+            </div>
+
+            <!-- Changes to Terms -->
+            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
+                <div class="privacy-card-header">
+                    <div class="privacy-card-icon">&#128260;</div>
+                    <span class="privacy-card-title" data-i18n="terms.changes.title">Changes to Terms</span>
+                    <div class="privacy-card-toggle">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </div>
+                <div class="privacy-card-body">
+                    <div class="privacy-card-content" data-i18n="terms.changes.content">We reserve the right to modify these Terms at any time. Changes will be effective when:
+
+&#8226; Posted within the App with updated "Last modified" date
+&#8226; Notification sent to registered email addresses
+&#8226; For material changes, 30 days advance notice will be provided
+
+Your Options:
+&#8226; Continued use of the App constitutes acceptance of changes
+&#8226; If you disagree with changes, discontinue use and delete your account
+&#8226; Some changes may be required by law or for security reasons
+
+Version Control:
+&#8226; Previous versions of Terms are archived and available upon request
+&#8226; The current version always supersedes previous versions</div>
+                </div>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
+                <div class="privacy-card-header">
+                    <div class="privacy-card-icon">&#9993;</div>
+                    <span class="privacy-card-title" data-i18n="terms.contact.title">Contact Information</span>
+                    <div class="privacy-card-toggle">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </div>
+                <div class="privacy-card-body">
+                    <div class="privacy-card-content">For questions about these Terms of Service:
+
+Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">kairos.ai.tech@gmail.com</a>
+Subject: Include "Terms of Service" for faster response
+
+General Support:
+Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">kairos.ai.tech@gmail.com</a>
+
+We will respond to inquiries within 5 business days.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div class="footer-brand">
@@ -2946,7 +3357,7 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
             <span data-i18n="footer.from">from</span> <a href="https://www.kairosaitech.com" target="_blank">Kairos.ai</a>
         </div>
         <p data-i18n="footer.copyright">&copy; 2026 VoiceSketch. All rights reserved.</p>
-        <p style="margin-top: 0.5rem;"><a href="#privacy" style="color: rgba(255,255,255,0.5); font-size: 0.8rem; text-decoration: none;" data-i18n="nav.privacy">Privacy Policy</a></p>
+        <p style="margin-top: 0.5rem;"><a href="#privacy" style="color: rgba(255,255,255,0.5); font-size: 0.8rem; text-decoration: none;" data-i18n="nav.privacy">Privacy Policy</a> &nbsp;|&nbsp; <a href="#terms" style="color: rgba(255,255,255,0.5); font-size: 0.8rem; text-decoration: none;" data-i18n="nav.terms">Terms of Service</a></p>
     </footer>
 
     <!-- Mobile Sticky CTA -->
@@ -3070,6 +3481,35 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
                 "privacy.retention.title": "Data Retention",
                 "privacy.retention.content": "We retain your information only as long as necessary:\n\n\u2022 Account Data: Retained while your account is active\n\u2022 Recordings: Deleted according to your settings (default: 30 days)\n\u2022 Usage Analytics: Aggregated and anonymized after 2 years\n\u2022 Legal Requirements: May be retained longer if required by law\n\u2022 Deleted Accounts: All data permanently deleted within 30 days\n\nYou can adjust retention settings in the app or request immediate deletion.",
                 "privacy.contact.title": "Contact Us",
+                "nav.terms": "Terms of Service",
+                "terms.title": "Terms of Service",
+                "terms.subtitle": "Please read these terms carefully before using VoiceSketch",
+                "terms.lastUpdated": "Last updated: February 7, 2026",
+                "terms.acceptance.title": "Acceptance of Terms",
+                "terms.acceptance.content": "By downloading, installing, or using VoiceSketch (\"the App\"), you agree to be bound by these Terms of Service (\"Terms\"). If you do not agree to these Terms, please do not use the App.\n\nThese Terms constitute a legally binding agreement between you and VoiceSketch (\"we,\" \"us,\" or \"our\"). Your use of the App is also governed by our Privacy Policy, which is incorporated by reference into these Terms.\n\nYou must be at least 13 years old to use this App. If you are under 18, you confirm that you have obtained parental or guardian consent to use the App.",
+                "terms.service.title": "Description of Service",
+                "terms.service.content": "VoiceSketch is a mobile application that provides:\n\n\u2022 Real-time audio recording and transcription services\n\u2022 AI-powered text summarization capabilities\n\u2022 Visual representation generation from meeting content\n\u2022 Cloud storage and synchronization (premium feature)\n\u2022 Export functionality for transcripts, summaries, and visualizations\n\nThe App integrates with third-party services including OpenAI for AI processing and Firebase for data storage and authentication. We reserve the right to modify, suspend, or discontinue any aspect of the service at any time.",
+                "terms.accounts.title": "User Accounts and Registration",
+                "terms.accounts.content": "Account Creation:\n\u2022 You must provide accurate and complete registration information\n\u2022 You are responsible for maintaining the confidentiality of your account credentials\n\u2022 You must be at least 13 years old to create an account\n\u2022 Each user may maintain only one account\n\nAccount Security:\n\u2022 You are solely responsible for all activities under your account\n\u2022 Notify us immediately of any unauthorized use of your account\n\u2022 We are not liable for losses due to unauthorized account access\n\nAccount Verification:\n\u2022 Email verification is required for full account functionality\n\u2022 Unverified accounts have limited access to features",
+                "terms.acceptableUse.title": "Acceptable Use Policy",
+                "terms.acceptableUse.content": "You agree NOT to use VoiceSketch for:\n\nProhibited Activities:\n\u2022 Illegal activities or violation of applicable laws\n\u2022 Recording conversations without proper consent\n\u2022 Harassment, threats, or abusive behavior\n\u2022 Sharing copyrighted content without permission\n\u2022 Uploading malicious code or attempting to hack the service\n\u2022 Creating fake accounts or impersonating others\n\u2022 Spamming or sending unsolicited communications\n\u2022 Commercial use without proper licensing\n\nContent Restrictions:\n\u2022 No hate speech, discriminatory, or offensive content\n\u2022 No personal information of others without consent\n\u2022 No content that violates privacy rights\n\u2022 No misleading or fraudulent information\n\nViolation of these terms may result in account suspension or termination.",
+                "terms.ip.title": "Content and Intellectual Property",
+                "terms.ip.content": "VoiceSketch Intellectual Property:\n\u2022 The App, including design, code, and features, is owned by VoiceSketch\n\u2022 All trademarks, logos, and service marks are our property\n\u2022 You may not copy, modify, or distribute our intellectual property\n\nYour Content:\n\u2022 You retain ownership of your original recordings and content\n\u2022 You grant us a license to process your content to provide services\n\u2022 You are responsible for ensuring you have rights to all uploaded content\n\u2022 We do not claim ownership of your personal recordings or transcriptions\n\nAI-Generated Content:\n\u2022 Summaries and visualizations are generated using AI services\n\u2022 You have rights to AI-generated content based on your input\n\u2022 We do not use your content to train AI models without consent\n\nThird-Party Content:\n\u2022 Respect copyright and intellectual property rights of others\n\u2022 Obtain proper permissions before recording others",
+                "terms.privacyData.title": "Privacy and Data Protection",
+                "terms.privacyData.content": "Your privacy is important to us. Our data practices are governed by our Privacy Policy, which includes:\n\nData Collection:\n\u2022 We collect minimal data necessary for app functionality\n\u2022 Audio recordings are stored locally by default\n\u2022 Cloud storage is optional and encrypted\n\nData Use:\n\u2022 Personal data is used only to provide and improve services\n\u2022 We do not sell personal information to third parties\n\u2022 Analytics data is anonymized and aggregated\n\nData Protection:\n\u2022 Industry-standard encryption for data in transit and at rest\n\u2022 Regular security audits and updates\n\u2022 Compliance with GDPR, CCPA, and other privacy regulations\n\nYour Rights:\n\u2022 Access, correct, or delete your personal information\n\u2022 Export your data in portable formats\n\u2022 Opt out of optional data collection\n\nFor complete details, please review our Privacy Policy.",
+                "terms.subscription.title": "Subscription and Payments",
+                "terms.subscription.content": "Premium Subscriptions:\n\u2022 Premium features are available through in-app purchase subscriptions\n\u2022 Subscriptions automatically renew unless cancelled\n\u2022 Pricing and features are subject to change with notice\n\nPayment Terms:\n\u2022 Payments are processed through Apple's App Store\n\u2022 All fees are non-refundable unless required by law\n\u2022 Prices include applicable taxes where required\n\nCancellation:\n\u2022 Cancel anytime through your App Store account settings\n\u2022 Access to premium features continues until the end of the current billing period\n\u2022 No partial refunds for unused subscription time\n\nFree Trial:\n\u2022 Free trials may be offered for premium features\n\u2022 Trial converts to paid subscription unless cancelled\n\u2022 Previous trial users may not be eligible for additional trials\n\nChanges to Pricing:\n\u2022 We may change subscription prices with 30 days notice\n\u2022 Price changes apply to new subscriptions and renewals",
+                "terms.disclaimers.title": "Disclaimers and Limitations",
+                "terms.disclaimers.content": "Service Disclaimers:\n\u2022 VoiceSketch is provided \"as is\" without warranties of any kind\n\u2022 We do not guarantee 100% accuracy of transcriptions or AI-generated content\n\u2022 Service availability may be subject to interruptions or maintenance\n\u2022 Third-party integrations may affect app functionality\n\nLimitation of Liability:\n\u2022 Our liability is limited to the amount paid for the service\n\u2022 We are not liable for indirect, incidental, or consequential damages\n\u2022 We are not responsible for data loss due to device failure or user error\n\u2022 Users are responsible for maintaining backups of important data\n\nAI and Transcription Accuracy:\n\u2022 AI-generated summaries and transcriptions may contain errors\n\u2022 Users should review all generated content for accuracy\n\u2022 We recommend human verification for critical or sensitive content\n\u2022 Accuracy may vary based on audio quality, accents, and technical terms\n\nThird-Party Services:\n\u2022 We are not responsible for third-party service interruptions\n\u2022 OpenAI, Firebase, and other integrations have their own terms\n\u2022 Changes to third-party services may affect app functionality",
+                "terms.indemnification.title": "Indemnification",
+                "terms.indemnification.content": "You agree to indemnify, defend, and hold harmless VoiceSketch and its officers, directors, employees, and agents from and against any claims, damages, losses, or expenses arising from:\n\n\u2022 Your use of the App in violation of these Terms\n\u2022 Your violation of any applicable laws or regulations\n\u2022 Recording others without proper consent or authorization\n\u2022 Copyright infringement or intellectual property violations\n\u2022 Any content you upload, share, or process through the App\n\u2022 Unauthorized use of your account due to your negligence\n\nThis indemnification survives termination of your account and these Terms.",
+                "terms.termination.title": "Termination",
+                "terms.termination.content": "Termination by You:\n\u2022 You may delete your account at any time through the app settings\n\u2022 Cancellation of subscriptions must be done through the App Store\n\u2022 Your data will be deleted according to our data retention policy\n\nTermination by Us:\n\u2022 We may suspend or terminate accounts for Terms violations\n\u2022 Termination may be immediate for serious violations\n\u2022 We will provide notice when possible, except for immediate safety concerns\n\nEffect of Termination:\n\u2022 Access to the App and services will be immediately revoked\n\u2022 Your data will be deleted according to our Privacy Policy\n\u2022 Premium subscription benefits will cease immediately\n\u2022 These Terms survive termination where applicable\n\nData Recovery:\n\u2022 Deleted accounts cannot be recovered\n\u2022 Export your data before account deletion\n\u2022 We may retain some data as required by law",
+                "terms.governingLaw.title": "Governing Law and Disputes",
+                "terms.governingLaw.content": "These Terms are governed by and construed in accordance with the laws of the State of California, United States, without regard to conflict of law principles.\n\nDispute Resolution:\n\u2022 Informal Resolution: Contact us first to resolve disputes informally\n\u2022 Arbitration: Disputes will be resolved through binding arbitration\n\u2022 Class Action Waiver: You waive the right to participate in class actions\n\u2022 Jurisdiction: Courts in the State of California have exclusive jurisdiction\n\nExceptions to Arbitration:\n\u2022 Small claims court matters under jurisdictional limits\n\u2022 Intellectual property disputes\n\u2022 Injunctive relief requests\n\nApple App Store:\n\u2022 Apple is not a party to these Terms\n\u2022 Apple has no warranty obligations regarding the App\n\u2022 You acknowledge Apple's right to enforce these Terms",
+                "terms.changes.title": "Changes to Terms",
+                "terms.changes.content": "We reserve the right to modify these Terms at any time. Changes will be effective when:\n\n\u2022 Posted within the App with updated \"Last modified\" date\n\u2022 Notification sent to registered email addresses\n\u2022 For material changes, 30 days advance notice will be provided\n\nYour Options:\n\u2022 Continued use of the App constitutes acceptance of changes\n\u2022 If you disagree with changes, discontinue use and delete your account\n\u2022 Some changes may be required by law or for security reasons\n\nVersion Control:\n\u2022 Previous versions of Terms are archived and available upon request\n\u2022 The current version always supersedes previous versions",
+                "terms.contact.title": "Contact Information",
                 "footer.from": "from",
                 "footer.copyright": "© 2026 VoiceSketch. All rights reserved."
             },
@@ -3181,6 +3621,35 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
                 "privacy.retention.title": "資料保留",
                 "privacy.retention.content": "我們僅在必要時保留您的資訊：\n\n\u2022 帳戶資料：在帳戶啟用期間保留\n\u2022 錄音：根據您的設定刪除（預設：30 天）\n\u2022 使用分析：2 年後進行匯總和匿名化\n\u2022 法律要求：法律要求時可能保留更長時間\n\u2022 已刪除帳戶：30 天內永久刪除所有資料\n\n您可以在應用程式中調整保留設定或請求立即刪除。",
                 "privacy.contact.title": "聯絡我們",
+                "nav.terms": "服務條款",
+                "terms.title": "服務條款",
+                "terms.subtitle": "使用 VoiceSketch 前請仔細閱讀這些條款",
+                "terms.lastUpdated": "最後更新：2026年2月7日",
+                "terms.acceptance.title": "接受條款",
+                "terms.acceptance.content": "下載、安裝或使用 VoiceSketch（「本應用程式」），即表示您同意受這些服務條款（「條款」）的約束。如果您不同意這些條款，請勿使用本應用程式。\n\n這些條款構成您與 VoiceSketch（「我們」）之間具有法律約束力的協議。您對本應用程式的使用還受我們的隱私政策管轄，該政策透過引用納入這些條款。\n\n您必須年滿 13 歲才能使用本應用程式。如果您未滿 18 歲，您確認已獲得父母或監護人的同意。",
+                "terms.service.title": "服務說明",
+                "terms.service.content": "VoiceSketch 是一款提供以下功能的行動應用程式：\n\n\u2022 即時錄音和轉錄服務\n\u2022 AI 驅動的文字摘要功能\n\u2022 從會議內容生成視覺化呈現\n\u2022 雲端儲存和同步（進階功能）\n\u2022 轉錄、摘要和視覺化的匯出功能\n\n本應用程式整合了第三方服務，包括用於 AI 處理的 OpenAI 和用於資料儲存和認證的 Firebase。我們保留隨時修改、暫停或終止服務任何方面的權利。",
+                "terms.accounts.title": "用戶帳戶與註冊",
+                "terms.accounts.content": "帳戶建立：\n\u2022 您必須提供準確完整的註冊資訊\n\u2022 您有責任維護帳戶憑證的機密性\n\u2022 您必須年滿 13 歲才能建立帳戶\n\u2022 每位用戶僅可維護一個帳戶\n\n帳戶安全：\n\u2022 您對帳戶下的所有活動負全部責任\n\u2022 發現任何未經授權使用時請立即通知我們\n\u2022 我們不對因未經授權的帳戶存取造成的損失負責\n\n帳戶驗證：\n\u2022 需要電子郵件驗證才能使用完整帳戶功能\n\u2022 未驗證帳戶的功能存取受限",
+                "terms.acceptableUse.title": "可接受使用政策",
+                "terms.acceptableUse.content": "您同意不將 VoiceSketch 用於：\n\n禁止活動：\n\u2022 違法活動或違反適用法律\n\u2022 未經適當同意錄製對話\n\u2022 騷擾、威脅或濫用行為\n\u2022 未經許可分享受版權保護的內容\n\u2022 上傳惡意程式碼或嘗試入侵服務\n\u2022 建立虛假帳戶或冒充他人\n\u2022 發送垃圾郵件或未經請求的通訊\n\u2022 未經適當授權的商業用途\n\n內容限制：\n\u2022 禁止仇恨言論、歧視性或冒犯性內容\n\u2022 未經同意不得發布他人個人資訊\n\u2022 禁止侵犯隱私權的內容\n\u2022 禁止誤導或欺詐性資訊\n\n違反這些條款可能導致帳戶暫停或終止。",
+                "terms.ip.title": "內容與智慧財產權",
+                "terms.ip.content": "VoiceSketch 智慧財產權：\n\u2022 本應用程式（包括設計、程式碼和功能）歸 VoiceSketch 所有\n\u2022 所有商標、標誌和服務標記均為我們的財產\n\u2022 您不得複製、修改或散布我們的智慧財產權\n\n您的內容：\n\u2022 您保留原始錄音和內容的所有權\n\u2022 您授予我們處理您內容以提供服務的許可\n\u2022 您有責任確保擁有所有上傳內容的權利\n\u2022 我們不主張對您的個人錄音或轉錄的所有權\n\nAI 生成內容：\n\u2022 摘要和視覺化由 AI 服務生成\n\u2022 您擁有基於您輸入的 AI 生成內容的權利\n\u2022 未經同意，我們不會使用您的內容訓練 AI 模型\n\n第三方內容：\n\u2022 尊重他人的版權和智慧財產權\n\u2022 錄製他人前請取得適當許可",
+                "terms.privacyData.title": "隱私與資料保護",
+                "terms.privacyData.content": "您的隱私對我們很重要。我們的資料實踐受隱私政策管轄，包括：\n\n資料收集：\n\u2022 我們僅收集應用程式功能所需的最少資料\n\u2022 錄音預設儲存在本地\n\u2022 雲端儲存為可選功能且經過加密\n\n資料使用：\n\u2022 個人資料僅用於提供和改善服務\n\u2022 我們不會將個人資訊出售給第三方\n\u2022 分析資料經過匿名化和匯總\n\n資料保護：\n\u2022 傳輸中和靜態資料的行業標準加密\n\u2022 定期安全審計和更新\n\u2022 遵守 GDPR、CCPA 和其他隱私法規\n\n您的權利：\n\u2022 存取、更正或刪除您的個人資訊\n\u2022 以可攜格式匯出您的資料\n\u2022 退出選擇性資料收集\n\n如需完整詳情，請查閱我們的隱私政策。",
+                "terms.subscription.title": "訂閱與付款",
+                "terms.subscription.content": "進階訂閱：\n\u2022 進階功能可透過應用程式內購買訂閱取得\n\u2022 訂閱會自動續訂，除非取消\n\u2022 定價和功能可能會經通知後變更\n\n付款條款：\n\u2022 付款透過 Apple App Store 處理\n\u2022 除非法律要求，否則所有費用不可退款\n\u2022 價格包含適用稅金（如需要）\n\n取消：\n\u2022 隨時透過 App Store 帳戶設定取消\n\u2022 進階功能存取權持續到目前計費週期結束\n\u2022 未使用的訂閱時間不退還部分費用\n\n免費試用：\n\u2022 進階功能可能提供免費試用\n\u2022 試用期結束後轉為付費訂閱，除非取消\n\u2022 之前的試用用戶可能不符合額外試用資格\n\n定價變更：\n\u2022 我們可能在 30 天通知後變更訂閱價格\n\u2022 價格變更適用於新訂閱和續訂",
+                "terms.disclaimers.title": "免責聲明與限制",
+                "terms.disclaimers.content": "服務免責聲明：\n\u2022 VoiceSketch 按「現狀」提供，不提供任何形式的保證\n\u2022 我們不保證轉錄或 AI 生成內容 100% 準確\n\u2022 服務可用性可能受中斷或維護影響\n\u2022 第三方整合可能影響應用程式功能\n\n責任限制：\n\u2022 我們的責任以服務付款金額為限\n\u2022 我們不對間接、附帶或後果性損害負責\n\u2022 我們不對因裝置故障或用戶錯誤導致的資料遺失負責\n\u2022 用戶有責任維護重要資料的備份\n\nAI 和轉錄準確性：\n\u2022 AI 生成的摘要和轉錄可能包含錯誤\n\u2022 用戶應檢視所有生成內容的準確性\n\u2022 我們建議對關鍵或敏感內容進行人工驗證\n\u2022 準確性可能因音訊品質、口音和專業術語而異\n\n第三方服務：\n\u2022 我們不對第三方服務中斷負責\n\u2022 OpenAI、Firebase 和其他整合有各自的條款\n\u2022 第三方服務的變更可能影響應用程式功能",
+                "terms.indemnification.title": "賠償",
+                "terms.indemnification.content": "您同意賠償、辯護並使 VoiceSketch 及其管理人員、董事、員工和代理人免受因以下原因產生的任何索賠、損害、損失或費用：\n\n\u2022 您違反這些條款使用本應用程式\n\u2022 您違反任何適用法律或法規\n\u2022 未經適當同意或授權錄製他人\n\u2022 版權侵權或智慧財產權侵犯\n\u2022 您透過本應用程式上傳、分享或處理的任何內容\n\u2022 因您的疏忽導致的帳戶未經授權使用\n\n此賠償在您的帳戶和這些條款終止後仍然有效。",
+                "terms.termination.title": "終止",
+                "terms.termination.content": "您的終止：\n\u2022 您可以隨時透過應用程式設定刪除帳戶\n\u2022 訂閱取消必須透過 App Store 完成\n\u2022 您的資料將根據我們的資料保留政策刪除\n\n我們的終止：\n\u2022 我們可能因違反條款而暫停或終止帳戶\n\u2022 嚴重違規可能導致立即終止\n\u2022 除立即安全問題外，我們將盡可能提供通知\n\n終止效果：\n\u2022 對應用程式和服務的存取將立即撤銷\n\u2022 您的資料將根據我們的隱私政策刪除\n\u2022 進階訂閱權益將立即終止\n\u2022 這些條款在適用的情況下在終止後仍然有效\n\n資料恢復：\n\u2022 已刪除的帳戶無法恢復\n\u2022 請在刪除帳戶前匯出您的資料\n\u2022 我們可能按法律要求保留部分資料",
+                "terms.governingLaw.title": "管轄法律與爭議",
+                "terms.governingLaw.content": "這些條款受美國加利福尼亞州法律管轄和解釋，不考慮法律衝突原則。\n\n爭議解決：\n\u2022 非正式解決：請先聯繫我們以非正式方式解決爭議\n\u2022 仲裁：爭議將透過具有約束力的仲裁解決\n\u2022 集體訴訟棄權：您放棄參加集體訴訟的權利\n\u2022 管轄權：加利福尼亞州法院擁有專屬管轄權\n\n仲裁例外：\n\u2022 在管轄限額內的小額索賠法院事項\n\u2022 智慧財產權爭議\n\u2022 禁令救濟請求\n\nApple App Store：\n\u2022 Apple 不是這些條款的當事方\n\u2022 Apple 對本應用程式沒有保證義務\n\u2022 您承認 Apple 有權執行這些條款",
+                "terms.changes.title": "條款變更",
+                "terms.changes.content": "我們保留隨時修改這些條款的權利。變更將在以下情況下生效：\n\n\u2022 在應用程式內發布並更新「最後修改」日期\n\u2022 向註冊電子郵件地址發送通知\n\u2022 重大變更將提前 30 天通知\n\n您的選擇：\n\u2022 繼續使用本應用程式即表示接受變更\n\u2022 如果您不同意變更，請停止使用並刪除帳戶\n\u2022 某些變更可能為法律或安全原因所要求\n\n版本控制：\n\u2022 先前版本的條款已存檔，可應要求提供\n\u2022 目前版本始終取代先前版本",
+                "terms.contact.title": "聯絡資訊",
                 "footer.from": "來自",
                 "footer.copyright": "© 2026 VoiceSketch. 保留所有權利。"
             },
@@ -3292,6 +3761,35 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
                 "privacy.retention.title": "数据保留",
                 "privacy.retention.content": "我们仅在必要时保留您的信息：\n\n\u2022 账户数据：在账户激活期间保留\n\u2022 录音：根据您的设置删除（默认：30 天）\n\u2022 使用分析：2 年后进行汇总和匿名化\n\u2022 法律要求：法律要求时可能保留更长时间\n\u2022 已删除账户：30 天内永久删除所有数据\n\n您可以在应用中调整保留设置或请求立即删除。",
                 "privacy.contact.title": "联系我们",
+                "nav.terms": "服务条款",
+                "terms.title": "服务条款",
+                "terms.subtitle": "使用 VoiceSketch 前请仔细阅读这些条款",
+                "terms.lastUpdated": "最后更新：2026年2月7日",
+                "terms.acceptance.title": "接受条款",
+                "terms.acceptance.content": "下载、安装或使用 VoiceSketch（「本应用」），即表示您同意受这些服务条款（「条款」）的约束。如果您不同意这些条款，请勿使用本应用。\n\n这些条款构成您与 VoiceSketch（「我们」）之间具有法律约束力的协议。您对本应用的使用还受我们的隐私政策管辖，该政策通过引用纳入这些条款。\n\n您必须年满 13 岁才能使用本应用。如果您未满 18 岁，您确认已获得父母或监护人的同意。",
+                "terms.service.title": "服务说明",
+                "terms.service.content": "VoiceSketch 是一款提供以下功能的移动应用：\n\n\u2022 实时录音和转录服务\n\u2022 AI 驱动的文本摘要功能\n\u2022 从会议内容生成可视化呈现\n\u2022 云端存储和同步（高级功能）\n\u2022 转录、摘要和可视化的导出功能\n\n本应用集成了第三方服务，包括用于 AI 处理的 OpenAI 和用于数据存储和认证的 Firebase。我们保留随时修改、暂停或终止服务任何方面的权利。",
+                "terms.accounts.title": "用户账户与注册",
+                "terms.accounts.content": "账户创建：\n\u2022 您必须提供准确完整的注册信息\n\u2022 您有责任维护账户凭证的机密性\n\u2022 您必须年满 13 岁才能创建账户\n\u2022 每位用户仅可维护一个账户\n\n账户安全：\n\u2022 您对账户下的所有活动负全部责任\n\u2022 发现任何未经授权使用时请立即通知我们\n\u2022 我们不对因未经授权的账户访问造成的损失负责\n\n账户验证：\n\u2022 需要电子邮件验证才能使用完整账户功能\n\u2022 未验证账户的功能访问受限",
+                "terms.acceptableUse.title": "可接受使用政策",
+                "terms.acceptableUse.content": "您同意不将 VoiceSketch 用于：\n\n禁止活动：\n\u2022 违法活动或违反适用法律\n\u2022 未经适当同意录制对话\n\u2022 骚扰、威胁或滥用行为\n\u2022 未经许可分享受版权保护的内容\n\u2022 上传恶意代码或尝试入侵服务\n\u2022 创建虚假账户或冒充他人\n\u2022 发送垃圾邮件或未经请求的通信\n\u2022 未经适当授权的商业用途\n\n内容限制：\n\u2022 禁止仇恨言论、歧视性或冒犯性内容\n\u2022 未经同意不得发布他人个人信息\n\u2022 禁止侵犯隐私权的内容\n\u2022 禁止误导或欺诈性信息\n\n违反这些条款可能导致账户暂停或终止。",
+                "terms.ip.title": "内容与知识产权",
+                "terms.ip.content": "VoiceSketch 知识产权：\n\u2022 本应用（包括设计、代码和功能）归 VoiceSketch 所有\n\u2022 所有商标、标识和服务标记均为我们的财产\n\u2022 您不得复制、修改或分发我们的知识产权\n\n您的内容：\n\u2022 您保留原始录音和内容的所有权\n\u2022 您授予我们处理您内容以提供服务的许可\n\u2022 您有责任确保拥有所有上传内容的权利\n\u2022 我们不主张对您的个人录音或转录的所有权\n\nAI 生成内容：\n\u2022 摘要和可视化由 AI 服务生成\n\u2022 您拥有基于您输入的 AI 生成内容的权利\n\u2022 未经同意，我们不会使用您的内容训练 AI 模型\n\n第三方内容：\n\u2022 尊重他人的版权和知识产权\n\u2022 录制他人前请取得适当许可",
+                "terms.privacyData.title": "隐私与数据保护",
+                "terms.privacyData.content": "您的隐私对我们很重要。我们的数据实践受隐私政策管辖，包括：\n\n数据收集：\n\u2022 我们仅收集应用功能所需的最少数据\n\u2022 录音默认存储在本地\n\u2022 云端存储为可选功能且经过加密\n\n数据使用：\n\u2022 个人数据仅用于提供和改善服务\n\u2022 我们不会将个人信息出售给第三方\n\u2022 分析数据经过匿名化和汇总\n\n数据保护：\n\u2022 传输中和静态数据的行业标准加密\n\u2022 定期安全审计和更新\n\u2022 遵守 GDPR、CCPA 和其他隐私法规\n\n您的权利：\n\u2022 访问、更正或删除您的个人信息\n\u2022 以可携格式导出您的数据\n\u2022 退出选择性数据收集\n\n如需完整详情，请查阅我们的隐私政策。",
+                "terms.subscription.title": "订阅与付款",
+                "terms.subscription.content": "高级订阅：\n\u2022 高级功能可通过应用内购买订阅获得\n\u2022 订阅会自动续订，除非取消\n\u2022 定价和功能可能会经通知后变更\n\n付款条款：\n\u2022 付款通过 Apple App Store 处理\n\u2022 除非法律要求，否则所有费用不可退款\n\u2022 价格包含适用税金（如需要）\n\n取消：\n\u2022 随时通过 App Store 账户设置取消\n\u2022 高级功能访问权持续到当前计费周期结束\n\u2022 未使用的订阅时间不退还部分费用\n\n免费试用：\n\u2022 高级功能可能提供免费试用\n\u2022 试用期结束后转为付费订阅，除非取消\n\u2022 之前的试用用户可能不符合额外试用资格\n\n定价变更：\n\u2022 我们可能在 30 天通知后变更订阅价格\n\u2022 价格变更适用于新订阅和续订",
+                "terms.disclaimers.title": "免责声明与限制",
+                "terms.disclaimers.content": "服务免责声明：\n\u2022 VoiceSketch 按「现状」提供，不提供任何形式的保证\n\u2022 我们不保证转录或 AI 生成内容 100% 准确\n\u2022 服务可用性可能受中断或维护影响\n\u2022 第三方集成可能影响应用功能\n\n责任限制：\n\u2022 我们的责任以服务付款金额为限\n\u2022 我们不对间接、附带或后果性损害负责\n\u2022 我们不对因设备故障或用户错误导致的数据丢失负责\n\u2022 用户有责任维护重要数据的备份\n\nAI 和转录准确性：\n\u2022 AI 生成的摘要和转录可能包含错误\n\u2022 用户应检查所有生成内容的准确性\n\u2022 我们建议对关键或敏感内容进行人工验证\n\u2022 准确性可能因音频质量、口音和专业术语而异\n\n第三方服务：\n\u2022 我们不对第三方服务中断负责\n\u2022 OpenAI、Firebase 和其他集成有各自的条款\n\u2022 第三方服务的变更可能影响应用功能",
+                "terms.indemnification.title": "赔偿",
+                "terms.indemnification.content": "您同意赔偿、辩护并使 VoiceSketch 及其管理人员、董事、员工和代理人免受因以下原因产生的任何索赔、损害、损失或费用：\n\n\u2022 您违反这些条款使用本应用\n\u2022 您违反任何适用法律或法规\n\u2022 未经适当同意或授权录制他人\n\u2022 版权侵权或知识产权侵犯\n\u2022 您通过本应用上传、分享或处理的任何内容\n\u2022 因您的疏忽导致的账户未经授权使用\n\n此赔偿在您的账户和这些条款终止后仍然有效。",
+                "terms.termination.title": "终止",
+                "terms.termination.content": "您的终止：\n\u2022 您可以随时通过应用设置删除账户\n\u2022 订阅取消必须通过 App Store 完成\n\u2022 您的数据将根据我们的数据保留政策删除\n\n我们的终止：\n\u2022 我们可能因违反条款而暂停或终止账户\n\u2022 严重违规可能导致立即终止\n\u2022 除立即安全问题外，我们将尽可能提供通知\n\n终止效果：\n\u2022 对应用和服务的访问将立即撤销\n\u2022 您的数据将根据我们的隐私政策删除\n\u2022 高级订阅权益将立即终止\n\u2022 这些条款在适用的情况下在终止后仍然有效\n\n数据恢复：\n\u2022 已删除的账户无法恢复\n\u2022 请在删除账户前导出您的数据\n\u2022 我们可能按法律要求保留部分数据",
+                "terms.governingLaw.title": "管辖法律与争议",
+                "terms.governingLaw.content": "这些条款受美国加利福尼亚州法律管辖和解释，不考虑法律冲突原则。\n\n争议解决：\n\u2022 非正式解决：请先联系我们以非正式方式解决争议\n\u2022 仲裁：争议将通过具有约束力的仲裁解决\n\u2022 集体诉讼弃权：您放弃参加集体诉讼的权利\n\u2022 管辖权：加利福尼亚州法院拥有专属管辖权\n\n仲裁例外：\n\u2022 在管辖限额内的小额索赔法院事项\n\u2022 知识产权争议\n\u2022 禁令救济请求\n\nApple App Store：\n\u2022 Apple 不是这些条款的当事方\n\u2022 Apple 对本应用没有保证义务\n\u2022 您承认 Apple 有权执行这些条款",
+                "terms.changes.title": "条款变更",
+                "terms.changes.content": "我们保留随时修改这些条款的权利。变更将在以下情况下生效：\n\n\u2022 在应用内发布并更新「最后修改」日期\n\u2022 向注册电子邮件地址发送通知\n\u2022 重大变更将提前 30 天通知\n\n您的选择：\n\u2022 继续使用本应用即表示接受变更\n\u2022 如果您不同意变更，请停止使用并删除账户\n\u2022 某些变更可能为法律或安全原因所要求\n\n版本控制：\n\u2022 先前版本的条款已存档，可应要求提供\n\u2022 当前版本始终取代先前版本",
+                "terms.contact.title": "联系信息",
                 "footer.from": "来自",
                 "footer.copyright": "© 2026 VoiceSketch. 保留所有权利。"
             },
@@ -3403,6 +3901,35 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
                 "privacy.retention.title": "データ保持",
                 "privacy.retention.content": "必要な期間のみ情報を保持します：\n\n\u2022 アカウントデータ：アカウントがアクティブな間保持\n\u2022 録音：設定に従って削除（デフォルト：30日）\n\u2022 使用分析：2年後に集約・匿名化\n\u2022 法的要件：法律で要求される場合はより長く保持される場合があります\n\u2022 削除済みアカウント：30日以内にすべてのデータを完全に削除\n\nアプリで保持設定を調整するか、即時削除をリクエストできます。",
                 "privacy.contact.title": "お問い合わせ",
+                "nav.terms": "利用規約",
+                "terms.title": "利用規約",
+                "terms.subtitle": "VoiceSketch をご利用の前にこれらの規約をよくお読みください",
+                "terms.lastUpdated": "最終更新：2026年2月7日",
+                "terms.acceptance.title": "規約への同意",
+                "terms.acceptance.content": "VoiceSketch（「本アプリ」）をダウンロード、インストール、または使用することにより、お客様はこれらの利用規約（「規約」）に拘束されることに同意します。これらの規約に同意しない場合は、本アプリを使用しないでください。\n\nこれらの規約は、お客様と VoiceSketch（「当社」）との間の法的拘束力のある契約を構成します。本アプリのご利用は、これらの規約に参照により組み込まれるプライバシーポリシーにも準拠します。\n\n本アプリの使用には 13 歳以上である必要があります。18 歳未満の場合、保護者の同意を得ていることを確認します。",
+                "terms.service.title": "サービスの説明",
+                "terms.service.content": "VoiceSketch は以下の機能を提供するモバイルアプリケーションです：\n\n\u2022 リアルタイムの音声録音と文字起こしサービス\n\u2022 AI による文章要約機能\n\u2022 会議内容からのビジュアル表現の生成\n\u2022 クラウドストレージと同期（プレミアム機能）\n\u2022 文字起こし、要約、ビジュアルのエクスポート機能\n\n本アプリは、AI 処理用の OpenAI やデータストレージと認証用の Firebase を含むサードパーティサービスと連携しています。当社はサービスのいかなる側面も随時変更、一時停止、または中止する権利を留保します。",
+                "terms.accounts.title": "ユーザーアカウントと登録",
+                "terms.accounts.content": "アカウント作成：\n\u2022 正確で完全な登録情報を提供する必要があります\n\u2022 アカウント資格情報の機密性を維持する責任はお客様にあります\n\u2022 アカウント作成には 13 歳以上である必要があります\n\u2022 各ユーザーは 1 つのアカウントのみ維持できます\n\nアカウントセキュリティ：\n\u2022 アカウント下のすべての活動に対して全責任を負います\n\u2022 不正使用を発見した場合は直ちに通知してください\n\u2022 不正アカウントアクセスによる損失について当社は責任を負いません\n\nアカウント確認：\n\u2022 完全なアカウント機能にはメール確認が必要です\n\u2022 未確認アカウントの機能アクセスは制限されます",
+                "terms.acceptableUse.title": "利用規定",
+                "terms.acceptableUse.content": "VoiceSketch を以下の目的で使用しないことに同意します：\n\n禁止事項：\n\u2022 違法行為または適用法律の違反\n\u2022 適切な同意なしに会話を録音\n\u2022 嫌がらせ、脅迫、または虐待行為\n\u2022 許可なく著作権で保護されたコンテンツを共有\n\u2022 悪意のあるコードのアップロードまたはサービスへのハッキング試行\n\u2022 偽アカウントの作成または他者のなりすまし\n\u2022 スパムまたは不要な通信の送信\n\u2022 適切なライセンスなしの商用利用\n\nコンテンツ制限：\n\u2022 ヘイトスピーチ、差別的、または攻撃的なコンテンツ禁止\n\u2022 同意なく他者の個人情報を公開禁止\n\u2022 プライバシー権を侵害するコンテンツ禁止\n\u2022 誤解を招く、または詐欺的な情報禁止\n\nこれらの規約違反はアカウントの一時停止または終了につながる場合があります。",
+                "terms.ip.title": "コンテンツと知的財産",
+                "terms.ip.content": "VoiceSketch の知的財産：\n\u2022 デザイン、コード、機能を含む本アプリは VoiceSketch が所有\n\u2022 すべての商標、ロゴ、サービスマークは当社の資産\n\u2022 当社の知的財産を複製、変更、配布することはできません\n\nお客様のコンテンツ：\n\u2022 オリジナルの録音とコンテンツの所有権はお客様に帰属\n\u2022 サービス提供のためにコンテンツを処理するライセンスを当社に付与\n\u2022 アップロードするすべてのコンテンツの権利を有することを確認する責任\n\u2022 個人の録音や文字起こしの所有権を主張しません\n\nAI 生成コンテンツ：\n\u2022 要約とビジュアルは AI サービスを使用して生成\n\u2022 入力に基づく AI 生成コンテンツの権利はお客様に帰属\n\u2022 同意なしにコンテンツを AI モデルのトレーニングに使用しません\n\nサードパーティコンテンツ：\n\u2022 他者の著作権と知的財産権を尊重してください\n\u2022 他者を録音する前に適切な許可を取得してください",
+                "terms.privacyData.title": "プライバシーとデータ保護",
+                "terms.privacyData.content": "お客様のプライバシーは当社にとって重要です。当社のデータ取り扱いはプライバシーポリシーに準拠しており、以下を含みます：\n\nデータ収集：\n\u2022 アプリ機能に必要な最小限のデータのみ収集\n\u2022 音声録音はデフォルトでローカルに保存\n\u2022 クラウドストレージはオプションで暗号化済み\n\nデータ使用：\n\u2022 個人データはサービスの提供と改善のみに使用\n\u2022 個人情報を第三者に販売しません\n\u2022 分析データは匿名化・集約化されています\n\nデータ保護：\n\u2022 転送中および保存中のデータの業界標準暗号化\n\u2022 定期的なセキュリティ監査と更新\n\u2022 GDPR、CCPA、その他のプライバシー規制に準拠\n\nお客様の権利：\n\u2022 個人情報のアクセス、訂正、削除\n\u2022 ポータブル形式でのデータエクスポート\n\u2022 オプションのデータ収集のオプトアウト\n\n詳細はプライバシーポリシーをご確認ください。",
+                "terms.subscription.title": "サブスクリプションと支払い",
+                "terms.subscription.content": "プレミアムサブスクリプション：\n\u2022 プレミアム機能はアプリ内購入サブスクリプションで利用可能\n\u2022 キャンセルしない限りサブスクリプションは自動更新\n\u2022 価格と機能は通知の上変更される場合があります\n\n支払い条件：\n\u2022 支払いは Apple App Store を通じて処理\n\u2022 法律で要求される場合を除き、すべての料金は返金不可\n\u2022 価格には必要に応じて適用される税金を含む\n\nキャンセル：\n\u2022 App Store のアカウント設定からいつでもキャンセル可能\n\u2022 プレミアム機能へのアクセスは現在の請求期間終了まで継続\n\u2022 未使用のサブスクリプション期間の部分返金なし\n\n無料トライアル：\n\u2022 プレミアム機能の無料トライアルを提供する場合があります\n\u2022 キャンセルしない限りトライアルは有料サブスクリプションに移行\n\u2022 以前のトライアルユーザーは追加トライアルの対象外となる場合あり\n\n価格変更：\n\u2022 30 日前の通知によりサブスクリプション価格を変更する場合あり\n\u2022 価格変更は新規サブスクリプションと更新に適用",
+                "terms.disclaimers.title": "免責事項と制限",
+                "terms.disclaimers.content": "サービス免責事項：\n\u2022 VoiceSketch は「現状のまま」提供され、いかなる種類の保証もありません\n\u2022 文字起こしや AI 生成コンテンツの 100% の精度は保証しません\n\u2022 サービスの利用可能性は中断やメンテナンスの影響を受ける場合があります\n\u2022 サードパーティの統合がアプリの機能に影響する場合があります\n\n責任の制限：\n\u2022 当社の責任はサービスに支払われた金額に限定されます\n\u2022 間接的、偶発的、または結果的損害について責任を負いません\n\u2022 デバイスの故障またはユーザーエラーによるデータ損失の責任は負いません\n\u2022 重要なデータのバックアップ維持はユーザーの責任です\n\nAI と文字起こしの精度：\n\u2022 AI 生成の要約と文字起こしにはエラーが含まれる場合があります\n\u2022 生成されたすべてのコンテンツの精度を確認してください\n\u2022 重要または機密性の高いコンテンツには人間による確認を推奨\n\u2022 精度は音声品質、アクセント、専門用語により異なる場合があります\n\nサードパーティサービス：\n\u2022 サードパーティサービスの中断について責任を負いません\n\u2022 OpenAI、Firebase、その他の統合には独自の規約があります\n\u2022 サードパーティサービスの変更がアプリの機能に影響する場合があります",
+                "terms.indemnification.title": "補償",
+                "terms.indemnification.content": "お客様は、以下から生じるいかなる請求、損害、損失、または費用から VoiceSketch およびその役員、取締役、従業員、代理人を補償、弁護し、免責することに同意します：\n\n\u2022 これらの規約に違反する本アプリの使用\n\u2022 適用法令または規制への違反\n\u2022 適切な同意または許可なしに他者を録音\n\u2022 著作権侵害または知的財産権の侵害\n\u2022 本アプリを通じてアップロード、共有、または処理したコンテンツ\n\u2022 お客様の過失によるアカウントの不正使用\n\nこの補償は、お客様のアカウントおよびこれらの規約の終了後も存続します。",
+                "terms.termination.title": "終了",
+                "terms.termination.content": "お客様による終了：\n\u2022 アプリの設定からいつでもアカウントを削除できます\n\u2022 サブスクリプションのキャンセルは App Store を通じて行う必要があります\n\u2022 データは当社のデータ保持ポリシーに従って削除されます\n\n当社による終了：\n\u2022 規約違反によりアカウントを一時停止または終了する場合があります\n\u2022 重大な違反の場合、即時終了となる場合があります\n\u2022 即座の安全上の懸念を除き、可能な限り通知します\n\n終了の効果：\n\u2022 アプリおよびサービスへのアクセスは即時取り消されます\n\u2022 データはプライバシーポリシーに従って削除されます\n\u2022 プレミアムサブスクリプション特典は即時終了します\n\u2022 これらの規約は該当する場合、終了後も存続します\n\nデータの復元：\n\u2022 削除されたアカウントは復元できません\n\u2022 アカウント削除前にデータをエクスポートしてください\n\u2022 法律で要求される場合、一部のデータを保持する場合があります",
+                "terms.governingLaw.title": "準拠法と紛争",
+                "terms.governingLaw.content": "これらの規約は、法の抵触に関する原則を考慮せず、米国カリフォルニア州の法律に準拠し解釈されます。\n\n紛争解決：\n\u2022 非公式解決：まず当社に連絡して非公式に紛争を解決してください\n\u2022 仲裁：紛争は拘束力のある仲裁により解決されます\n\u2022 集団訴訟の権利放棄：集団訴訟への参加権を放棄します\n\u2022 管轄：カリフォルニア州の裁判所が専属管轄権を有します\n\n仲裁の例外：\n\u2022 管轄限度額内の少額裁判所の事案\n\u2022 知的財産紛争\n\u2022 差止命令の救済請求\n\nApple App Store：\n\u2022 Apple はこれらの規約の当事者ではありません\n\u2022 Apple は本アプリに関する保証義務を負いません\n\u2022 お客様は Apple がこれらの規約を執行する権利を認めます",
+                "terms.changes.title": "規約の変更",
+                "terms.changes.content": "当社はこれらの規約をいつでも変更する権利を留保します。変更は以下の場合に有効となります：\n\n\u2022 アプリ内に「最終変更」日を更新して掲載\n\u2022 登録メールアドレスへの通知の送信\n\u2022 重要な変更については 30 日前に事前通知\n\nお客様の選択肢：\n\u2022 アプリの継続使用は変更の承認を構成します\n\u2022 変更に同意しない場合は使用を中止しアカウントを削除してください\n\u2022 一部の変更は法律またはセキュリティ上の理由で必要な場合があります\n\nバージョン管理：\n\u2022 規約の以前のバージョンはアーカイブされ、要求に応じて利用可能\n\u2022 現在のバージョンは常に以前のバージョンに優先します",
+                "terms.contact.title": "お問い合わせ情報",
                 "footer.from": "提供",
                 "footer.copyright": "© 2026 VoiceSketch. All rights reserved."
             },
@@ -3514,6 +4041,35 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
                 "privacy.retention.title": "데이터 보존",
                 "privacy.retention.content": "필요한 기간 동안만 정보를 보존합니다:\n\n\u2022 계정 데이터: 계정이 활성 상태인 동안 보존\n\u2022 녹음: 설정에 따라 삭제 (기본값: 30일)\n\u2022 사용 분석: 2년 후 집계 및 익명화\n\u2022 법적 요구사항: 법률에 의해 요구되는 경우 더 오래 보존될 수 있음\n\u2022 삭제된 계정: 30일 이내 모든 데이터 영구 삭제\n\n앱에서 보존 설정을 조정하거나 즉시 삭제를 요청할 수 있습니다.",
                 "privacy.contact.title": "문의하기",
+                "nav.terms": "이용약관",
+                "terms.title": "이용약관",
+                "terms.subtitle": "VoiceSketch 사용 전 이 약관을 주의 깊게 읽어주세요",
+                "terms.lastUpdated": "최종 업데이트: 2026년 2월 7일",
+                "terms.acceptance.title": "약관 동의",
+                "terms.acceptance.content": "VoiceSketch(\"본 앱\")를 다운로드, 설치 또는 사용함으로써 귀하는 이 이용약관(\"약관\")에 구속되는 것에 동의합니다. 이 약관에 동의하지 않는 경우 본 앱을 사용하지 마세요.\n\n이 약관은 귀하와 VoiceSketch(\"당사\") 사이의 법적 구속력이 있는 계약을 구성합니다. 본 앱 사용은 이 약관에 참조로 편입된 개인정보 처리방침의 적용도 받습니다.\n\n본 앱을 사용하려면 만 13세 이상이어야 합니다. 만 18세 미만인 경우 부모 또는 보호자의 동의를 얻었음을 확인합니다.",
+                "terms.service.title": "서비스 설명",
+                "terms.service.content": "VoiceSketch는 다음 기능을 제공하는 모바일 애플리케이션입니다:\n\n\u2022 실시간 오디오 녹음 및 전사 서비스\n\u2022 AI 기반 텍스트 요약 기능\n\u2022 회의 콘텐츠에서 시각적 표현 생성\n\u2022 클라우드 스토리지 및 동기화 (프리미엄 기능)\n\u2022 전사, 요약 및 시각화 내보내기 기능\n\n본 앱은 AI 처리를 위한 OpenAI와 데이터 저장 및 인증을 위한 Firebase를 포함한 제3자 서비스와 통합됩니다. 당사는 서비스의 모든 측면을 언제든지 수정, 일시 중단 또는 중단할 권리를 보유합니다.",
+                "terms.accounts.title": "사용자 계정 및 등록",
+                "terms.accounts.content": "계정 생성:\n\u2022 정확하고 완전한 등록 정보를 제공해야 합니다\n\u2022 계정 자격 증명의 기밀성을 유지할 책임은 귀하에게 있습니다\n\u2022 계정 생성을 위해 만 13세 이상이어야 합니다\n\u2022 각 사용자는 하나의 계정만 유지할 수 있습니다\n\n계정 보안:\n\u2022 계정 하의 모든 활동에 대해 전적으로 책임집니다\n\u2022 무단 사용 발견 시 즉시 알려주세요\n\u2022 무단 계정 접근으로 인한 손실에 대해 당사는 책임지지 않습니다\n\n계정 인증:\n\u2022 전체 계정 기능을 위해 이메일 인증이 필요합니다\n\u2022 미인증 계정은 기능 접근이 제한됩니다",
+                "terms.acceptableUse.title": "허용 가능한 사용 정책",
+                "terms.acceptableUse.content": "VoiceSketch를 다음 용도로 사용하지 않는 것에 동의합니다:\n\n금지 활동:\n\u2022 불법 활동 또는 관련 법률 위반\n\u2022 적절한 동의 없이 대화 녹음\n\u2022 괴롭힘, 위협 또는 학대 행위\n\u2022 허가 없이 저작권 콘텐츠 공유\n\u2022 악성 코드 업로드 또는 서비스 해킹 시도\n\u2022 가짜 계정 생성 또는 타인 사칭\n\u2022 스팸 또는 원하지 않는 통신 발송\n\u2022 적절한 라이선스 없는 상업적 사용\n\n콘텐츠 제한:\n\u2022 혐오 발언, 차별적 또는 모욕적인 콘텐츠 금지\n\u2022 동의 없이 타인의 개인 정보 게시 금지\n\u2022 개인정보 보호권을 침해하는 콘텐츠 금지\n\u2022 오해를 불러일으키거나 사기성 정보 금지\n\n이 약관 위반은 계정 일시 중지 또는 종료로 이어질 수 있습니다.",
+                "terms.ip.title": "콘텐츠 및 지적 재산권",
+                "terms.ip.content": "VoiceSketch 지적 재산권:\n\u2022 디자인, 코드, 기능을 포함한 본 앱은 VoiceSketch가 소유\n\u2022 모든 상표, 로고, 서비스 마크는 당사의 자산\n\u2022 당사의 지적 재산을 복사, 수정 또는 배포할 수 없습니다\n\n귀하의 콘텐츠:\n\u2022 원본 녹음 및 콘텐츠의 소유권은 귀하에게 귀속\n\u2022 서비스 제공을 위해 콘텐츠를 처리할 라이선스를 당사에 부여\n\u2022 업로드하는 모든 콘텐츠에 대한 권리 확인은 귀하의 책임\n\u2022 개인 녹음이나 전사에 대한 소유권을 주장하지 않습니다\n\nAI 생성 콘텐츠:\n\u2022 요약 및 시각화는 AI 서비스를 사용하여 생성\n\u2022 귀하의 입력에 기반한 AI 생성 콘텐츠의 권리는 귀하에게 귀속\n\u2022 동의 없이 콘텐츠를 AI 모델 훈련에 사용하지 않습니다\n\n제3자 콘텐츠:\n\u2022 타인의 저작권 및 지적 재산권을 존중해 주세요\n\u2022 타인을 녹음하기 전 적절한 허가를 받으세요",
+                "terms.privacyData.title": "개인정보 및 데이터 보호",
+                "terms.privacyData.content": "귀하의 개인정보는 당사에 중요합니다. 당사의 데이터 관행은 개인정보 처리방침에 따르며, 다음을 포함합니다:\n\n데이터 수집:\n\u2022 앱 기능에 필요한 최소한의 데이터만 수집\n\u2022 오디오 녹음은 기본적으로 로컬에 저장\n\u2022 클라우드 스토리지는 선택사항이며 암호화됨\n\n데이터 사용:\n\u2022 개인 데이터는 서비스 제공 및 개선에만 사용\n\u2022 개인 정보를 제3자에게 판매하지 않습니다\n\u2022 분석 데이터는 익명화 및 집계됩니다\n\n데이터 보호:\n\u2022 전송 중 및 저장 시 데이터의 업계 표준 암호화\n\u2022 정기적인 보안 감사 및 업데이트\n\u2022 GDPR, CCPA 및 기타 개인정보 보호 규정 준수\n\n귀하의 권리:\n\u2022 개인 정보 접근, 수정 또는 삭제\n\u2022 휴대 가능한 형식으로 데이터 내보내기\n\u2022 선택적 데이터 수집 거부\n\n자세한 내용은 개인정보 처리방침을 확인해 주세요.",
+                "terms.subscription.title": "구독 및 결제",
+                "terms.subscription.content": "프리미엄 구독:\n\u2022 프리미엄 기능은 인앱 구매 구독을 통해 이용 가능\n\u2022 취소하지 않으면 구독이 자동 갱신됩니다\n\u2022 가격 및 기능은 통지 후 변경될 수 있습니다\n\n결제 조건:\n\u2022 결제는 Apple App Store를 통해 처리\n\u2022 법률에서 요구하지 않는 한 모든 요금은 환불 불가\n\u2022 가격에는 필요한 경우 해당 세금 포함\n\n취소:\n\u2022 App Store 계정 설정에서 언제든 취소 가능\n\u2022 프리미엄 기능 접근은 현재 결제 기간 종료까지 계속\n\u2022 미사용 구독 기간에 대한 부분 환불 없음\n\n무료 체험:\n\u2022 프리미엄 기능에 대한 무료 체험이 제공될 수 있음\n\u2022 취소하지 않으면 체험은 유료 구독으로 전환\n\u2022 이전 체험 사용자는 추가 체험 자격이 없을 수 있음\n\n가격 변경:\n\u2022 30일 사전 통지로 구독 가격을 변경할 수 있음\n\u2022 가격 변경은 신규 구독 및 갱신에 적용",
+                "terms.disclaimers.title": "면책 조항 및 제한",
+                "terms.disclaimers.content": "서비스 면책 조항:\n\u2022 VoiceSketch는 어떠한 종류의 보증 없이 \"있는 그대로\" 제공됩니다\n\u2022 전사 또는 AI 생성 콘텐츠의 100% 정확성을 보장하지 않습니다\n\u2022 서비스 가용성은 중단이나 유지보수의 영향을 받을 수 있습니다\n\u2022 제3자 통합이 앱 기능에 영향을 줄 수 있습니다\n\n책임 제한:\n\u2022 당사의 책임은 서비스에 지불한 금액으로 제한됩니다\n\u2022 간접적, 부수적 또는 결과적 손해에 대해 책임지지 않습니다\n\u2022 기기 고장이나 사용자 오류로 인한 데이터 손실에 대해 책임지지 않습니다\n\u2022 중요한 데이터의 백업 유지는 사용자의 책임입니다\n\nAI 및 전사 정확성:\n\u2022 AI 생성 요약 및 전사에는 오류가 포함될 수 있습니다\n\u2022 생성된 모든 콘텐츠의 정확성을 확인해 주세요\n\u2022 중요하거나 민감한 콘텐츠에 대해서는 사람의 검증을 권장합니다\n\u2022 정확성은 오디오 품질, 억양 및 전문 용어에 따라 달라질 수 있습니다\n\n제3자 서비스:\n\u2022 제3자 서비스 중단에 대해 책임지지 않습니다\n\u2022 OpenAI, Firebase 및 기타 통합에는 자체 약관이 있습니다\n\u2022 제3자 서비스의 변경이 앱 기능에 영향을 줄 수 있습니다",
+                "terms.indemnification.title": "배상",
+                "terms.indemnification.content": "귀하는 다음으로 인해 발생하는 모든 청구, 손해, 손실 또는 비용으로부터 VoiceSketch 및 그 임원, 이사, 직원, 대리인을 배상, 방어하고 면책하는 데 동의합니다:\n\n\u2022 이 약관을 위반하여 본 앱을 사용\n\u2022 관련 법률이나 규정 위반\n\u2022 적절한 동의나 승인 없이 타인을 녹음\n\u2022 저작권 침해 또는 지적 재산권 침해\n\u2022 본 앱을 통해 업로드, 공유 또는 처리한 모든 콘텐츠\n\u2022 귀하의 과실로 인한 계정의 무단 사용\n\n이 배상은 귀하의 계정과 이 약관이 종료된 후에도 존속합니다.",
+                "terms.termination.title": "종료",
+                "terms.termination.content": "귀하에 의한 종료:\n\u2022 앱 설정에서 언제든 계정을 삭제할 수 있습니다\n\u2022 구독 취소는 App Store를 통해 해야 합니다\n\u2022 귀하의 데이터는 데이터 보존 정책에 따라 삭제됩니다\n\n당사에 의한 종료:\n\u2022 약관 위반으로 계정을 일시 중지 또는 종료할 수 있습니다\n\u2022 심각한 위반의 경우 즉시 종료될 수 있습니다\n\u2022 즉각적인 안전 우려를 제외하고 가능한 한 통지합니다\n\n종료 효과:\n\u2022 앱 및 서비스 접근이 즉시 취소됩니다\n\u2022 데이터는 개인정보 처리방침에 따라 삭제됩니다\n\u2022 프리미엄 구독 혜택이 즉시 중단됩니다\n\u2022 이 약관은 해당되는 경우 종료 후에도 존속합니다\n\n데이터 복구:\n\u2022 삭제된 계정은 복구할 수 없습니다\n\u2022 계정 삭제 전 데이터를 내보내세요\n\u2022 법률에서 요구하는 경우 일부 데이터를 보존할 수 있습니다",
+                "terms.governingLaw.title": "준거법 및 분쟁",
+                "terms.governingLaw.content": "이 약관은 법 충돌 원칙에 관계없이 미국 캘리포니아 주법에 따라 해석됩니다.\n\n분쟁 해결:\n\u2022 비공식 해결: 먼저 당사에 연락하여 비공식적으로 분쟁을 해결해 주세요\n\u2022 중재: 분쟁은 구속력 있는 중재를 통해 해결됩니다\n\u2022 집단 소송 포기: 집단 소송 참여 권리를 포기합니다\n\u2022 관할권: 캘리포니아 주 법원이 전속 관할권을 가집니다\n\n중재 예외:\n\u2022 관할 한도 내의 소액 법원 사안\n\u2022 지적 재산권 분쟁\n\u2022 금지 명령 구제 요청\n\nApple App Store:\n\u2022 Apple은 이 약관의 당사자가 아닙니다\n\u2022 Apple은 본 앱에 대한 보증 의무가 없습니다\n\u2022 귀하는 Apple이 이 약관을 집행할 권리가 있음을 인정합니다",
+                "terms.changes.title": "약관 변경",
+                "terms.changes.content": "당사는 이 약관을 언제든 변경할 권리를 보유합니다. 변경은 다음 경우에 효력이 발생합니다:\n\n\u2022 앱 내에 \"최종 수정\" 날짜와 함께 게시\n\u2022 등록된 이메일 주소로 알림 발송\n\u2022 중대한 변경의 경우 30일 사전 통지 제공\n\n귀하의 선택:\n\u2022 앱의 지속 사용은 변경 수락을 구성합니다\n\u2022 변경에 동의하지 않으면 사용을 중단하고 계정을 삭제해 주세요\n\u2022 일부 변경은 법률 또는 보안상의 이유로 필요할 수 있습니다\n\n버전 관리:\n\u2022 이전 버전의 약관은 보관되어 있으며 요청 시 이용 가능\n\u2022 현재 버전은 항상 이전 버전보다 우선합니다",
+                "terms.contact.title": "연락처 정보",
                 "footer.from": "제공",
                 "footer.copyright": "© 2026 VoiceSketch. All rights reserved."
             },
@@ -3625,6 +4181,35 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
                 "privacy.retention.title": "Conservation des données",
                 "privacy.retention.content": "Nous ne conservons vos informations que le temps nécessaire :\n\n\u2022 Données du compte : Conservées tant que votre compte est actif\n\u2022 Enregistrements : Supprimés selon vos paramètres (par défaut : 30 jours)\n\u2022 Analyses d'utilisation : Agrégées et anonymisées après 2 ans\n\u2022 Exigences légales : Peuvent être conservées plus longtemps si la loi l'exige\n\u2022 Comptes supprimés : Toutes les données définitivement supprimées dans les 30 jours\n\nVous pouvez ajuster les paramètres de conservation dans l'application ou demander une suppression immédiate.",
                 "privacy.contact.title": "Nous contacter",
+                "nav.terms": "Conditions",
+                "terms.title": "Conditions d'utilisation",
+                "terms.subtitle": "Veuillez lire attentivement ces conditions avant d'utiliser VoiceSketch",
+                "terms.lastUpdated": "Dernière mise à jour : 7 février 2026",
+                "terms.acceptance.title": "Acceptation des conditions",
+                "terms.acceptance.content": "En téléchargeant, installant ou utilisant VoiceSketch (« l'Application »), vous acceptez d'être lié par ces Conditions d'utilisation (« Conditions »). Si vous n'acceptez pas ces Conditions, veuillez ne pas utiliser l'Application.\n\nCes Conditions constituent un accord juridiquement contraignant entre vous et VoiceSketch (« nous »). Votre utilisation de l'Application est également régie par notre Politique de confidentialité, incorporée par référence dans ces Conditions.\n\nVous devez avoir au moins 13 ans pour utiliser cette Application. Si vous avez moins de 18 ans, vous confirmez avoir obtenu le consentement d'un parent ou tuteur.",
+                "terms.service.title": "Description du service",
+                "terms.service.content": "VoiceSketch est une application mobile qui fournit :\n\n\u2022 Services d'enregistrement audio et de transcription en temps réel\n\u2022 Capacités de résumé de texte alimentées par l'IA\n\u2022 Génération de représentations visuelles à partir du contenu des réunions\n\u2022 Stockage cloud et synchronisation (fonctionnalité premium)\n\u2022 Fonctionnalité d'exportation pour les transcriptions, résumés et visualisations\n\nL'Application s'intègre à des services tiers incluant OpenAI pour le traitement IA et Firebase pour le stockage de données et l'authentification. Nous nous réservons le droit de modifier, suspendre ou interrompre tout aspect du service à tout moment.",
+                "terms.accounts.title": "Comptes utilisateurs et inscription",
+                "terms.accounts.content": "Création de compte :\n\u2022 Vous devez fournir des informations d'inscription précises et complètes\n\u2022 Vous êtes responsable de la confidentialité de vos identifiants de compte\n\u2022 Vous devez avoir au moins 13 ans pour créer un compte\n\u2022 Chaque utilisateur ne peut maintenir qu'un seul compte\n\nSécurité du compte :\n\u2022 Vous êtes seul responsable de toutes les activités sous votre compte\n\u2022 Notifiez-nous immédiatement de toute utilisation non autorisée\n\u2022 Nous ne sommes pas responsables des pertes dues à un accès non autorisé\n\nVérification du compte :\n\u2022 La vérification par e-mail est requise pour les fonctionnalités complètes\n\u2022 Les comptes non vérifiés ont un accès limité aux fonctionnalités",
+                "terms.acceptableUse.title": "Politique d'utilisation acceptable",
+                "terms.acceptableUse.content": "Vous acceptez de NE PAS utiliser VoiceSketch pour :\n\nActivités interdites :\n\u2022 Activités illégales ou violation des lois applicables\n\u2022 Enregistrement de conversations sans consentement approprié\n\u2022 Harcèlement, menaces ou comportement abusif\n\u2022 Partage de contenu protégé par le droit d'auteur sans autorisation\n\u2022 Téléchargement de code malveillant ou tentative de piratage\n\u2022 Création de faux comptes ou usurpation d'identité\n\u2022 Spam ou envoi de communications non sollicitées\n\u2022 Utilisation commerciale sans licence appropriée\n\nRestrictions de contenu :\n\u2022 Pas de discours de haine, contenu discriminatoire ou offensant\n\u2022 Pas d'informations personnelles d'autrui sans consentement\n\u2022 Pas de contenu violant les droits à la vie privée\n\u2022 Pas d'informations trompeuses ou frauduleuses\n\nLa violation de ces conditions peut entraîner la suspension ou la résiliation du compte.",
+                "terms.ip.title": "Contenu et propriété intellectuelle",
+                "terms.ip.content": "Propriété intellectuelle de VoiceSketch :\n\u2022 L'Application, y compris le design, le code et les fonctionnalités, appartient à VoiceSketch\n\u2022 Toutes les marques, logos et marques de service sont notre propriété\n\u2022 Vous ne pouvez pas copier, modifier ou distribuer notre propriété intellectuelle\n\nVotre contenu :\n\u2022 Vous conservez la propriété de vos enregistrements et contenus originaux\n\u2022 Vous nous accordez une licence pour traiter votre contenu afin de fournir nos services\n\u2022 Vous êtes responsable de vous assurer que vous avez les droits sur tout contenu téléchargé\n\u2022 Nous ne revendiquons pas la propriété de vos enregistrements personnels ou transcriptions\n\nContenu généré par l'IA :\n\u2022 Les résumés et visualisations sont générés par des services d'IA\n\u2022 Vous avez des droits sur le contenu généré par l'IA basé sur votre saisie\n\u2022 Nous n'utilisons pas votre contenu pour entraîner des modèles d'IA sans consentement\n\nContenu tiers :\n\u2022 Respectez les droits d'auteur et la propriété intellectuelle d'autrui\n\u2022 Obtenez les autorisations appropriées avant d'enregistrer d'autres personnes",
+                "terms.privacyData.title": "Confidentialité et protection des données",
+                "terms.privacyData.content": "Votre vie privée est importante pour nous. Nos pratiques en matière de données sont régies par notre Politique de confidentialité, qui comprend :\n\nCollecte de données :\n\u2022 Nous ne collectons que les données minimales nécessaires au fonctionnement de l'application\n\u2022 Les enregistrements audio sont stockés localement par défaut\n\u2022 Le stockage cloud est optionnel et chiffré\n\nUtilisation des données :\n\u2022 Les données personnelles sont utilisées uniquement pour fournir et améliorer les services\n\u2022 Nous ne vendons pas d'informations personnelles à des tiers\n\u2022 Les données analytiques sont anonymisées et agrégées\n\nProtection des données :\n\u2022 Chiffrement standard de l'industrie pour les données en transit et au repos\n\u2022 Audits de sécurité et mises à jour réguliers\n\u2022 Conformité au RGPD, CCPA et autres réglementations\n\nVos droits :\n\u2022 Accéder, corriger ou supprimer vos informations personnelles\n\u2022 Exporter vos données dans des formats portables\n\u2022 Refuser la collecte de données optionnelle\n\nPour plus de détails, veuillez consulter notre Politique de confidentialité.",
+                "terms.subscription.title": "Abonnements et paiements",
+                "terms.subscription.content": "Abonnements premium :\n\u2022 Les fonctionnalités premium sont disponibles via des abonnements in-app\n\u2022 Les abonnements se renouvellent automatiquement sauf annulation\n\u2022 Les prix et fonctionnalités sont susceptibles de changer avec préavis\n\nConditions de paiement :\n\u2022 Les paiements sont traités via l'App Store d'Apple\n\u2022 Tous les frais sont non remboursables sauf exigence légale\n\u2022 Les prix incluent les taxes applicables le cas échéant\n\nAnnulation :\n\u2022 Annulez à tout moment via les paramètres de votre compte App Store\n\u2022 L'accès aux fonctionnalités premium continue jusqu'à la fin de la période de facturation\n\u2022 Pas de remboursement partiel pour le temps d'abonnement non utilisé\n\nEssai gratuit :\n\u2022 Des essais gratuits peuvent être proposés pour les fonctionnalités premium\n\u2022 L'essai se convertit en abonnement payant sauf annulation\n\u2022 Les anciens utilisateurs d'essai peuvent ne pas être éligibles à des essais supplémentaires\n\nChangements de prix :\n\u2022 Nous pouvons modifier les prix d'abonnement avec un préavis de 30 jours\n\u2022 Les changements de prix s'appliquent aux nouveaux abonnements et renouvellements",
+                "terms.disclaimers.title": "Avertissements et limitations",
+                "terms.disclaimers.content": "Avertissements sur le service :\n\u2022 VoiceSketch est fourni « tel quel » sans garantie d'aucune sorte\n\u2022 Nous ne garantissons pas une précision de 100% des transcriptions ou du contenu généré par l'IA\n\u2022 La disponibilité du service peut être soumise à des interruptions ou de la maintenance\n\u2022 Les intégrations tierces peuvent affecter la fonctionnalité de l'application\n\nLimitation de responsabilité :\n\u2022 Notre responsabilité est limitée au montant payé pour le service\n\u2022 Nous ne sommes pas responsables des dommages indirects, accessoires ou consécutifs\n\u2022 Nous ne sommes pas responsables de la perte de données due à une défaillance de l'appareil ou une erreur utilisateur\n\u2022 Les utilisateurs sont responsables de la sauvegarde des données importantes\n\nPrécision de l'IA et de la transcription :\n\u2022 Les résumés et transcriptions générés par l'IA peuvent contenir des erreurs\n\u2022 Les utilisateurs doivent vérifier la précision de tout contenu généré\n\u2022 Nous recommandons une vérification humaine pour le contenu critique ou sensible\n\u2022 La précision peut varier selon la qualité audio, les accents et les termes techniques\n\nServices tiers :\n\u2022 Nous ne sommes pas responsables des interruptions de services tiers\n\u2022 OpenAI, Firebase et autres intégrations ont leurs propres conditions\n\u2022 Les changements de services tiers peuvent affecter la fonctionnalité de l'application",
+                "terms.indemnification.title": "Indemnisation",
+                "terms.indemnification.content": "Vous acceptez d'indemniser, défendre et dégager de toute responsabilité VoiceSketch et ses dirigeants, administrateurs, employés et agents contre toute réclamation, dommage, perte ou dépense résultant de :\n\n\u2022 Votre utilisation de l'Application en violation de ces Conditions\n\u2022 Votre violation de toute loi ou réglementation applicable\n\u2022 L'enregistrement d'autrui sans consentement ou autorisation approprié\n\u2022 La violation de droits d'auteur ou de propriété intellectuelle\n\u2022 Tout contenu que vous téléchargez, partagez ou traitez via l'Application\n\u2022 L'utilisation non autorisée de votre compte due à votre négligence\n\nCette indemnisation survit à la résiliation de votre compte et de ces Conditions.",
+                "terms.termination.title": "Résiliation",
+                "terms.termination.content": "Résiliation par vous :\n\u2022 Vous pouvez supprimer votre compte à tout moment via les paramètres de l'application\n\u2022 L'annulation des abonnements doit être effectuée via l'App Store\n\u2022 Vos données seront supprimées conformément à notre politique de conservation des données\n\nRésiliation par nous :\n\u2022 Nous pouvons suspendre ou résilier les comptes pour violation des Conditions\n\u2022 La résiliation peut être immédiate pour les violations graves\n\u2022 Nous fournirons un préavis quand possible, sauf pour les préoccupations de sécurité immédiates\n\nEffet de la résiliation :\n\u2022 L'accès à l'Application et aux services sera immédiatement révoqué\n\u2022 Vos données seront supprimées conformément à notre Politique de confidentialité\n\u2022 Les avantages de l'abonnement premium cesseront immédiatement\n\u2022 Ces Conditions survivent à la résiliation le cas échéant\n\nRécupération des données :\n\u2022 Les comptes supprimés ne peuvent pas être récupérés\n\u2022 Exportez vos données avant la suppression du compte\n\u2022 Nous pouvons conserver certaines données conformément à la loi",
+                "terms.governingLaw.title": "Droit applicable et litiges",
+                "terms.governingLaw.content": "Ces Conditions sont régies et interprétées conformément aux lois de l'État de Californie, États-Unis, sans égard aux principes de conflit de lois.\n\nRésolution des litiges :\n\u2022 Résolution informelle : Contactez-nous d'abord pour résoudre les litiges de manière informelle\n\u2022 Arbitrage : Les litiges seront résolus par arbitrage contraignant\n\u2022 Renonciation aux actions collectives : Vous renoncez au droit de participer à des actions collectives\n\u2022 Juridiction : Les tribunaux de l'État de Californie ont compétence exclusive\n\nExceptions à l'arbitrage :\n\u2022 Litiges relevant de la juridiction des petites créances\n\u2022 Litiges de propriété intellectuelle\n\u2022 Demandes de mesures provisoires\n\nApple App Store :\n\u2022 Apple n'est pas partie à ces Conditions\n\u2022 Apple n'a aucune obligation de garantie concernant l'Application\n\u2022 Vous reconnaissez le droit d'Apple de faire respecter ces Conditions",
+                "terms.changes.title": "Modifications des conditions",
+                "terms.changes.content": "Nous nous réservons le droit de modifier ces Conditions à tout moment. Les modifications seront effectives lorsque :\n\n\u2022 Publiées dans l'Application avec la date de « Dernière modification » mise à jour\n\u2022 Notification envoyée aux adresses e-mail enregistrées\n\u2022 Pour les modifications importantes, un préavis de 30 jours sera fourni\n\nVos options :\n\u2022 L'utilisation continue de l'Application constitue l'acceptation des modifications\n\u2022 Si vous n'êtes pas d'accord avec les modifications, cessez l'utilisation et supprimez votre compte\n\u2022 Certaines modifications peuvent être requises par la loi ou pour des raisons de sécurité\n\nContrôle des versions :\n\u2022 Les versions précédentes des Conditions sont archivées et disponibles sur demande\n\u2022 La version actuelle prévaut toujours sur les versions précédentes",
+                "terms.contact.title": "Coordonnées",
                 "footer.from": "de",
                 "footer.copyright": "© 2026 VoiceSketch. Tous droits réservés."
             },
@@ -3736,6 +4321,35 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
                 "privacy.retention.title": "Retención de datos",
                 "privacy.retention.content": "Solo conservamos tu información el tiempo necesario:\n\n\u2022 Datos de la cuenta: Conservados mientras tu cuenta esté activa\n\u2022 Grabaciones: Eliminadas según tu configuración (por defecto: 30 días)\n\u2022 Análisis de uso: Agregados y anonimizados después de 2 años\n\u2022 Requisitos legales: Pueden conservarse más tiempo si la ley lo exige\n\u2022 Cuentas eliminadas: Todos los datos eliminados permanentemente en 30 días\n\nPuedes ajustar la configuración de retención en la aplicación o solicitar la eliminación inmediata.",
                 "privacy.contact.title": "Contáctanos",
+                "nav.terms": "Términos",
+                "terms.title": "Términos de servicio",
+                "terms.subtitle": "Por favor lee estos términos cuidadosamente antes de usar VoiceSketch",
+                "terms.lastUpdated": "Última actualización: 7 de febrero de 2026",
+                "terms.acceptance.title": "Aceptación de los términos",
+                "terms.acceptance.content": "Al descargar, instalar o usar VoiceSketch (\"la Aplicación\"), aceptas estar vinculado por estos Términos de servicio (\"Términos\"). Si no estás de acuerdo con estos Términos, por favor no uses la Aplicación.\n\nEstos Términos constituyen un acuerdo legalmente vinculante entre tú y VoiceSketch (\"nosotros\"). Tu uso de la Aplicación también se rige por nuestra Política de privacidad, incorporada por referencia en estos Términos.\n\nDebes tener al menos 13 años para usar esta Aplicación. Si eres menor de 18 años, confirmas que has obtenido el consentimiento de tus padres o tutores.",
+                "terms.service.title": "Descripción del servicio",
+                "terms.service.content": "VoiceSketch es una aplicación móvil que proporciona:\n\n\u2022 Servicios de grabación de audio y transcripción en tiempo real\n\u2022 Capacidades de resumen de texto impulsadas por IA\n\u2022 Generación de representaciones visuales del contenido de reuniones\n\u2022 Almacenamiento en la nube y sincronización (función premium)\n\u2022 Funcionalidad de exportación para transcripciones, resúmenes y visualizaciones\n\nLa Aplicación se integra con servicios de terceros incluyendo OpenAI para procesamiento de IA y Firebase para almacenamiento de datos y autenticación. Nos reservamos el derecho de modificar, suspender o descontinuar cualquier aspecto del servicio en cualquier momento.",
+                "terms.accounts.title": "Cuentas de usuario y registro",
+                "terms.accounts.content": "Creación de cuenta:\n\u2022 Debes proporcionar información de registro precisa y completa\n\u2022 Eres responsable de mantener la confidencialidad de tus credenciales\n\u2022 Debes tener al menos 13 años para crear una cuenta\n\u2022 Cada usuario puede mantener solo una cuenta\n\nSeguridad de la cuenta:\n\u2022 Eres el único responsable de todas las actividades bajo tu cuenta\n\u2022 Notifícanos inmediatamente de cualquier uso no autorizado\n\u2022 No somos responsables de pérdidas por acceso no autorizado\n\nVerificación de cuenta:\n\u2022 Se requiere verificación por correo electrónico para la funcionalidad completa\n\u2022 Las cuentas no verificadas tienen acceso limitado a funciones",
+                "terms.acceptableUse.title": "Política de uso aceptable",
+                "terms.acceptableUse.content": "Aceptas NO usar VoiceSketch para:\n\nActividades prohibidas:\n\u2022 Actividades ilegales o violación de leyes aplicables\n\u2022 Grabar conversaciones sin el consentimiento adecuado\n\u2022 Acoso, amenazas o comportamiento abusivo\n\u2022 Compartir contenido con derechos de autor sin permiso\n\u2022 Subir código malicioso o intentar hackear el servicio\n\u2022 Crear cuentas falsas o suplantar a otros\n\u2022 Spam o envío de comunicaciones no solicitadas\n\u2022 Uso comercial sin licencia adecuada\n\nRestricciones de contenido:\n\u2022 Sin discurso de odio, contenido discriminatorio u ofensivo\n\u2022 Sin información personal de otros sin consentimiento\n\u2022 Sin contenido que viole derechos de privacidad\n\u2022 Sin información engañosa o fraudulenta\n\nLa violación de estos términos puede resultar en suspensión o terminación de la cuenta.",
+                "terms.ip.title": "Contenido y propiedad intelectual",
+                "terms.ip.content": "Propiedad intelectual de VoiceSketch:\n\u2022 La Aplicación, incluyendo diseño, código y funciones, es propiedad de VoiceSketch\n\u2022 Todas las marcas registradas, logotipos y marcas de servicio son nuestra propiedad\n\u2022 No puedes copiar, modificar o distribuir nuestra propiedad intelectual\n\nTu contenido:\n\u2022 Conservas la propiedad de tus grabaciones y contenido original\n\u2022 Nos otorgas una licencia para procesar tu contenido para proporcionar servicios\n\u2022 Eres responsable de asegurar que tienes derechos sobre todo el contenido subido\n\u2022 No reclamamos propiedad de tus grabaciones personales o transcripciones\n\nContenido generado por IA:\n\u2022 Los resúmenes y visualizaciones son generados usando servicios de IA\n\u2022 Tienes derechos sobre el contenido generado por IA basado en tu entrada\n\u2022 No usamos tu contenido para entrenar modelos de IA sin consentimiento\n\nContenido de terceros:\n\u2022 Respeta los derechos de autor y propiedad intelectual de otros\n\u2022 Obtén los permisos adecuados antes de grabar a otros",
+                "terms.privacyData.title": "Privacidad y protección de datos",
+                "terms.privacyData.content": "Tu privacidad es importante para nosotros. Nuestras prácticas de datos se rigen por nuestra Política de privacidad, que incluye:\n\nRecopilación de datos:\n\u2022 Recopilamos los datos mínimos necesarios para la funcionalidad de la app\n\u2022 Las grabaciones de audio se almacenan localmente por defecto\n\u2022 El almacenamiento en la nube es opcional y está cifrado\n\nUso de datos:\n\u2022 Los datos personales se usan solo para proporcionar y mejorar servicios\n\u2022 No vendemos información personal a terceros\n\u2022 Los datos analíticos se anonimizan y agregan\n\nProtección de datos:\n\u2022 Cifrado estándar de la industria para datos en tránsito y en reposo\n\u2022 Auditorías de seguridad y actualizaciones regulares\n\u2022 Cumplimiento con RGPD, CCPA y otras regulaciones de privacidad\n\nTus derechos:\n\u2022 Acceder, corregir o eliminar tu información personal\n\u2022 Exportar tus datos en formatos portables\n\u2022 Optar por no participar en la recopilación de datos opcional\n\nPara más detalles, consulta nuestra Política de privacidad.",
+                "terms.subscription.title": "Suscripción y pagos",
+                "terms.subscription.content": "Suscripciones premium:\n\u2022 Las funciones premium están disponibles a través de suscripciones de compra dentro de la app\n\u2022 Las suscripciones se renuevan automáticamente a menos que se cancelen\n\u2022 Los precios y funciones están sujetos a cambios con previo aviso\n\nCondiciones de pago:\n\u2022 Los pagos se procesan a través del App Store de Apple\n\u2022 Todas las tarifas no son reembolsables a menos que la ley lo requiera\n\u2022 Los precios incluyen impuestos aplicables cuando sea necesario\n\nCancelación:\n\u2022 Cancela en cualquier momento a través de la configuración de tu cuenta del App Store\n\u2022 El acceso a funciones premium continúa hasta el final del período de facturación actual\n\u2022 Sin reembolsos parciales por tiempo de suscripción no utilizado\n\nPrueba gratuita:\n\u2022 Se pueden ofrecer pruebas gratuitas para funciones premium\n\u2022 La prueba se convierte en suscripción paga a menos que se cancele\n\u2022 Los usuarios de pruebas anteriores pueden no ser elegibles para pruebas adicionales\n\nCambios de precio:\n\u2022 Podemos cambiar los precios de suscripción con 30 días de aviso\n\u2022 Los cambios de precio se aplican a nuevas suscripciones y renovaciones",
+                "terms.disclaimers.title": "Descargos de responsabilidad y limitaciones",
+                "terms.disclaimers.content": "Descargos del servicio:\n\u2022 VoiceSketch se proporciona \"tal cual\" sin garantías de ningún tipo\n\u2022 No garantizamos la precisión del 100% de las transcripciones o contenido generado por IA\n\u2022 La disponibilidad del servicio puede estar sujeta a interrupciones o mantenimiento\n\u2022 Las integraciones de terceros pueden afectar la funcionalidad de la app\n\nLimitación de responsabilidad:\n\u2022 Nuestra responsabilidad se limita al monto pagado por el servicio\n\u2022 No somos responsables de daños indirectos, incidentales o consecuentes\n\u2022 No somos responsables de la pérdida de datos por falla del dispositivo o error del usuario\n\u2022 Los usuarios son responsables de mantener copias de seguridad de datos importantes\n\nPrecisión de IA y transcripción:\n\u2022 Los resúmenes y transcripciones generados por IA pueden contener errores\n\u2022 Los usuarios deben revisar todo el contenido generado para verificar su precisión\n\u2022 Recomendamos verificación humana para contenido crítico o sensible\n\u2022 La precisión puede variar según la calidad del audio, acentos y términos técnicos\n\nServicios de terceros:\n\u2022 No somos responsables de interrupciones de servicios de terceros\n\u2022 OpenAI, Firebase y otras integraciones tienen sus propios términos\n\u2022 Los cambios en servicios de terceros pueden afectar la funcionalidad de la app",
+                "terms.indemnification.title": "Indemnización",
+                "terms.indemnification.content": "Aceptas indemnizar, defender y eximir de responsabilidad a VoiceSketch y sus funcionarios, directores, empleados y agentes contra cualquier reclamación, daño, pérdida o gasto derivado de:\n\n\u2022 Tu uso de la Aplicación en violación de estos Términos\n\u2022 Tu violación de cualquier ley o regulación aplicable\n\u2022 Grabar a otros sin el consentimiento o autorización adecuados\n\u2022 Infracción de derechos de autor o propiedad intelectual\n\u2022 Cualquier contenido que subas, compartas o proceses a través de la Aplicación\n\u2022 El uso no autorizado de tu cuenta debido a tu negligencia\n\nEsta indemnización sobrevive a la terminación de tu cuenta y estos Términos.",
+                "terms.termination.title": "Terminación",
+                "terms.termination.content": "Terminación por ti:\n\u2022 Puedes eliminar tu cuenta en cualquier momento a través de la configuración de la app\n\u2022 La cancelación de suscripciones debe hacerse a través del App Store\n\u2022 Tus datos se eliminarán según nuestra política de retención de datos\n\nTerminación por nosotros:\n\u2022 Podemos suspender o terminar cuentas por violación de los Términos\n\u2022 La terminación puede ser inmediata por violaciones graves\n\u2022 Proporcionaremos aviso cuando sea posible, excepto por preocupaciones de seguridad inmediatas\n\nEfecto de la terminación:\n\u2022 El acceso a la Aplicación y servicios será revocado inmediatamente\n\u2022 Tus datos se eliminarán según nuestra Política de privacidad\n\u2022 Los beneficios de suscripción premium cesarán inmediatamente\n\u2022 Estos Términos sobreviven a la terminación donde sea aplicable\n\nRecuperación de datos:\n\u2022 Las cuentas eliminadas no se pueden recuperar\n\u2022 Exporta tus datos antes de eliminar la cuenta\n\u2022 Podemos retener algunos datos según lo requiera la ley",
+                "terms.governingLaw.title": "Ley aplicable y disputas",
+                "terms.governingLaw.content": "Estos Términos se rigen e interpretan de acuerdo con las leyes del Estado de California, Estados Unidos, sin tener en cuenta los principios de conflicto de leyes.\n\nResolución de disputas:\n\u2022 Resolución informal: Contáctanos primero para resolver disputas de manera informal\n\u2022 Arbitraje: Las disputas se resolverán mediante arbitraje vinculante\n\u2022 Renuncia a acciones colectivas: Renuncias al derecho de participar en acciones colectivas\n\u2022 Jurisdicción: Los tribunales del Estado de California tienen jurisdicción exclusiva\n\nExcepciones al arbitraje:\n\u2022 Asuntos de tribunales de reclamos menores dentro de los límites jurisdiccionales\n\u2022 Disputas de propiedad intelectual\n\u2022 Solicitudes de medidas cautelares\n\nApple App Store:\n\u2022 Apple no es parte de estos Términos\n\u2022 Apple no tiene obligaciones de garantía respecto a la Aplicación\n\u2022 Reconoces el derecho de Apple a hacer cumplir estos Términos",
+                "terms.changes.title": "Cambios en los términos",
+                "terms.changes.content": "Nos reservamos el derecho de modificar estos Términos en cualquier momento. Los cambios serán efectivos cuando:\n\n\u2022 Se publiquen dentro de la Aplicación con la fecha de \"Última modificación\" actualizada\n\u2022 Se envíe notificación a las direcciones de correo electrónico registradas\n\u2022 Para cambios importantes, se proporcionará un aviso previo de 30 días\n\nTus opciones:\n\u2022 El uso continuado de la Aplicación constituye aceptación de los cambios\n\u2022 Si no estás de acuerdo con los cambios, deja de usar y elimina tu cuenta\n\u2022 Algunos cambios pueden ser requeridos por ley o por razones de seguridad\n\nControl de versiones:\n\u2022 Las versiones anteriores de los Términos están archivadas y disponibles bajo solicitud\n\u2022 La versión actual siempre prevalece sobre las versiones anteriores",
+                "terms.contact.title": "Información de contacto",
                 "footer.from": "de",
                 "footer.copyright": "© 2026 VoiceSketch. Todos los derechos reservados."
             },
@@ -3847,6 +4461,35 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
                 "privacy.retention.title": "Conservazione dei dati",
                 "privacy.retention.content": "Conserviamo le tue informazioni solo per il tempo necessario:\n\n\u2022 Dati dell'account: Conservati finché il tuo account è attivo\n\u2022 Registrazioni: Eliminate secondo le tue impostazioni (predefinito: 30 giorni)\n\u2022 Analisi di utilizzo: Aggregate e anonimizzate dopo 2 anni\n\u2022 Requisiti legali: Possono essere conservati più a lungo se richiesto dalla legge\n\u2022 Account eliminati: Tutti i dati eliminati permanentemente entro 30 giorni\n\nPuoi regolare le impostazioni di conservazione nell'app o richiedere l'eliminazione immediata.",
                 "privacy.contact.title": "Contattaci",
+                "nav.terms": "Termini",
+                "terms.title": "Termini di servizio",
+                "terms.subtitle": "Si prega di leggere attentamente questi termini prima di utilizzare VoiceSketch",
+                "terms.lastUpdated": "Ultimo aggiornamento: 7 febbraio 2026",
+                "terms.acceptance.title": "Accettazione dei termini",
+                "terms.acceptance.content": "Scaricando, installando o utilizzando VoiceSketch (\"l'App\"), accetti di essere vincolato da questi Termini di servizio (\"Termini\"). Se non accetti questi Termini, ti preghiamo di non utilizzare l'App.\n\nQuesti Termini costituiscono un accordo legalmente vincolante tra te e VoiceSketch (\"noi\"). L'uso dell'App è anche regolato dalla nostra Informativa sulla privacy, incorporata per riferimento in questi Termini.\n\nDevi avere almeno 13 anni per utilizzare questa App. Se hai meno di 18 anni, confermi di aver ottenuto il consenso di un genitore o tutore.",
+                "terms.service.title": "Descrizione del servizio",
+                "terms.service.content": "VoiceSketch è un'applicazione mobile che fornisce:\n\n\u2022 Servizi di registrazione audio e trascrizione in tempo reale\n\u2022 Funzionalità di sintesi del testo alimentate dall'IA\n\u2022 Generazione di rappresentazioni visive dal contenuto delle riunioni\n\u2022 Archiviazione cloud e sincronizzazione (funzionalità premium)\n\u2022 Funzionalità di esportazione per trascrizioni, riassunti e visualizzazioni\n\nL'App si integra con servizi di terze parti tra cui OpenAI per l'elaborazione IA e Firebase per l'archiviazione dati e l'autenticazione. Ci riserviamo il diritto di modificare, sospendere o interrompere qualsiasi aspetto del servizio in qualsiasi momento.",
+                "terms.accounts.title": "Account utente e registrazione",
+                "terms.accounts.content": "Creazione dell'account:\n\u2022 Devi fornire informazioni di registrazione accurate e complete\n\u2022 Sei responsabile del mantenimento della riservatezza delle tue credenziali\n\u2022 Devi avere almeno 13 anni per creare un account\n\u2022 Ogni utente può mantenere un solo account\n\nSicurezza dell'account:\n\u2022 Sei l'unico responsabile di tutte le attività sotto il tuo account\n\u2022 Notificaci immediatamente di qualsiasi uso non autorizzato\n\u2022 Non siamo responsabili per perdite dovute ad accesso non autorizzato\n\nVerifica dell'account:\n\u2022 La verifica e-mail è richiesta per le funzionalità complete dell'account\n\u2022 Gli account non verificati hanno accesso limitato alle funzionalità",
+                "terms.acceptableUse.title": "Politica di utilizzo accettabile",
+                "terms.acceptableUse.content": "Accetti di NON utilizzare VoiceSketch per:\n\nAttività proibite:\n\u2022 Attività illegali o violazione delle leggi applicabili\n\u2022 Registrazione di conversazioni senza il consenso appropriato\n\u2022 Molestie, minacce o comportamento abusivo\n\u2022 Condivisione di contenuti protetti da copyright senza autorizzazione\n\u2022 Caricamento di codice dannoso o tentativi di hacking del servizio\n\u2022 Creazione di account falsi o impersonificazione di altri\n\u2022 Spam o invio di comunicazioni non richieste\n\u2022 Uso commerciale senza licenza appropriata\n\nRestrizioni sui contenuti:\n\u2022 Nessun discorso d'odio, contenuto discriminatorio o offensivo\n\u2022 Nessuna informazione personale di altri senza consenso\n\u2022 Nessun contenuto che violi i diritti alla privacy\n\u2022 Nessuna informazione fuorviante o fraudolenta\n\nLa violazione di questi termini può comportare la sospensione o la chiusura dell'account.",
+                "terms.ip.title": "Contenuti e proprietà intellettuale",
+                "terms.ip.content": "Proprietà intellettuale di VoiceSketch:\n\u2022 L'App, inclusi design, codice e funzionalità, è di proprietà di VoiceSketch\n\u2022 Tutti i marchi, loghi e marchi di servizio sono di nostra proprietà\n\u2022 Non puoi copiare, modificare o distribuire la nostra proprietà intellettuale\n\nI tuoi contenuti:\n\u2022 Mantieni la proprietà delle tue registrazioni e contenuti originali\n\u2022 Ci concedi una licenza per elaborare i tuoi contenuti per fornire servizi\n\u2022 Sei responsabile di assicurarti di avere i diritti su tutti i contenuti caricati\n\u2022 Non rivendichiamo la proprietà delle tue registrazioni personali o trascrizioni\n\nContenuti generati dall'IA:\n\u2022 I riassunti e le visualizzazioni sono generati utilizzando servizi di IA\n\u2022 Hai diritti sui contenuti generati dall'IA basati sul tuo input\n\u2022 Non utilizziamo i tuoi contenuti per addestrare modelli di IA senza consenso\n\nContenuti di terze parti:\n\u2022 Rispetta i diritti d'autore e la proprietà intellettuale degli altri\n\u2022 Ottieni le autorizzazioni appropriate prima di registrare altri",
+                "terms.privacyData.title": "Privacy e protezione dei dati",
+                "terms.privacyData.content": "La tua privacy è importante per noi. Le nostre pratiche sui dati sono regolate dalla nostra Informativa sulla privacy, che include:\n\nRaccolta dati:\n\u2022 Raccogliamo solo i dati minimi necessari per la funzionalità dell'app\n\u2022 Le registrazioni audio sono archiviate localmente per impostazione predefinita\n\u2022 L'archiviazione cloud è opzionale e crittografata\n\nUso dei dati:\n\u2022 I dati personali sono utilizzati solo per fornire e migliorare i servizi\n\u2022 Non vendiamo informazioni personali a terzi\n\u2022 I dati analitici sono anonimizzati e aggregati\n\nProtezione dei dati:\n\u2022 Crittografia standard del settore per i dati in transito e a riposo\n\u2022 Audit di sicurezza e aggiornamenti regolari\n\u2022 Conformità a GDPR, CCPA e altre normative sulla privacy\n\nI tuoi diritti:\n\u2022 Accedere, correggere o eliminare le tue informazioni personali\n\u2022 Esportare i tuoi dati in formati portatili\n\u2022 Rinunciare alla raccolta dati opzionale\n\nPer dettagli completi, consulta la nostra Informativa sulla privacy.",
+                "terms.subscription.title": "Abbonamento e pagamenti",
+                "terms.subscription.content": "Abbonamenti premium:\n\u2022 Le funzionalità premium sono disponibili tramite abbonamenti in-app\n\u2022 Gli abbonamenti si rinnovano automaticamente se non cancellati\n\u2022 I prezzi e le funzionalità sono soggetti a modifiche con preavviso\n\nCondizioni di pagamento:\n\u2022 I pagamenti sono elaborati tramite l'App Store di Apple\n\u2022 Tutte le tariffe non sono rimborsabili salvo diversa disposizione di legge\n\u2022 I prezzi includono le tasse applicabili ove richiesto\n\nCancellazione:\n\u2022 Cancella in qualsiasi momento tramite le impostazioni del tuo account App Store\n\u2022 L'accesso alle funzionalità premium continua fino alla fine del periodo di fatturazione\n\u2022 Nessun rimborso parziale per il tempo di abbonamento non utilizzato\n\nProva gratuita:\n\u2022 Possono essere offerte prove gratuite per le funzionalità premium\n\u2022 La prova si converte in abbonamento a pagamento se non cancellata\n\u2022 Gli utenti di prove precedenti potrebbero non essere idonei per ulteriori prove\n\nModifiche ai prezzi:\n\u2022 Possiamo modificare i prezzi degli abbonamenti con 30 giorni di preavviso\n\u2022 Le modifiche ai prezzi si applicano ai nuovi abbonamenti e ai rinnovi",
+                "terms.disclaimers.title": "Esclusioni di responsabilità e limitazioni",
+                "terms.disclaimers.content": "Esclusioni sul servizio:\n\u2022 VoiceSketch è fornito \"così com'è\" senza garanzie di alcun tipo\n\u2022 Non garantiamo una precisione del 100% delle trascrizioni o dei contenuti generati dall'IA\n\u2022 La disponibilità del servizio può essere soggetta a interruzioni o manutenzione\n\u2022 Le integrazioni di terze parti possono influire sulla funzionalità dell'app\n\nLimitazione di responsabilità:\n\u2022 La nostra responsabilità è limitata all'importo pagato per il servizio\n\u2022 Non siamo responsabili per danni indiretti, incidentali o consequenziali\n\u2022 Non siamo responsabili per la perdita di dati dovuta a guasto del dispositivo o errore dell'utente\n\u2022 Gli utenti sono responsabili del mantenimento dei backup dei dati importanti\n\nPrecisione dell'IA e della trascrizione:\n\u2022 I riassunti e le trascrizioni generati dall'IA possono contenere errori\n\u2022 Gli utenti dovrebbero verificare la precisione di tutti i contenuti generati\n\u2022 Raccomandiamo la verifica umana per contenuti critici o sensibili\n\u2022 La precisione può variare in base alla qualità audio, accenti e termini tecnici\n\nServizi di terze parti:\n\u2022 Non siamo responsabili per le interruzioni dei servizi di terze parti\n\u2022 OpenAI, Firebase e altre integrazioni hanno i propri termini\n\u2022 Le modifiche ai servizi di terze parti possono influire sulla funzionalità dell'app",
+                "terms.indemnification.title": "Indennizzo",
+                "terms.indemnification.content": "Accetti di indennizzare, difendere e manlevare VoiceSketch e i suoi funzionari, direttori, dipendenti e agenti da qualsiasi reclamo, danno, perdita o spesa derivante da:\n\n\u2022 Il tuo utilizzo dell'App in violazione di questi Termini\n\u2022 La tua violazione di qualsiasi legge o regolamento applicabile\n\u2022 Registrare altri senza il consenso o l'autorizzazione appropriati\n\u2022 Violazione del diritto d'autore o della proprietà intellettuale\n\u2022 Qualsiasi contenuto che carichi, condividi o elabori tramite l'App\n\u2022 L'uso non autorizzato del tuo account dovuto alla tua negligenza\n\nQuesto indennizzo sopravvive alla chiusura del tuo account e di questi Termini.",
+                "terms.termination.title": "Risoluzione",
+                "terms.termination.content": "Risoluzione da parte tua:\n\u2022 Puoi eliminare il tuo account in qualsiasi momento tramite le impostazioni dell'app\n\u2022 La cancellazione degli abbonamenti deve essere effettuata tramite l'App Store\n\u2022 I tuoi dati saranno eliminati secondo la nostra politica di conservazione dei dati\n\nRisoluzione da parte nostra:\n\u2022 Possiamo sospendere o chiudere account per violazione dei Termini\n\u2022 La risoluzione può essere immediata per violazioni gravi\n\u2022 Forniremo preavviso quando possibile, salvo per preoccupazioni di sicurezza immediate\n\nEffetto della risoluzione:\n\u2022 L'accesso all'App e ai servizi sarà immediatamente revocato\n\u2022 I tuoi dati saranno eliminati secondo la nostra Informativa sulla privacy\n\u2022 I benefici dell'abbonamento premium cesseranno immediatamente\n\u2022 Questi Termini sopravvivono alla risoluzione ove applicabile\n\nRecupero dei dati:\n\u2022 Gli account eliminati non possono essere recuperati\n\u2022 Esporta i tuoi dati prima dell'eliminazione dell'account\n\u2022 Potremmo conservare alcuni dati come richiesto dalla legge",
+                "terms.governingLaw.title": "Legge applicabile e controversie",
+                "terms.governingLaw.content": "Questi Termini sono regolati e interpretati in conformità con le leggi dello Stato della California, Stati Uniti, senza riguardo ai principi di conflitto di leggi.\n\nRisoluzione delle controversie:\n\u2022 Risoluzione informale: Contattaci prima per risolvere le controversie in modo informale\n\u2022 Arbitrato: Le controversie saranno risolte tramite arbitrato vincolante\n\u2022 Rinuncia alle azioni collettive: Rinunci al diritto di partecipare ad azioni collettive\n\u2022 Giurisdizione: I tribunali dello Stato della California hanno giurisdizione esclusiva\n\nEccezioni all'arbitrato:\n\u2022 Controversie di modesta entità entro i limiti giurisdizionali\n\u2022 Controversie sulla proprietà intellettuale\n\u2022 Richieste di provvedimenti ingiuntivi\n\nApple App Store:\n\u2022 Apple non è parte di questi Termini\n\u2022 Apple non ha obblighi di garanzia riguardo all'App\n\u2022 Riconosci il diritto di Apple di far rispettare questi Termini",
+                "terms.changes.title": "Modifiche ai termini",
+                "terms.changes.content": "Ci riserviamo il diritto di modificare questi Termini in qualsiasi momento. Le modifiche saranno effettive quando:\n\n\u2022 Pubblicate all'interno dell'App con la data di \"Ultima modifica\" aggiornata\n\u2022 Notifica inviata agli indirizzi e-mail registrati\n\u2022 Per modifiche sostanziali, verrà fornito un preavviso di 30 giorni\n\nLe tue opzioni:\n\u2022 L'uso continuato dell'App costituisce accettazione delle modifiche\n\u2022 Se non sei d'accordo con le modifiche, interrompi l'uso ed elimina il tuo account\n\u2022 Alcune modifiche possono essere richieste dalla legge o per motivi di sicurezza\n\nControllo delle versioni:\n\u2022 Le versioni precedenti dei Termini sono archiviate e disponibili su richiesta\n\u2022 La versione attuale prevale sempre sulle versioni precedenti",
+                "terms.contact.title": "Informazioni di contatto",
                 "footer.from": "da",
                 "footer.copyright": "© 2026 VoiceSketch. Tutti i diritti riservati."
             }
