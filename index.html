@@ -3,13 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+    (function() {
+        var params = new URLSearchParams(window.location.search);
+        var lang = params.get('lang');
+        var langMap = {'zh-TW':'zh-Hant','zh-CN':'zh-Hans','ja':'ja','ko':'ko','fr':'fr','es':'es','it':'it'};
+        if (lang && langMap[lang]) {
+            document.documentElement.lang = langMap[lang];
+        }
+    })();
+    </script>
     <title data-i18n="meta.title">VoiceSketch - Transform Voice into Visual Learning</title>
     <meta name="description" content="VoiceSketch converts spoken content into AI-powered visual summaries. Record lectures, meetings, or discussions and get beautiful visual notes instantly.">
     <meta name="keywords" content="voice notes, AI summaries, visual learning, lecture notes, transcription, iOS app, voice to text, audio notes, meeting notes, study app">
     <meta name="author" content="Kairos.ai">
     <meta name="robots" content="index, follow">
     <meta name="googlebot" content="index, follow">
+    <!-- Canonical: dynamically set based on ?lang= parameter for proper indexing of language variants -->
     <link rel="canonical" href="https://voicesketch.kairosaitech.com/">
+    <script>
+    (function() {
+        var params = new URLSearchParams(window.location.search);
+        var lang = params.get('lang');
+        var supported = ['zh-TW','zh-CN','ja','ko','fr','es','it'];
+        if (lang && supported.indexOf(lang) !== -1) {
+            var url = 'https://voicesketch.kairosaitech.com/?lang=' + lang;
+            document.querySelector('link[rel="canonical"]').href = url;
+        }
+    })();
+    </script>
 
     <!-- Hreflang tags for international SEO -->
     <link rel="alternate" hreflang="en" href="https://voicesketch.kairosaitech.com/">
@@ -37,6 +59,21 @@
     <meta property="og:locale:alternate" content="fr_FR">
     <meta property="og:locale:alternate" content="es_ES">
     <meta property="og:locale:alternate" content="it_IT">
+    <script>
+    (function() {
+        var params = new URLSearchParams(window.location.search);
+        var lang = params.get('lang');
+        var supported = ['zh-TW','zh-CN','ja','ko','fr','es','it'];
+        if (lang && supported.indexOf(lang) !== -1) {
+            var url = 'https://voicesketch.kairosaitech.com/?lang=' + lang;
+            var ogUrl = document.querySelector('meta[property="og:url"]');
+            if (ogUrl) ogUrl.content = url;
+            var localeMap = {'zh-TW':'zh_TW','zh-CN':'zh_CN','ja':'ja_JP','ko':'ko_KR','fr':'fr_FR','es':'es_ES','it':'it_IT'};
+            var ogLocale = document.querySelector('meta[property="og:locale"]');
+            if (ogLocale && localeMap[lang]) ogLocale.content = localeMap[lang];
+        }
+    })();
+    </script>
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
