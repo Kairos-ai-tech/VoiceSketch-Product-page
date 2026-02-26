@@ -53,14 +53,15 @@ Your page will be available at `https://voicesketch.kairosaitech.com/`
 
 1. **Navigation** - Fixed nav with smooth scroll links
 2. **Hero** - Animated logo with sound wave effects, CTA button
-3. **Demo** - Interactive phone mockup showing app in action
-4. **Features** - 6 feature cards with animated icons
-5. **How It Works** - 3-step timeline with animated illustrations
-6. **Use Cases** - Target audience cards (Students, Professionals, etc.)
-7. **Stats** - Key numbers with gradient styling
-8. **Testimonials** - User reviews with ratings
-9. **CTA** - Final call-to-action section
-10. **Footer** - Contact info & Kairos.ai branding
+3. **Why VoiceSketch?** - 4 selling-point cards (forgetting curve, visual memory, multi-language, simplicity)
+4. **Demo** - Interactive phone mockup showing app in action
+5. **Features** - 6 feature cards with animated icons
+6. **How It Works** - 3-step timeline with animated illustrations
+7. **Use Cases** - Target audience cards (Students, Professionals, etc.)
+8. **Stats** - Key numbers with gradient styling
+9. **Testimonials** - User reviews with ratings
+10. **CTA** - Final call-to-action section
+11. **Footer** - Contact info & Kairos.ai branding
 
 ## Supported Languages
 
