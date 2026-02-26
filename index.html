@@ -693,6 +693,83 @@
             color: var(--text-dark);
         }
 
+        /* Why VoiceSketch Section */
+        .why-section {
+            padding: 5rem 2rem 4rem;
+            background: linear-gradient(180deg, #fff 0%, #fafafa 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .why-section .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .why-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2rem 2rem 2rem 2rem;
+            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            opacity: 0;
+            transform: translateY(24px);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            gap: 1.25rem;
+            align-items: flex-start;
+        }
+
+        .why-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .why-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1);
+        }
+
+        .why-icon {
+            width: 52px;
+            height: 52px;
+            min-width: 52px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .why-content h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            color: var(--text-dark);
+        }
+
+        .why-content p {
+            color: #666;
+            font-size: 0.92rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         /* Features Section */
         .features {
             padding: 6rem 2rem;
@@ -2296,6 +2373,46 @@
         </div>
     </section>
 
+    <!-- Why VoiceSketch Section -->
+    <section class="why-section">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2 data-i18n="why.title">Why VoiceSketch?</h2>
+                <p data-i18n="why.subtitle">The smarter way to capture and remember</p>
+            </div>
+            <div class="why-grid">
+                <div class="why-card animate-on-scroll">
+                    <div class="why-icon">🧠</div>
+                    <div class="why-content">
+                        <h3 data-i18n="why.forget.title">You Forget 70% Within 24 Hours</h3>
+                        <p data-i18n="why.forget.desc">Studies show we lose most of what we hear within a day. VoiceSketch captures everything so you can stay focused on listening, not scribbling.</p>
+                    </div>
+                </div>
+                <div class="why-card animate-on-scroll">
+                    <div class="why-icon">🎨</div>
+                    <div class="why-content">
+                        <h3 data-i18n="why.visual.title">Images Stick 6x Better Than Text</h3>
+                        <p data-i18n="why.visual.desc">The picture superiority effect is real — visual notes are remembered far longer than plain text. VoiceSketch turns your words into memorable images.</p>
+                    </div>
+                </div>
+                <div class="why-card animate-on-scroll">
+                    <div class="why-icon">🌍</div>
+                    <div class="why-content">
+                        <h3 data-i18n="why.language.title">Think in Your Language</h3>
+                        <p data-i18n="why.language.desc">Record in any of 60+ languages and get summaries you can actually understand. No more struggling with notes in a second language.</p>
+                    </div>
+                </div>
+                <div class="why-card animate-on-scroll">
+                    <div class="why-icon">⚡</div>
+                    <div class="why-content">
+                        <h3 data-i18n="why.simple.title">One Tap, Done</h3>
+                        <p data-i18n="why.simple.desc">Hit record, and VoiceSketch handles the rest — transcription, summarization, and visual notes, all generated automatically.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Demo Section -->
     <section class="demo-section">
         <div class="floating-elements">
@@ -3436,6 +3553,16 @@ We will respond to inquiries within 5 business days.</div>
                 "demo.card2.desc": "ATP is the primary energy currency of cells",
                 "demo.card3.title": "DNA & Genetics",
                 "demo.card3.desc": "Mitochondria contains its own circular DNA",
+                "why.title": "Why VoiceSketch?",
+                "why.subtitle": "The smarter way to capture and remember",
+                "why.forget.title": "You Forget 70% Within 24 Hours",
+                "why.forget.desc": "Studies show we lose most of what we hear within a day. VoiceSketch captures everything so you can stay focused on listening, not scribbling.",
+                "why.visual.title": "Images Stick 6x Better Than Text",
+                "why.visual.desc": "The picture superiority effect is real — visual notes are remembered far longer than plain text. VoiceSketch turns your words into memorable images.",
+                "why.language.title": "Think in Your Language",
+                "why.language.desc": "Record in any of 60+ languages and get summaries you can actually understand. No more struggling with notes in a second language.",
+                "why.simple.title": "One Tap, Done",
+                "why.simple.desc": "Hit record, and VoiceSketch handles the rest — transcription, summarization, and visual notes, all generated automatically.",
                 "features.title": "Powerful Features",
                 "features.subtitle": "Everything you need to transform audio into visual knowledge",
                 "features.voice.title": "Voice Recording",
@@ -3576,6 +3703,16 @@ We will respond to inquiries within 5 business days.</div>
                 "demo.card2.desc": "ATP 是細胞的主要能量貨幣",
                 "demo.card3.title": "DNA 與遺傳學",
                 "demo.card3.desc": "粒線體擁有自己的環狀 DNA",
+                "why.title": "為什麼選擇 VoiceSketch？",
+                "why.subtitle": "更聰明的方式來捕捉與記憶",
+                "why.forget.title": "24 小時內你會遺忘 70%",
+                "why.forget.desc": "研究顯示我們在一天內會遺忘大部分聽到的內容。VoiceSketch 幫你捕捉一切，讓你專注於聆聽，而非拼命抄筆記。",
+                "why.visual.title": "圖像記憶效果比文字強 6 倍",
+                "why.visual.desc": "圖像優勢效應是真實的 — 視覺筆記比純文字更容易被長期記住。VoiceSketch 將你的語音轉化為令人印象深刻的圖像。",
+                "why.language.title": "用你的語言思考",
+                "why.language.desc": "使用超過 60 種語言錄音，並獲得你能理解的摘要。不再為用第二語言做筆記而苦惱。",
+                "why.simple.title": "一鍵搞定",
+                "why.simple.desc": "按下錄音鍵，VoiceSketch 會自動完成其餘工作 — 轉錄、摘要和視覺筆記，全部自動生成。",
                 "features.title": "強大功能",
                 "features.subtitle": "將音訊轉化為視覺知識所需的一切",
                 "features.voice.title": "語音錄製",
@@ -3716,6 +3853,16 @@ We will respond to inquiries within 5 business days.</div>
                 "demo.card2.desc": "ATP 是细胞的主要能量货币",
                 "demo.card3.title": "DNA 与遗传学",
                 "demo.card3.desc": "线粒体拥有自己的环状 DNA",
+                "why.title": "为什么选择 VoiceSketch？",
+                "why.subtitle": "更聪明的方式来捕捉与记忆",
+                "why.forget.title": "24 小时内你会遗忘 70%",
+                "why.forget.desc": "研究表明我们在一天内会遗忘大部分听到的内容。VoiceSketch 帮你捕捉一切，让你专注于聆听，而非拼命抄笔记。",
+                "why.visual.title": "图像记忆效果比文字强 6 倍",
+                "why.visual.desc": "图像优势效应是真实的 — 视觉笔记比纯文字更容易被长期记住。VoiceSketch 将你的语音转化为令人印象深刻的图像。",
+                "why.language.title": "用你的语言思考",
+                "why.language.desc": "使用超过 60 种语言录音，并获得你能理解的摘要。不再为用第二语言做笔记而苦恼。",
+                "why.simple.title": "一键搞定",
+                "why.simple.desc": "按下录音键，VoiceSketch 会自动完成其余工作 — 转录、摘要和视觉笔记，全部自动生成。",
                 "features.title": "强大功能",
                 "features.subtitle": "将音频转化为视觉知识所需的一切",
                 "features.voice.title": "语音录制",
@@ -3856,6 +4003,16 @@ We will respond to inquiries within 5 business days.</div>
                 "demo.card2.desc": "ATPは細胞の主要なエネルギー通貨",
                 "demo.card3.title": "DNAと遺伝学",
                 "demo.card3.desc": "ミトコンドリアは独自の環状DNAを持つ",
+                "why.title": "なぜ VoiceSketch？",
+                "why.subtitle": "より賢く記録し、記憶する方法",
+                "why.forget.title": "24時間以内に70%を忘れる",
+                "why.forget.desc": "研究によると、聞いた内容の大部分を1日以内に忘れてしまいます。VoiceSketchがすべてを記録するので、メモに追われず聴くことに集中できます。",
+                "why.visual.title": "画像はテキストより6倍記憶に残る",
+                "why.visual.desc": "画像優位性効果は実証済み — ビジュアルノートはテキストよりもはるかに長く記憶されます。VoiceSketchが音声を印象的な画像に変換します。",
+                "why.language.title": "あなたの言語で考える",
+                "why.language.desc": "60以上の言語で録音し、理解できる要約を取得。第二言語でのノート取りに苦労する必要はもうありません。",
+                "why.simple.title": "ワンタップで完了",
+                "why.simple.desc": "録音ボタンを押すだけで、VoiceSketchが残りを自動処理 — 文字起こし、要約、ビジュアルノートがすべて自動生成されます。",
                 "features.title": "強力な機能",
                 "features.subtitle": "音声をビジュアル知識に変換するために必要なすべて",
                 "features.voice.title": "音声録音",
@@ -3996,6 +4153,16 @@ We will respond to inquiries within 5 business days.</div>
                 "demo.card2.desc": "ATP는 세포의 주요 에너지 화폐",
                 "demo.card3.title": "DNA와 유전학",
                 "demo.card3.desc": "미토콘드리아는 자체 원형 DNA를 보유",
+                "why.title": "왜 VoiceSketch인가요?",
+                "why.subtitle": "더 스마트하게 기록하고 기억하는 방법",
+                "why.forget.title": "24시간 내에 70%를 잊습니다",
+                "why.forget.desc": "연구에 따르면 들은 내용의 대부분을 하루 안에 잊어버립니다. VoiceSketch가 모든 것을 기록하니, 필기 대신 듣기에 집중하세요.",
+                "why.visual.title": "이미지는 텍스트보다 6배 더 기억에 남습니다",
+                "why.visual.desc": "그림 우월 효과는 실제입니다 — 비주얼 노트는 일반 텍스트보다 훨씬 오래 기억됩니다. VoiceSketch가 음성을 인상적인 이미지로 변환합니다.",
+                "why.language.title": "당신의 언어로 생각하세요",
+                "why.language.desc": "60개 이상의 언어로 녹음하고 이해할 수 있는 요약을 받으세요. 더 이상 제2외국어로 메모하느라 고생하지 마세요.",
+                "why.simple.title": "원탭으로 완료",
+                "why.simple.desc": "녹음 버튼을 누르면 VoiceSketch가 나머지를 자동 처리합니다 — 전사, 요약, 비주얼 노트가 모두 자동으로 생성됩니다.",
                 "features.title": "강력한 기능",
                 "features.subtitle": "오디오를 시각적 지식으로 변환하는 데 필요한 모든 것",
                 "features.voice.title": "음성 녹음",
@@ -4136,6 +4303,16 @@ We will respond to inquiries within 5 business days.</div>
                 "demo.card2.desc": "L'ATP est la principale monnaie énergétique des cellules",
                 "demo.card3.title": "ADN et génétique",
                 "demo.card3.desc": "Les mitochondries contiennent leur propre ADN circulaire",
+                "why.title": "Pourquoi VoiceSketch ?",
+                "why.subtitle": "La manière intelligente de capturer et mémoriser",
+                "why.forget.title": "Vous oubliez 70 % en 24 heures",
+                "why.forget.desc": "Les études montrent que nous oublions la majorité de ce que nous entendons en une journée. VoiceSketch capture tout pour que vous puissiez vous concentrer sur l'écoute.",
+                "why.visual.title": "Les images sont 6x plus mémorables que le texte",
+                "why.visual.desc": "L'effet de supériorité de l'image est réel — les notes visuelles restent en mémoire bien plus longtemps. VoiceSketch transforme vos paroles en images mémorables.",
+                "why.language.title": "Pensez dans votre langue",
+                "why.language.desc": "Enregistrez dans plus de 60 langues et obtenez des résumés compréhensibles. Fini les galères de prise de notes dans une langue étrangère.",
+                "why.simple.title": "Un seul tap, c'est fait",
+                "why.simple.desc": "Appuyez sur enregistrer et VoiceSketch fait le reste — transcription, résumé et notes visuelles, le tout généré automatiquement.",
                 "features.title": "Fonctionnalités puissantes",
                 "features.subtitle": "Tout ce dont vous avez besoin pour transformer l'audio en connaissances visuelles",
                 "features.voice.title": "Enregistrement vocal",
@@ -4276,6 +4453,16 @@ We will respond to inquiries within 5 business days.</div>
                 "demo.card2.desc": "El ATP es la principal moneda energética de las células",
                 "demo.card3.title": "ADN y genética",
                 "demo.card3.desc": "Las mitocondrias contienen su propio ADN circular",
+                "why.title": "¿Por qué VoiceSketch?",
+                "why.subtitle": "La forma más inteligente de capturar y recordar",
+                "why.forget.title": "Olvidas el 70 % en 24 horas",
+                "why.forget.desc": "Los estudios demuestran que olvidamos la mayor parte de lo que escuchamos en un día. VoiceSketch lo captura todo para que puedas concentrarte en escuchar.",
+                "why.visual.title": "Las imágenes se recuerdan 6x mejor que el texto",
+                "why.visual.desc": "El efecto de superioridad de la imagen es real: las notas visuales se recuerdan mucho más tiempo. VoiceSketch convierte tus palabras en imágenes memorables.",
+                "why.language.title": "Piensa en tu idioma",
+                "why.language.desc": "Graba en más de 60 idiomas y obtén resúmenes que puedas entender. No más dificultades tomando notas en un segundo idioma.",
+                "why.simple.title": "Un toque y listo",
+                "why.simple.desc": "Pulsa grabar y VoiceSketch hace el resto: transcripción, resumen y notas visuales, todo generado automáticamente.",
                 "features.title": "Características potentes",
                 "features.subtitle": "Todo lo que necesitas para transformar audio en conocimiento visual",
                 "features.voice.title": "Grabación de voz",
@@ -4416,6 +4603,16 @@ We will respond to inquiries within 5 business days.</div>
                 "demo.card2.desc": "L'ATP è la principale valuta energetica delle cellule",
                 "demo.card3.title": "DNA e genetica",
                 "demo.card3.desc": "I mitocondri contengono il proprio DNA circolare",
+                "why.title": "Perché VoiceSketch?",
+                "why.subtitle": "Il modo più intelligente per catturare e ricordare",
+                "why.forget.title": "Dimentichi il 70% entro 24 ore",
+                "why.forget.desc": "Gli studi dimostrano che dimentichiamo la maggior parte di ciò che ascoltiamo in un giorno. VoiceSketch cattura tutto per permetterti di concentrarti sull'ascolto.",
+                "why.visual.title": "Le immagini si ricordano 6x meglio del testo",
+                "why.visual.desc": "L'effetto di superiorità dell'immagine è reale — le note visive vengono ricordate molto più a lungo. VoiceSketch trasforma le tue parole in immagini memorabili.",
+                "why.language.title": "Pensa nella tua lingua",
+                "why.language.desc": "Registra in oltre 60 lingue e ottieni riassunti comprensibili. Basta lottare con gli appunti in una seconda lingua.",
+                "why.simple.title": "Un tocco e via",
+                "why.simple.desc": "Premi registra e VoiceSketch fa il resto — trascrizione, riassunto e note visive, tutto generato automaticamente.",
                 "features.title": "Funzionalità potenti",
                 "features.subtitle": "Tutto ciò di cui hai bisogno per trasformare l'audio in conoscenza visiva",
                 "features.voice.title": "Registrazione vocale",
@@ -4675,6 +4872,11 @@ We will respond to inquiries within 5 business days.</div>
         // Observe all animated elements
         document.querySelectorAll('.feature-card, .timeline-item, .animate-on-scroll').forEach(el => {
             observer.observe(el);
+        });
+
+        // Stagger why card animations
+        document.querySelectorAll('.why-card').forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.1}s`;
         });
 
         // Stagger feature card animations
