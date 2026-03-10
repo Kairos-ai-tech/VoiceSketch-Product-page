@@ -6,7 +6,7 @@
     <!-- English (Default) -->
     <url>
         <loc>https://voicesketch.kairosaitech.com/</loc>
-        <lastmod>2026-02-06</lastmod>
+        <lastmod>2026-03-07</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
         <image:image>
@@ -28,7 +28,7 @@
     <!-- Traditional Chinese -->
     <url>
         <loc>https://voicesketch.kairosaitech.com/?lang=zh-TW</loc>
-        <lastmod>2026-02-06</lastmod>
+        <lastmod>2026-03-07</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
         <xhtml:link rel="alternate" hreflang="en" href="https://voicesketch.kairosaitech.com/"/>
@@ -45,7 +45,7 @@
     <!-- Simplified Chinese -->
     <url>
         <loc>https://voicesketch.kairosaitech.com/?lang=zh-CN</loc>
-        <lastmod>2026-02-06</lastmod>
+        <lastmod>2026-03-07</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
         <xhtml:link rel="alternate" hreflang="en" href="https://voicesketch.kairosaitech.com/"/>
@@ -62,7 +62,7 @@
     <!-- Japanese -->
     <url>
         <loc>https://voicesketch.kairosaitech.com/?lang=ja</loc>
-        <lastmod>2026-02-06</lastmod>
+        <lastmod>2026-03-07</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
         <xhtml:link rel="alternate" hreflang="en" href="https://voicesketch.kairosaitech.com/"/>
@@ -79,7 +79,7 @@
     <!-- Korean -->
     <url>
         <loc>https://voicesketch.kairosaitech.com/?lang=ko</loc>
-        <lastmod>2026-02-06</lastmod>
+        <lastmod>2026-03-07</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
         <xhtml:link rel="alternate" hreflang="en" href="https://voicesketch.kairosaitech.com/"/>
@@ -96,7 +96,7 @@
     <!-- French -->
     <url>
         <loc>https://voicesketch.kairosaitech.com/?lang=fr</loc>
-        <lastmod>2026-02-06</lastmod>
+        <lastmod>2026-03-07</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
         <xhtml:link rel="alternate" hreflang="en" href="https://voicesketch.kairosaitech.com/"/>
@@ -113,7 +113,7 @@
     <!-- Spanish -->
     <url>
         <loc>https://voicesketch.kairosaitech.com/?lang=es</loc>
-        <lastmod>2026-02-06</lastmod>
+        <lastmod>2026-03-07</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
         <xhtml:link rel="alternate" hreflang="en" href="https://voicesketch.kairosaitech.com/"/>
@@ -130,7 +130,7 @@
     <!-- Italian -->
     <url>
         <loc>https://voicesketch.kairosaitech.com/?lang=it</loc>
-        <lastmod>2026-02-06</lastmod>
+        <lastmod>2026-03-07</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
         <xhtml:link rel="alternate" hreflang="en" href="https://voicesketch.kairosaitech.com/"/>

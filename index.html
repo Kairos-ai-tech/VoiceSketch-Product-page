@@ -24,8 +24,13 @@
     <script>
     (function() {
         var params = new URLSearchParams(window.location.search);
-        var lang = params.get('lang');
         var supported = ['zh-TW','zh-CN','ja','ko','fr','es','it'];
+        // If ?lang param exists but is empty or unsupported, redirect to clean URL
+        if (params.has('lang') && supported.indexOf(params.get('lang')) === -1) {
+            window.location.replace('https://voicesketch.kairosaitech.com/');
+            return;
+        }
+        var lang = params.get('lang');
         if (lang && supported.indexOf(lang) !== -1) {
             var url = 'https://voicesketch.kairosaitech.com/?lang=' + lang;
             document.querySelector('link[rel="canonical"]').href = url;
@@ -64,6 +69,7 @@
         var params = new URLSearchParams(window.location.search);
         var lang = params.get('lang');
         var supported = ['zh-TW','zh-CN','ja','ko','fr','es','it'];
+        // Skip if ?lang= is empty/invalid (redirect already triggered above)
         if (lang && supported.indexOf(lang) !== -1) {
             var url = 'https://voicesketch.kairosaitech.com/?lang=' + lang;
             var ogUrl = document.querySelector('meta[property="og:url"]');
@@ -4770,9 +4776,13 @@ We will respond to inquiries within 5 business days.</div>
                 canonical.href = getLangUrl(lang);
             }
 
-            // Update URL without reload
-            const newUrl = lang === 'en' ? window.location.pathname : window.location.pathname + '?lang=' + lang;
-            history.replaceState(null, '', newUrl);
+            // Only update URL if ?lang= is already in the URL (user explicitly navigated)
+            // Don't add ?lang= for browser-detected languages to avoid Google seeing redirects
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('lang') || lang === 'en') {
+                const newUrl = lang === 'en' ? window.location.pathname : window.location.pathname + '?lang=' + lang;
+                history.replaceState(null, '', newUrl);
+            }
         }
 
         function setLanguage(lang) {
@@ -4824,6 +4834,12 @@ We will respond to inquiries within 5 business days.</div>
             // Priority 1: URL ?lang= parameter (important for SEO/Google indexing)
             const urlParams = new URLSearchParams(window.location.search);
             const urlLang = urlParams.get('lang');
+
+            // If ?lang param exists but is empty or unsupported, redirect to clean URL
+            if (urlParams.has('lang') && !supportedLangs.includes(urlLang)) {
+                window.location.replace(window.location.pathname);
+                return;
+            }
 
             if (urlLang && supportedLangs.includes(urlLang)) {
                 currentLang = urlLang;
