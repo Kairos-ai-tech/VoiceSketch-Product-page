@@ -4869,6 +4869,16 @@ We will respond to inquiries within 5 business days.</div>
             }
 
             setLanguage(currentLang);
+
+            // Scroll to hash section after page load (for /terms and /privacy redirects)
+            if (window.location.hash) {
+                const target = document.querySelector(window.location.hash);
+                if (target) {
+                    setTimeout(() => {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }, 100);
+                }
+            }
         });
 
         // Intersection Observer for scroll animations
