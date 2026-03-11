@@ -2313,8 +2313,8 @@
             <a href="#features" data-i18n="nav.features">Features</a>
             <a href="#how-it-works" data-i18n="nav.howItWorks">How It Works</a>
             <a href="#testimonials" data-i18n="nav.reviews">Reviews</a>
-            <a href="#privacy" data-i18n="nav.privacy">Privacy</a>
             <a href="#terms" data-i18n="nav.terms">Terms</a>
+            <a href="#privacy" data-i18n="nav.privacy">Privacy</a>
             <!-- Language Selector -->
             <div class="lang-selector">
                 <button class="lang-btn" onclick="toggleLangDropdown()" aria-label="Select Language">
@@ -2889,243 +2889,6 @@
         </div>
     </section>
 
-    <!-- Privacy Policy Section -->
-    <section class="privacy-section" id="privacy">
-        <h2 class="section-title animate-on-scroll" data-i18n="privacy.title">Privacy Policy</h2>
-        <p class="section-subtitle animate-on-scroll" data-i18n="privacy.subtitle">Your privacy matters to us</p>
-        <p class="privacy-last-updated animate-on-scroll" data-i18n="privacy.lastUpdated">Last updated: February 7, 2026</p>
-
-        <div class="privacy-grid">
-            <!-- Information We Collect -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
-                    <div class="privacy-card-icon">&#128269;</div>
-                    <span class="privacy-card-title" data-i18n="privacy.collect.title">Information We Collect</span>
-                    <div class="privacy-card-toggle">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-                    </div>
-                </div>
-                <div class="privacy-card-body">
-                    <div class="privacy-card-content" data-i18n="privacy.collect.content">&#8226; Account Information: Email address, display name, and authentication data
-&#8226; Audio Recordings: Voice recordings you choose to process (stored locally by default)
-&#8226; Transcriptions: Text converted from your audio recordings
-&#8226; Usage Data: App features used, session duration, and performance metrics
-&#8226; Device Information: Device type, operating system version, and app version
-&#8226; Location Data: Only if explicitly granted for meeting location features (optional)
-
-We do NOT collect:
-&#8226; Personal conversations unless you explicitly record them
-&#8226; Background audio when the app is not in use
-&#8226; Contacts, photos, or other personal files without permission</div>
-                </div>
-            </div>
-
-            <!-- How We Use Your Information -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
-                    <div class="privacy-card-icon">&#9881;</div>
-                    <span class="privacy-card-title" data-i18n="privacy.use.title">How We Use Your Information</span>
-                    <div class="privacy-card-toggle">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-                    </div>
-                </div>
-                <div class="privacy-card-body">
-                    <div class="privacy-card-content" data-i18n="privacy.use.content">&#8226; Provide Core Services: Process audio, generate transcriptions and summaries
-&#8226; Improve User Experience: Enhance app functionality and performance
-&#8226; Account Management: Authenticate users and sync data across devices
-&#8226; Customer Support: Respond to inquiries and troubleshoot issues
-&#8226; Legal Compliance: Meet legal obligations and protect user rights
-&#8226; Security: Detect and prevent fraud, abuse, and security threats
-
-We will NEVER:
-&#8226; Sell your personal information to third parties
-&#8226; Use your recordings for advertising purposes
-&#8226; Share your content without explicit consent
-&#8226; Access your recordings without your permission</div>
-                </div>
-            </div>
-
-            <!-- Data Storage and Security -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
-                    <div class="privacy-card-icon">&#128274;</div>
-                    <span class="privacy-card-title" data-i18n="privacy.storage.title">Data Storage and Security</span>
-                    <div class="privacy-card-toggle">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-                    </div>
-                </div>
-                <div class="privacy-card-body">
-                    <div class="privacy-card-content" data-i18n="privacy.storage.content">&#8226; Local Storage: Audio recordings and transcriptions are stored locally on your device by default
-&#8226; Cloud Storage: Optional premium feature with end-to-end encryption
-&#8226; Data Encryption: All data is encrypted both in transit and at rest
-&#8226; Access Controls: Strict access controls limit who can access your data
-&#8226; Regular Security Audits: We regularly review and update our security measures
-&#8226; Data Minimization: We only collect and store data necessary for app functionality
-
-Your recordings remain private and are never accessed for training AI models without explicit consent.</div>
-                </div>
-            </div>
-
-            <!-- Third-Party Services -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
-                    <div class="privacy-card-icon">&#127760;</div>
-                    <span class="privacy-card-title" data-i18n="privacy.thirdParty.title">Third-Party Services</span>
-                    <div class="privacy-card-toggle">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-                    </div>
-                </div>
-                <div class="privacy-card-body">
-                    <div class="privacy-card-content" data-i18n="privacy.thirdParty.content">VoiceSketch integrates with the following third-party services:
-
-&#8226; OpenAI: For text summarization and image generation (content is processed but not stored)
-&#8226; Firebase (Google): For authentication, cloud storage, and analytics
-&#8226; Apple Services: For in-app purchases and speech recognition
-
-We ensure all partners meet our privacy and security standards.</div>
-                </div>
-            </div>
-
-            <!-- Your Rights and Controls -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
-                    <div class="privacy-card-icon">&#9995;</div>
-                    <span class="privacy-card-title" data-i18n="privacy.rights.title">Your Rights and Controls</span>
-                    <div class="privacy-card-toggle">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-                    </div>
-                </div>
-                <div class="privacy-card-body">
-                    <div class="privacy-card-content">You have the right to:
-
-&#8226; Access: View all personal data we have about you
-&#8226; Correct: Update or correct inaccurate information
-&#8226; Delete: Request deletion of your account and associated data
-&#8226; Export: Download your data in a portable format
-&#8226; Restrict: Limit how we process your information
-&#8226; Object: Opt out of certain data processing activities
-&#8226; Withdraw Consent: Revoke previously given permissions
-
-To exercise these rights, contact us at <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">kairos.ai.tech@gmail.com</a> or use the data management tools in the app.</div>
-                </div>
-            </div>
-
-            <!-- Children's Privacy (COPPA) -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
-                    <div class="privacy-card-icon">&#128106;</div>
-                    <span class="privacy-card-title" data-i18n="privacy.children.title">Children's Privacy (COPPA)</span>
-                    <div class="privacy-card-toggle">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-                    </div>
-                </div>
-                <div class="privacy-card-body">
-                    <div class="privacy-card-content" data-i18n="privacy.children.content">VoiceSketch is not intended for children under 13 years of age. We do not knowingly collect personal information from children under 13.
-
-If you are a parent or guardian and believe your child has provided personal information:
-&#8226; Contact us immediately at kairos.ai.tech@gmail.com
-&#8226; We will promptly delete the information
-&#8226; We may require verification of your identity
-
-For users aged 13-17:
-&#8226; Parental consent may be required in some jurisdictions
-&#8226; Special protection measures apply to accounts of minors
-&#8226; Educational use requires school administrator approval</div>
-                </div>
-            </div>
-
-            <!-- International Users (GDPR) -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
-                    <div class="privacy-card-icon">&#127758;</div>
-                    <span class="privacy-card-title" data-i18n="privacy.gdpr.title">International Users (GDPR)</span>
-                    <div class="privacy-card-toggle">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-                    </div>
-                </div>
-                <div class="privacy-card-body">
-                    <div class="privacy-card-content" data-i18n="privacy.gdpr.content">For users in the European Union, we comply with the General Data Protection Regulation (GDPR):
-
-&#8226; Lawful Basis: We process data based on consent, contract performance, or legitimate interests
-&#8226; Data Protection Officer: Available at kairos.ai.tech@gmail.com
-&#8226; Supervisory Authority: You can lodge complaints with your local data protection authority
-&#8226; Data Transfers: International transfers are protected by appropriate safeguards
-&#8226; Automated Decision Making: We do not make automated decisions that significantly affect you
-
-EU users have enhanced rights under GDPR, including the right to data portability and the right to be forgotten.</div>
-                </div>
-            </div>
-
-            <!-- California Privacy Rights (CCPA) -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
-                    <div class="privacy-card-icon">&#128205;</div>
-                    <span class="privacy-card-title" data-i18n="privacy.ccpa.title">California Privacy Rights (CCPA)</span>
-                    <div class="privacy-card-toggle">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-                    </div>
-                </div>
-                <div class="privacy-card-body">
-                    <div class="privacy-card-content" data-i18n="privacy.ccpa.content">For California residents, we comply with the California Consumer Privacy Act (CCPA):
-
-&#8226; Right to Know: What personal information we collect and how it's used
-&#8226; Right to Delete: Request deletion of personal information
-&#8226; Right to Opt-Out: Opt out of the sale of personal information (we don't sell data)
-&#8226; Right to Non-Discrimination: We won't discriminate for exercising CCPA rights
-
-To exercise CCPA rights:
-&#8226; Email: kairos.ai.tech@gmail.com
-&#8226; Subject line: "CCPA Rights Request"
-&#8226; Include: Full name, email address, and specific request</div>
-                </div>
-            </div>
-
-            <!-- Data Retention -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
-                    <div class="privacy-card-icon">&#128197;</div>
-                    <span class="privacy-card-title" data-i18n="privacy.retention.title">Data Retention</span>
-                    <div class="privacy-card-toggle">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-                    </div>
-                </div>
-                <div class="privacy-card-body">
-                    <div class="privacy-card-content" data-i18n="privacy.retention.content">We retain your information only as long as necessary:
-
-&#8226; Account Data: Retained while your account is active
-&#8226; Recordings: Deleted according to your settings (default: 30 days)
-&#8226; Usage Analytics: Aggregated and anonymized after 2 years
-&#8226; Legal Requirements: May be retained longer if required by law
-&#8226; Deleted Accounts: All data permanently deleted within 30 days
-
-You can adjust retention settings in the app or request immediate deletion.</div>
-                </div>
-            </div>
-
-            <!-- Contact Us -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
-                    <div class="privacy-card-icon">&#9993;</div>
-                    <span class="privacy-card-title" data-i18n="privacy.contact.title">Contact Us</span>
-                    <div class="privacy-card-toggle">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-                    </div>
-                </div>
-                <div class="privacy-card-body">
-                    <div class="privacy-card-content">For privacy-related questions or concerns:
-
-Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">kairos.ai.tech@gmail.com</a>
-Subject: Include "Privacy Inquiry" or "GDPR Request" or "CCPA Request"
-
-We respond to privacy inquiries within 30 days (or sooner as required by law).
-
-Data Protection Officer (EU):
-Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">kairos.ai.tech@gmail.com</a></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Terms of Service Section -->
     <section class="terms-section" id="terms">
         <h2 class="section-title animate-on-scroll" data-i18n="terms.title">Terms of Service</h2>
@@ -3508,6 +3271,243 @@ We will respond to inquiries within 5 business days.</div>
         </div>
     </section>
 
+    <!-- Privacy Policy Section -->
+    <section class="privacy-section" id="privacy">
+        <h2 class="section-title animate-on-scroll" data-i18n="privacy.title">Privacy Policy</h2>
+        <p class="section-subtitle animate-on-scroll" data-i18n="privacy.subtitle">Your privacy matters to us</p>
+        <p class="privacy-last-updated animate-on-scroll" data-i18n="privacy.lastUpdated">Last updated: February 7, 2026</p>
+
+        <div class="privacy-grid">
+            <!-- Information We Collect -->
+            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
+                <div class="privacy-card-header">
+                    <div class="privacy-card-icon">&#128269;</div>
+                    <span class="privacy-card-title" data-i18n="privacy.collect.title">Information We Collect</span>
+                    <div class="privacy-card-toggle">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </div>
+                <div class="privacy-card-body">
+                    <div class="privacy-card-content" data-i18n="privacy.collect.content">&#8226; Account Information: Email address, display name, and authentication data
+&#8226; Audio Recordings: Voice recordings you choose to process (stored locally by default)
+&#8226; Transcriptions: Text converted from your audio recordings
+&#8226; Usage Data: App features used, session duration, and performance metrics
+&#8226; Device Information: Device type, operating system version, and app version
+&#8226; Location Data: Only if explicitly granted for meeting location features (optional)
+
+We do NOT collect:
+&#8226; Personal conversations unless you explicitly record them
+&#8226; Background audio when the app is not in use
+&#8226; Contacts, photos, or other personal files without permission</div>
+                </div>
+            </div>
+
+            <!-- How We Use Your Information -->
+            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
+                <div class="privacy-card-header">
+                    <div class="privacy-card-icon">&#9881;</div>
+                    <span class="privacy-card-title" data-i18n="privacy.use.title">How We Use Your Information</span>
+                    <div class="privacy-card-toggle">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </div>
+                <div class="privacy-card-body">
+                    <div class="privacy-card-content" data-i18n="privacy.use.content">&#8226; Provide Core Services: Process audio, generate transcriptions and summaries
+&#8226; Improve User Experience: Enhance app functionality and performance
+&#8226; Account Management: Authenticate users and sync data across devices
+&#8226; Customer Support: Respond to inquiries and troubleshoot issues
+&#8226; Legal Compliance: Meet legal obligations and protect user rights
+&#8226; Security: Detect and prevent fraud, abuse, and security threats
+
+We will NEVER:
+&#8226; Sell your personal information to third parties
+&#8226; Use your recordings for advertising purposes
+&#8226; Share your content without explicit consent
+&#8226; Access your recordings without your permission</div>
+                </div>
+            </div>
+
+            <!-- Data Storage and Security -->
+            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
+                <div class="privacy-card-header">
+                    <div class="privacy-card-icon">&#128274;</div>
+                    <span class="privacy-card-title" data-i18n="privacy.storage.title">Data Storage and Security</span>
+                    <div class="privacy-card-toggle">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </div>
+                <div class="privacy-card-body">
+                    <div class="privacy-card-content" data-i18n="privacy.storage.content">&#8226; Local Storage: Audio recordings and transcriptions are stored locally on your device by default
+&#8226; Cloud Storage: Optional premium feature with end-to-end encryption
+&#8226; Data Encryption: All data is encrypted both in transit and at rest
+&#8226; Access Controls: Strict access controls limit who can access your data
+&#8226; Regular Security Audits: We regularly review and update our security measures
+&#8226; Data Minimization: We only collect and store data necessary for app functionality
+
+Your recordings remain private and are never accessed for training AI models without explicit consent.</div>
+                </div>
+            </div>
+
+            <!-- Third-Party Services -->
+            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
+                <div class="privacy-card-header">
+                    <div class="privacy-card-icon">&#127760;</div>
+                    <span class="privacy-card-title" data-i18n="privacy.thirdParty.title">Third-Party Services</span>
+                    <div class="privacy-card-toggle">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </div>
+                <div class="privacy-card-body">
+                    <div class="privacy-card-content" data-i18n="privacy.thirdParty.content">VoiceSketch integrates with the following third-party services:
+
+&#8226; OpenAI: For text summarization and image generation (content is processed but not stored)
+&#8226; Firebase (Google): For authentication, cloud storage, and analytics
+&#8226; Apple Services: For in-app purchases and speech recognition
+
+We ensure all partners meet our privacy and security standards.</div>
+                </div>
+            </div>
+
+            <!-- Your Rights and Controls -->
+            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
+                <div class="privacy-card-header">
+                    <div class="privacy-card-icon">&#9995;</div>
+                    <span class="privacy-card-title" data-i18n="privacy.rights.title">Your Rights and Controls</span>
+                    <div class="privacy-card-toggle">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </div>
+                <div class="privacy-card-body">
+                    <div class="privacy-card-content">You have the right to:
+
+&#8226; Access: View all personal data we have about you
+&#8226; Correct: Update or correct inaccurate information
+&#8226; Delete: Request deletion of your account and associated data
+&#8226; Export: Download your data in a portable format
+&#8226; Restrict: Limit how we process your information
+&#8226; Object: Opt out of certain data processing activities
+&#8226; Withdraw Consent: Revoke previously given permissions
+
+To exercise these rights, contact us at <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">kairos.ai.tech@gmail.com</a> or use the data management tools in the app.</div>
+                </div>
+            </div>
+
+            <!-- Children's Privacy (COPPA) -->
+            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
+                <div class="privacy-card-header">
+                    <div class="privacy-card-icon">&#128106;</div>
+                    <span class="privacy-card-title" data-i18n="privacy.children.title">Children's Privacy (COPPA)</span>
+                    <div class="privacy-card-toggle">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </div>
+                <div class="privacy-card-body">
+                    <div class="privacy-card-content" data-i18n="privacy.children.content">VoiceSketch is not intended for children under 13 years of age. We do not knowingly collect personal information from children under 13.
+
+If you are a parent or guardian and believe your child has provided personal information:
+&#8226; Contact us immediately at kairos.ai.tech@gmail.com
+&#8226; We will promptly delete the information
+&#8226; We may require verification of your identity
+
+For users aged 13-17:
+&#8226; Parental consent may be required in some jurisdictions
+&#8226; Special protection measures apply to accounts of minors
+&#8226; Educational use requires school administrator approval</div>
+                </div>
+            </div>
+
+            <!-- International Users (GDPR) -->
+            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
+                <div class="privacy-card-header">
+                    <div class="privacy-card-icon">&#127758;</div>
+                    <span class="privacy-card-title" data-i18n="privacy.gdpr.title">International Users (GDPR)</span>
+                    <div class="privacy-card-toggle">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </div>
+                <div class="privacy-card-body">
+                    <div class="privacy-card-content" data-i18n="privacy.gdpr.content">For users in the European Union, we comply with the General Data Protection Regulation (GDPR):
+
+&#8226; Lawful Basis: We process data based on consent, contract performance, or legitimate interests
+&#8226; Data Protection Officer: Available at kairos.ai.tech@gmail.com
+&#8226; Supervisory Authority: You can lodge complaints with your local data protection authority
+&#8226; Data Transfers: International transfers are protected by appropriate safeguards
+&#8226; Automated Decision Making: We do not make automated decisions that significantly affect you
+
+EU users have enhanced rights under GDPR, including the right to data portability and the right to be forgotten.</div>
+                </div>
+            </div>
+
+            <!-- California Privacy Rights (CCPA) -->
+            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
+                <div class="privacy-card-header">
+                    <div class="privacy-card-icon">&#128205;</div>
+                    <span class="privacy-card-title" data-i18n="privacy.ccpa.title">California Privacy Rights (CCPA)</span>
+                    <div class="privacy-card-toggle">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </div>
+                <div class="privacy-card-body">
+                    <div class="privacy-card-content" data-i18n="privacy.ccpa.content">For California residents, we comply with the California Consumer Privacy Act (CCPA):
+
+&#8226; Right to Know: What personal information we collect and how it's used
+&#8226; Right to Delete: Request deletion of personal information
+&#8226; Right to Opt-Out: Opt out of the sale of personal information (we don't sell data)
+&#8226; Right to Non-Discrimination: We won't discriminate for exercising CCPA rights
+
+To exercise CCPA rights:
+&#8226; Email: kairos.ai.tech@gmail.com
+&#8226; Subject line: "CCPA Rights Request"
+&#8226; Include: Full name, email address, and specific request</div>
+                </div>
+            </div>
+
+            <!-- Data Retention -->
+            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
+                <div class="privacy-card-header">
+                    <div class="privacy-card-icon">&#128197;</div>
+                    <span class="privacy-card-title" data-i18n="privacy.retention.title">Data Retention</span>
+                    <div class="privacy-card-toggle">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </div>
+                <div class="privacy-card-body">
+                    <div class="privacy-card-content" data-i18n="privacy.retention.content">We retain your information only as long as necessary:
+
+&#8226; Account Data: Retained while your account is active
+&#8226; Recordings: Deleted according to your settings (default: 30 days)
+&#8226; Usage Analytics: Aggregated and anonymized after 2 years
+&#8226; Legal Requirements: May be retained longer if required by law
+&#8226; Deleted Accounts: All data permanently deleted within 30 days
+
+You can adjust retention settings in the app or request immediate deletion.</div>
+                </div>
+            </div>
+
+            <!-- Contact Us -->
+            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
+                <div class="privacy-card-header">
+                    <div class="privacy-card-icon">&#9993;</div>
+                    <span class="privacy-card-title" data-i18n="privacy.contact.title">Contact Us</span>
+                    <div class="privacy-card-toggle">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </div>
+                <div class="privacy-card-body">
+                    <div class="privacy-card-content">For privacy-related questions or concerns:
+
+Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">kairos.ai.tech@gmail.com</a>
+Subject: Include "Privacy Inquiry" or "GDPR Request" or "CCPA Request"
+
+We respond to privacy inquiries within 30 days (or sooner as required by law).
+
+Data Protection Officer (EU):
+Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">kairos.ai.tech@gmail.com</a></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div class="footer-brand">
@@ -3517,7 +3517,7 @@ We will respond to inquiries within 5 business days.</div>
             <span data-i18n="footer.from">from</span> <a href="https://www.kairosaitech.com" target="_blank">Kairos.ai</a>
         </div>
         <p data-i18n="footer.copyright">&copy; 2026 VoiceSketch. All rights reserved.</p>
-        <p style="margin-top: 0.5rem;"><a href="#privacy" style="color: rgba(255,255,255,0.5); font-size: 0.8rem; text-decoration: none;" data-i18n="nav.privacy">Privacy Policy</a> &nbsp;|&nbsp; <a href="#terms" style="color: rgba(255,255,255,0.5); font-size: 0.8rem; text-decoration: none;" data-i18n="nav.terms">Terms of Service</a></p>
+        <p style="margin-top: 0.5rem;"><a href="#terms" style="color: rgba(255,255,255,0.5); font-size: 0.8rem; text-decoration: none;" data-i18n="nav.terms">Terms of Service</a> &nbsp;|&nbsp; <a href="#privacy" style="color: rgba(255,255,255,0.5); font-size: 0.8rem; text-decoration: none;" data-i18n="nav.privacy">Privacy Policy</a></p>
     </footer>
 
     <!-- Mobile Sticky CTA -->
