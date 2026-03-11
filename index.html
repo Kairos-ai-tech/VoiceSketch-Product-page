@@ -4872,12 +4872,16 @@ We will respond to inquiries within 5 business days.</div>
 
             // Scroll to hash section after page load (for /terms and /privacy redirects)
             if (window.location.hash) {
-                const target = document.querySelector(window.location.hash);
-                if (target) {
-                    setTimeout(() => {
-                        target.scrollIntoView({ behavior: 'smooth' });
-                    }, 100);
-                }
+                const hashTarget = window.location.hash;
+                const scrollToTarget = () => {
+                    const target = document.querySelector(hashTarget);
+                    if (target) {
+                        window.scrollTo(0, target.offsetTop - 80);
+                    }
+                };
+                scrollToTarget();
+                setTimeout(scrollToTarget, 500);
+                window.addEventListener('load', scrollToTarget);
             }
         });
 
