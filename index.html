@@ -465,7 +465,7 @@
             color: white;
         }
 
-        .demo-header h4 {
+        .demo-header p {
             font-size: 1rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
@@ -1381,12 +1381,6 @@
             align-items: center;
             justify-content: center;
             font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-
-        .share-icon:hover {
-            background: var(--primary-red);
-            transform: scale(1.1);
         }
 
         @media (max-width: 768px) {
@@ -2002,6 +1996,8 @@
             background: rgba(229, 57, 53, 0.2);
             cursor: pointer;
             transition: all 0.3s ease;
+            border: none;
+            padding: 0;
         }
 
         .carousel-dot.active {
@@ -2187,6 +2183,15 @@
             display: flex;
             align-items: center;
             gap: 0.75rem;
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: inherit;
+            color: inherit;
+            text-align: left;
         }
 
         .privacy-card-icon {
@@ -2229,7 +2234,7 @@
         }
 
         .privacy-card.open .privacy-card-body {
-            max-height: 800px;
+            max-height: 2000px;
             padding-top: 0.75rem;
         }
 
@@ -2300,11 +2305,54 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Skip navigation link */
+        .skip-link {
+            position: absolute;
+            top: -100%;
+            left: 1rem;
+            z-index: 10000;
+            background: var(--primary-red);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0 0 8px 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: top 0.2s ease;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Keyboard focus indicators */
+        .privacy-card-header:focus-visible,
+        .lang-option:focus-visible,
+        .carousel-dot:focus-visible {
+            outline: 2px solid var(--primary-red);
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
+
+        .carousel-dot:focus-visible {
+            border-radius: 50%;
+        }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
     <!-- Navigation -->
-    <nav class="nav" id="nav">
+    <nav class="nav" id="nav" aria-label="Main navigation">
         <a href="/" class="nav-logo">
             <img src="assets/logo.png" alt="VoiceSketch" width="32" height="32">
             <span>VoiceSketch</span>
@@ -2317,7 +2365,7 @@
             <a href="#privacy" data-i18n="nav.privacy">Privacy</a>
             <!-- Language Selector -->
             <div class="lang-selector">
-                <button class="lang-btn" onclick="toggleLangDropdown()" aria-label="Select Language">
+                <button class="lang-btn" onclick="toggleLangDropdown()" aria-label="Select Language" aria-expanded="false" aria-haspopup="listbox">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="12" cy="12" r="10"/>
                         <line x1="2" y1="12" x2="22" y2="12"/>
@@ -2328,21 +2376,22 @@
                         <path d="M6 9l6 6 6-6"/>
                     </svg>
                 </button>
-                <div class="lang-dropdown" id="lang-dropdown">
-                    <div class="lang-option active" onclick="setLanguage('en')">English</div>
-                    <div class="lang-option" onclick="setLanguage('zh-TW')">繁體中文</div>
-                    <div class="lang-option" onclick="setLanguage('zh-CN')">简体中文</div>
-                    <div class="lang-option" onclick="setLanguage('ja')">日本語</div>
-                    <div class="lang-option" onclick="setLanguage('ko')">한국어</div>
-                    <div class="lang-option" onclick="setLanguage('fr')">Français</div>
-                    <div class="lang-option" onclick="setLanguage('es')">Español</div>
-                    <div class="lang-option" onclick="setLanguage('it')">Italiano</div>
+                <div class="lang-dropdown" id="lang-dropdown" role="listbox" aria-label="Language">
+                    <div class="lang-option active" role="option" tabindex="-1" onclick="setLanguage('en')" data-lang="en">English</div>
+                    <div class="lang-option" role="option" tabindex="-1" onclick="setLanguage('zh-TW')" data-lang="zh-TW">繁體中文</div>
+                    <div class="lang-option" role="option" tabindex="-1" onclick="setLanguage('zh-CN')" data-lang="zh-CN">简体中文</div>
+                    <div class="lang-option" role="option" tabindex="-1" onclick="setLanguage('ja')" data-lang="ja">日本語</div>
+                    <div class="lang-option" role="option" tabindex="-1" onclick="setLanguage('ko')" data-lang="ko">한국어</div>
+                    <div class="lang-option" role="option" tabindex="-1" onclick="setLanguage('fr')" data-lang="fr">Français</div>
+                    <div class="lang-option" role="option" tabindex="-1" onclick="setLanguage('es')" data-lang="es">Español</div>
+                    <div class="lang-option" role="option" tabindex="-1" onclick="setLanguage('it')" data-lang="it">Italiano</div>
                 </div>
             </div>
             <a href="https://apps.apple.com/us/app/voicesketch-ai-visual-notes/id6757849645" class="nav-cta app-store-link" data-i18n="hero.cta">Download</a>
         </div>
     </nav>
 
+    <main id="main-content">
     <!-- Hero Section -->
     <section class="hero">
         <div class="bg-shapes">
@@ -2465,10 +2514,10 @@
             </div>
         </div>
         <div class="demo-container">
-            <div class="demo-phone">
+            <div class="demo-phone" aria-hidden="true">
                 <div class="demo-screen">
                     <div class="demo-header">
-                        <h4 data-i18n="demo.recording">Recording...</h4>
+                        <p data-i18n="demo.recording">Recording...</p>
                         <div class="transcription-box">
                             <div class="typing-text" data-i18n="demo.transcription">The mitochondria is the powerhouse of the cell...</div>
                         </div>
@@ -2858,13 +2907,13 @@
                         <path d="M15 18l-6-6 6-6"/>
                     </svg>
                 </button>
-                <div class="carousel-dots" id="carousel-dots">
-                    <div class="carousel-dot active" data-index="0"></div>
-                    <div class="carousel-dot" data-index="1"></div>
-                    <div class="carousel-dot" data-index="2"></div>
-                    <div class="carousel-dot" data-index="3"></div>
-                    <div class="carousel-dot" data-index="4"></div>
-                    <div class="carousel-dot" data-index="5"></div>
+                <div class="carousel-dots" id="carousel-dots" role="tablist" aria-label="Review slides">
+                    <button class="carousel-dot active" role="tab" aria-label="Slide 1" aria-selected="true" data-index="0"></button>
+                    <button class="carousel-dot" role="tab" aria-label="Slide 2" aria-selected="false" data-index="1"></button>
+                    <button class="carousel-dot" role="tab" aria-label="Slide 3" aria-selected="false" data-index="2"></button>
+                    <button class="carousel-dot" role="tab" aria-label="Slide 4" aria-selected="false" data-index="3"></button>
+                    <button class="carousel-dot" role="tab" aria-label="Slide 5" aria-selected="false" data-index="4"></button>
+                    <button class="carousel-dot" role="tab" aria-label="Slide 6" aria-selected="false" data-index="5"></button>
                 </div>
                 <button class="carousel-btn" id="carousel-next" aria-label="Next">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -2897,14 +2946,14 @@
 
         <div class="privacy-grid">
             <!-- Acceptance of Terms -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#9989;</div>
                     <span class="privacy-card-title" data-i18n="terms.acceptance.title">Acceptance of Terms</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content" data-i18n="terms.acceptance.content">By downloading, installing, or using VoiceSketch ("the App"), you agree to be bound by these Terms of Service ("Terms") and End User License Agreement ("EULA"). If you do not agree to these Terms, please do not use the App.
 
@@ -2915,14 +2964,14 @@ You must be at least 13 years old to use this App. If you are under 18, you conf
             </div>
 
             <!-- License Scope -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#128221;</div>
                     <span class="privacy-card-title" data-i18n="terms.license.title">License Scope</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content" data-i18n="terms.license.content">We grant you a non-transferable, non-exclusive license to use VoiceSketch on any Apple-branded products that you own or control, as permitted by the Usage Rules set forth in the Apple Media Services Terms and Conditions.
 
@@ -2936,14 +2985,14 @@ The terms of this license must not conflict with the Apple Media Services Terms 
             </div>
 
             <!-- Description of Service -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#128241;</div>
                     <span class="privacy-card-title" data-i18n="terms.service.title">Description of Service</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content" data-i18n="terms.service.content">VoiceSketch is a mobile application that provides:
 
@@ -2958,14 +3007,14 @@ The App integrates with third-party services including OpenAI for AI processing 
             </div>
 
             <!-- Maintenance and Support -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#128736;</div>
                     <span class="privacy-card-title" data-i18n="terms.maintenance.title">Maintenance and Support</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content" data-i18n="terms.maintenance.content">Kairos AI Tech is solely responsible for providing any maintenance and support services for VoiceSketch, as specified in these Terms or as required under applicable law.
 
@@ -2979,14 +3028,14 @@ The App integrates with third-party services including OpenAI for AI processing 
             </div>
 
             <!-- User Accounts and Registration -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#128100;</div>
                     <span class="privacy-card-title" data-i18n="terms.accounts.title">User Accounts and Registration</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content" data-i18n="terms.accounts.content">Account Creation:
 &#8226; You must provide accurate and complete registration information
@@ -3006,14 +3055,14 @@ Account Verification:
             </div>
 
             <!-- Acceptable Use Policy -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#128077;</div>
                     <span class="privacy-card-title" data-i18n="terms.acceptableUse.title">Acceptable Use Policy</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content" data-i18n="terms.acceptableUse.content">You agree NOT to use VoiceSketch for:
 
@@ -3038,14 +3087,14 @@ Violation of these terms may result in account suspension or termination.</div>
             </div>
 
             <!-- Content and Intellectual Property -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#128196;</div>
                     <span class="privacy-card-title" data-i18n="terms.ip.title">Content and Intellectual Property</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content" data-i18n="terms.ip.content">VoiceSketch Intellectual Property:
 &#8226; The App, including design, code, and features, is owned by VoiceSketch
@@ -3073,14 +3122,14 @@ Intellectual Property Claims:
             </div>
 
             <!-- Privacy and Data Protection -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#128274;</div>
                     <span class="privacy-card-title" data-i18n="terms.privacyData.title">Privacy and Data Protection</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content" data-i18n="terms.privacyData.content">Your privacy is important to us. Our data practices are governed by our Privacy Policy, which includes:
 
@@ -3109,14 +3158,14 @@ For complete details, please review our Privacy Policy.</div>
             </div>
 
             <!-- Subscription and Payments -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#128179;</div>
                     <span class="privacy-card-title" data-i18n="terms.subscription.title">Subscription and Payments</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content" data-i18n="terms.subscription.content">Premium Subscriptions:
 &#8226; Premium features are available through in-app purchase subscriptions
@@ -3145,14 +3194,14 @@ Changes to Pricing:
             </div>
 
             <!-- Disclaimers and Limitations -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#9888;</div>
                     <span class="privacy-card-title" data-i18n="terms.disclaimers.title">Disclaimers and Limitations</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content" data-i18n="terms.disclaimers.content">Warranty:
 &#8226; Kairos AI Tech is solely responsible for any product warranties, whether express or implied by law, to the extent not effectively disclaimed
@@ -3188,14 +3237,14 @@ Third-Party Services:
             </div>
 
             <!-- Indemnification -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#128737;</div>
                     <span class="privacy-card-title" data-i18n="terms.indemnification.title">Indemnification</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content" data-i18n="terms.indemnification.content">You agree to indemnify, defend, and hold harmless VoiceSketch and its officers, directors, employees, and agents from and against any claims, damages, losses, or expenses arising from:
 
@@ -3211,14 +3260,14 @@ This indemnification survives termination of your account and these Terms.</div>
             </div>
 
             <!-- Termination -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#10060;</div>
                     <span class="privacy-card-title" data-i18n="terms.termination.title">Termination</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content" data-i18n="terms.termination.content">Termination by You:
 &#8226; You may delete your account at any time through the app settings
@@ -3244,14 +3293,14 @@ Data Recovery:
             </div>
 
             <!-- Governing Law and Disputes -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#9878;</div>
                     <span class="privacy-card-title" data-i18n="terms.governingLaw.title">Governing Law and Disputes</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content" data-i18n="terms.governingLaw.content">These Terms are governed by and construed in accordance with the laws of the State of California, United States, without regard to conflict of law principles.
 
@@ -3277,14 +3326,14 @@ Legal Compliance:
             </div>
 
             <!-- Changes to Terms -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#128260;</div>
                     <span class="privacy-card-title" data-i18n="terms.changes.title">Changes to Terms</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content" data-i18n="terms.changes.content">We reserve the right to modify these Terms at any time. Changes will be effective when:
 
@@ -3304,14 +3353,14 @@ Version Control:
             </div>
 
             <!-- Contact Information -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#9993;</div>
                     <span class="privacy-card-title" data-i18n="terms.contact.title">Contact Information</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content">For questions about these Terms of Service:
 
@@ -3335,14 +3384,14 @@ We will respond to inquiries within 5 business days.</div>
 
         <div class="privacy-grid">
             <!-- Information We Collect -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#128269;</div>
                     <span class="privacy-card-title" data-i18n="privacy.collect.title">Information We Collect</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content" data-i18n="privacy.collect.content">&#8226; Account Information: Email address, display name, and authentication data
 &#8226; Audio Recordings: Voice recordings you choose to process (stored locally by default)
@@ -3359,14 +3408,14 @@ We do NOT collect:
             </div>
 
             <!-- How We Use Your Information -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#9881;</div>
                     <span class="privacy-card-title" data-i18n="privacy.use.title">How We Use Your Information</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content" data-i18n="privacy.use.content">&#8226; Provide Core Services: Process audio, generate transcriptions and summaries
 &#8226; Improve User Experience: Enhance app functionality and performance
@@ -3384,14 +3433,14 @@ We will NEVER:
             </div>
 
             <!-- Data Storage and Security -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#128274;</div>
                     <span class="privacy-card-title" data-i18n="privacy.storage.title">Data Storage and Security</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content" data-i18n="privacy.storage.content">&#8226; Local Storage: Audio recordings and transcriptions are stored locally on your device by default
 &#8226; Cloud Storage: Optional premium feature with end-to-end encryption
@@ -3405,14 +3454,14 @@ Your recordings remain private and are never accessed for training AI models wit
             </div>
 
             <!-- Third-Party Services -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#127760;</div>
                     <span class="privacy-card-title" data-i18n="privacy.thirdParty.title">Third-Party Services</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content" data-i18n="privacy.thirdParty.content">VoiceSketch integrates with the following third-party services:
 
@@ -3432,14 +3481,14 @@ We ensure all partners meet our privacy and security standards. All third-party 
             </div>
 
             <!-- Your Rights and Controls -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#9995;</div>
                     <span class="privacy-card-title" data-i18n="privacy.rights.title">Your Rights and Controls</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content">You have the right to:
 
@@ -3456,14 +3505,14 @@ To exercise these rights, contact us at <a href="mailto:kairos.ai.tech@gmail.com
             </div>
 
             <!-- Children's Privacy (COPPA) -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#128106;</div>
                     <span class="privacy-card-title" data-i18n="privacy.children.title">Children's Privacy (COPPA)</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content" data-i18n="privacy.children.content">VoiceSketch is not intended for children under 13 years of age. We do not knowingly collect personal information from children under 13.
 
@@ -3480,14 +3529,14 @@ For users aged 13-17:
             </div>
 
             <!-- International Users (GDPR) -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#127758;</div>
                     <span class="privacy-card-title" data-i18n="privacy.gdpr.title">International Users (GDPR)</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content" data-i18n="privacy.gdpr.content">For users in the European Union, we comply with the General Data Protection Regulation (GDPR):
 
@@ -3502,14 +3551,14 @@ EU users have enhanced rights under GDPR, including the right to data portabilit
             </div>
 
             <!-- California Privacy Rights (CCPA) -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#128205;</div>
                     <span class="privacy-card-title" data-i18n="privacy.ccpa.title">California Privacy Rights (CCPA)</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content" data-i18n="privacy.ccpa.content">For California residents, we comply with the California Consumer Privacy Act (CCPA):
 
@@ -3526,14 +3575,14 @@ To exercise CCPA rights:
             </div>
 
             <!-- Data Retention -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#128197;</div>
                     <span class="privacy-card-title" data-i18n="privacy.retention.title">Data Retention</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content" data-i18n="privacy.retention.content">We retain your information only as long as necessary:
 
@@ -3548,14 +3597,14 @@ You can adjust retention settings in the app or request immediate deletion.</div
             </div>
 
             <!-- Contact Us -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#9993;</div>
                     <span class="privacy-card-title" data-i18n="privacy.contact.title">Contact Us</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content">For privacy-related questions or concerns:
 
@@ -3571,6 +3620,7 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
         </div>
     </section>
 
+    </main>
     <!-- Footer -->
     <footer>
         <div class="footer-brand">
@@ -5195,6 +5245,87 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
 
         // Start autoplay
         startAutoplay();
+
+        // Update aria-selected on carousel dots when changing slides
+        const origGoToSlide = goToSlide;
+        goToSlide = function(index) {
+            origGoToSlide(index);
+            dots.forEach((dot, i) => {
+                dot.setAttribute('aria-selected', i === currentSlide ? 'true' : 'false');
+            });
+        };
+
+        // Accordion keyboard support
+        document.querySelectorAll('.privacy-card-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const card = this.closest('.privacy-card');
+                const isOpen = card.classList.toggle('open');
+                this.setAttribute('aria-expanded', isOpen);
+            });
+        });
+
+        // Language dropdown keyboard navigation
+        (function() {
+            const btn = document.querySelector('.lang-btn');
+            const dropdown = document.getElementById('lang-dropdown');
+            const options = dropdown.querySelectorAll('.lang-option');
+
+            function openDropdown() {
+                dropdown.classList.add('active');
+                btn.setAttribute('aria-expanded', 'true');
+                const active = dropdown.querySelector('.lang-option.active') || options[0];
+                active.focus();
+            }
+
+            function closeDropdown() {
+                dropdown.classList.remove('active');
+                btn.setAttribute('aria-expanded', 'false');
+                btn.focus();
+            }
+
+            btn.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    openDropdown();
+                }
+            });
+
+            dropdown.addEventListener('keydown', function(e) {
+                const focused = document.activeElement;
+                const idx = Array.from(options).indexOf(focused);
+
+                if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    options[Math.min(idx + 1, options.length - 1)].focus();
+                } else if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    if (idx <= 0) { closeDropdown(); } else { options[idx - 1].focus(); }
+                } else if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    if (focused.dataset.lang) setLanguage(focused.dataset.lang);
+                    closeDropdown();
+                } else if (e.key === 'Escape') {
+                    closeDropdown();
+                }
+            });
+
+            // Close dropdown on outside click
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.lang-selector')) {
+                    dropdown.classList.remove('active');
+                    btn.setAttribute('aria-expanded', 'false');
+                }
+            });
+        })();
+
+        // Update toggleLangDropdown to sync aria-expanded
+        const origToggle = toggleLangDropdown;
+        toggleLangDropdown = function() {
+            origToggle();
+            const btn = document.querySelector('.lang-btn');
+            const dropdown = document.getElementById('lang-dropdown');
+            btn.setAttribute('aria-expanded', dropdown.classList.contains('active'));
+        };
     </script>
 </body>
 </html>
