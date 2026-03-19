@@ -123,6 +123,7 @@
     </script>
 
     <link rel="icon" type="image/png" href="assets/logo.png">
+    <link rel="preload" href="assets/logo.png" as="image">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -1427,6 +1428,7 @@
 
         /* Use Cases */
         .use-cases {
+            contain: layout style;
             padding: 6rem 2rem;
             background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-mid) 50%, var(--gradient-end) 100%);
             position: relative;
@@ -1500,6 +1502,7 @@
 
         /* Stats Section with counter animation */
         .stats {
+            contain: layout style;
             padding: 5rem 2rem;
             background: #fff;
         }
@@ -1887,6 +1890,7 @@
 
         /* Testimonials Section - Rotating Gallery */
         .testimonials {
+            contain: layout style;
             padding: 5rem 2rem;
             background: linear-gradient(180deg, #fff 0%, #fafafa 100%);
             overflow: hidden;
@@ -1903,6 +1907,7 @@
         .testimonial-track {
             display: flex;
             transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
         }
 
         .testimonial-card {
@@ -2168,6 +2173,8 @@
 
         /* Privacy Policy Section */
         .privacy-section {
+            content-visibility: auto;
+            contain-intrinsic-size: auto 2000px;
             padding: 5rem 2rem;
             background: linear-gradient(180deg, #fff 0%, #f8f5f2 100%);
         }
@@ -2294,6 +2301,8 @@
 
         /* Terms of Service Section */
         .terms-section {
+            content-visibility: auto;
+            contain-intrinsic-size: auto 3000px;
             padding: 5rem 2rem;
             background: linear-gradient(180deg, #f8f5f2 0%, #fff 100%);
         }
@@ -2443,7 +2452,7 @@
                     <div class="wave"></div>
                     <div class="wave"></div>
                 </div>
-                <img src="assets/logo.png" alt="VoiceSketch Logo" class="logo" width="160" height="160">
+                <img src="assets/logo.png" alt="VoiceSketch Logo" class="logo" width="160" height="160" fetchpriority="high" decoding="async">
             </div>
             <h1>VoiceSketch</h1>
             <p class="tagline" data-i18n="hero.tagline">Transform voice into visual notes</p>
@@ -5056,18 +5065,30 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
 
             setLanguage(currentLang);
 
-            // Detect user's country via IP for App Store routing
-            fetch('https://ipapi.co/country/')
-                .then(r => r.text())
-                .then(country => {
-                    country = (country || '').trim().toLowerCase();
-                    if (/^[a-z]{2}$/.test(country)) {
-                        appStoreCountry = country;
-                        appStoreCountryFromIP = true;
-                        updateAppStoreLinks();
-                    }
-                })
-                .catch(() => {}); // Silently fall back to language-based country
+            // Detect user's country via IP for App Store routing (cached for 24h)
+            var cachedCountry = localStorage.getItem('voicesketch-country');
+            var cachedCountryTime = localStorage.getItem('voicesketch-country-time');
+            var countryExpiry = 24 * 60 * 60 * 1000; // 24 hours
+
+            if (cachedCountry && cachedCountryTime && (Date.now() - Number(cachedCountryTime)) < countryExpiry) {
+                appStoreCountry = cachedCountry;
+                appStoreCountryFromIP = true;
+                updateAppStoreLinks();
+            } else {
+                fetch('https://ipapi.co/country/')
+                    .then(r => r.text())
+                    .then(country => {
+                        country = (country || '').trim().toLowerCase();
+                        if (/^[a-z]{2}$/.test(country)) {
+                            appStoreCountry = country;
+                            appStoreCountryFromIP = true;
+                            updateAppStoreLinks();
+                            localStorage.setItem('voicesketch-country', country);
+                            localStorage.setItem('voicesketch-country-time', String(Date.now()));
+                        }
+                    })
+                    .catch(() => {}); // Silently fall back to language-based country
+            }
 
             // Scroll to section after redirect from /terms or /privacy pages
             const scrollTo = urlParams.get('scrollTo');
@@ -5104,6 +5125,17 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
             observer.observe(el);
         });
 
+        // Pause CSS animations on sections that are off-screen to save CPU/GPU
+        const animObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                entry.target.style.animationPlayState = entry.isIntersecting ? 'running' : 'paused';
+            });
+        }, { rootMargin: '100px 0px' });
+
+        document.querySelectorAll('.bg-shape, .wave, .float-item, .typing-text, .visual-card, .record-btn, .mic-bar, .typing-cursor, .ai-core, .mini-card, .arrow-flow, .export-file, .carousel-progress-bar, .features-bg-shapes .shape').forEach(el => {
+            animObserver.observe(el);
+        });
+
         // Stagger why card animations
         document.querySelectorAll('.why-card').forEach((card, index) => {
             card.style.transitionDelay = `${index * 0.1}s`;
@@ -5131,30 +5163,35 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
 
         setInterval(restartDemoAnimation, 8000);
 
-        // Navigation scroll effect
+        // Navigation scroll effect (throttled with rAF)
         const nav = document.getElementById('nav');
         const mobileCta = document.getElementById('mobile-cta');
-        let lastScrollY = window.scrollY;
+        let scrollTicking = false;
 
         window.addEventListener('scroll', () => {
-            const currentScrollY = window.scrollY;
+            if (!scrollTicking) {
+                requestAnimationFrame(() => {
+                    const currentScrollY = window.scrollY;
 
-            // Nav background on scroll
-            if (currentScrollY > 50) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
+                    // Nav background on scroll
+                    if (currentScrollY > 50) {
+                        nav.classList.add('scrolled');
+                    } else {
+                        nav.classList.remove('scrolled');
+                    }
+
+                    // Mobile CTA visibility (show after scrolling past hero)
+                    if (currentScrollY > window.innerHeight * 0.8) {
+                        mobileCta.classList.add('visible');
+                    } else {
+                        mobileCta.classList.remove('visible');
+                    }
+
+                    scrollTicking = false;
+                });
+                scrollTicking = true;
             }
-
-            // Mobile CTA visibility (show after scrolling past hero)
-            if (currentScrollY > window.innerHeight * 0.8) {
-                mobileCta.classList.add('visible');
-            } else {
-                mobileCta.classList.remove('visible');
-            }
-
-            lastScrollY = currentScrollY;
-        });
+        }, { passive: true });
 
         // Smooth scroll for nav links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
