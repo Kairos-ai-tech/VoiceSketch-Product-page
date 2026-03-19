@@ -2457,14 +2457,14 @@
                     </svg>
                 </button>
                 <div class="lang-dropdown" id="lang-dropdown" role="listbox" aria-label="Language">
-                    <div class="lang-option active" role="option" tabindex="-1" onclick="setLanguage('en')" data-lang="en">English</div>
-                    <div class="lang-option" role="option" tabindex="-1" onclick="setLanguage('zh-TW')" data-lang="zh-TW">繁體中文</div>
-                    <div class="lang-option" role="option" tabindex="-1" onclick="setLanguage('zh-CN')" data-lang="zh-CN">简体中文</div>
-                    <div class="lang-option" role="option" tabindex="-1" onclick="setLanguage('ja')" data-lang="ja">日本語</div>
-                    <div class="lang-option" role="option" tabindex="-1" onclick="setLanguage('ko')" data-lang="ko">한국어</div>
-                    <div class="lang-option" role="option" tabindex="-1" onclick="setLanguage('fr')" data-lang="fr">Français</div>
-                    <div class="lang-option" role="option" tabindex="-1" onclick="setLanguage('es')" data-lang="es">Español</div>
-                    <div class="lang-option" role="option" tabindex="-1" onclick="setLanguage('it')" data-lang="it">Italiano</div>
+                    <div class="lang-option active" role="option" tabindex="-1" aria-selected="true" onclick="setLanguage('en')" data-lang="en">English</div>
+                    <div class="lang-option" role="option" tabindex="-1" aria-selected="false" onclick="setLanguage('zh-TW')" data-lang="zh-TW">繁體中文</div>
+                    <div class="lang-option" role="option" tabindex="-1" aria-selected="false" onclick="setLanguage('zh-CN')" data-lang="zh-CN">简体中文</div>
+                    <div class="lang-option" role="option" tabindex="-1" aria-selected="false" onclick="setLanguage('ja')" data-lang="ja">日本語</div>
+                    <div class="lang-option" role="option" tabindex="-1" aria-selected="false" onclick="setLanguage('ko')" data-lang="ko">한국어</div>
+                    <div class="lang-option" role="option" tabindex="-1" aria-selected="false" onclick="setLanguage('fr')" data-lang="fr">Français</div>
+                    <div class="lang-option" role="option" tabindex="-1" aria-selected="false" onclick="setLanguage('es')" data-lang="es">Español</div>
+                    <div class="lang-option" role="option" tabindex="-1" aria-selected="false" onclick="setLanguage('it')" data-lang="it">Italiano</div>
                 </div>
             </div>
             <a href="https://apps.apple.com/us/app/voicesketch-ai-visual-notes/id6757849645" class="nav-cta app-store-link" data-i18n="hero.cta">Download</a>
@@ -4952,7 +4952,7 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
         const langToAppStoreCountry = {
             'en': 'us',
             'zh-TW': 'tw',
-            'zh-CN': 'us',
+            'zh-CN': 'us', // China mainland App Store may not carry the app; route to US
             'ja': 'jp',
             'ko': 'kr',
             'fr': 'fr',
@@ -4971,7 +4971,9 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
         }
 
         function toggleLangDropdown() {
-            document.getElementById('lang-dropdown').classList.toggle('active');
+            var dropdown = document.getElementById('lang-dropdown');
+            dropdown.classList.toggle('active');
+            document.querySelector('.lang-btn').setAttribute('aria-expanded', dropdown.classList.contains('active'));
         }
 
         // Mapping from internal lang codes to hreflang codes
@@ -5014,6 +5016,7 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
             applyTranslations(lang);
             document.getElementById('current-lang').textContent = langNames[lang];
             document.getElementById('lang-dropdown').classList.remove('active');
+            document.querySelector('.lang-btn').setAttribute('aria-expanded', 'false');
 
             // Update App Store links based on language (only if no IP country detected)
             if (!appStoreCountryFromIP) {
@@ -5024,12 +5027,11 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
             // Update canonical tag and URL
             updateCanonicalAndHreflang(lang);
 
-            // Update active state
+            // Update active state and aria-selected
             document.querySelectorAll('.lang-option').forEach(opt => {
-                opt.classList.remove('active');
-                if (opt.onclick.toString().includes(`'${lang}'`)) {
-                    opt.classList.add('active');
-                }
+                var isSelected = opt.dataset.lang === lang;
+                opt.classList.toggle('active', isSelected);
+                opt.setAttribute('aria-selected', isSelected);
             });
         }
 
@@ -5053,6 +5055,7 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
         document.addEventListener('click', (e) => {
             if (!e.target.closest('.lang-selector')) {
                 document.getElementById('lang-dropdown').classList.remove('active');
+                document.querySelector('.lang-btn').setAttribute('aria-expanded', 'false');
             }
         });
 
@@ -5109,7 +5112,13 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
                 appStoreCountryFromIP = true;
                 updateAppStoreLinks();
             } else {
-                fetch('https://ipapi.co/country/')
+                // IP-based country detection for App Store routing.
+                // Only the 2-letter country code is fetched (no PII). Result is cached
+                // in localStorage for 24h to avoid repeated calls. Falls back silently
+                // to language-based routing on failure or timeout.
+                var ipAbort = new AbortController();
+                setTimeout(function() { ipAbort.abort(); }, 3000);
+                fetch('https://ipapi.co/country/', { signal: ipAbort.signal })
                     .then(r => r.text())
                     .then(country => {
                         country = (country || '').trim().toLowerCase();
@@ -5264,6 +5273,7 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
 
             dots.forEach((dot, i) => {
                 dot.classList.toggle('active', i === currentSlide);
+                dot.setAttribute('aria-selected', i === currentSlide ? 'true' : 'false');
             });
 
             // Reset progress bar animation
@@ -5354,15 +5364,6 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
         // Start autoplay
         startAutoplay();
 
-        // Update aria-selected on carousel dots when changing slides
-        const origGoToSlide = goToSlide;
-        goToSlide = function(index) {
-            origGoToSlide(index);
-            dots.forEach((dot, i) => {
-                dot.setAttribute('aria-selected', i === currentSlide ? 'true' : 'false');
-            });
-        };
-
         // Accordion keyboard support
         document.querySelectorAll('.privacy-card-header').forEach(header => {
             header.addEventListener('click', function() {
@@ -5416,24 +5417,7 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
                     closeDropdown();
                 }
             });
-
-            // Close dropdown on outside click
-            document.addEventListener('click', function(e) {
-                if (!e.target.closest('.lang-selector')) {
-                    dropdown.classList.remove('active');
-                    btn.setAttribute('aria-expanded', 'false');
-                }
-            });
         })();
-
-        // Update toggleLangDropdown to sync aria-expanded
-        const origToggle = toggleLangDropdown;
-        toggleLangDropdown = function() {
-            origToggle();
-            const btn = document.querySelector('.lang-btn');
-            const dropdown = document.getElementById('lang-dropdown');
-            btn.setAttribute('aria-expanded', dropdown.classList.contains('active'));
-        };
     </script>
 </body>
 </html>
