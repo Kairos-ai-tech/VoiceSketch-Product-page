@@ -123,6 +123,7 @@
     </script>
 
     <link rel="icon" type="image/png" href="assets/logo.png">
+    <link rel="preload" href="assets/logo.png" as="image">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -140,7 +141,15 @@
             --primary-red: #E53935;
             --text-light: #ffffff;
             --text-dark: #1a1a2e;
+            --text-secondary: #555;
+            --text-muted: #767676;
             --card-bg: rgba(255, 255, 255, 0.95);
+            --surface-dark: #1a1a2e;
+            --surface-darker: #141425;
+            --border-light: rgba(0, 0, 0, 0.06);
+            --star-color: #FFB800;
+            --toggle-muted: #999;
+            --footer-text: rgba(255, 255, 255, 0.5);
         }
 
         body {
@@ -148,7 +157,6 @@
             line-height: 1.6;
             color: var(--text-dark);
             overflow-x: hidden;
-            scroll-behavior: smooth;
         }
 
         /* Navigation */
@@ -178,6 +186,17 @@
             gap: 0.75rem;
             text-decoration: none;
             color: var(--text-dark);
+            transition: opacity 0.2s ease;
+        }
+
+        .nav-logo:hover {
+            opacity: 0.8;
+        }
+
+        .nav-logo:focus-visible {
+            outline: 2px solid var(--primary-red);
+            outline-offset: 4px;
+            border-radius: 4px;
         }
 
         .nav-logo img {
@@ -210,16 +229,22 @@
             opacity: 1;
         }
 
-        .nav-cta {
+        .nav-links a:focus-visible {
+            outline: 2px solid var(--primary-red);
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
+
+        .nav-links a.nav-cta {
             background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-            color: white !important;
+            color: var(--text-light);
             padding: 0.5rem 1.25rem;
             border-radius: 50px;
-            opacity: 1 !important;
+            opacity: 1;
             font-size: 0.85rem;
         }
 
-        .nav-cta:hover {
+        .nav-links a.nav-cta:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(229, 57, 53, 0.3);
         }
@@ -368,7 +393,7 @@
 
         .hero .tagline {
             font-size: clamp(1.1rem, 3vw, 1.5rem);
-            color: #666;
+            color: var(--text-secondary);
             margin-bottom: 2rem;
             font-weight: 500;
             animation: fade-up 0.8s ease-out 0.5s both;
@@ -418,6 +443,16 @@
             box-shadow: 0 15px 50px rgba(229, 57, 53, 0.4);
         }
 
+        .cta-button:active {
+            transform: translateY(0) scale(0.98);
+            box-shadow: 0 5px 20px rgba(229, 57, 53, 0.3);
+        }
+
+        .cta-button:focus-visible {
+            outline: 2px solid var(--primary-red);
+            outline-offset: 3px;
+        }
+
         .cta-button svg {
             width: 24px;
             height: 24px;
@@ -443,7 +478,7 @@
         .demo-phone {
             width: 280px;
             height: 560px;
-            background: #1a1a2e;
+            background: var(--surface-dark);
             border-radius: 40px;
             padding: 12px;
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
@@ -465,7 +500,7 @@
             color: white;
         }
 
-        .demo-header h4 {
+        .demo-header p {
             font-size: 1rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
@@ -546,7 +581,7 @@
 
         .card-text p {
             font-size: 0.6rem;
-            color: #888;
+            color: var(--text-muted);
             line-height: 1.4;
         }
 
@@ -725,10 +760,10 @@
             border-radius: 20px;
             padding: 2rem 2rem 2rem 2rem;
             box-shadow: 0 2px 16px rgba(0, 0, 0, 0.04);
-            border: 1px solid rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-light);
             opacity: 0;
             transform: translateY(24px);
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
             display: flex;
             gap: 1.25rem;
             align-items: flex-start;
@@ -764,7 +799,7 @@
         }
 
         .why-content p {
-            color: #666;
+            color: var(--text-secondary);
             font-size: 0.92rem;
             line-height: 1.6;
             margin: 0;
@@ -902,7 +937,7 @@
 
         .section-header p {
             font-size: 1.15rem;
-            color: #666;
+            color: var(--text-secondary);
             max-width: 600px;
             margin: 0 auto;
         }
@@ -917,9 +952,9 @@
             background: var(--card-bg);
             border-radius: 20px;
             padding: 2rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 20px var(--border-light);
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            border: 1px solid var(--border-light);
             opacity: 0;
             transform: translateY(30px);
         }
@@ -980,7 +1015,7 @@
         }
 
         .feature-card p {
-            color: #666;
+            color: var(--text-secondary);
             font-size: 0.95rem;
             line-height: 1.7;
         }
@@ -1046,7 +1081,7 @@
             background: white;
             padding: 1.5rem;
             border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 20px var(--border-light);
         }
 
         .timeline-content h3 {
@@ -1057,7 +1092,7 @@
         }
 
         .timeline-content p {
-            color: #666;
+            color: var(--text-secondary);
             font-size: 1rem;
             line-height: 1.7;
         }
@@ -1085,6 +1120,12 @@
             display: flex;
             align-items: center;
             gap: 0.75rem;
+        }
+
+        .recording-timer {
+            color: var(--primary-red);
+            font-size: 0.8rem;
+            font-weight: 600;
         }
 
         .record-btn {
@@ -1143,7 +1184,7 @@
             border-radius: 8px;
             padding: 0.75rem;
             font-size: 0.8rem;
-            color: #555;
+            color: var(--text-secondary);
             border-left: 3px solid var(--primary-red);
         }
 
@@ -1180,7 +1221,7 @@
             padding: 0.5rem 0.75rem;
             border-radius: 8px;
             font-size: 0.75rem;
-            color: #888;
+            color: var(--text-muted);
             max-width: 80px;
             text-align: center;
             border: 1px solid #eee;
@@ -1360,7 +1401,7 @@
 
         .file-label {
             font-size: 0.7rem;
-            color: #888;
+            color: var(--text-muted);
             font-weight: 500;
         }
 
@@ -1381,12 +1422,6 @@
             align-items: center;
             justify-content: center;
             font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-
-        .share-icon:hover {
-            background: var(--primary-red);
-            transform: scale(1.1);
         }
 
         @media (max-width: 768px) {
@@ -1419,6 +1454,7 @@
 
         /* Use Cases */
         .use-cases {
+            contain: layout style;
             padding: 6rem 2rem;
             background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-mid) 50%, var(--gradient-end) 100%);
             position: relative;
@@ -1486,12 +1522,13 @@
         }
 
         .use-case-card p {
-            color: rgba(255, 255, 255, 0.85);
+            color: var(--text-light);
             font-size: 0.95rem;
         }
 
         /* Stats Section with counter animation */
         .stats {
+            contain: layout style;
             padding: 5rem 2rem;
             background: #fff;
         }
@@ -1521,7 +1558,7 @@
         }
 
         .stat-label {
-            color: #666;
+            color: var(--text-secondary);
             font-size: 1rem;
             font-weight: 500;
         }
@@ -1529,7 +1566,7 @@
         /* CTA Section */
         .cta-section {
             padding: 6rem 2rem;
-            background: #1a1a2e;
+            background: var(--surface-dark);
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -1580,7 +1617,7 @@
         /* Footer */
         footer {
             padding: 2rem;
-            background: #141425;
+            background: var(--surface-darker);
             text-align: center;
         }
 
@@ -1619,6 +1656,20 @@
             font-size: 0.85rem;
         }
 
+        .footer-links {
+            margin-top: 0.5rem;
+        }
+
+        .footer-link {
+            color: var(--footer-text);
+            font-size: 0.8rem;
+            text-decoration: none;
+        }
+
+        .footer-link:hover {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
         /* Scroll indicator */
         .scroll-indicator {
             position: absolute;
@@ -1653,6 +1704,7 @@
             border: 1px solid rgba(0, 0, 0, 0.08);
             padding: 0.5rem 0.875rem;
             border-radius: 50px;
+            font-family: inherit;
             font-size: 0.8rem;
             font-weight: 500;
             cursor: pointer;
@@ -1669,6 +1721,11 @@
             background: white;
         }
 
+        .lang-btn:focus-visible {
+            outline: 2px solid var(--primary-red);
+            outline-offset: 2px;
+        }
+
         .lang-btn svg:first-child {
             width: 16px;
             height: 16px;
@@ -1677,6 +1734,11 @@
         .lang-btn svg {
             width: 18px;
             height: 18px;
+        }
+
+        .lang-btn .lang-chevron {
+            width: 14px;
+            height: 14px;
         }
 
         .lang-dropdown {
@@ -1769,7 +1831,7 @@
         .preview-phone {
             width: 220px;
             height: 440px;
-            background: #1a1a2e;
+            background: var(--surface-dark);
             border-radius: 32px;
             padding: 8px;
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
@@ -1854,12 +1916,13 @@
 
         .preview-card-text p {
             font-size: 0.5rem;
-            color: #888;
+            color: var(--text-muted);
             line-height: 1.3;
         }
 
         /* Testimonials Section - Rotating Gallery */
         .testimonials {
+            contain: layout style;
             padding: 5rem 2rem;
             background: linear-gradient(180deg, #fff 0%, #fafafa 100%);
             overflow: hidden;
@@ -1876,6 +1939,7 @@
         .testimonial-track {
             display: flex;
             transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
         }
 
         .testimonial-card {
@@ -1907,7 +1971,7 @@
 
         .testimonial-text {
             font-size: 1.05rem;
-            color: #444;
+            color: var(--text-secondary);
             line-height: 1.7;
             position: relative;
             z-index: 1;
@@ -1921,7 +1985,7 @@
             align-items: center;
             gap: 1rem;
             padding-top: 1rem;
-            border-top: 1px solid rgba(0,0,0,0.05);
+            border-top: 1px solid var(--border-light);
         }
 
         .testimonial-avatar {
@@ -1945,11 +2009,11 @@
 
         .testimonial-info p {
             font-size: 0.85rem;
-            color: #888;
+            color: var(--text-muted);
         }
 
         .star-rating {
-            color: #FFB800;
+            color: var(--star-color);
             font-size: 1rem;
             margin-bottom: 1rem;
             letter-spacing: 2px;
@@ -1971,6 +2035,7 @@
             border: 2px solid rgba(229, 57, 53, 0.2);
             background: white;
             cursor: pointer;
+            font-family: inherit;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1985,6 +2050,15 @@
             transform: scale(1.1);
         }
 
+        .carousel-btn:active {
+            transform: scale(0.95);
+        }
+
+        .carousel-btn:focus-visible {
+            outline: 2px solid var(--primary-red);
+            outline-offset: 2px;
+        }
+
         .carousel-btn svg {
             width: 20px;
             height: 20px;
@@ -1993,6 +2067,9 @@
         .carousel-dots {
             display: flex;
             gap: 0.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 120px;
         }
 
         .carousel-dot {
@@ -2002,6 +2079,8 @@
             background: rgba(229, 57, 53, 0.2);
             cursor: pointer;
             transition: all 0.3s ease;
+            border: none;
+            padding: 0;
         }
 
         .carousel-dot.active {
@@ -2038,12 +2117,7 @@
             100% { width: 100%; }
         }
 
-        .carousel-dots {
-            flex-wrap: wrap;
-            justify-content: center;
-            max-width: 120px;
-        }
-
+        /* Responsive: 768px */
         @media (max-width: 768px) {
             .testimonials-carousel {
                 min-height: 260px;
@@ -2069,38 +2143,25 @@
                 font-size: 0.85rem;
                 margin-bottom: 0.75rem;
             }
-        }
 
-        /* Improved responsive */
-        @media (max-width: 768px) {
             .preview-container {
                 gap: 1rem;
             }
 
-            .preview-phone {
+            .preview-phone,
+            .preview-phone:nth-child(2),
+            .preview-phone:nth-child(3) {
                 width: 160px;
                 height: 320px;
-                transform: none !important;
-            }
-
-            .preview-phone:hover {
-                transform: scale(1.02) !important;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .preview-phone:first-child,
-            .preview-phone:last-child {
-                display: none;
-            }
-
-            .preview-phone:nth-child(2) {
                 transform: none;
             }
-        }
 
-        /* Responsive */
-        @media (max-width: 768px) {
+            .preview-phone:hover,
+            .preview-phone:nth-child(2):hover,
+            .preview-phone:nth-child(3):hover {
+                transform: scale(1.02);
+            }
+
             .demo-container {
                 flex-direction: column;
             }
@@ -2133,8 +2194,21 @@
             }
         }
 
+        @media (max-width: 480px) {
+            .preview-phone:first-child,
+            .preview-phone:last-child {
+                display: none;
+            }
+
+            .preview-phone:nth-child(2) {
+                transform: none;
+            }
+        }
+
         /* Privacy Policy Section */
         .privacy-section {
+            content-visibility: auto;
+            contain-intrinsic-size: auto 2000px;
             padding: 5rem 2rem;
             background: linear-gradient(180deg, #fff 0%, #f8f5f2 100%);
         }
@@ -2149,14 +2223,14 @@
 
         .privacy-section .section-subtitle {
             text-align: center;
-            color: #666;
+            color: var(--text-secondary);
             font-size: 1.1rem;
             margin-bottom: 0.5rem;
         }
 
         .privacy-last-updated {
             text-align: center;
-            color: #999;
+            color: var(--text-muted);
             font-size: 0.85rem;
             margin-bottom: 2.5rem;
         }
@@ -2174,7 +2248,7 @@
             border-radius: 16px;
             padding: 1.5rem;
             box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
-            border: 1px solid rgba(0, 0, 0, 0.06);
+            border: 1px solid var(--border-light);
             transition: all 0.3s ease;
             cursor: pointer;
         }
@@ -2187,6 +2261,15 @@
             display: flex;
             align-items: center;
             gap: 0.75rem;
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: inherit;
+            color: inherit;
+            text-align: left;
         }
 
         .privacy-card-icon {
@@ -2215,7 +2298,7 @@
             align-items: center;
             justify-content: center;
             transition: transform 0.3s ease;
-            color: #bbb;
+            color: var(--toggle-muted);
         }
 
         .privacy-card.open .privacy-card-toggle {
@@ -2229,13 +2312,13 @@
         }
 
         .privacy-card.open .privacy-card-body {
-            max-height: 800px;
+            max-height: 2000px;
             padding-top: 0.75rem;
         }
 
         .privacy-card-content {
             font-size: 0.85rem;
-            color: #666;
+            color: var(--text-secondary);
             line-height: 1.7;
             white-space: pre-line;
         }
@@ -2252,6 +2335,8 @@
 
         /* Terms of Service Section */
         .terms-section {
+            content-visibility: auto;
+            contain-intrinsic-size: auto 3000px;
             padding: 5rem 2rem;
             background: linear-gradient(180deg, #f8f5f2 0%, #fff 100%);
         }
@@ -2266,14 +2351,14 @@
 
         .terms-section .section-subtitle {
             text-align: center;
-            color: #666;
+            color: var(--text-secondary);
             font-size: 1.1rem;
             margin-bottom: 0.5rem;
         }
 
         .terms-last-updated {
             text-align: center;
-            color: #999;
+            color: var(--text-muted);
             font-size: 0.85rem;
             margin-bottom: 2.5rem;
         }
@@ -2300,11 +2385,54 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Skip navigation link */
+        .skip-link {
+            position: absolute;
+            top: -100%;
+            left: 1rem;
+            z-index: 10000;
+            background: var(--primary-red);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0 0 8px 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: top 0.2s ease;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Keyboard focus indicators */
+        .privacy-card-header:focus-visible,
+        .lang-option:focus-visible,
+        .carousel-dot:focus-visible {
+            outline: 2px solid var(--primary-red);
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
+
+        .carousel-dot:focus-visible {
+            border-radius: 50%;
+        }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
     <!-- Navigation -->
-    <nav class="nav" id="nav">
+    <nav class="nav" id="nav" aria-label="Main navigation">
         <a href="/" class="nav-logo">
             <img src="assets/logo.png" alt="VoiceSketch" width="32" height="32">
             <span>VoiceSketch</span>
@@ -2317,32 +2445,33 @@
             <a href="#privacy" data-i18n="nav.privacy">Privacy</a>
             <!-- Language Selector -->
             <div class="lang-selector">
-                <button class="lang-btn" onclick="toggleLangDropdown()" aria-label="Select Language">
+                <button class="lang-btn" onclick="toggleLangDropdown()" aria-label="Select Language" aria-expanded="false" aria-haspopup="listbox">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="12" cy="12" r="10"/>
                         <line x1="2" y1="12" x2="22" y2="12"/>
                         <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
                     </svg>
                     <span id="current-lang">EN</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;">
+                    <svg class="lang-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M6 9l6 6 6-6"/>
                     </svg>
                 </button>
-                <div class="lang-dropdown" id="lang-dropdown">
-                    <div class="lang-option active" onclick="setLanguage('en')">English</div>
-                    <div class="lang-option" onclick="setLanguage('zh-TW')">繁體中文</div>
-                    <div class="lang-option" onclick="setLanguage('zh-CN')">简体中文</div>
-                    <div class="lang-option" onclick="setLanguage('ja')">日本語</div>
-                    <div class="lang-option" onclick="setLanguage('ko')">한국어</div>
-                    <div class="lang-option" onclick="setLanguage('fr')">Français</div>
-                    <div class="lang-option" onclick="setLanguage('es')">Español</div>
-                    <div class="lang-option" onclick="setLanguage('it')">Italiano</div>
+                <div class="lang-dropdown" id="lang-dropdown" role="listbox" aria-label="Language">
+                    <div class="lang-option active" role="option" tabindex="-1" aria-selected="true" onclick="setLanguage('en')" data-lang="en">English</div>
+                    <div class="lang-option" role="option" tabindex="-1" aria-selected="false" onclick="setLanguage('zh-TW')" data-lang="zh-TW">繁體中文</div>
+                    <div class="lang-option" role="option" tabindex="-1" aria-selected="false" onclick="setLanguage('zh-CN')" data-lang="zh-CN">简体中文</div>
+                    <div class="lang-option" role="option" tabindex="-1" aria-selected="false" onclick="setLanguage('ja')" data-lang="ja">日本語</div>
+                    <div class="lang-option" role="option" tabindex="-1" aria-selected="false" onclick="setLanguage('ko')" data-lang="ko">한국어</div>
+                    <div class="lang-option" role="option" tabindex="-1" aria-selected="false" onclick="setLanguage('fr')" data-lang="fr">Français</div>
+                    <div class="lang-option" role="option" tabindex="-1" aria-selected="false" onclick="setLanguage('es')" data-lang="es">Español</div>
+                    <div class="lang-option" role="option" tabindex="-1" aria-selected="false" onclick="setLanguage('it')" data-lang="it">Italiano</div>
                 </div>
             </div>
-            <a href="#" class="nav-cta" data-i18n="hero.cta">Download</a>
+            <a href="https://apps.apple.com/us/app/voicesketch-ai-visual-notes/id6757849645" class="nav-cta app-store-link" data-i18n="hero.cta">Download</a>
         </div>
     </nav>
 
+    <main id="main-content">
     <!-- Hero Section -->
     <section class="hero">
         <div class="bg-shapes">
@@ -2357,7 +2486,7 @@
                     <div class="wave"></div>
                     <div class="wave"></div>
                 </div>
-                <img src="assets/logo.png" alt="VoiceSketch Logo" class="logo" width="160" height="160">
+                <img src="assets/logo.png" alt="VoiceSketch Logo" class="logo" width="160" height="160" fetchpriority="high" decoding="async">
             </div>
             <h1>VoiceSketch</h1>
             <p class="tagline" data-i18n="hero.tagline">Transform voice into visual notes</p>
@@ -2366,7 +2495,7 @@
                 <span class="badge" data-i18n="hero.badge.ai">AI Powered</span>
                 <span class="badge" data-i18n="hero.badge.languages">60+ Languages</span>
             </div>
-            <a href="#" class="cta-button">
+            <a href="https://apps.apple.com/us/app/voicesketch-ai-visual-notes/id6757849645" class="cta-button app-store-link">
                 <svg viewBox="0 0 24 24" fill="currentColor">
                     <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
                 </svg>
@@ -2465,10 +2594,10 @@
             </div>
         </div>
         <div class="demo-container">
-            <div class="demo-phone">
+            <div class="demo-phone" aria-hidden="true">
                 <div class="demo-screen">
                     <div class="demo-header">
-                        <h4 data-i18n="demo.recording">Recording...</h4>
+                        <p data-i18n="demo.recording">Recording...</p>
                         <div class="transcription-box">
                             <div class="typing-text" data-i18n="demo.transcription">The mitochondria is the powerhouse of the cell...</div>
                         </div>
@@ -2616,7 +2745,7 @@
                                         <div class="mic-bar"></div>
                                         <div class="mic-bar"></div>
                                     </div>
-                                    <span style="color: var(--primary-red); font-size: 0.8rem; font-weight: 600;">00:42</span>
+                                    <span class="recording-timer">00:42</span>
                                 </div>
                                 <div class="transcription-line">
                                     The key concept here is that mitochondria...<span class="typing-cursor"></span>
@@ -2858,13 +2987,13 @@
                         <path d="M15 18l-6-6 6-6"/>
                     </svg>
                 </button>
-                <div class="carousel-dots" id="carousel-dots">
-                    <div class="carousel-dot active" data-index="0"></div>
-                    <div class="carousel-dot" data-index="1"></div>
-                    <div class="carousel-dot" data-index="2"></div>
-                    <div class="carousel-dot" data-index="3"></div>
-                    <div class="carousel-dot" data-index="4"></div>
-                    <div class="carousel-dot" data-index="5"></div>
+                <div class="carousel-dots" id="carousel-dots" role="tablist" aria-label="Review slides">
+                    <button class="carousel-dot active" role="tab" aria-label="Slide 1" aria-selected="true" data-index="0"></button>
+                    <button class="carousel-dot" role="tab" aria-label="Slide 2" aria-selected="false" data-index="1"></button>
+                    <button class="carousel-dot" role="tab" aria-label="Slide 3" aria-selected="false" data-index="2"></button>
+                    <button class="carousel-dot" role="tab" aria-label="Slide 4" aria-selected="false" data-index="3"></button>
+                    <button class="carousel-dot" role="tab" aria-label="Slide 5" aria-selected="false" data-index="4"></button>
+                    <button class="carousel-dot" role="tab" aria-label="Slide 6" aria-selected="false" data-index="5"></button>
                 </div>
                 <button class="carousel-btn" id="carousel-next" aria-label="Next">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -2880,7 +3009,7 @@
         <div class="container">
             <h2 data-i18n="cta.title">Start Learning Visually</h2>
             <p data-i18n="cta.subtitle">Download VoiceSketch and transform how you capture and retain knowledge.</p>
-            <a href="#" class="cta-button">
+            <a href="https://apps.apple.com/us/app/voicesketch-ai-visual-notes/id6757849645" class="cta-button app-store-link">
                 <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
                     <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
                 </svg>
@@ -2897,14 +3026,14 @@
 
         <div class="privacy-grid">
             <!-- Acceptance of Terms -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#9989;</div>
                     <span class="privacy-card-title" data-i18n="terms.acceptance.title">Acceptance of Terms</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content" data-i18n="terms.acceptance.content">By downloading, installing, or using VoiceSketch ("the App"), you agree to be bound by these Terms of Service ("Terms") and End User License Agreement ("EULA"). If you do not agree to these Terms, please do not use the App.
 
@@ -2915,14 +3044,14 @@ You must be at least 13 years old to use this App. If you are under 18, you conf
             </div>
 
             <!-- License Scope -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#128221;</div>
                     <span class="privacy-card-title" data-i18n="terms.license.title">License Scope</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content" data-i18n="terms.license.content">We grant you a non-transferable, non-exclusive license to use VoiceSketch on any Apple-branded products that you own or control, as permitted by the Usage Rules set forth in the Apple Media Services Terms and Conditions.
 
@@ -2936,14 +3065,14 @@ The terms of this license must not conflict with the Apple Media Services Terms 
             </div>
 
             <!-- Description of Service -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#128241;</div>
                     <span class="privacy-card-title" data-i18n="terms.service.title">Description of Service</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content" data-i18n="terms.service.content">VoiceSketch is a mobile application that provides:
 
@@ -2958,14 +3087,14 @@ The App integrates with third-party services including OpenAI for AI processing 
             </div>
 
             <!-- Maintenance and Support -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#128736;</div>
                     <span class="privacy-card-title" data-i18n="terms.maintenance.title">Maintenance and Support</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content" data-i18n="terms.maintenance.content">Kairos AI Tech is solely responsible for providing any maintenance and support services for VoiceSketch, as specified in these Terms or as required under applicable law.
 
@@ -2979,14 +3108,14 @@ The App integrates with third-party services including OpenAI for AI processing 
             </div>
 
             <!-- User Accounts and Registration -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#128100;</div>
                     <span class="privacy-card-title" data-i18n="terms.accounts.title">User Accounts and Registration</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content" data-i18n="terms.accounts.content">Account Creation:
 &#8226; You must provide accurate and complete registration information
@@ -3006,14 +3135,14 @@ Account Verification:
             </div>
 
             <!-- Acceptable Use Policy -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#128077;</div>
                     <span class="privacy-card-title" data-i18n="terms.acceptableUse.title">Acceptable Use Policy</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content" data-i18n="terms.acceptableUse.content">You agree NOT to use VoiceSketch for:
 
@@ -3038,14 +3167,14 @@ Violation of these terms may result in account suspension or termination.</div>
             </div>
 
             <!-- Content and Intellectual Property -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#128196;</div>
                     <span class="privacy-card-title" data-i18n="terms.ip.title">Content and Intellectual Property</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content" data-i18n="terms.ip.content">VoiceSketch Intellectual Property:
 &#8226; The App, including design, code, and features, is owned by VoiceSketch
@@ -3073,14 +3202,14 @@ Intellectual Property Claims:
             </div>
 
             <!-- Privacy and Data Protection -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#128274;</div>
                     <span class="privacy-card-title" data-i18n="terms.privacyData.title">Privacy and Data Protection</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content" data-i18n="terms.privacyData.content">Your privacy is important to us. Our data practices are governed by our Privacy Policy, which includes:
 
@@ -3109,14 +3238,14 @@ For complete details, please review our Privacy Policy.</div>
             </div>
 
             <!-- Subscription and Payments -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#128179;</div>
                     <span class="privacy-card-title" data-i18n="terms.subscription.title">Subscription and Payments</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content" data-i18n="terms.subscription.content">Premium Subscriptions:
 &#8226; Premium features are available through in-app purchase subscriptions
@@ -3145,14 +3274,14 @@ Changes to Pricing:
             </div>
 
             <!-- Disclaimers and Limitations -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#9888;</div>
                     <span class="privacy-card-title" data-i18n="terms.disclaimers.title">Disclaimers and Limitations</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content" data-i18n="terms.disclaimers.content">Warranty:
 &#8226; Kairos AI Tech is solely responsible for any product warranties, whether express or implied by law, to the extent not effectively disclaimed
@@ -3188,14 +3317,14 @@ Third-Party Services:
             </div>
 
             <!-- Indemnification -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#128737;</div>
                     <span class="privacy-card-title" data-i18n="terms.indemnification.title">Indemnification</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content" data-i18n="terms.indemnification.content">You agree to indemnify, defend, and hold harmless VoiceSketch and its officers, directors, employees, and agents from and against any claims, damages, losses, or expenses arising from:
 
@@ -3211,14 +3340,14 @@ This indemnification survives termination of your account and these Terms.</div>
             </div>
 
             <!-- Termination -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#10060;</div>
                     <span class="privacy-card-title" data-i18n="terms.termination.title">Termination</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content" data-i18n="terms.termination.content">Termination by You:
 &#8226; You may delete your account at any time through the app settings
@@ -3244,14 +3373,14 @@ Data Recovery:
             </div>
 
             <!-- Governing Law and Disputes -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#9878;</div>
                     <span class="privacy-card-title" data-i18n="terms.governingLaw.title">Governing Law and Disputes</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content" data-i18n="terms.governingLaw.content">These Terms are governed by and construed in accordance with the laws of the State of California, United States, without regard to conflict of law principles.
 
@@ -3277,14 +3406,14 @@ Legal Compliance:
             </div>
 
             <!-- Changes to Terms -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#128260;</div>
                     <span class="privacy-card-title" data-i18n="terms.changes.title">Changes to Terms</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content" data-i18n="terms.changes.content">We reserve the right to modify these Terms at any time. Changes will be effective when:
 
@@ -3304,14 +3433,14 @@ Version Control:
             </div>
 
             <!-- Contact Information -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#9993;</div>
                     <span class="privacy-card-title" data-i18n="terms.contact.title">Contact Information</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content">For questions about these Terms of Service:
 
@@ -3335,14 +3464,14 @@ We will respond to inquiries within 5 business days.</div>
 
         <div class="privacy-grid">
             <!-- Information We Collect -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#128269;</div>
                     <span class="privacy-card-title" data-i18n="privacy.collect.title">Information We Collect</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content" data-i18n="privacy.collect.content">&#8226; Account Information: Email address, display name, and authentication data
 &#8226; Audio Recordings: Voice recordings you choose to process (stored locally by default)
@@ -3359,14 +3488,14 @@ We do NOT collect:
             </div>
 
             <!-- How We Use Your Information -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#9881;</div>
                     <span class="privacy-card-title" data-i18n="privacy.use.title">How We Use Your Information</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content" data-i18n="privacy.use.content">&#8226; Provide Core Services: Process audio, generate transcriptions and summaries
 &#8226; Improve User Experience: Enhance app functionality and performance
@@ -3384,14 +3513,14 @@ We will NEVER:
             </div>
 
             <!-- Data Storage and Security -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#128274;</div>
                     <span class="privacy-card-title" data-i18n="privacy.storage.title">Data Storage and Security</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content" data-i18n="privacy.storage.content">&#8226; Local Storage: Audio recordings and transcriptions are stored locally on your device by default
 &#8226; Cloud Storage: Optional premium feature with end-to-end encryption
@@ -3405,14 +3534,14 @@ Your recordings remain private and are never accessed for training AI models wit
             </div>
 
             <!-- Third-Party Services -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#127760;</div>
                     <span class="privacy-card-title" data-i18n="privacy.thirdParty.title">Third-Party Services</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content" data-i18n="privacy.thirdParty.content">VoiceSketch integrates with the following third-party services:
 
@@ -3432,14 +3561,14 @@ We ensure all partners meet our privacy and security standards. All third-party 
             </div>
 
             <!-- Your Rights and Controls -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#9995;</div>
                     <span class="privacy-card-title" data-i18n="privacy.rights.title">Your Rights and Controls</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content">You have the right to:
 
@@ -3456,14 +3585,14 @@ To exercise these rights, contact us at <a href="mailto:kairos.ai.tech@gmail.com
             </div>
 
             <!-- Children's Privacy (COPPA) -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#128106;</div>
                     <span class="privacy-card-title" data-i18n="privacy.children.title">Children's Privacy (COPPA)</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content" data-i18n="privacy.children.content">VoiceSketch is not intended for children under 13 years of age. We do not knowingly collect personal information from children under 13.
 
@@ -3480,14 +3609,14 @@ For users aged 13-17:
             </div>
 
             <!-- International Users (GDPR) -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#127758;</div>
                     <span class="privacy-card-title" data-i18n="privacy.gdpr.title">International Users (GDPR)</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content" data-i18n="privacy.gdpr.content">For users in the European Union, we comply with the General Data Protection Regulation (GDPR):
 
@@ -3502,14 +3631,14 @@ EU users have enhanced rights under GDPR, including the right to data portabilit
             </div>
 
             <!-- California Privacy Rights (CCPA) -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#128205;</div>
                     <span class="privacy-card-title" data-i18n="privacy.ccpa.title">California Privacy Rights (CCPA)</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content" data-i18n="privacy.ccpa.content">For California residents, we comply with the California Consumer Privacy Act (CCPA):
 
@@ -3526,14 +3655,14 @@ To exercise CCPA rights:
             </div>
 
             <!-- Data Retention -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#128197;</div>
                     <span class="privacy-card-title" data-i18n="privacy.retention.title">Data Retention</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content" data-i18n="privacy.retention.content">We retain your information only as long as necessary:
 
@@ -3548,14 +3677,14 @@ You can adjust retention settings in the app or request immediate deletion.</div
             </div>
 
             <!-- Contact Us -->
-            <div class="privacy-card animate-on-scroll" onclick="this.classList.toggle('open')">
-                <div class="privacy-card-header">
+            <div class="privacy-card animate-on-scroll">
+                <button class="privacy-card-header" aria-expanded="false">
                     <div class="privacy-card-icon">&#9993;</div>
                     <span class="privacy-card-title" data-i18n="privacy.contact.title">Contact Us</span>
                     <div class="privacy-card-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
-                </div>
+                </button>
                 <div class="privacy-card-body">
                     <div class="privacy-card-content">For privacy-related questions or concerns:
 
@@ -3571,6 +3700,7 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
         </div>
     </section>
 
+    </main>
     <!-- Footer -->
     <footer>
         <div class="footer-brand">
@@ -3580,12 +3710,12 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
             <span data-i18n="footer.from">from</span> <a href="https://www.kairosaitech.com" target="_blank">Kairos.ai</a>
         </div>
         <p data-i18n="footer.copyright">&copy; 2026 VoiceSketch. All rights reserved.</p>
-        <p style="margin-top: 0.5rem;"><a href="#terms" style="color: rgba(255,255,255,0.5); font-size: 0.8rem; text-decoration: none;" data-i18n="nav.terms">Terms of Service</a> &nbsp;|&nbsp; <a href="#privacy" style="color: rgba(255,255,255,0.5); font-size: 0.8rem; text-decoration: none;" data-i18n="nav.privacy">Privacy Policy</a></p>
+        <p class="footer-links"><a href="#terms" class="footer-link" data-i18n="nav.terms">Terms of Service</a> &nbsp;|&nbsp; <a href="#privacy" class="footer-link" data-i18n="nav.privacy">Privacy Policy</a></p>
     </footer>
 
     <!-- Mobile Sticky CTA -->
     <div class="mobile-cta" id="mobile-cta">
-        <a href="#" class="cta-button">
+        <a href="https://apps.apple.com/us/app/voicesketch-ai-visual-notes/id6757849645" class="cta-button app-store-link">
             <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
                 <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
             </svg>
@@ -4815,8 +4945,35 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
 
         let currentLang = localStorage.getItem('voicesketch-lang') || 'en';
 
+        const APP_STORE_APP_PATH = '/app/voicesketch-ai-visual-notes/id6757849645';
+        const APP_STORE_BASE = 'https://apps.apple.com';
+
+        // Maps language to default App Store country code
+        const langToAppStoreCountry = {
+            'en': 'us',
+            'zh-TW': 'tw',
+            'zh-CN': 'us', // China mainland App Store may not carry the app; route to US
+            'ja': 'jp',
+            'ko': 'kr',
+            'fr': 'fr',
+            'es': 'es',
+            'it': 'it'
+        };
+
+        let appStoreCountry = langToAppStoreCountry[currentLang] || 'us';
+        let appStoreCountryFromIP = false;
+
+        function updateAppStoreLinks() {
+            const url = `${APP_STORE_BASE}/${appStoreCountry}${APP_STORE_APP_PATH}`;
+            document.querySelectorAll('.app-store-link').forEach(link => {
+                link.href = url;
+            });
+        }
+
         function toggleLangDropdown() {
-            document.getElementById('lang-dropdown').classList.toggle('active');
+            var dropdown = document.getElementById('lang-dropdown');
+            dropdown.classList.toggle('active');
+            document.querySelector('.lang-btn').setAttribute('aria-expanded', dropdown.classList.contains('active'));
         }
 
         // Mapping from internal lang codes to hreflang codes
@@ -4859,16 +5016,22 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
             applyTranslations(lang);
             document.getElementById('current-lang').textContent = langNames[lang];
             document.getElementById('lang-dropdown').classList.remove('active');
+            document.querySelector('.lang-btn').setAttribute('aria-expanded', 'false');
+
+            // Update App Store links based on language (only if no IP country detected)
+            if (!appStoreCountryFromIP) {
+                appStoreCountry = langToAppStoreCountry[lang] || 'us';
+                updateAppStoreLinks();
+            }
 
             // Update canonical tag and URL
             updateCanonicalAndHreflang(lang);
 
-            // Update active state
+            // Update active state and aria-selected
             document.querySelectorAll('.lang-option').forEach(opt => {
-                opt.classList.remove('active');
-                if (opt.onclick.toString().includes(`'${lang}'`)) {
-                    opt.classList.add('active');
-                }
+                var isSelected = opt.dataset.lang === lang;
+                opt.classList.toggle('active', isSelected);
+                opt.setAttribute('aria-selected', isSelected);
             });
         }
 
@@ -4892,6 +5055,7 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
         document.addEventListener('click', (e) => {
             if (!e.target.closest('.lang-selector')) {
                 document.getElementById('lang-dropdown').classList.remove('active');
+                document.querySelector('.lang-btn').setAttribute('aria-expanded', 'false');
             }
         });
 
@@ -4938,6 +5102,37 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
 
             setLanguage(currentLang);
 
+            // Detect user's country via IP for App Store routing (cached for 24h)
+            var cachedCountry = localStorage.getItem('voicesketch-country');
+            var cachedCountryTime = localStorage.getItem('voicesketch-country-time');
+            var countryExpiry = 24 * 60 * 60 * 1000; // 24 hours
+
+            if (cachedCountry && cachedCountryTime && (Date.now() - Number(cachedCountryTime)) < countryExpiry) {
+                appStoreCountry = cachedCountry;
+                appStoreCountryFromIP = true;
+                updateAppStoreLinks();
+            } else {
+                // IP-based country detection for App Store routing.
+                // Only the 2-letter country code is fetched (no PII). Result is cached
+                // in localStorage for 24h to avoid repeated calls. Falls back silently
+                // to language-based routing on failure or timeout.
+                var ipAbort = new AbortController();
+                setTimeout(function() { ipAbort.abort(); }, 3000);
+                fetch('https://ipapi.co/country/', { signal: ipAbort.signal })
+                    .then(r => r.text())
+                    .then(country => {
+                        country = (country || '').trim().toLowerCase();
+                        if (/^[a-z]{2}$/.test(country)) {
+                            appStoreCountry = country;
+                            appStoreCountryFromIP = true;
+                            updateAppStoreLinks();
+                            localStorage.setItem('voicesketch-country', country);
+                            localStorage.setItem('voicesketch-country-time', String(Date.now()));
+                        }
+                    })
+                    .catch(() => {}); // Silently fall back to language-based country
+            }
+
             // Scroll to section after redirect from /terms or /privacy pages
             const scrollTo = urlParams.get('scrollTo');
             if (scrollTo) {
@@ -4973,6 +5168,17 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
             observer.observe(el);
         });
 
+        // Pause CSS animations on sections that are off-screen to save CPU/GPU
+        const animObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                entry.target.style.animationPlayState = entry.isIntersecting ? 'running' : 'paused';
+            });
+        }, { rootMargin: '100px 0px' });
+
+        document.querySelectorAll('.bg-shape, .wave, .float-item, .typing-text, .visual-card, .record-btn, .mic-bar, .typing-cursor, .ai-core, .mini-card, .arrow-flow, .export-file, .carousel-progress-bar, .features-bg-shapes .shape').forEach(el => {
+            animObserver.observe(el);
+        });
+
         // Stagger why card animations
         document.querySelectorAll('.why-card').forEach((card, index) => {
             card.style.transitionDelay = `${index * 0.1}s`;
@@ -5000,30 +5206,35 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
 
         setInterval(restartDemoAnimation, 8000);
 
-        // Navigation scroll effect
+        // Navigation scroll effect (throttled with rAF)
         const nav = document.getElementById('nav');
         const mobileCta = document.getElementById('mobile-cta');
-        let lastScrollY = window.scrollY;
+        let scrollTicking = false;
 
         window.addEventListener('scroll', () => {
-            const currentScrollY = window.scrollY;
+            if (!scrollTicking) {
+                requestAnimationFrame(() => {
+                    const currentScrollY = window.scrollY;
 
-            // Nav background on scroll
-            if (currentScrollY > 50) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
+                    // Nav background on scroll
+                    if (currentScrollY > 50) {
+                        nav.classList.add('scrolled');
+                    } else {
+                        nav.classList.remove('scrolled');
+                    }
+
+                    // Mobile CTA visibility (show after scrolling past hero)
+                    if (currentScrollY > window.innerHeight * 0.8) {
+                        mobileCta.classList.add('visible');
+                    } else {
+                        mobileCta.classList.remove('visible');
+                    }
+
+                    scrollTicking = false;
+                });
+                scrollTicking = true;
             }
-
-            // Mobile CTA visibility (show after scrolling past hero)
-            if (currentScrollY > window.innerHeight * 0.8) {
-                mobileCta.classList.add('visible');
-            } else {
-                mobileCta.classList.remove('visible');
-            }
-
-            lastScrollY = currentScrollY;
-        });
+        }, { passive: true });
 
         // Smooth scroll for nav links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -5062,6 +5273,7 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
 
             dots.forEach((dot, i) => {
                 dot.classList.toggle('active', i === currentSlide);
+                dot.setAttribute('aria-selected', i === currentSlide ? 'true' : 'false');
             });
 
             // Reset progress bar animation
@@ -5151,6 +5363,61 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
 
         // Start autoplay
         startAutoplay();
+
+        // Accordion keyboard support
+        document.querySelectorAll('.privacy-card-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const card = this.closest('.privacy-card');
+                const isOpen = card.classList.toggle('open');
+                this.setAttribute('aria-expanded', isOpen);
+            });
+        });
+
+        // Language dropdown keyboard navigation
+        (function() {
+            const btn = document.querySelector('.lang-btn');
+            const dropdown = document.getElementById('lang-dropdown');
+            const options = dropdown.querySelectorAll('.lang-option');
+
+            function openDropdown() {
+                dropdown.classList.add('active');
+                btn.setAttribute('aria-expanded', 'true');
+                const active = dropdown.querySelector('.lang-option.active') || options[0];
+                active.focus();
+            }
+
+            function closeDropdown() {
+                dropdown.classList.remove('active');
+                btn.setAttribute('aria-expanded', 'false');
+                btn.focus();
+            }
+
+            btn.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    openDropdown();
+                }
+            });
+
+            dropdown.addEventListener('keydown', function(e) {
+                const focused = document.activeElement;
+                const idx = Array.from(options).indexOf(focused);
+
+                if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    options[Math.min(idx + 1, options.length - 1)].focus();
+                } else if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    if (idx <= 0) { closeDropdown(); } else { options[idx - 1].focus(); }
+                } else if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    if (focused.dataset.lang) setLanguage(focused.dataset.lang);
+                    closeDropdown();
+                } else if (e.key === 'Escape') {
+                    closeDropdown();
+                }
+            });
+        })();
     </script>
 </body>
 </html>
