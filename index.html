@@ -14,8 +14,8 @@
     })();
     </script>
     <title data-i18n="meta.title">VoiceSketch - Transform Voice into Visual Learning</title>
-    <meta name="description" content="VoiceSketch converts spoken content into AI-powered visual summaries. Record lectures, meetings, or discussions and get beautiful visual notes instantly.">
-    <meta name="keywords" content="voice notes, AI summaries, visual learning, lecture notes, transcription, iOS app, voice to text, audio notes, meeting notes, study app">
+    <meta name="description" content="VoiceSketch converts spoken content into AI-powered visual summaries. Record meetings, lectures, or import photos of whiteboards. Features Siri shortcuts, iOS widgets, 5 summary styles, and dark mode.">
+    <meta name="keywords" content="voice notes, AI summaries, visual learning, lecture notes, transcription, iOS app, voice to text, audio notes, meeting notes, study app, siri shortcuts, ios widgets, dark mode, cornell notes">
     <meta name="author" content="Kairos.ai">
     <meta name="robots" content="index, follow">
     <meta name="googlebot" content="index, follow">
@@ -1563,6 +1563,181 @@
             font-weight: 500;
         }
 
+        /* What's New Section */
+        .whats-new {
+            contain: layout style;
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, #fff 0%, #f8f9fa 100%);
+            position: relative;
+        }
+
+        .whats-new-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .whats-new-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 1.75rem;
+            box-shadow: 0 4px 20px var(--border-light);
+            border: 1px solid var(--border-light);
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            opacity: 0;
+            transform: translateY(30px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .whats-new-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .whats-new-card:hover {
+            transform: translateY(-6px) scale(1.01);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .whats-new-card .new-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+        }
+
+        .whats-new-card .whats-new-icon {
+            width: 52px;
+            height: 52px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+            font-size: 1.5rem;
+        }
+
+        .whats-new-card h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .whats-new-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .whats-new .version-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            font-size: 0.85rem;
+            font-weight: 700;
+            padding: 0.4rem 1rem;
+            border-radius: 25px;
+            margin-bottom: 1rem;
+        }
+
+        /* Discord Community Section */
+        .discord-section {
+            contain: layout style;
+            padding: 5rem 2rem;
+            background: #5865F2;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .discord-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
+            animation: cta-glow 10s ease-in-out infinite;
+        }
+
+        .discord-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .discord-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .discord-icon svg {
+            width: 40px;
+            height: 40px;
+            fill: white;
+        }
+
+        .discord-section h2 {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .discord-section p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .discord-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: white;
+            color: #5865F2;
+            padding: 1rem 2rem;
+            border-radius: 14px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .discord-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            background: #f0f0f0;
+        }
+
+        .discord-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: #5865F2;
+        }
+
         /* CTA Section */
         .cta-section {
             padding: 6rem 2rem;
@@ -2439,8 +2614,10 @@
         </a>
         <div class="nav-links">
             <a href="#features" data-i18n="nav.features">Features</a>
+            <a href="#whats-new" data-i18n="nav.whatsNew">What's New</a>
             <a href="#how-it-works" data-i18n="nav.howItWorks">How It Works</a>
             <a href="#testimonials" data-i18n="nav.reviews">Reviews</a>
+            <a href="#community" data-i18n="nav.community">Community</a>
             <a href="#terms" data-i18n="nav.terms">Terms</a>
             <a href="#privacy" data-i18n="nav.privacy">Privacy</a>
             <!-- Language Selector -->
@@ -2467,7 +2644,7 @@
                     <div class="lang-option" role="option" tabindex="-1" aria-selected="false" onclick="setLanguage('it')" data-lang="it">Italiano</div>
                 </div>
             </div>
-            <a href="https://apps.apple.com/us/app/voicesketch-ai-visual-notes/id6757849645" class="nav-cta app-store-link" data-i18n="hero.cta">Download</a>
+            <a href="https://apps.apple.com/us/app/voicesketch-ai-meeting-notes/id6757849645" class="nav-cta app-store-link" data-i18n="hero.cta">Download</a>
         </div>
     </nav>
 
@@ -2491,11 +2668,11 @@
             <h1>VoiceSketch</h1>
             <p class="tagline" data-i18n="hero.tagline">Transform voice into visual notes</p>
             <div class="badge-container">
-                <span class="badge">iOS 17.0+</span>
+                <span class="badge">iOS 18.0+</span>
                 <span class="badge" data-i18n="hero.badge.ai">AI Powered</span>
                 <span class="badge" data-i18n="hero.badge.languages">60+ Languages</span>
             </div>
-            <a href="https://apps.apple.com/us/app/voicesketch-ai-visual-notes/id6757849645" class="cta-button app-store-link">
+            <a href="https://apps.apple.com/us/app/voicesketch-ai-meeting-notes/id6757849645" class="cta-button app-store-link">
                 <svg viewBox="0 0 24 24" fill="currentColor">
                     <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
                 </svg>
@@ -2683,14 +2860,13 @@
                 <div class="feature-card">
                     <div class="feature-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                            <polyline points="14 2 14 8 20 8"/>
-                            <line x1="16" y1="13" x2="8" y2="13"/>
-                            <line x1="16" y1="17" x2="8" y2="17"/>
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                            <path d="M3 9h18"/>
+                            <path d="M9 21V9"/>
                         </svg>
                     </div>
-                    <h3 data-i18n="features.text.title">Text Analysis</h3>
-                    <p data-i18n="features.text.desc">Paste any text to generate visual summaries. Perfect for articles, documents, or study materials.</p>
+                    <h3 data-i18n="features.text.title">Photo & Text Import</h3>
+                    <p data-i18n="features.text.desc">Import photos of whiteboards or documents, or paste any text. AI automatically extracts and summarizes content visually.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
@@ -2712,7 +2888,7 @@
                         </svg>
                     </div>
                     <h3 data-i18n="features.cloud.title">Cloud Sync & Export</h3>
-                    <p data-i18n="features.cloud.desc">Firebase backup keeps your notes safe across devices. Export to PDF, PNG, or RTF formats.</p>
+                    <p data-i18n="features.cloud.desc">Sync across devices with Firebase backup. Export to PDF, PNG, or RTF. Choose from 5 summary styles including Cornell Notes.</p>
                 </div>
             </div>
         </div>
@@ -2729,8 +2905,8 @@
                 <div class="timeline-item">
                     <div class="timeline-number">1</div>
                     <div class="timeline-content">
-                        <h3 data-i18n="howItWorks.step1.title">Record or Paste</h3>
-                        <p data-i18n="howItWorks.step1.desc">Start recording your lecture, meeting, or discussion. You can also paste text directly for analysis. VoiceSketch transcribes in real-time with support for 60+ languages.</p>
+                        <h3 data-i18n="howItWorks.step1.title">Record, Import, or Paste</h3>
+                        <p data-i18n="howItWorks.step1.desc">Start recording your lecture, meeting, or discussion. Import photos of whiteboards and documents, or paste text directly. VoiceSketch transcribes in real-time with support for 60+ languages.</p>
                         <div class="step-demo">
                             <div class="recording-demo">
                                 <div class="recording-header">
@@ -2874,16 +3050,75 @@
                     <div class="stat-label" data-i18n="stats.languages">Transcription Languages</div>
                 </div>
                 <div class="stat-item animate-on-scroll">
-                    <div class="stat-value">10</div>
-                    <div class="stat-label" data-i18n="stats.ui">UI Languages</div>
+                    <div class="stat-value">5</div>
+                    <div class="stat-label" data-i18n="stats.styles">Summary Styles</div>
                 </div>
                 <div class="stat-item animate-on-scroll">
-                    <div class="stat-value">3</div>
-                    <div class="stat-label" data-i18n="stats.export">Export Formats</div>
+                    <div class="stat-value">5</div>
+                    <div class="stat-label" data-i18n="stats.sessions">Session Types</div>
                 </div>
                 <div class="stat-item animate-on-scroll">
                     <div class="stat-value">GPT</div>
                     <div class="stat-label" data-i18n="stats.ai">AI Powered</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What's New -->
+    <section class="whats-new" id="whats-new">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <div class="version-badge" data-i18n="whatsNew.badge">v1.0.2</div>
+                <h2 data-i18n="whatsNew.title">What's New</h2>
+                <p data-i18n="whatsNew.subtitle">The latest features to supercharge your note-taking</p>
+            </div>
+            <div class="whats-new-grid">
+                <div class="whats-new-card animate-on-scroll">
+                    <div class="whats-new-icon">&#127911;</div>
+                    <span class="new-badge" data-i18n="whatsNew.newLabel">New</span>
+                    <h3 data-i18n="whatsNew.playback.title">Audio Playback</h3>
+                    <p data-i18n="whatsNew.playback.desc">Play back recordings directly from session details. Pause, skip, and seek through your audio. Share or download recording files.</p>
+                </div>
+                <div class="whats-new-card animate-on-scroll">
+                    <div class="whats-new-icon">&#128247;</div>
+                    <span class="new-badge" data-i18n="whatsNew.newLabel">New</span>
+                    <h3 data-i18n="whatsNew.photo.title">Photo Text Import</h3>
+                    <p data-i18n="whatsNew.photo.desc">Import photos of whiteboards, documents, or handwritten notes. Text is automatically extracted and turned into AI visual summaries.</p>
+                </div>
+                <div class="whats-new-card animate-on-scroll">
+                    <div class="whats-new-icon">&#128221;</div>
+                    <span class="new-badge" data-i18n="whatsNew.newLabel">New</span>
+                    <h3 data-i18n="whatsNew.styles.title">Summary Styles</h3>
+                    <p data-i18n="whatsNew.styles.desc">Choose your preferred AI summary format: Concise, Bullet Points, Detailed, Cornell Notes, or Action-Focused.</p>
+                </div>
+                <div class="whats-new-card animate-on-scroll">
+                    <div class="whats-new-icon">&#128736;</div>
+                    <span class="new-badge" data-i18n="whatsNew.newLabel">New</span>
+                    <h3 data-i18n="whatsNew.sessions.title">More Session Types</h3>
+                    <p data-i18n="whatsNew.sessions.desc">New Brainstorm, Interview, and Personal session types to better organize your recordings alongside Meetings and Lectures.</p>
+                </div>
+                <div class="whats-new-card animate-on-scroll">
+                    <div class="whats-new-icon">&#128483;&#65039;</div>
+                    <span class="new-badge" data-i18n="whatsNew.newLabel">New</span>
+                    <h3 data-i18n="whatsNew.siri.title">Siri Shortcuts</h3>
+                    <p data-i18n="whatsNew.siri.desc">Say "Start recording with VoiceSketch" to begin a session hands-free. Also supports stop recording and quick session access.</p>
+                </div>
+                <div class="whats-new-card animate-on-scroll">
+                    <div class="whats-new-icon">&#128242;</div>
+                    <span class="new-badge" data-i18n="whatsNew.newLabel">New</span>
+                    <h3 data-i18n="whatsNew.widgets.title">iOS Widgets</h3>
+                    <p data-i18n="whatsNew.widgets.desc">Add home screen and lock screen widgets for quick recording, viewing your latest session, or checking your stats at a glance.</p>
+                </div>
+                <div class="whats-new-card animate-on-scroll">
+                    <div class="whats-new-icon">&#9989;</div>
+                    <h3 data-i18n="whatsNew.actions.title">Action Items</h3>
+                    <p data-i18n="whatsNew.actions.desc">AI automatically extracts actionable tasks from recordings with priority levels and assignees. Included in PDF exports.</p>
+                </div>
+                <div class="whats-new-card animate-on-scroll">
+                    <div class="whats-new-icon">&#127769;</div>
+                    <h3 data-i18n="whatsNew.darkMode.title">Dark Mode</h3>
+                    <p data-i18n="whatsNew.darkMode.desc">Full dark mode support with System, Light, and Dark theme options. Optimized dark color palette for comfortable use.</p>
                 </div>
             </div>
         </div>
@@ -3009,11 +3244,30 @@
         <div class="container">
             <h2 data-i18n="cta.title">Start Learning Visually</h2>
             <p data-i18n="cta.subtitle">Download VoiceSketch and transform how you capture and retain knowledge.</p>
-            <a href="https://apps.apple.com/us/app/voicesketch-ai-visual-notes/id6757849645" class="cta-button app-store-link">
+            <a href="https://apps.apple.com/us/app/voicesketch-ai-meeting-notes/id6757849645" class="cta-button app-store-link">
                 <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
                     <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
                 </svg>
                 <span data-i18n="hero.cta">Download on App Store</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Discord Community -->
+    <section class="discord-section" id="community">
+        <div class="discord-content">
+            <div class="discord-icon">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.42 0 1.333-.947 2.418-2.157 2.418z"/>
+                </svg>
+            </div>
+            <h2 data-i18n="discord.title">Join Our Community</h2>
+            <p data-i18n="discord.subtitle">Connect with other VoiceSketch users, share tips, request features, and get help from the community and our team.</p>
+            <a href="https://discord.gg/voicesketch" class="discord-btn" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.42 0 1.333-.947 2.418-2.157 2.418z"/>
+                </svg>
+                <span data-i18n="discord.cta">Join Discord Server</span>
             </a>
         </div>
     </section>
@@ -3715,7 +3969,7 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
 
     <!-- Mobile Sticky CTA -->
     <div class="mobile-cta" id="mobile-cta">
-        <a href="https://apps.apple.com/us/app/voicesketch-ai-visual-notes/id6757849645" class="cta-button app-store-link">
+        <a href="https://apps.apple.com/us/app/voicesketch-ai-meeting-notes/id6757849645" class="cta-button app-store-link">
             <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
                 <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
             </svg>
@@ -3728,8 +3982,10 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
         const translations = {
             en: {
                 "nav.features": "Features",
+                "nav.whatsNew": "What's New",
                 "nav.howItWorks": "How It Works",
                 "nav.reviews": "Reviews",
+                "nav.community": "Community",
                 "meta.title": "VoiceSketch - Transform Voice into Visual Learning",
                 "hero.tagline": "Transform voice into visual notes",
                 "hero.badge.ai": "AI Powered",
@@ -3771,16 +4027,16 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
                 "features.ai.desc": "Powered by GPT, automatically generate concise summaries that capture the essence of your content.",
                 "features.visual.title": "Visual Notes",
                 "features.visual.desc": "AI-generated images for each summary segment, creating memorable visual anchors for better retention.",
-                "features.text.title": "Text Analysis",
-                "features.text.desc": "Paste any text to generate visual summaries. Perfect for articles, documents, or study materials.",
+                "features.text.title": "Photo & Text Import",
+                "features.text.desc": "Import photos of whiteboards or documents, or paste any text. AI automatically extracts and summarizes content visually.",
                 "features.lang.title": "Multi-language",
                 "features.lang.desc": "Support for 60+ transcription languages and 10 UI languages. Learn in your native language.",
                 "features.cloud.title": "Cloud Sync & Export",
-                "features.cloud.desc": "Firebase backup keeps your notes safe across devices. Export to PDF, PNG, or RTF formats.",
+                "features.cloud.desc": "Sync across devices with Firebase backup. Export to PDF, PNG, or RTF. Choose from 5 summary styles including Cornell Notes.",
                 "howItWorks.title": "How It Works",
                 "howItWorks.subtitle": "Three simple steps to visual learning",
-                "howItWorks.step1.title": "Record or Paste",
-                "howItWorks.step1.desc": "Start recording your lecture, meeting, or discussion. You can also paste text directly for analysis. VoiceSketch transcribes in real-time with support for 60+ languages.",
+                "howItWorks.step1.title": "Record, Import, or Paste",
+                "howItWorks.step1.desc": "Start recording your lecture, meeting, or discussion. Import photos of whiteboards and documents, or paste text directly. VoiceSketch transcribes in real-time with support for 60+ languages.",
                 "howItWorks.step2.title": "AI Processing",
                 "howItWorks.step2.desc": "Our GPT-powered AI analyzes your content, extracting key concepts and creating concise summaries. Each segment is paired with a unique AI-generated visual.",
                 "howItWorks.step3.title": "Review & Export",
@@ -3797,8 +4053,8 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
                 "useCases.researchers.title": "Researchers",
                 "useCases.researchers.desc": "Organize findings with visual documentation for easier analysis",
                 "stats.languages": "Transcription Languages",
-                "stats.ui": "UI Languages",
-                "stats.export": "Export Formats",
+                "stats.styles": "Summary Styles",
+                "stats.sessions": "Session Types",
                 "stats.ai": "AI Powered",
                 "cta.title": "Start Learning Visually",
                 "cta.subtitle": "Download VoiceSketch and transform how you capture and retain knowledge.",
@@ -3877,6 +4133,29 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
                 "terms.changes.title": "Changes to Terms",
                 "terms.changes.content": "We reserve the right to modify these Terms at any time. Changes will be effective when:\n\n\u2022 Posted within the App with updated \"Last modified\" date\n\u2022 Notification sent to registered email addresses\n\u2022 For material changes, 30 days advance notice will be provided\n\nYour Options:\n\u2022 Continued use of the App constitutes acceptance of changes\n\u2022 If you disagree with changes, discontinue use and delete your account\n\u2022 Some changes may be required by law or for security reasons\n\nVersion Control:\n\u2022 Previous versions of Terms are archived and available upon request\n\u2022 The current version always supersedes previous versions",
                 "terms.contact.title": "Contact Information",
+                "whatsNew.badge": "v1.0.2",
+                "whatsNew.title": "What's New",
+                "whatsNew.subtitle": "The latest features to supercharge your note-taking",
+                "whatsNew.newLabel": "New",
+                "whatsNew.playback.title": "Audio Playback",
+                "whatsNew.playback.desc": "Play back recordings directly from session details. Pause, skip, and seek through your audio. Share or download recording files.",
+                "whatsNew.photo.title": "Photo Text Import",
+                "whatsNew.photo.desc": "Import photos of whiteboards, documents, or handwritten notes. Text is automatically extracted and turned into AI visual summaries.",
+                "whatsNew.styles.title": "Summary Styles",
+                "whatsNew.styles.desc": "Choose your preferred AI summary format: Concise, Bullet Points, Detailed, Cornell Notes, or Action-Focused.",
+                "whatsNew.sessions.title": "More Session Types",
+                "whatsNew.sessions.desc": "New Brainstorm, Interview, and Personal session types to better organize your recordings alongside Meetings and Lectures.",
+                "whatsNew.siri.title": "Siri Shortcuts",
+                "whatsNew.siri.desc": "Say \"Start recording with VoiceSketch\" to begin a session hands-free. Also supports stop recording and quick session access.",
+                "whatsNew.widgets.title": "iOS Widgets",
+                "whatsNew.widgets.desc": "Add home screen and lock screen widgets for quick recording, viewing your latest session, or checking your stats at a glance.",
+                "whatsNew.actions.title": "Action Items",
+                "whatsNew.actions.desc": "AI automatically extracts actionable tasks from recordings with priority levels and assignees. Included in PDF exports.",
+                "whatsNew.darkMode.title": "Dark Mode",
+                "whatsNew.darkMode.desc": "Full dark mode support with System, Light, and Dark theme options. Optimized dark color palette for comfortable use.",
+                "discord.title": "Join Our Community",
+                "discord.subtitle": "Connect with other VoiceSketch users, share tips, request features, and get help from the community and our team.",
+                "discord.cta": "Join Discord Server",
                 "footer.from": "from",
                 "footer.copyright": "© 2026 VoiceSketch. All rights reserved."
             },
@@ -3884,6 +4163,8 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
                 "nav.features": "功能特色",
                 "nav.howItWorks": "使用方式",
                 "nav.reviews": "使用者評價",
+                "nav.whatsNew": "最新功能",
+                "nav.community": "社群",
                 "meta.title": "VoiceSketch - 將語音轉化為視覺學習",
                 "hero.tagline": "將語音轉化為視覺筆記",
                 "hero.badge.ai": "AI 驅動",
@@ -3925,16 +4206,16 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
                 "features.ai.desc": "由 GPT 驅動，自動生成精簡摘要，捕捉內容精華。",
                 "features.visual.title": "視覺筆記",
                 "features.visual.desc": "為每個摘要段落生成 AI 圖像，創造令人難忘的視覺錨點，增強記憶。",
-                "features.text.title": "文字分析",
-                "features.text.desc": "貼上任何文字即可生成視覺摘要。適用於文章、文件或學習資料。",
+                "features.text.title": "照片與文字匯入",
+                "features.text.desc": "匯入白板、文件或手寫筆記的照片，或直接貼上文字。AI 自動提取內容並生成視覺摘要。",
                 "features.lang.title": "多語言支援",
                 "features.lang.desc": "支援 60+ 種轉錄語言和 10 種介面語言。用您的母語學習。",
                 "features.cloud.title": "雲端同步與匯出",
-                "features.cloud.desc": "Firebase 備份確保跨裝置筆記安全。支援匯出 PDF、PNG 或 RTF 格式。",
+                "features.cloud.desc": "透過 Firebase 備份跨裝置同步。匯出為 PDF、PNG 或 RTF。提供 5 種摘要風格，包括康乃爾筆記法。",
                 "howItWorks.title": "使用方式",
                 "howItWorks.subtitle": "三個簡單步驟實現視覺學習",
-                "howItWorks.step1.title": "錄音或貼上",
-                "howItWorks.step1.desc": "開始錄製您的講座、會議或討論。您也可以直接貼上文字進行分析。VoiceSketch 支援 60+ 種語言的即時轉錄。",
+                "howItWorks.step1.title": "錄音、匯入或貼上",
+                "howItWorks.step1.desc": "開始錄製講座、會議或討論。匯入白板和文件的照片，或直接貼上文字。VoiceSketch 即時轉錄，支援 60+ 種語言。",
                 "howItWorks.step2.title": "AI 處理",
                 "howItWorks.step2.desc": "我們的 GPT 驅動 AI 分析您的內容，提取關鍵概念並創建精簡摘要。每個段落都配有獨特的 AI 生成視覺圖像。",
                 "howItWorks.step3.title": "檢視與匯出",
@@ -3951,8 +4232,8 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
                 "useCases.researchers.title": "研究人員",
                 "useCases.researchers.desc": "用視覺化文件整理研究發現，便於分析",
                 "stats.languages": "轉錄語言",
-                "stats.ui": "介面語言",
-                "stats.export": "匯出格式",
+                "stats.styles": "摘要風格",
+                "stats.sessions": "會議類型",
                 "stats.ai": "AI 驅動",
                 "cta.title": "開始視覺學習",
                 "cta.subtitle": "下載 VoiceSketch，轉變您捕捉和保留知識的方式。",
@@ -4027,6 +4308,29 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
                 "terms.changes.title": "條款變更",
                 "terms.changes.content": "我們保留隨時修改這些條款的權利。變更將在以下情況下生效：\n\n\u2022 在應用程式內發布並更新「最後修改」日期\n\u2022 向註冊電子郵件地址發送通知\n\u2022 重大變更將提前 30 天通知\n\n您的選擇：\n\u2022 繼續使用本應用程式即表示接受變更\n\u2022 如果您不同意變更，請停止使用並刪除帳戶\n\u2022 某些變更可能為法律或安全原因所要求\n\n版本控制：\n\u2022 先前版本的條款已存檔，可應要求提供\n\u2022 目前版本始終取代先前版本",
                 "terms.contact.title": "聯絡資訊",
+                "whatsNew.badge": "v1.0.2",
+                "whatsNew.title": "最新功能",
+                "whatsNew.subtitle": "最新功能，讓你的筆記更強大",
+                "whatsNew.newLabel": "全新",
+                "whatsNew.playback.title": "音訊播放",
+                "whatsNew.playback.desc": "直接從會議詳情播放錄音。暫停、跳轉、拖動播放進度。分享或下載錄音檔案。",
+                "whatsNew.photo.title": "照片文字匯入",
+                "whatsNew.photo.desc": "匯入白板、文件或手寫筆記的照片。自動提取文字並轉化為 AI 視覺摘要。",
+                "whatsNew.styles.title": "摘要風格",
+                "whatsNew.styles.desc": "選擇你偏好的 AI 摘要格式：精簡、條列式、詳細、康乃爾筆記法或行動導向。",
+                "whatsNew.sessions.title": "更多會議類型",
+                "whatsNew.sessions.desc": "新增腦力激盪、面試和個人會議類型，更好地組織你的錄音。",
+                "whatsNew.siri.title": "Siri 捷徑",
+                "whatsNew.siri.desc": "說「用 VoiceSketch 開始錄音」即可免持開始會議。也支援停止錄音和快速存取會議。",
+                "whatsNew.widgets.title": "iOS 小工具",
+                "whatsNew.widgets.desc": "新增主畫面和鎖定畫面小工具，快速錄音、查看最新會議或一覽統計資料。",
+                "whatsNew.actions.title": "行動項目",
+                "whatsNew.actions.desc": "AI 自動從錄音中提取可執行任務，包含優先等級和負責人。可匯入 PDF 匯出。",
+                "whatsNew.darkMode.title": "深色模式",
+                "whatsNew.darkMode.desc": "完整深色模式支援，提供系統、淺色和深色主題選項。最佳化的深色調色盤，使用更舒適。",
+                "discord.title": "加入我們的社群",
+                "discord.subtitle": "與其他 VoiceSketch 使用者交流，分享技巧、提出功能需求，獲得社群和團隊的協助。",
+                "discord.cta": "加入 Discord 伺服器",
                 "footer.from": "來自",
                 "footer.copyright": "© 2026 VoiceSketch. 保留所有權利。"
             },
@@ -4034,6 +4338,8 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
                 "nav.features": "功能特色",
                 "nav.howItWorks": "使用方式",
                 "nav.reviews": "用户评价",
+                "nav.whatsNew": "最新功能",
+                "nav.community": "社区",
                 "meta.title": "VoiceSketch - 将语音转化为视觉学习",
                 "hero.tagline": "将语音转化为视觉笔记",
                 "hero.badge.ai": "AI 驱动",
@@ -4075,16 +4381,16 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
                 "features.ai.desc": "由 GPT 驱动，自动生成精炼摘要，捕捉内容精华。",
                 "features.visual.title": "视觉笔记",
                 "features.visual.desc": "为每个摘要段落生成 AI 图像，创造令人难忘的视觉锚点，增强记忆。",
-                "features.text.title": "文本分析",
-                "features.text.desc": "粘贴任何文本即可生成视觉摘要。适用于文章、文档或学习资料。",
+                "features.text.title": "照片与文字导入",
+                "features.text.desc": "导入白板、文件或手写笔记的照片，或直接粘贴文字。AI 自动提取内容并生成视觉摘要。",
                 "features.lang.title": "多语言支持",
                 "features.lang.desc": "支持 60+ 种转录语言和 10 种界面语言。用您的母语学习。",
                 "features.cloud.title": "云端同步与导出",
-                "features.cloud.desc": "Firebase 备份确保跨设备笔记安全。支持导出 PDF、PNG 或 RTF 格式。",
+                "features.cloud.desc": "通过 Firebase 备份跨设备同步。导出为 PDF、PNG 或 RTF。提供 5 种摘要风格，包括康奈尔笔记法。",
                 "howItWorks.title": "使用方式",
                 "howItWorks.subtitle": "三个简单步骤实现视觉学习",
-                "howItWorks.step1.title": "录音或粘贴",
-                "howItWorks.step1.desc": "开始录制您的讲座、会议或讨论。您也可以直接粘贴文本进行分析。VoiceSketch 支持 60+ 种语言的实时转录。",
+                "howItWorks.step1.title": "录音、导入或粘贴",
+                "howItWorks.step1.desc": "开始录制讲座、会议或讨论。导入白板和文件的照片，或直接粘贴文字。VoiceSketch 实时转录，支持 60+ 种语言。",
                 "howItWorks.step2.title": "AI 处理",
                 "howItWorks.step2.desc": "我们的 GPT 驱动 AI 分析您的内容，提取关键概念并创建精炼摘要。每个段落都配有独特的 AI 生成视觉图像。",
                 "howItWorks.step3.title": "查看与导出",
@@ -4101,8 +4407,8 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
                 "useCases.researchers.title": "研究人员",
                 "useCases.researchers.desc": "用可视化文档整理研究发现，便于分析",
                 "stats.languages": "转录语言",
-                "stats.ui": "界面语言",
-                "stats.export": "导出格式",
+                "stats.styles": "摘要风格",
+                "stats.sessions": "会议类型",
                 "stats.ai": "AI 驱动",
                 "cta.title": "开始视觉学习",
                 "cta.subtitle": "下载 VoiceSketch，转变您捕获和保留知识的方式。",
@@ -4177,6 +4483,29 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
                 "terms.changes.title": "条款变更",
                 "terms.changes.content": "我们保留随时修改这些条款的权利。变更将在以下情况下生效：\n\n\u2022 在应用内发布并更新「最后修改」日期\n\u2022 向注册电子邮件地址发送通知\n\u2022 重大变更将提前 30 天通知\n\n您的选择：\n\u2022 继续使用本应用即表示接受变更\n\u2022 如果您不同意变更，请停止使用并删除账户\n\u2022 某些变更可能为法律或安全原因所要求\n\n版本控制：\n\u2022 先前版本的条款已存档，可应要求提供\n\u2022 当前版本始终取代先前版本",
                 "terms.contact.title": "联系信息",
+                "whatsNew.badge": "v1.0.2",
+                "whatsNew.title": "最新功能",
+                "whatsNew.subtitle": "最新功能，让你的笔记更强大",
+                "whatsNew.newLabel": "全新",
+                "whatsNew.playback.title": "音频播放",
+                "whatsNew.playback.desc": "直接从会议详情播放录音。暂停、跳转、拖动播放进度。分享或下载录音文件。",
+                "whatsNew.photo.title": "照片文字导入",
+                "whatsNew.photo.desc": "导入白板、文件或手写笔记的照片。自动提取文字并转化为 AI 视觉摘要。",
+                "whatsNew.styles.title": "摘要风格",
+                "whatsNew.styles.desc": "选择你偏好的 AI 摘要格式：精简、条列式、详细、康奈尔笔记法或行动导向。",
+                "whatsNew.sessions.title": "更多会议类型",
+                "whatsNew.sessions.desc": "新增头脑风暴、面试和个人会议类型，更好地组织你的录音。",
+                "whatsNew.siri.title": "Siri 快捷指令",
+                "whatsNew.siri.desc": "说「用 VoiceSketch 开始录音」即可免提开始会议。也支持停止录音和快速访问会议。",
+                "whatsNew.widgets.title": "iOS 小组件",
+                "whatsNew.widgets.desc": "添加主屏幕和锁定屏幕小组件，快速录音、查看最新会议或一览统计数据。",
+                "whatsNew.actions.title": "行动项目",
+                "whatsNew.actions.desc": "AI 自动从录音中提取可执行任务，包含优先级和负责人。可导入 PDF 导出。",
+                "whatsNew.darkMode.title": "深色模式",
+                "whatsNew.darkMode.desc": "完整深色模式支持，提供系统、浅色和深色主题选项。优化的深色调色板，使用更舒适。",
+                "discord.title": "加入我们的社区",
+                "discord.subtitle": "与其他 VoiceSketch 用户交流，分享技巧、提出功能需求，获得社区和团队的帮助。",
+                "discord.cta": "加入 Discord 服务器",
                 "footer.from": "来自",
                 "footer.copyright": "© 2026 VoiceSketch. 保留所有权利。"
             },
@@ -4184,6 +4513,8 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
                 "nav.features": "機能",
                 "nav.howItWorks": "使い方",
                 "nav.reviews": "レビュー",
+                "nav.whatsNew": "新機能",
+                "nav.community": "コミュニティ",
                 "meta.title": "VoiceSketch - 音声をビジュアル学習に変換",
                 "hero.tagline": "音声をビジュアルノートに変換",
                 "hero.badge.ai": "AI搭載",
@@ -4225,16 +4556,16 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
                 "features.ai.desc": "GPT搭載で、コンテンツの本質を捉えた簡潔な要約を自動生成。",
                 "features.visual.title": "ビジュアルノート",
                 "features.visual.desc": "各要約セグメントにAI生成画像を作成し、記憶を強化する視覚的アンカーを提供。",
-                "features.text.title": "テキスト分析",
-                "features.text.desc": "テキストを貼り付けてビジュアル要約を生成。記事、文書、学習資料に最適。",
+                "features.text.title": "写真・テキスト取り込み",
+                "features.text.desc": "ホワイトボードや書類の写真を取り込むか、テキストを直接貼り付け。AIが自動でコンテンツを抽出し、ビジュアル要約を生成します。",
                 "features.lang.title": "多言語対応",
                 "features.lang.desc": "60以上の文字起こし言語と10のUI言語をサポート。母国語で学習。",
                 "features.cloud.title": "クラウド同期とエクスポート",
-                "features.cloud.desc": "Firebaseバックアップでデバイス間でノートを安全に保管。PDF、PNG、RTF形式でエクスポート。",
+                "features.cloud.desc": "Firebaseバックアップでデバイス間同期。PDF、PNG、RTFにエクスポート。コーネルノートを含む5つの要約スタイルから選択。",
                 "howItWorks.title": "使い方",
                 "howItWorks.subtitle": "3つの簡単なステップでビジュアル学習",
-                "howItWorks.step1.title": "録音または貼り付け",
-                "howItWorks.step1.desc": "講義、会議、ディスカッションの録音を開始。テキストを直接貼り付けて分析することも可能。VoiceSketchは60以上の言語でリアルタイム文字起こしをサポート。",
+                "howItWorks.step1.title": "録音・取り込み・貼り付け",
+                "howItWorks.step1.desc": "講義、会議、ディスカッションの録音を開始。ホワイトボードや書類の写真を取り込んだり、テキストを直接貼り付けも可能。60+言語でリアルタイム文字起こし。",
                 "howItWorks.step2.title": "AI処理",
                 "howItWorks.step2.desc": "GPT搭載AIがコンテンツを分析し、重要な概念を抽出して簡潔な要約を作成。各セグメントにユニークなAI生成ビジュアルを付与。",
                 "howItWorks.step3.title": "確認とエクスポート",
@@ -4251,8 +4582,8 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
                 "useCases.researchers.title": "研究者",
                 "useCases.researchers.desc": "研究成果をビジュアルドキュメントで整理し、分析を容易に",
                 "stats.languages": "文字起こし言語",
-                "stats.ui": "UI言語",
-                "stats.export": "エクスポート形式",
+                "stats.styles": "要約スタイル",
+                "stats.sessions": "セッションタイプ",
                 "stats.ai": "AI搭載",
                 "cta.title": "ビジュアル学習を始めよう",
                 "cta.subtitle": "VoiceSketchをダウンロードして、知識の獲得と定着の方法を変革しましょう。",
@@ -4327,6 +4658,29 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
                 "terms.changes.title": "規約の変更",
                 "terms.changes.content": "当社はこれらの規約をいつでも変更する権利を留保します。変更は以下の場合に有効となります：\n\n\u2022 アプリ内に「最終変更」日を更新して掲載\n\u2022 登録メールアドレスへの通知の送信\n\u2022 重要な変更については 30 日前に事前通知\n\nお客様の選択肢：\n\u2022 アプリの継続使用は変更の承認を構成します\n\u2022 変更に同意しない場合は使用を中止しアカウントを削除してください\n\u2022 一部の変更は法律またはセキュリティ上の理由で必要な場合があります\n\nバージョン管理：\n\u2022 規約の以前のバージョンはアーカイブされ、要求に応じて利用可能\n\u2022 現在のバージョンは常に以前のバージョンに優先します",
                 "terms.contact.title": "お問い合わせ情報",
+                "whatsNew.badge": "v1.0.2",
+                "whatsNew.title": "新機能",
+                "whatsNew.subtitle": "ノート作成をパワーアップする最新機能",
+                "whatsNew.newLabel": "新規",
+                "whatsNew.playback.title": "音声再生",
+                "whatsNew.playback.desc": "セッション詳細から直接録音を再生。一時停止、スキップ、シーク操作が可能。録音ファイルの共有やダウンロードも。",
+                "whatsNew.photo.title": "写真テキスト取り込み",
+                "whatsNew.photo.desc": "ホワイトボード、書類、手書きメモの写真を取り込み。テキストを自動抽出し、AIビジュアル要約に変換。",
+                "whatsNew.styles.title": "要約スタイル",
+                "whatsNew.styles.desc": "お好みのAI要約フォーマットを選択：簡潔、箇条書き、詳細、コーネルノート、アクション重視。",
+                "whatsNew.sessions.title": "セッションタイプ追加",
+                "whatsNew.sessions.desc": "ブレインストーム、インタビュー、個人の新セッションタイプで録音をより効率的に整理。",
+                "whatsNew.siri.title": "Siriショートカット",
+                "whatsNew.siri.desc": "「VoiceSketchで録音開始」と話すだけでハンズフリーでセッション開始。録音停止やセッン確認にも対応。",
+                "whatsNew.widgets.title": "iOSウィジェット",
+                "whatsNew.widgets.desc": "ホーム画面やロック画面にウィジェットを追加。素早い録音開始、最新セッションの確認、統計の一覧が可能。",
+                "whatsNew.actions.title": "アクションアイテム",
+                "whatsNew.actions.desc": "AIが録音から実行可能なタスクを自動抽出。優先度と担当者付き。PDFエクスポートにも含まれます。",
+                "whatsNew.darkMode.title": "ダークモード",
+                "whatsNew.darkMode.desc": "システム、ライト、ダークのテーマオプションで完全なダークモード対応。最適化されたダークカラーパレット。",
+                "discord.title": "コミュニティに参加",
+                "discord.subtitle": "他のVoiceSketchユーザーと交流し、ヒントを共有、機能をリクエスト、コミュニティとチームからサポートを受けましょう。",
+                "discord.cta": "Discordサーバーに参加",
                 "footer.from": "提供",
                 "footer.copyright": "© 2026 VoiceSketch. All rights reserved."
             },
@@ -4334,6 +4688,8 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
                 "nav.features": "기능",
                 "nav.howItWorks": "사용 방법",
                 "nav.reviews": "리뷰",
+                "nav.whatsNew": "새로운 기능",
+                "nav.community": "커뮤니티",
                 "meta.title": "VoiceSketch - 음성을 시각적 학습으로 변환",
                 "hero.tagline": "음성을 시각적 노트로 변환",
                 "hero.badge.ai": "AI 기반",
@@ -4375,16 +4731,16 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
                 "features.ai.desc": "GPT 기반으로 콘텐츠의 본질을 포착하는 간결한 요약을 자동 생성.",
                 "features.visual.title": "시각적 노트",
                 "features.visual.desc": "각 요약 세그먼트에 AI 생성 이미지를 제공하여 기억력을 강화하는 시각적 앵커 생성.",
-                "features.text.title": "텍스트 분석",
-                "features.text.desc": "텍스트를 붙여넣어 시각적 요약을 생성. 기사, 문서 또는 학습 자료에 적합.",
+                "features.text.title": "사진 및 텍스트 가져오기",
+                "features.text.desc": "화이트보드, 문서 또는 필기 노트의 사진을 가져오거나 텍스트를 직접 붙여넣기. AI가 자동으로 콘텐츠를 추출하고 시각적 요약을 생성합니다.",
                 "features.lang.title": "다국어 지원",
                 "features.lang.desc": "60개 이상의 전사 언어와 10개의 UI 언어 지원. 모국어로 학습.",
                 "features.cloud.title": "클라우드 동기화 및 내보내기",
-                "features.cloud.desc": "Firebase 백업으로 장치 간 노트를 안전하게 보관. PDF, PNG 또는 RTF 형식으로 내보내기.",
+                "features.cloud.desc": "Firebase 백업으로 기기 간 동기화. PDF, PNG, RTF로 내보내기. 코넬 노트를 포함한 5가지 요약 스타일 제공.",
                 "howItWorks.title": "사용 방법",
                 "howItWorks.subtitle": "시각적 학습을 위한 세 가지 간단한 단계",
-                "howItWorks.step1.title": "녹음 또는 붙여넣기",
-                "howItWorks.step1.desc": "강의, 회의 또는 토론 녹음을 시작하세요. 분석을 위해 텍스트를 직접 붙여넣을 수도 있습니다. VoiceSketch는 60개 이상의 언어로 실시간 전사를 지원합니다.",
+                "howItWorks.step1.title": "녹음, 가져오기 또는 붙여넣기",
+                "howItWorks.step1.desc": "강의, 회의 또는 토론을 녹음하세요. 화이트보드나 문서의 사진을 가져오거나 텍스트를 직접 붙여넣기도 가능합니다. 60개 이상의 언어로 실시간 전사를 지원합니다.",
                 "howItWorks.step2.title": "AI 처리",
                 "howItWorks.step2.desc": "GPT 기반 AI가 콘텐츠를 분석하고 핵심 개념을 추출하여 간결한 요약을 생성합니다. 각 세그먼트에 고유한 AI 생성 비주얼이 제공됩니다.",
                 "howItWorks.step3.title": "검토 및 내보내기",
@@ -4401,8 +4757,8 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
                 "useCases.researchers.title": "연구자",
                 "useCases.researchers.desc": "연구 결과를 시각적 문서로 정리하여 분석 용이",
                 "stats.languages": "전사 언어",
-                "stats.ui": "UI 언어",
-                "stats.export": "내보내기 형식",
+                "stats.styles": "요약 스타일",
+                "stats.sessions": "세션 유형",
                 "stats.ai": "AI 기반",
                 "cta.title": "시각적 학습 시작하기",
                 "cta.subtitle": "VoiceSketch를 다운로드하고 지식을 캡처하고 유지하는 방식을 혁신하세요.",
@@ -4477,6 +4833,29 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
                 "terms.changes.title": "약관 변경",
                 "terms.changes.content": "당사는 이 약관을 언제든 변경할 권리를 보유합니다. 변경은 다음 경우에 효력이 발생합니다:\n\n\u2022 앱 내에 \"최종 수정\" 날짜와 함께 게시\n\u2022 등록된 이메일 주소로 알림 발송\n\u2022 중대한 변경의 경우 30일 사전 통지 제공\n\n귀하의 선택:\n\u2022 앱의 지속 사용은 변경 수락을 구성합니다\n\u2022 변경에 동의하지 않으면 사용을 중단하고 계정을 삭제해 주세요\n\u2022 일부 변경은 법률 또는 보안상의 이유로 필요할 수 있습니다\n\n버전 관리:\n\u2022 이전 버전의 약관은 보관되어 있으며 요청 시 이용 가능\n\u2022 현재 버전은 항상 이전 버전보다 우선합니다",
                 "terms.contact.title": "연락처 정보",
+                "whatsNew.badge": "v1.0.2",
+                "whatsNew.title": "새로운 기능",
+                "whatsNew.subtitle": "노트 작성을 강화하는 최신 기능",
+                "whatsNew.newLabel": "신규",
+                "whatsNew.playback.title": "오디오 재생",
+                "whatsNew.playback.desc": "세션 상세에서 녹음을 바로 재생. 일시정지, 건너뛰기, 탐색이 가능합니다. 녹음 파일 공유 및 다운로드도 지원.",
+                "whatsNew.photo.title": "사진 텍스트 가져오기",
+                "whatsNew.photo.desc": "화이트보드, 문서, 필기 노트의 사진을 가져오기. 텍스트를 자동 추출하여 AI 시각적 요약으로 변환.",
+                "whatsNew.styles.title": "요약 스타일",
+                "whatsNew.styles.desc": "선호하는 AI 요약 형식 선택: 간결, 글머리 기호, 상세, 코넬 노트, 액션 중심.",
+                "whatsNew.sessions.title": "더 많은 세션 유형",
+                "whatsNew.sessions.desc": "브레인스토밍, 인터뷰, 개인 등 새로운 세션 유형으로 녹음을 더 효율적으로 관리.",
+                "whatsNew.siri.title": "Siri 단축어",
+                "whatsNew.siri.desc": "\"VoiceSketch로 녹음 시작\"이라고 말하면 핸즈프리로 세션 시작. 녹음 중지 및 빠른 세션 접근도 지원.",
+                "whatsNew.widgets.title": "iOS 위젯",
+                "whatsNew.widgets.desc": "홈 화면과 잠금 화면에 위젯을 추가하여 빠른 녹음, 최신 세션 확인, 통계 한눈에 보기.",
+                "whatsNew.actions.title": "액션 항목",
+                "whatsNew.actions.desc": "AI가 녹음에서 실행 가능한 작업을 자동 추출. 우선순위와 담당자 포함. PDF 내보내기에도 포함.",
+                "whatsNew.darkMode.title": "다크 모드",
+                "whatsNew.darkMode.desc": "시스템, 라이트, 다크 테마 옵션으로 완벽한 다크 모드 지원. 최적화된 다크 컬러 팔레트로 편안한 사용.",
+                "discord.title": "커뮤니티에 참여하세요",
+                "discord.subtitle": "다른 VoiceSketch 사용자와 교류하고, 팁을 공유하고, 기능을 요청하고, 커뮤니티와 팀의 도움을 받으세요.",
+                "discord.cta": "Discord 서버 참여",
                 "footer.from": "제공",
                 "footer.copyright": "© 2026 VoiceSketch. All rights reserved."
             },
@@ -4484,6 +4863,8 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
                 "nav.features": "Fonctionnalités",
                 "nav.howItWorks": "Comment ça marche",
                 "nav.reviews": "Avis",
+                "nav.whatsNew": "Nouveautés",
+                "nav.community": "Communauté",
                 "meta.title": "VoiceSketch - Transformez la voix en apprentissage visuel",
                 "hero.tagline": "Transformez la voix en notes visuelles",
                 "hero.badge.ai": "Propulsé par l'IA",
@@ -4525,16 +4906,16 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
                 "features.ai.desc": "Propulsé par GPT, génère automatiquement des résumés concis qui capturent l'essence de votre contenu.",
                 "features.visual.title": "Notes visuelles",
                 "features.visual.desc": "Images générées par IA pour chaque segment de résumé, créant des ancres visuelles mémorables pour une meilleure rétention.",
-                "features.text.title": "Analyse de texte",
-                "features.text.desc": "Collez n'importe quel texte pour générer des résumés visuels. Parfait pour les articles, documents ou supports d'étude.",
+                "features.text.title": "Import Photo & Texte",
+                "features.text.desc": "Importez des photos de tableaux blancs ou de documents, ou collez du texte. L'IA extrait et résume automatiquement le contenu visuellement.",
                 "features.lang.title": "Multilingue",
                 "features.lang.desc": "Support de 60+ langues de transcription et 10 langues d'interface. Apprenez dans votre langue maternelle.",
                 "features.cloud.title": "Sync cloud et export",
-                "features.cloud.desc": "La sauvegarde Firebase garde vos notes en sécurité sur tous les appareils. Exportez en PDF, PNG ou RTF.",
+                "features.cloud.desc": "Synchronisation multi-appareils avec sauvegarde Firebase. Export en PDF, PNG ou RTF. 5 styles de résumé dont les Notes Cornell.",
                 "howItWorks.title": "Comment ça marche",
                 "howItWorks.subtitle": "Trois étapes simples pour l'apprentissage visuel",
-                "howItWorks.step1.title": "Enregistrez ou collez",
-                "howItWorks.step1.desc": "Commencez à enregistrer votre conférence, réunion ou discussion. Vous pouvez aussi coller du texte directement pour analyse. VoiceSketch transcrit en temps réel avec support de 60+ langues.",
+                "howItWorks.step1.title": "Enregistrer, Importer ou Coller",
+                "howItWorks.step1.desc": "Commencez à enregistrer votre cours, réunion ou discussion. Importez des photos de tableaux blancs et documents, ou collez du texte. Transcription en temps réel en 60+ langues.",
                 "howItWorks.step2.title": "Traitement IA",
                 "howItWorks.step2.desc": "Notre IA propulsée par GPT analyse votre contenu, extrait les concepts clés et crée des résumés concis. Chaque segment est accompagné d'un visuel IA unique.",
                 "howItWorks.step3.title": "Révisez et exportez",
@@ -4551,8 +4932,8 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
                 "useCases.researchers.title": "Chercheurs",
                 "useCases.researchers.desc": "Organisez vos découvertes avec une documentation visuelle pour faciliter l'analyse",
                 "stats.languages": "Langues de transcription",
-                "stats.ui": "Langues d'interface",
-                "stats.export": "Formats d'export",
+                "stats.styles": "Styles de résumé",
+                "stats.sessions": "Types de session",
                 "stats.ai": "Propulsé par l'IA",
                 "cta.title": "Commencez l'apprentissage visuel",
                 "cta.subtitle": "Téléchargez VoiceSketch et transformez votre façon de capturer et retenir les connaissances.",
@@ -4627,6 +5008,29 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
                 "terms.changes.title": "Modifications des conditions",
                 "terms.changes.content": "Nous nous réservons le droit de modifier ces Conditions à tout moment. Les modifications seront effectives lorsque :\n\n\u2022 Publiées dans l'Application avec la date de « Dernière modification » mise à jour\n\u2022 Notification envoyée aux adresses e-mail enregistrées\n\u2022 Pour les modifications importantes, un préavis de 30 jours sera fourni\n\nVos options :\n\u2022 L'utilisation continue de l'Application constitue l'acceptation des modifications\n\u2022 Si vous n'êtes pas d'accord avec les modifications, cessez l'utilisation et supprimez votre compte\n\u2022 Certaines modifications peuvent être requises par la loi ou pour des raisons de sécurité\n\nContrôle des versions :\n\u2022 Les versions précédentes des Conditions sont archivées et disponibles sur demande\n\u2022 La version actuelle prévaut toujours sur les versions précédentes",
                 "terms.contact.title": "Coordonnées",
+                "whatsNew.badge": "v1.0.2",
+                "whatsNew.title": "Nouveautés",
+                "whatsNew.subtitle": "Les dernières fonctionnalités pour booster votre prise de notes",
+                "whatsNew.newLabel": "Nouveau",
+                "whatsNew.playback.title": "Lecture Audio",
+                "whatsNew.playback.desc": "Écoutez vos enregistrements directement depuis les détails de session. Pause, avance rapide et navigation. Partagez ou téléchargez vos fichiers.",
+                "whatsNew.photo.title": "Import Photo Texte",
+                "whatsNew.photo.desc": "Importez des photos de tableaux blancs, documents ou notes manuscrites. Le texte est automatiquement extrait et transformé en résumés visuels IA.",
+                "whatsNew.styles.title": "Styles de Résumé",
+                "whatsNew.styles.desc": "Choisissez votre format de résumé IA préféré : Concis, Puces, Détaillé, Notes Cornell ou Orienté Actions.",
+                "whatsNew.sessions.title": "Plus de Types de Session",
+                "whatsNew.sessions.desc": "Nouveaux types Brainstorming, Interview et Personnel pour mieux organiser vos enregistrements.",
+                "whatsNew.siri.title": "Raccourcis Siri",
+                "whatsNew.siri.desc": "Dites « Commencer à enregistrer avec VoiceSketch » pour démarrer une session mains libres. Stop et accès rapide aussi supportés.",
+                "whatsNew.widgets.title": "Widgets iOS",
+                "whatsNew.widgets.desc": "Ajoutez des widgets sur l'écran d'accueil et l'écran de verrouillage pour un enregistrement rapide et un aperçu de vos stats.",
+                "whatsNew.actions.title": "Actions à Faire",
+                "whatsNew.actions.desc": "L'IA extrait automatiquement les tâches actionnables avec niveaux de priorité et responsables. Inclus dans les exports PDF.",
+                "whatsNew.darkMode.title": "Mode Sombre",
+                "whatsNew.darkMode.desc": "Support complet du mode sombre avec options Système, Clair et Sombre. Palette de couleurs sombres optimisée.",
+                "discord.title": "Rejoignez Notre Communauté",
+                "discord.subtitle": "Échangez avec d'autres utilisateurs de VoiceSketch, partagez des astuces, demandez des fonctionnalités et obtenez de l'aide.",
+                "discord.cta": "Rejoindre le Serveur Discord",
                 "footer.from": "de",
                 "footer.copyright": "© 2026 VoiceSketch. Tous droits réservés."
             },
@@ -4634,6 +5038,8 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
                 "nav.features": "Características",
                 "nav.howItWorks": "Cómo funciona",
                 "nav.reviews": "Reseñas",
+                "nav.whatsNew": "Novedades",
+                "nav.community": "Comunidad",
                 "meta.title": "VoiceSketch - Transforma la voz en aprendizaje visual",
                 "hero.tagline": "Transforma la voz en notas visuales",
                 "hero.badge.ai": "Potenciado por IA",
@@ -4675,16 +5081,16 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
                 "features.ai.desc": "Potenciado por GPT, genera automáticamente resúmenes concisos que capturan la esencia de tu contenido.",
                 "features.visual.title": "Notas visuales",
                 "features.visual.desc": "Imágenes generadas por IA para cada segmento de resumen, creando anclas visuales memorables para mejor retención.",
-                "features.text.title": "Análisis de texto",
-                "features.text.desc": "Pega cualquier texto para generar resúmenes visuales. Perfecto para artículos, documentos o materiales de estudio.",
+                "features.text.title": "Importar Fotos y Texto",
+                "features.text.desc": "Importa fotos de pizarras o documentos, o pega cualquier texto. La IA extrae y resume automáticamente el contenido de forma visual.",
                 "features.lang.title": "Multiidioma",
                 "features.lang.desc": "Soporte para 60+ idiomas de transcripción y 10 idiomas de interfaz. Aprende en tu idioma nativo.",
                 "features.cloud.title": "Sync en la nube y exportación",
-                "features.cloud.desc": "El respaldo de Firebase mantiene tus notas seguras en todos los dispositivos. Exporta a PDF, PNG o RTF.",
+                "features.cloud.desc": "Sincronización entre dispositivos con respaldo Firebase. Exporta a PDF, PNG o RTF. 5 estilos de resumen incluyendo Notas Cornell.",
                 "howItWorks.title": "Cómo funciona",
                 "howItWorks.subtitle": "Tres pasos simples para el aprendizaje visual",
-                "howItWorks.step1.title": "Graba o pega",
-                "howItWorks.step1.desc": "Comienza a grabar tu conferencia, reunión o discusión. También puedes pegar texto directamente para análisis. VoiceSketch transcribe en tiempo real con soporte para 60+ idiomas.",
+                "howItWorks.step1.title": "Grabar, Importar o Pegar",
+                "howItWorks.step1.desc": "Comienza a grabar tu clase, reunión o discusión. Importa fotos de pizarras y documentos, o pega texto directamente. Transcripción en tiempo real en más de 60 idiomas.",
                 "howItWorks.step2.title": "Procesamiento IA",
                 "howItWorks.step2.desc": "Nuestra IA potenciada por GPT analiza tu contenido, extrae conceptos clave y crea resúmenes concisos. Cada segmento se acompaña de un visual único generado por IA.",
                 "howItWorks.step3.title": "Revisa y exporta",
@@ -4701,8 +5107,8 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
                 "useCases.researchers.title": "Investigadores",
                 "useCases.researchers.desc": "Organiza hallazgos con documentación visual para facilitar el análisis",
                 "stats.languages": "Idiomas de transcripción",
-                "stats.ui": "Idiomas de interfaz",
-                "stats.export": "Formatos de exportación",
+                "stats.styles": "Estilos de Resumen",
+                "stats.sessions": "Tipos de Sesión",
                 "stats.ai": "Potenciado por IA",
                 "cta.title": "Comienza el aprendizaje visual",
                 "cta.subtitle": "Descarga VoiceSketch y transforma cómo capturas y retienes conocimiento.",
@@ -4777,6 +5183,29 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
                 "terms.changes.title": "Cambios en los términos",
                 "terms.changes.content": "Nos reservamos el derecho de modificar estos Términos en cualquier momento. Los cambios serán efectivos cuando:\n\n\u2022 Se publiquen dentro de la Aplicación con la fecha de \"Última modificación\" actualizada\n\u2022 Se envíe notificación a las direcciones de correo electrónico registradas\n\u2022 Para cambios importantes, se proporcionará un aviso previo de 30 días\n\nTus opciones:\n\u2022 El uso continuado de la Aplicación constituye aceptación de los cambios\n\u2022 Si no estás de acuerdo con los cambios, deja de usar y elimina tu cuenta\n\u2022 Algunos cambios pueden ser requeridos por ley o por razones de seguridad\n\nControl de versiones:\n\u2022 Las versiones anteriores de los Términos están archivadas y disponibles bajo solicitud\n\u2022 La versión actual siempre prevalece sobre las versiones anteriores",
                 "terms.contact.title": "Información de contacto",
+                "whatsNew.badge": "v1.0.2",
+                "whatsNew.title": "Novedades",
+                "whatsNew.subtitle": "Las últimas funciones para potenciar tus notas",
+                "whatsNew.newLabel": "Nuevo",
+                "whatsNew.playback.title": "Reproducción de Audio",
+                "whatsNew.playback.desc": "Reproduce grabaciones directamente desde los detalles de sesión. Pausa, avance y búsqueda. Comparte o descarga archivos de grabación.",
+                "whatsNew.photo.title": "Importar Foto y Texto",
+                "whatsNew.photo.desc": "Importa fotos de pizarras, documentos o notas manuscritas. El texto se extrae automáticamente y se convierte en resúmenes visuales con IA.",
+                "whatsNew.styles.title": "Estilos de Resumen",
+                "whatsNew.styles.desc": "Elige tu formato de resumen IA preferido: Conciso, Viñetas, Detallado, Notas Cornell o Enfocado en Acciones.",
+                "whatsNew.sessions.title": "Más Tipos de Sesión",
+                "whatsNew.sessions.desc": "Nuevos tipos Lluvia de Ideas, Entrevista y Personal para organizar mejor tus grabaciones.",
+                "whatsNew.siri.title": "Atajos de Siri",
+                "whatsNew.siri.desc": "Di \"Iniciar grabación con VoiceSketch\" para comenzar una sesión manos libres. También soporta detener grabación y acceso rápido.",
+                "whatsNew.widgets.title": "Widgets iOS",
+                "whatsNew.widgets.desc": "Agrega widgets en la pantalla de inicio y pantalla de bloqueo para grabación rápida y ver tus estadísticas.",
+                "whatsNew.actions.title": "Elementos de Acción",
+                "whatsNew.actions.desc": "La IA extrae automáticamente tareas ejecutables con niveles de prioridad y responsables. Incluidos en exportaciones PDF.",
+                "whatsNew.darkMode.title": "Modo Oscuro",
+                "whatsNew.darkMode.desc": "Soporte completo de modo oscuro con opciones Sistema, Claro y Oscuro. Paleta de colores oscuros optimizada.",
+                "discord.title": "Únete a Nuestra Comunidad",
+                "discord.subtitle": "Conéctate con otros usuarios de VoiceSketch, comparte consejos, solicita funciones y obtén ayuda de la comunidad y nuestro equipo.",
+                "discord.cta": "Unirse al Servidor Discord",
                 "footer.from": "de",
                 "footer.copyright": "© 2026 VoiceSketch. Todos los derechos reservados."
             },
@@ -4784,6 +5213,8 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
                 "nav.features": "Funzionalità",
                 "nav.howItWorks": "Come funziona",
                 "nav.reviews": "Recensioni",
+                "nav.whatsNew": "Novità",
+                "nav.community": "Community",
                 "meta.title": "VoiceSketch - Trasforma la voce in apprendimento visivo",
                 "hero.tagline": "Trasforma la voce in note visive",
                 "hero.badge.ai": "Alimentato da IA",
@@ -4825,16 +5256,16 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
                 "features.ai.desc": "Alimentato da GPT, genera automaticamente riassunti concisi che catturano l'essenza del tuo contenuto.",
                 "features.visual.title": "Note visive",
                 "features.visual.desc": "Immagini generate dall'IA per ogni segmento di riassunto, creando ancore visive memorabili per una migliore ritenzione.",
-                "features.text.title": "Analisi del testo",
-                "features.text.desc": "Incolla qualsiasi testo per generare riassunti visivi. Perfetto per articoli, documenti o materiali di studio.",
+                "features.text.title": "Importa Foto e Testo",
+                "features.text.desc": "Importa foto di lavagne o documenti, o incolla qualsiasi testo. L'IA estrae e riassume automaticamente i contenuti in modo visuale.",
                 "features.lang.title": "Multilingue",
                 "features.lang.desc": "Supporto per 60+ lingue di trascrizione e 10 lingue dell'interfaccia. Impara nella tua lingua madre.",
                 "features.cloud.title": "Sync cloud ed esportazione",
-                "features.cloud.desc": "Il backup Firebase mantiene le tue note al sicuro su tutti i dispositivi. Esporta in PDF, PNG o RTF.",
+                "features.cloud.desc": "Sincronizzazione tra dispositivi con backup Firebase. Esporta in PDF, PNG o RTF. 5 stili di riepilogo incluse le Note Cornell.",
                 "howItWorks.title": "Come funziona",
                 "howItWorks.subtitle": "Tre semplici passaggi per l'apprendimento visivo",
-                "howItWorks.step1.title": "Registra o incolla",
-                "howItWorks.step1.desc": "Inizia a registrare la tua lezione, riunione o discussione. Puoi anche incollare testo direttamente per l'analisi. VoiceSketch trascrive in tempo reale con supporto per 60+ lingue.",
+                "howItWorks.step1.title": "Registra, Importa o Incolla",
+                "howItWorks.step1.desc": "Inizia a registrare la tua lezione, riunione o discussione. Importa foto di lavagne e documenti, o incolla testo direttamente. Trascrizione in tempo reale in oltre 60 lingue.",
                 "howItWorks.step2.title": "Elaborazione IA",
                 "howItWorks.step2.desc": "La nostra IA alimentata da GPT analizza il tuo contenuto, estrae i concetti chiave e crea riassunti concisi. Ogni segmento è accompagnato da un visual unico generato dall'IA.",
                 "howItWorks.step3.title": "Rivedi ed esporta",
@@ -4851,8 +5282,8 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
                 "useCases.researchers.title": "Ricercatori",
                 "useCases.researchers.desc": "Organizza le scoperte con documentazione visiva per facilitare l'analisi",
                 "stats.languages": "Lingue di trascrizione",
-                "stats.ui": "Lingue dell'interfaccia",
-                "stats.export": "Formati di esportazione",
+                "stats.styles": "Stili di Riepilogo",
+                "stats.sessions": "Tipi di Sessione",
                 "stats.ai": "Alimentato da IA",
                 "cta.title": "Inizia l'apprendimento visivo",
                 "cta.subtitle": "Scarica VoiceSketch e trasforma il modo in cui catturi e mantieni la conoscenza.",
@@ -4927,6 +5358,29 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
                 "terms.changes.title": "Modifiche ai termini",
                 "terms.changes.content": "Ci riserviamo il diritto di modificare questi Termini in qualsiasi momento. Le modifiche saranno effettive quando:\n\n\u2022 Pubblicate all'interno dell'App con la data di \"Ultima modifica\" aggiornata\n\u2022 Notifica inviata agli indirizzi e-mail registrati\n\u2022 Per modifiche sostanziali, verrà fornito un preavviso di 30 giorni\n\nLe tue opzioni:\n\u2022 L'uso continuato dell'App costituisce accettazione delle modifiche\n\u2022 Se non sei d'accordo con le modifiche, interrompi l'uso ed elimina il tuo account\n\u2022 Alcune modifiche possono essere richieste dalla legge o per motivi di sicurezza\n\nControllo delle versioni:\n\u2022 Le versioni precedenti dei Termini sono archiviate e disponibili su richiesta\n\u2022 La versione attuale prevale sempre sulle versioni precedenti",
                 "terms.contact.title": "Informazioni di contatto",
+                "whatsNew.badge": "v1.0.2",
+                "whatsNew.title": "Novità",
+                "whatsNew.subtitle": "Le ultime funzionalità per potenziare i tuoi appunti",
+                "whatsNew.newLabel": "Nuovo",
+                "whatsNew.playback.title": "Riproduzione Audio",
+                "whatsNew.playback.desc": "Riproduci le registrazioni direttamente dai dettagli della sessione. Pausa, avanti veloce e ricerca. Condividi o scarica i file di registrazione.",
+                "whatsNew.photo.title": "Importa Foto e Testo",
+                "whatsNew.photo.desc": "Importa foto di lavagne, documenti o appunti scritti a mano. Il testo viene estratto automaticamente e trasformato in riepiloghi visivi IA.",
+                "whatsNew.styles.title": "Stili di Riepilogo",
+                "whatsNew.styles.desc": "Scegli il tuo formato di riepilogo IA preferito: Conciso, Elenco Puntato, Dettagliato, Note Cornell o Orientato alle Azioni.",
+                "whatsNew.sessions.title": "Più Tipi di Sessione",
+                "whatsNew.sessions.desc": "Nuovi tipi Brainstorming, Intervista e Personale per organizzare meglio le tue registrazioni.",
+                "whatsNew.siri.title": "Scorciatoie Siri",
+                "whatsNew.siri.desc": "Dì \"Inizia a registrare con VoiceSketch\" per avviare una sessione a mani libere. Supporta anche stop registrazione e accesso rapido.",
+                "whatsNew.widgets.title": "Widget iOS",
+                "whatsNew.widgets.desc": "Aggiungi widget sulla schermata home e schermata di blocco per registrare velocemente e visualizzare le tue statistiche.",
+                "whatsNew.actions.title": "Elementi d'Azione",
+                "whatsNew.actions.desc": "L'IA estrae automaticamente attività eseguibili con livelli di priorità e assegnatari. Inclusi nelle esportazioni PDF.",
+                "whatsNew.darkMode.title": "Modalità Scura",
+                "whatsNew.darkMode.desc": "Supporto completo modalità scura con opzioni Sistema, Chiaro e Scuro. Palette di colori scuri ottimizzata.",
+                "discord.title": "Unisciti alla Nostra Community",
+                "discord.subtitle": "Connettiti con altri utenti VoiceSketch, condividi consigli, richiedi funzionalità e ottieni aiuto dalla community e dal nostro team.",
+                "discord.cta": "Unisciti al Server Discord",
                 "footer.from": "da",
                 "footer.copyright": "© 2026 VoiceSketch. Tutti i diritti riservati."
             }
@@ -4945,7 +5399,7 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
 
         let currentLang = localStorage.getItem('voicesketch-lang') || 'en';
 
-        const APP_STORE_APP_PATH = '/app/voicesketch-ai-visual-notes/id6757849645';
+        const APP_STORE_APP_PATH = '/app/voicesketch-ai-meeting-notes/id6757849645';
         const APP_STORE_BASE = 'https://apps.apple.com';
 
         // Maps language to default App Store country code
@@ -5164,7 +5618,7 @@ Email: <a href="mailto:kairos.ai.tech@gmail.com" class="privacy-contact-link">ka
         }, observerOptions);
 
         // Observe all animated elements
-        document.querySelectorAll('.feature-card, .timeline-item, .animate-on-scroll').forEach(el => {
+        document.querySelectorAll('.feature-card, .whats-new-card, .timeline-item, .animate-on-scroll').forEach(el => {
             observer.observe(el);
         });
 
