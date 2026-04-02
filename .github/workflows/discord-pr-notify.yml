@@ -1,6 +1,8 @@
 name: Discord PR Notification
 
 on:
+  pull_request:
+    types: [opened, closed, reopened]
   pull_request_review:
     types: [submitted]
   pull_request_review_comment:
@@ -12,6 +14,7 @@ jobs:
   notify:
     runs-on: ubuntu-latest
     if: >
+      github.event_name == 'pull_request' ||
       github.event_name == 'pull_request_review' ||
       github.event_name == 'pull_request_review_comment' ||
       (github.event_name == 'issue_comment' && github.event.issue.pull_request)
@@ -20,7 +23,12 @@ jobs:
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
           EVENT_NAME: ${{ github.event_name }}
-          PR_TITLE_REVIEW: ${{ github.event.pull_request.title }}
+          REPO_NAME: ${{ github.repository }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          PR_ACTION: ${{ github.event.action }}
+          PR_MERGED: ${{ github.event.pull_request.merged }}
+          PR_USER: ${{ github.event.pull_request.user.login }}
           REVIEW_STATE: ${{ github.event.review.state }}
           REVIEW_USER: ${{ github.event.review.user.login }}
           REVIEW_URL: ${{ github.event.review.html_url }}
@@ -28,24 +36,42 @@ jobs:
           COMMENT_URL: ${{ github.event.comment.html_url }}
           ISSUE_TITLE: ${{ github.event.issue.title }}
         run: |
-          if [ "$EVENT_NAME" = "pull_request_review" ]; then
-            TITLE="PR Review: ${PR_TITLE_REVIEW}"
-            BODY="${REVIEW_STATE} by ${REVIEW_USER}"
+          if [ "$EVENT_NAME" = "pull_request" ]; then
+            if [ "$PR_MERGED" = "true" ]; then
+              TITLE="Merged: ${PR_TITLE}"
+              BODY="Merged by ${PR_USER} in ${REPO_NAME}"
+              COLOR=10181046  # purple
+            elif [ "$PR_ACTION" = "closed" ]; then
+              TITLE="Closed: ${PR_TITLE}"
+              BODY="Closed by ${PR_USER} in ${REPO_NAME}"
+              COLOR=15548997  # red
+            elif [ "$PR_ACTION" = "opened" ]; then
+              TITLE="New PR: ${PR_TITLE}"
+              BODY="Opened by ${PR_USER} in ${REPO_NAME}"
+              COLOR=5763719   # green
+            else
+              TITLE="PR Reopened: ${PR_TITLE}"
+              BODY="Reopened by ${PR_USER} in ${REPO_NAME}"
+              COLOR=16776960  # yellow
+            fi
+            URL="${PR_URL}"
+          elif [ "$EVENT_NAME" = "pull_request_review" ]; then
+            TITLE="PR Review: ${PR_TITLE}"
+            BODY="${REVIEW_STATE} by ${REVIEW_USER} in ${REPO_NAME}"
             URL="${REVIEW_URL}"
             COLOR=5763719
           elif [ "$EVENT_NAME" = "pull_request_review_comment" ]; then
-            TITLE="PR Comment: ${PR_TITLE_REVIEW}"
-            BODY="Comment by ${COMMENT_USER}"
+            TITLE="PR Comment: ${PR_TITLE}"
+            BODY="Comment by ${COMMENT_USER} in ${REPO_NAME}"
             URL="${COMMENT_URL}"
             COLOR=3447003
           else
             TITLE="PR Comment: ${ISSUE_TITLE}"
-            BODY="Comment by ${COMMENT_USER}"
+            BODY="Comment by ${COMMENT_USER} in ${REPO_NAME}"
             URL="${COMMENT_URL}"
             COLOR=3447003
           fi
 
-          # Use jq to safely build JSON payload (prevents injection)
           PAYLOAD=$(jq -n \
             --arg title "$TITLE" \
             --arg body "$BODY" \
