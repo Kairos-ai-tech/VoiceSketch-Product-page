@@ -310,12 +310,30 @@
             min-height: 100vh;
             background: radial-gradient(ellipse at 30% 20%, rgba(255, 154, 60, 0.12) 0%, transparent 50%), radial-gradient(ellipse at 70% 80%, rgba(229, 57, 53, 0.08) 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, rgba(255, 107, 53, 0.05) 0%, transparent 60%), linear-gradient(180deg, #fefefe 0%, var(--page-bg) 100%);
             position: relative;
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             align-items: center;
-            justify-content: center;
-            padding: 2rem;
+            padding: 7rem 5rem 5rem;
+            gap: 4rem;
             overflow: hidden;
+        }
+
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 6rem 2rem 4rem;
+                gap: 3rem;
+                text-align: center;
+            }
+            .hero .badge-container {
+                justify-content: center;
+            }
+            .hero-content {
+                text-align: center;
+            }
+            .hero-visual {
+                order: -1;
+            }
         }
         /* Animated background shapes */
         
@@ -379,9 +397,8 @@
         }
         
         .hero-content {
-            text-align: center;
+            text-align: left;
             z-index: 1;
-            max-width: 900px;
         }
         
         .logo-container {
@@ -454,18 +471,29 @@
         }
         
         .hero h1 {
-            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-size: clamp(2.8rem, 5vw, 4.5rem);
             font-weight: 800;
             color: var(--text-dark);
             margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
             animation: fade-up 0.8s ease-out 0.3s both;
         }
-        
+
+        .hero h1 em {
+            font-style: normal;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
         .hero .tagline {
-            font-size: clamp(1.1rem, 3vw, 1.5rem);
+            font-size: clamp(1.05rem, 2vw, 1.3rem);
             color: var(--text-secondary);
             margin-bottom: 2rem;
             font-weight: 500;
+            line-height: 1.6;
             animation: fade-up 0.8s ease-out 0.5s both;
         }
         
@@ -482,8 +510,8 @@
         
         .badge-container {
             display: flex;
-            gap: 1rem;
-            justify-content: center;
+            gap: 0.75rem;
+            justify-content: flex-start;
             flex-wrap: wrap;
             margin-bottom: 2.5rem;
             animation: fade-up 0.8s ease-out 0.7s both;
@@ -551,8 +579,694 @@
             width: 24px;
             height: 24px;
         }
+        /* Hero Visual - phone mockup on right side */
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+            animation: fade-up 0.9s ease-out 0.4s both;
+        }
+
+        .hero-phone-wrap {
+            position: relative;
+            width: 300px;
+        }
+
+        .hero-phone {
+            width: 300px;
+            background: var(--surface-dark);
+            border-radius: 46px;
+            padding: 14px;
+            box-shadow:
+                0 60px 120px rgba(0,0,0,0.22),
+                0 20px 40px rgba(0,0,0,0.12),
+                inset 0 0 0 1px rgba(255,255,255,0.08);
+            position: relative;
+        }
+
+        .hero-phone-screen {
+            background: #f8f9fc;
+            border-radius: 34px;
+            overflow: hidden;
+            height: 560px;
+            position: relative;
+        }
+
+        /* Phone status bar */
+        .hero-phone-status {
+            height: 44px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            display: flex;
+            align-items: flex-end;
+            padding: 0 1.25rem 0.5rem;
+            justify-content: space-between;
+        }
+
+        .hero-phone-status .status-time {
+            color: rgba(255,255,255,0.9);
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        /* Phone nav bar */
+        .hero-phone-nav {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            padding: 0.75rem 1.25rem 1rem;
+        }
+
+        .hero-phone-nav h3 {
+            color: white;
+            font-size: 1.05rem;
+            font-weight: 700;
+        }
+
+        .hero-phone-nav p {
+            color: rgba(255,255,255,0.75);
+            font-size: 0.7rem;
+            margin-top: 0.15rem;
+        }
+
+        /* Search bar in phone */
+        .hero-phone-search {
+            margin: 0.75rem 1rem;
+            background: rgba(255,255,255,0.95);
+            border-radius: 12px;
+            padding: 0.6rem 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .hero-phone-search .search-icon {
+            font-size: 0.8rem;
+            opacity: 0.5;
+        }
+
+        .hero-phone-search span {
+            font-size: 0.75rem;
+            color: #999;
+        }
+
+        .hero-phone-search .search-cursor {
+            width: 1.5px;
+            height: 0.9rem;
+            background: var(--primary-red);
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Phone session cards */
+        .hero-phone-sessions {
+            padding: 0.25rem 0.75rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .hero-session-card {
+            background: white;
+            border-radius: 14px;
+            padding: 0.75rem 0.9rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .hero-session-card.highlighted {
+            border-color: rgba(229,57,53,0.25);
+            box-shadow: 0 2px 12px rgba(229,57,53,0.12);
+        }
+
+        .hero-session-card .session-type {
+            font-size: 0.62rem;
+            font-weight: 700;
+            color: var(--primary-red);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.25rem;
+        }
+
+        .hero-session-card .session-title {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: #1a1a2e;
+            margin-bottom: 0.2rem;
+        }
+
+        .hero-session-card .session-meta {
+            font-size: 0.65rem;
+            color: #999;
+        }
+
+        .hero-session-card .session-highlight {
+            display: inline;
+            background: rgba(255, 154, 60, 0.25);
+            border-radius: 3px;
+            padding: 0 2px;
+        }
+
+        /* Phone tab bar */
+        .hero-phone-tabs {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(248,249,252,0.96);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(0,0,0,0.06);
+            display: flex;
+            justify-content: space-around;
+            padding: 0.5rem 0 0.75rem;
+        }
+
+        .hero-phone-tab {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.2rem;
+        }
+
+        .hero-phone-tab .tab-icon {
+            font-size: 1.1rem;
+        }
+
+        .hero-phone-tab .tab-label {
+            font-size: 0.55rem;
+            color: #999;
+            font-weight: 500;
+        }
+
+        .hero-phone-tab.active .tab-label {
+            color: var(--primary-red);
+        }
+
+        /* Streak badge floating next to phone */
+        .hero-streak-badge {
+            position: absolute;
+            right: -40px;
+            top: 120px;
+            background: var(--glass-bg-heavy);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 0.75rem 1rem;
+            box-shadow: var(--glass-shadow-hover);
+            animation: float-badge 4s ease-in-out infinite;
+            text-align: center;
+            min-width: 90px;
+        }
+
+        .hero-streak-badge .streak-fire {
+            font-size: 1.6rem;
+            line-height: 1;
+        }
+
+        .hero-streak-badge .streak-num {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            line-height: 1.2;
+        }
+
+        .hero-streak-badge .streak-label {
+            font-size: 0.62rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Search result badge floating */
+        .hero-search-badge {
+            position: absolute;
+            left: -50px;
+            bottom: 160px;
+            background: var(--glass-bg-heavy);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 0.75rem 1rem;
+            box-shadow: var(--glass-shadow-hover);
+            animation: float-badge 5s ease-in-out 1s infinite;
+            text-align: center;
+        }
+
+        .hero-search-badge .search-num {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--primary-red);
+        }
+
+        .hero-search-badge .search-label {
+            font-size: 0.62rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        @keyframes float-badge {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        /* === Feature Reel === */
+
+        .feature-reel {
+            padding: 3rem 0 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-reel .section-label {
+            text-align: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--primary-red);
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-reel-heading {
+            text-align: center;
+            font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.02em;
+        }
+
+        .feature-reel-sub {
+            text-align: center;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+        }
+
+        .reel-version-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.35rem 0.9rem;
+            border-radius: 50px;
+            margin-bottom: 1rem;
+            letter-spacing: 0.04em;
+        }
+
+        .reel-track {
+            display: flex;
+            gap: 1.5rem;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            padding: 0.5rem 2rem 2rem;
+            scrollbar-width: none;
+            cursor: grab;
+        }
+
+        .reel-track::-webkit-scrollbar {
+            display: none;
+        }
+
+        .reel-track:active {
+            cursor: grabbing;
+        }
+
+        .reel-card {
+            flex: 0 0 340px;
+            scroll-snap-align: start;
+            background: var(--glass-bg-heavy);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            border-radius: 28px;
+            padding: 0;
+            box-shadow: var(--glass-shadow);
+            overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;
+        }
+
+        .reel-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--glass-shadow-hover), 0 4px 0 rgba(229,57,53,0.15) inset;
+        }
+
+        .reel-card-visual {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .reel-card-visual.search-bg {
+            background: linear-gradient(135deg, #1a1a2e 0%, #2d2d4e 100%);
+        }
+
+        .reel-card-visual.ocr-bg {
+            background: linear-gradient(135deg, #1c2b1c 0%, #2d4a2d 100%);
+        }
+
+        .reel-card-visual.streak-bg {
+            background: linear-gradient(135deg, #2b1a0a 0%, #4a2d10 100%);
+        }
+
+        .reel-card-visual.share-bg {
+            background: linear-gradient(135deg, #0a1a2b 0%, #102d4a 100%);
+        }
+
+        .reel-card-body {
+            padding: 1.5rem;
+        }
+
+        .reel-card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 15px rgba(229,57,53,0.25);
+        }
+
+        .reel-card-body h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        .reel-card-body p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .reel-new-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 0.15rem 0.6rem;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Mini UI illustrations inside reel cards */
+        .mini-search-ui {
+            width: 90%;
+            padding: 1rem;
+        }
+
+        .mini-search-bar {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 10px;
+            padding: 0.5rem 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .mini-search-bar span {
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .mini-search-bar .mini-cursor {
+            width: 1px;
+            height: 0.75rem;
+            background: rgba(255,154,60,0.8);
+            animation: blink 1s step-end infinite;
+        }
+
+        .mini-search-result {
+            background: rgba(255,255,255,0.06);
+            border-radius: 8px;
+            padding: 0.5rem 0.75rem;
+            margin-bottom: 0.4rem;
+            border-left: 2px solid rgba(255,154,60,0.6);
+        }
+
+        .mini-search-result .result-title {
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 0.15rem;
+        }
+
+        .mini-search-result .result-snippet {
+            font-size: 0.6rem;
+            color: rgba(255,255,255,0.45);
+        }
+
+        .mini-search-result .result-highlight {
+            background: rgba(255,154,60,0.3);
+            border-radius: 2px;
+            padding: 0 2px;
+            color: rgba(255,200,100,0.95);
+        }
+
+        /* OCR illustration */
+        .mini-ocr-ui {
+            display: flex;
+            gap: 0.6rem;
+            width: 90%;
+            padding: 0.5rem;
+        }
+
+        .mini-doc-page {
+            flex: 1;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 0.6rem;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .mini-doc-line {
+            height: 4px;
+            border-radius: 2px;
+            background: rgba(255,255,255,0.2);
+            margin-bottom: 0.35rem;
+        }
+
+        .mini-doc-line:nth-child(1) { width: 90%; }
+        .mini-doc-line:nth-child(2) { width: 75%; }
+        .mini-doc-line:nth-child(3) { width: 85%; }
+        .mini-doc-line:nth-child(4) { width: 55%; }
+
+        .mini-ocr-arrow {
+            display: flex;
+            align-items: center;
+            color: rgba(100,255,100,0.7);
+            font-size: 1rem;
+        }
+
+        .mini-summary-card {
+            flex: 1;
+            background: rgba(100,200,100,0.1);
+            border-radius: 8px;
+            padding: 0.6rem;
+            border: 1px solid rgba(100,200,100,0.2);
+        }
+
+        .mini-summary-line {
+            height: 4px;
+            border-radius: 2px;
+            background: rgba(100,200,100,0.3);
+            margin-bottom: 0.35rem;
+        }
+
+        .mini-summary-line:nth-child(1) { width: 80%; }
+        .mini-summary-line:nth-child(2) { width: 60%; }
+        .mini-summary-line:nth-child(3) { width: 70%; }
+
+        /* Streak illustration */
+        .mini-streak-ui {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+        }
+
+        .mini-streak-num {
+            font-size: 3rem;
+            font-weight: 900;
+            color: rgba(255,200,80,0.9);
+            line-height: 1;
+            text-shadow: 0 0 30px rgba(255,150,0,0.5);
+        }
+
+        .mini-streak-label {
+            font-size: 0.65rem;
+            color: rgba(255,255,255,0.5);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .mini-streak-days {
+            display: flex;
+            gap: 0.25rem;
+        }
+
+        .mini-day {
+            width: 20px;
+            height: 20px;
+            border-radius: 6px;
+            background: rgba(255,255,255,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.55rem;
+        }
+
+        .mini-day.done {
+            background: rgba(255,154,60,0.3);
+            color: rgba(255,200,80,0.9);
+        }
+
+        .mini-day.today {
+            background: rgba(255,154,60,0.6);
+            color: white;
+            box-shadow: 0 0 10px rgba(255,100,0,0.4);
+        }
+
+        /* Share illustration */
+        .mini-share-ui {
+            width: 85%;
+            padding: 0.5rem;
+        }
+
+        .mini-share-preview {
+            background: rgba(255,255,255,0.08);
+            border-radius: 10px;
+            padding: 0.6rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 0.5rem;
+        }
+
+        .mini-share-title {
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 0.25rem;
+        }
+
+        .mini-share-url {
+            font-size: 0.58rem;
+            color: rgba(100,170,255,0.7);
+        }
+
+        .mini-share-actions {
+            display: flex;
+            gap: 0.4rem;
+        }
+
+        .mini-share-btn {
+            flex: 1;
+            background: rgba(255,255,255,0.06);
+            border-radius: 6px;
+            padding: 0.35rem;
+            font-size: 0.6rem;
+            color: rgba(255,255,255,0.5);
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .mini-share-btn.primary {
+            background: rgba(255,154,60,0.2);
+            color: rgba(255,200,80,0.9);
+            border-color: rgba(255,154,60,0.3);
+        }
+
+        /* Reel scroll hint */
+        .reel-scroll-hint {
+            text-align: center;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            opacity: 0.7;
+        }
+
+        .reel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.4rem;
+            margin-top: 0.75rem;
+        }
+
+        .reel-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(229,57,53,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .reel-dot.active {
+            background: var(--primary-red);
+            width: 20px;
+            border-radius: 3px;
+        }
+
+        /* === Testimonials Masonry === */
+
+        .testimonials-masonry {
+            columns: 3;
+            column-gap: 1.5rem;
+            padding: 0 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .testimonial-brick {
+            break-inside: avoid;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-brick .testimonial-content {
+            display: block;
+        }
+
+        @media (max-width: 900px) {
+            .testimonials-masonry {
+                columns: 2;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .testimonials-masonry {
+                columns: 1;
+            }
+        }
+
         /* Demo Animation Section */
-        
+
         .demo-section {
             padding: 4rem 2rem 6rem;
             background: transparent;
@@ -2866,11 +3580,31 @@
         
         .animate-on-scroll {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease-out;
+            transform: translateY(44px);
+            transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        
+
         .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Reel cards animate with slight horizontal + vertical for depth */
+        .reel-card.animate-on-scroll {
+            transform: translateY(44px) scale(0.97);
+        }
+
+        .reel-card.animate-on-scroll.visible {
+            transform: translateY(0) scale(1);
+        }
+
+        /* Testimonial bricks fade-up */
+        .testimonial-brick.animate-on-scroll {
+            transform: translateY(28px);
+            transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .testimonial-brick.animate-on-scroll.visible {
             opacity: 1;
             transform: translateY(0);
         }
@@ -2977,21 +3711,27 @@
                 <div class="bg-shape"></div>
                 <div class="bg-shape"></div>
             </div>
+
+            <!-- Left: Copy -->
             <div class="hero-content">
-                <div class="logo-container">
-                    <div class="sound-waves">
-                        <div class="wave"></div>
-                        <div class="wave"></div>
-                        <div class="wave"></div>
+                <div class="logo-container" style="margin-bottom:1.25rem;display:flex;align-items:center;gap:0.75rem;">
+                    <div style="position:relative;width:56px;height:56px;">
+                        <div class="sound-waves" style="width:72px;height:72px;top:50%;left:50%;">
+                            <div class="wave"></div>
+                            <div class="wave"></div>
+                            <div class="wave"></div>
+                        </div>
+                        <img src="assets/logo.png" alt="VoiceSketch Logo" class="logo" width="56" height="56" fetchpriority="high" decoding="async" style="width:56px;height:56px;animation:logo-entrance 1s ease-out;">
                     </div>
-                    <img src="assets/logo.png" alt="VoiceSketch Logo" class="logo" width="160" height="160" fetchpriority="high" decoding="async">
+                    <span style="font-size:1.1rem;font-weight:700;color:var(--text-dark);opacity:0.7;">VoiceSketch</span>
                 </div>
-                <h1>VoiceSketch</h1>
-                <p class="tagline" data-i18n="hero.tagline">Transform voice into visual notes</p>
+                <h1 data-i18n="hero.h1">Turn <em>every voice</em><br>into visual knowledge</h1>
+                <p class="tagline" data-i18n="hero.tagline">Record meetings, import documents, and search everything — VoiceSketch turns audio into AI-powered visual notes.</p>
                 <div class="badge-container">
                     <span class="badge">iOS 18.0+</span>
                     <span class="badge" data-i18n="hero.badge.ai">AI Powered</span>
                     <span class="badge" data-i18n="hero.badge.languages">60+ Languages</span>
+                    <span class="badge" style="background:linear-gradient(135deg,rgba(255,154,60,0.15),rgba(229,57,53,0.1));border-color:rgba(229,57,53,0.2);color:var(--primary-red);">v1.1 New</span>
                 </div>
                 <a href="https://apps.apple.com/us/app/voicesketch-ai-meeting-notes/id6757849645" class="cta-button app-store-link">
                     <svg viewBox="0 0 24 24" fill="currentColor">
@@ -3000,11 +3740,225 @@
                     <span data-i18n="hero.cta">Download on App Store</span>
                 </a>
             </div>
+
+            <!-- Right: Phone mockup -->
+            <div class="hero-visual">
+                <div class="hero-phone-wrap">
+                    <div class="hero-phone">
+                        <div class="hero-phone-screen">
+                            <!-- Status bar -->
+                            <div class="hero-phone-status">
+                                <span class="status-time">9:41</span>
+                                <span class="status-time">●●●</span>
+                            </div>
+                            <!-- Nav -->
+                            <div class="hero-phone-nav">
+                                <h3>Sessions</h3>
+                                <p>Search across all your notes</p>
+                            </div>
+                            <!-- Search bar -->
+                            <div class="hero-phone-search">
+                                <span class="search-icon">🔍</span>
+                                <span>product roadmap</span>
+                                <div class="search-cursor"></div>
+                            </div>
+                            <!-- Results -->
+                            <div class="hero-phone-sessions">
+                                <div class="hero-session-card highlighted">
+                                    <div class="session-type">Meeting · 3 matches</div>
+                                    <div class="session-title">Q2 <span class="session-highlight">Product Roadmap</span> Review</div>
+                                    <div class="session-meta">Yesterday · 42 min</div>
+                                </div>
+                                <div class="hero-session-card">
+                                    <div class="session-type">Lecture · 1 match</div>
+                                    <div class="session-title">Intro to <span class="session-highlight">Product</span> Strategy</div>
+                                    <div class="session-meta">Apr 2 · 58 min</div>
+                                </div>
+                                <div class="hero-session-card">
+                                    <div class="session-type">Brainstorm · 2 matches</div>
+                                    <div class="session-title"><span class="session-highlight">Roadmap</span> Planning Sprint</div>
+                                    <div class="session-meta">Mar 28 · 24 min</div>
+                                </div>
+                            </div>
+                            <!-- Tab bar -->
+                            <div class="hero-phone-tabs">
+                                <div class="hero-phone-tab"><span class="tab-icon">🏠</span><span class="tab-label">Home</span></div>
+                                <div class="hero-phone-tab active"><span class="tab-icon" style="filter:hue-rotate(0deg);">🔍</span><span class="tab-label" style="color:var(--primary-red);">Search</span></div>
+                                <div class="hero-phone-tab"><span class="tab-icon">📋</span><span class="tab-label">History</span></div>
+                                <div class="hero-phone-tab"><span class="tab-icon">👤</span><span class="tab-label">Profile</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Floating badges -->
+                    <div class="hero-streak-badge">
+                        <div class="streak-fire">🔥</div>
+                        <div class="streak-num">14</div>
+                        <div class="streak-label">day streak</div>
+                    </div>
+                    <div class="hero-search-badge">
+                        <div class="search-num">247</div>
+                        <div class="search-label">notes indexed</div>
+                    </div>
+                </div>
+            </div>
+
             <div class="scroll-indicator">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M12 5v14M5 12l7 7 7-7"/>
             </svg>
             </div>
+        </section>
+
+        <!-- v1.1 Feature Reel -->
+        <section class="feature-reel">
+            <div style="text-align:center;margin-bottom:0.5rem;">
+                <span class="reel-version-pill">✦ v1.1.0 Now Available</span>
+            </div>
+            <p class="feature-reel-heading">What's new in VoiceSketch</p>
+            <p class="feature-reel-sub">Four powerful upgrades shipped in our latest release</p>
+
+            <div class="reel-track" id="reel-track">
+
+                <!-- Card 1: Full-Text Search -->
+                <div class="reel-card animate-on-scroll">
+                    <div class="reel-card-visual search-bg">
+                        <div class="mini-search-ui">
+                            <div class="mini-search-bar">
+                                <span>🔍</span>
+                                <span>product roadmap</span>
+                                <div class="mini-cursor"></div>
+                            </div>
+                            <div class="mini-search-result">
+                                <div class="result-title">Q2 Product Roadmap Review</div>
+                                <div class="result-snippet">...discussed <span class="result-highlight">product roadmap</span> priorities for Q3...</div>
+                            </div>
+                            <div class="mini-search-result">
+                                <div class="result-title">Intro to Product Strategy</div>
+                                <div class="result-snippet">...<span class="result-highlight">roadmap</span> as a living document that...</div>
+                            </div>
+                            <div class="mini-search-result">
+                                <div class="result-title">Sprint Planning Session</div>
+                                <div class="result-snippet">...<span class="result-highlight">product</span> backlog refinement notes...</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reel-card-body">
+                        <div class="reel-new-tag">New in v1.1</div>
+                        <div class="reel-card-icon">🔍</div>
+                        <h3>Full-Text Search</h3>
+                        <p>Instantly find any word or phrase across all your sessions. Lightning-fast FTS5 search with highlighted snippets and smart filter chips.</p>
+                    </div>
+                </div>
+
+                <!-- Card 2: File Import & OCR -->
+                <div class="reel-card animate-on-scroll">
+                    <div class="reel-card-visual ocr-bg">
+                        <div class="mini-ocr-ui">
+                            <div class="mini-doc-page">
+                                <div style="font-size:0.6rem;color:rgba(255,255,255,0.4);margin-bottom:0.4rem;letter-spacing:0.05em;">PDF</div>
+                                <div class="mini-doc-line"></div>
+                                <div class="mini-doc-line"></div>
+                                <div class="mini-doc-line"></div>
+                                <div class="mini-doc-line"></div>
+                            </div>
+                            <div class="mini-ocr-arrow">→</div>
+                            <div class="mini-summary-card">
+                                <div style="font-size:0.6rem;color:rgba(100,255,100,0.6);margin-bottom:0.4rem;letter-spacing:0.05em;">AI SUMMARY</div>
+                                <div class="mini-summary-line"></div>
+                                <div class="mini-summary-line"></div>
+                                <div class="mini-summary-line"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reel-card-body">
+                        <div class="reel-new-tag">New in v1.1</div>
+                        <div class="reel-card-icon">📄</div>
+                        <h3>File Import & OCR</h3>
+                        <p>Import PDFs, Word documents, and photos from the Files app. Text is extracted automatically and transformed into AI visual summaries.</p>
+                    </div>
+                </div>
+
+                <!-- Card 3: Streaks & Badges -->
+                <div class="reel-card animate-on-scroll">
+                    <div class="reel-card-visual streak-bg">
+                        <div class="mini-streak-ui">
+                            <div style="font-size:2rem;">🔥</div>
+                            <div class="mini-streak-num">14</div>
+                            <div class="mini-streak-label">Day Streak</div>
+                            <div class="mini-streak-days">
+                                <div class="mini-day done">M</div>
+                                <div class="mini-day done">T</div>
+                                <div class="mini-day done">W</div>
+                                <div class="mini-day done">T</div>
+                                <div class="mini-day done">F</div>
+                                <div class="mini-day done">S</div>
+                                <div class="mini-day today">S</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reel-card-body">
+                        <div class="reel-new-tag">New in v1.1</div>
+                        <div class="reel-card-icon">🔥</div>
+                        <h3>Streaks & Badges</h3>
+                        <p>Build a daily recording habit and earn achievement badges. Track your 7-day and 14-day streaks right from your profile tab.</p>
+                    </div>
+                </div>
+
+                <!-- Card 4: Shared Session Web Viewer -->
+                <div class="reel-card animate-on-scroll">
+                    <div class="reel-card-visual share-bg">
+                        <div class="mini-share-ui">
+                            <div class="mini-share-preview">
+                                <div class="mini-share-title">📋 Q2 Roadmap Review</div>
+                                <div class="mini-share-url">voicesketch.app/s/a3f8...</div>
+                            </div>
+                            <div class="mini-share-actions">
+                                <div class="mini-share-btn">Copy Link</div>
+                                <div class="mini-share-btn primary">Share →</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reel-card-body">
+                        <div class="reel-new-tag">New in v1.1</div>
+                        <div class="reel-card-icon">🔗</div>
+                        <h3>Shared Session Viewer</h3>
+                        <p>Share any session as a web link. Recipients can view your visual notes, transcript, and action items in a beautiful web viewer — no app required.</p>
+                    </div>
+                </div>
+
+                <!-- Card 5: Smart Notifications -->
+                <div class="reel-card animate-on-scroll">
+                    <div class="reel-card-visual" style="background:linear-gradient(135deg,#1a0a2b 0%,#2d104a 100%);">
+                        <div style="padding:1rem;width:90%;">
+                            <div style="background:rgba(255,255,255,0.06);border-radius:14px;padding:0.75rem;border:1px solid rgba(255,255,255,0.08);margin-bottom:0.5rem;">
+                                <div style="font-size:0.6rem;color:rgba(255,255,255,0.4);margin-bottom:0.2rem;">VoiceSketch · Now</div>
+                                <div style="font-size:0.68rem;font-weight:600;color:rgba(255,255,255,0.85);margin-bottom:0.1rem;">⏰ Time to sketch!</div>
+                                <div style="font-size:0.62rem;color:rgba(255,255,255,0.45);">You haven't recorded today. Keep your 14-day streak going!</div>
+                            </div>
+                            <div style="background:rgba(255,255,255,0.04);border-radius:14px;padding:0.75rem;border:1px solid rgba(255,255,255,0.06);">
+                                <div style="font-size:0.6rem;color:rgba(255,255,255,0.3);margin-bottom:0.2rem;">Weekly Digest · Sunday</div>
+                                <div style="font-size:0.68rem;font-weight:600;color:rgba(255,255,255,0.7);">📊 Your week: 7 sessions, 6h 42min</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reel-card-body">
+                        <div class="reel-new-tag">New in v1.1</div>
+                        <div class="reel-card-icon">🔔</div>
+                        <h3>Smart Notifications</h3>
+                        <p>Gentle reminders to stay on your recording habit with deep-links that open right where you need to be. Weekly digest keeps you on track.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="reel-dots" id="reel-dots">
+                <div class="reel-dot active"></div>
+                <div class="reel-dot"></div>
+                <div class="reel-dot"></div>
+                <div class="reel-dot"></div>
+                <div class="reel-dot"></div>
+            </div>
+            <p class="reel-scroll-hint">← Swipe to explore →</p>
         </section>
 
         <!-- Why VoiceSketch Section -->
@@ -3132,56 +4086,57 @@
         <section class="whats-new" id="whats-new">
             <div class="container">
                 <div class="section-header animate-on-scroll">
-                    <div class="version-badge" data-i18n="whatsNew.badge">v1.0.2</div>
+                    <div class="version-badge" data-i18n="whatsNew.badge">v1.1.0</div>
                     <h2 data-i18n="whatsNew.title">What's New</h2>
-                    <p data-i18n="whatsNew.subtitle">The latest features to supercharge your note-taking</p>
+                    <p data-i18n="whatsNew.subtitle">The biggest VoiceSketch update yet</p>
                 </div>
                 <div class="whats-new-grid">
                     <div class="whats-new-card animate-on-scroll">
-                        <div class="whats-new-icon">&#127911;</div>
+                        <div class="whats-new-icon">🔍</div>
                         <span class="new-badge" data-i18n="whatsNew.newLabel">New</span>
-                        <h3 data-i18n="whatsNew.playback.title">Audio Playback</h3>
-                        <p data-i18n="whatsNew.playback.desc">Play back recordings directly from session details. Pause, skip, and seek through your audio. Share or download recording files.</p>
+                        <h3 data-i18n="whatsNew.search.title">Full-Text Search</h3>
+                        <p data-i18n="whatsNew.search.desc">Instantly find any word across all your sessions. FTS5-powered search with filter chips and highlighted snippets so you never lose a note again.</p>
                     </div>
                     <div class="whats-new-card animate-on-scroll">
-                        <div class="whats-new-icon">&#128247;</div>
+                        <div class="whats-new-icon">📄</div>
                         <span class="new-badge" data-i18n="whatsNew.newLabel">New</span>
-                        <h3 data-i18n="whatsNew.photo.title">Photo Text Import</h3>
-                        <p data-i18n="whatsNew.photo.desc">Import photos of whiteboards, documents, or handwritten notes. Text is automatically extracted and turned into AI visual summaries.</p>
+                        <h3 data-i18n="whatsNew.fileImport.title">File Import & OCR</h3>
+                        <p data-i18n="whatsNew.fileImport.desc">Import PDFs, Word docs, and photos from the Files app. Text is extracted automatically and turned into AI-powered visual summaries.</p>
                     </div>
                     <div class="whats-new-card animate-on-scroll">
-                        <div class="whats-new-icon">&#128221;</div>
+                        <div class="whats-new-icon">🔥</div>
                         <span class="new-badge" data-i18n="whatsNew.newLabel">New</span>
-                        <h3 data-i18n="whatsNew.styles.title">Summary Styles</h3>
-                        <p data-i18n="whatsNew.styles.desc">Choose your preferred AI summary format: Concise, Bullet Points, Detailed, Cornell Notes, or Action-Focused.</p>
+                        <h3 data-i18n="whatsNew.streaks.title">Streaks & Badges</h3>
+                        <p data-i18n="whatsNew.streaks.desc">Build a daily recording habit and earn achievement badges. Your streak is displayed prominently on your Profile tab as motivation.</p>
                     </div>
                     <div class="whats-new-card animate-on-scroll">
-                        <div class="whats-new-icon">&#128736;</div>
+                        <div class="whats-new-icon">🔔</div>
                         <span class="new-badge" data-i18n="whatsNew.newLabel">New</span>
-                        <h3 data-i18n="whatsNew.sessions.title">More Session Types</h3>
-                        <p data-i18n="whatsNew.sessions.desc">New Brainstorm, Interview, and Personal session types to better organize your recordings alongside Meetings and Lectures.</p>
+                        <h3 data-i18n="whatsNew.notifications.title">Smart Notifications</h3>
+                        <p data-i18n="whatsNew.notifications.desc">Gentle daily reminders and a Sunday weekly digest keep you on track. Notifications deep-link directly into the app where you need to be.</p>
                     </div>
                     <div class="whats-new-card animate-on-scroll">
-                        <div class="whats-new-icon">&#128483;&#65039;</div>
+                        <div class="whats-new-icon">🔗</div>
                         <span class="new-badge" data-i18n="whatsNew.newLabel">New</span>
-                        <h3 data-i18n="whatsNew.siri.title">Siri Shortcuts</h3>
-                        <p data-i18n="whatsNew.siri.desc">Say "Start recording with VoiceSketch" to begin a session hands-free. Also supports stop recording and quick session access.</p>
+                        <h3 data-i18n="whatsNew.shareViewer.title">Shared Session Viewer</h3>
+                        <p data-i18n="whatsNew.shareViewer.desc">Share any session as a web link. Recipients view your visual notes, transcript, and action items in a polished web viewer — no app needed.</p>
                     </div>
                     <div class="whats-new-card animate-on-scroll">
-                        <div class="whats-new-icon">&#128242;</div>
+                        <div class="whats-new-icon">✅</div>
                         <span class="new-badge" data-i18n="whatsNew.newLabel">New</span>
-                        <h3 data-i18n="whatsNew.widgets.title">iOS Widgets</h3>
-                        <p data-i18n="whatsNew.widgets.desc">Add home screen and lock screen widgets for quick recording, viewing your latest session, or checking your stats at a glance.</p>
+                        <h3 data-i18n="whatsNew.actionDash.title">Action Item Dashboard</h3>
+                        <p data-i18n="whatsNew.actionDash.desc">A dedicated dashboard for all extracted action items with filters by status and assignee, and full sort control. Never miss a follow-up.</p>
                     </div>
                     <div class="whats-new-card animate-on-scroll">
-                        <div class="whats-new-icon">&#9989;</div>
-                        <h3 data-i18n="whatsNew.actions.title">Action Items</h3>
-                        <p data-i18n="whatsNew.actions.desc">AI automatically extracts actionable tasks from recordings with priority levels and assignees. Included in PDF exports.</p>
+                        <div class="whats-new-icon">🎨</div>
+                        <span class="new-badge" data-i18n="whatsNew.newLabel">New</span>
+                        <h3 data-i18n="whatsNew.exportTemplates.title">Export Templates</h3>
+                        <p data-i18n="whatsNew.exportTemplates.desc">Choose from three stunning export layouts: Clean, Visual, and Summary Card. Each template adapts your content for a polished PDF.</p>
                     </div>
                     <div class="whats-new-card animate-on-scroll">
-                        <div class="whats-new-icon">&#127769;</div>
-                        <h3 data-i18n="whatsNew.darkMode.title">Dark Mode</h3>
-                        <p data-i18n="whatsNew.darkMode.desc">Full dark mode support with System, Light, and Dark theme options. Optimized dark color palette for comfortable use.</p>
+                        <div class="whats-new-icon">🌐</div>
+                        <h3 data-i18n="whatsNew.localization.title">10-Language UI</h3>
+                        <p data-i18n="whatsNew.localization.desc">Photo import and all new v1.1 features are now fully localized across all 10 supported languages including Japanese, Korean, and Arabic.</p>
                     </div>
                 </div>
             </div>
@@ -3428,110 +4383,85 @@
                     <h2 data-i18n="testimonials.title">What Users Say</h2>
                     <p data-i18n="testimonials.subtitle">Join thousands of learners transforming their notes</p>
                 </div>
-                <div class="testimonials-carousel">
-                    <div class="testimonial-track" id="testimonial-track">
-                        <div class="testimonial-card">
-                            <div class="testimonial-content">
-                                <div class="star-rating">★★★★★</div>
-                                <p class="testimonial-text" data-i18n="testimonials.review1.text">"VoiceSketch has completely changed how I study. The visual summaries make complex topics so much easier to remember!"</p>
-                                <div class="testimonial-author">
-                                    <div class="testimonial-avatar">👩‍🎓</div>
-                                    <div class="testimonial-info">
-                                        <h4 data-i18n="testimonials.review1.name">Sarah M.</h4>
-                                        <p data-i18n="testimonials.review1.role">Medical Student</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="testimonial-card">
-                            <div class="testimonial-content">
-                                <div class="star-rating">★★★★★</div>
-                                <p class="testimonial-text" data-i18n="testimonials.review2.text">"I use it for every meeting now. The AI summaries capture key points I would have missed, and the visuals help me recall discussions weeks later."</p>
-                                <div class="testimonial-author">
-                                    <div class="testimonial-avatar">👨‍💼</div>
-                                    <div class="testimonial-info">
-                                        <h4 data-i18n="testimonials.review2.name">David K.</h4>
-                                        <p data-i18n="testimonials.review2.role">Product Manager</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="testimonial-card">
-                            <div class="testimonial-content">
-                                <div class="star-rating">★★★★★</div>
-                                <p class="testimonial-text" data-i18n="testimonials.review3.text">"The multi-language support is amazing! I can record lectures in Japanese and get summaries in English. Perfect for my research."</p>
-                                <div class="testimonial-author">
-                                    <div class="testimonial-avatar">👨‍🔬</div>
-                                    <div class="testimonial-info">
-                                        <h4 data-i18n="testimonials.review3.name">James L.</h4>
-                                        <p data-i18n="testimonials.review3.role">PhD Researcher</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="testimonial-card">
-                            <div class="testimonial-content">
-                                <div class="star-rating">★★★★★</div>
-                                <p class="testimonial-text" data-i18n="testimonials.review4.text">"As a podcast creator, I use VoiceSketch to generate show notes automatically. It saves me hours every week and my audience loves the visual summaries!"</p>
-                                <div class="testimonial-author">
-                                    <div class="testimonial-avatar">🎧</div>
-                                    <div class="testimonial-info">
-                                        <h4 data-i18n="testimonials.review4.name">Emily R.</h4>
-                                        <p data-i18n="testimonials.review4.role">Podcast Host</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="testimonial-card">
-                            <div class="testimonial-content">
-                                <div class="star-rating">★★★★★</div>
-                                <p class="testimonial-text" data-i18n="testimonials.review5.text">"The export feature is fantastic. I can share my visual notes as PDFs with my study group. We've all improved our grades since using VoiceSketch!"</p>
-                                <div class="testimonial-author">
-                                    <div class="testimonial-avatar">👨‍💻</div>
-                                    <div class="testimonial-info">
-                                        <h4 data-i18n="testimonials.review5.name">Michael T.</h4>
-                                        <p data-i18n="testimonials.review5.role">Computer Science Student</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="testimonial-card">
-                            <div class="testimonial-content">
-                                <div class="star-rating">★★★★★</div>
-                                <p class="testimonial-text" data-i18n="testimonials.review6.text">"I attend conferences worldwide and VoiceSketch helps me capture every presentation. The visual notes make it easy to share insights with my team back home."</p>
-                                <div class="testimonial-author">
-                                    <div class="testimonial-avatar">👩‍💼</div>
-                                    <div class="testimonial-info">
-                                        <h4 data-i18n="testimonials.review6.name">Anna S.</h4>
-                                        <p data-i18n="testimonials.review6.role">Marketing Director</p>
-                                    </div>
+                <div class="testimonials-masonry">
+                    <div class="testimonial-brick animate-on-scroll">
+                        <div class="testimonial-content">
+                            <div class="star-rating">★★★★★</div>
+                            <p class="testimonial-text" data-i18n="testimonials.review1.text">"VoiceSketch has completely changed how I study. The visual summaries make complex topics so much easier to remember!"</p>
+                            <div class="testimonial-author">
+                                <div class="testimonial-avatar">👩‍🎓</div>
+                                <div class="testimonial-info">
+                                    <h4 data-i18n="testimonials.review1.name">Sarah M.</h4>
+                                    <p data-i18n="testimonials.review1.role">Medical Student</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="carousel-progress">
-                        <div class="carousel-progress-bar" id="carousel-progress-bar"></div>
+                    <div class="testimonial-brick animate-on-scroll">
+                        <div class="testimonial-content">
+                            <div class="star-rating">★★★★★</div>
+                            <p class="testimonial-text" data-i18n="testimonials.review2.text">"I use it for every meeting now. The AI summaries capture key points I would have missed, and the visuals help me recall discussions weeks later."</p>
+                            <div class="testimonial-author">
+                                <div class="testimonial-avatar">👨‍💼</div>
+                                <div class="testimonial-info">
+                                    <h4 data-i18n="testimonials.review2.name">David K.</h4>
+                                    <p data-i18n="testimonials.review2.role">Product Manager</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="carousel-nav">
-                    <button class="carousel-btn" id="carousel-prev" aria-label="Previous">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M15 18l-6-6 6-6"/>
-                    </svg>
-                </button>
-                    <div class="carousel-dots" id="carousel-dots" role="tablist" aria-label="Review slides">
-                        <button class="carousel-dot active" role="tab" aria-label="Slide 1" aria-selected="true" data-index="0"></button>
-                        <button class="carousel-dot" role="tab" aria-label="Slide 2" aria-selected="false" data-index="1"></button>
-                        <button class="carousel-dot" role="tab" aria-label="Slide 3" aria-selected="false" data-index="2"></button>
-                        <button class="carousel-dot" role="tab" aria-label="Slide 4" aria-selected="false" data-index="3"></button>
-                        <button class="carousel-dot" role="tab" aria-label="Slide 5" aria-selected="false" data-index="4"></button>
-                        <button class="carousel-dot" role="tab" aria-label="Slide 6" aria-selected="false" data-index="5"></button>
+                    <div class="testimonial-brick animate-on-scroll">
+                        <div class="testimonial-content">
+                            <div class="star-rating">★★★★★</div>
+                            <p class="testimonial-text" data-i18n="testimonials.review3.text">"The multi-language support is amazing! I can record lectures in Japanese and get summaries in English. Perfect for my research."</p>
+                            <div class="testimonial-author">
+                                <div class="testimonial-avatar">👨‍🔬</div>
+                                <div class="testimonial-info">
+                                    <h4 data-i18n="testimonials.review3.name">James L.</h4>
+                                    <p data-i18n="testimonials.review3.role">PhD Researcher</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <button class="carousel-btn" id="carousel-next" aria-label="Next">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M9 18l6-6-6-6"/>
-                    </svg>
-                </button>
+                    <div class="testimonial-brick animate-on-scroll">
+                        <div class="testimonial-content">
+                            <div class="star-rating">★★★★★</div>
+                            <p class="testimonial-text" data-i18n="testimonials.review4.text">"As a podcast creator, I use VoiceSketch to generate show notes automatically. It saves me hours every week and my audience loves the visual summaries!"</p>
+                            <div class="testimonial-author">
+                                <div class="testimonial-avatar">🎧</div>
+                                <div class="testimonial-info">
+                                    <h4 data-i18n="testimonials.review4.name">Emily R.</h4>
+                                    <p data-i18n="testimonials.review4.role">Podcast Host</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-brick animate-on-scroll">
+                        <div class="testimonial-content">
+                            <div class="star-rating">★★★★★</div>
+                            <p class="testimonial-text" data-i18n="testimonials.review5.text">"The export feature is fantastic. I can share my visual notes as PDFs with my study group. We've all improved our grades since using VoiceSketch!"</p>
+                            <div class="testimonial-author">
+                                <div class="testimonial-avatar">👨‍💻</div>
+                                <div class="testimonial-info">
+                                    <h4 data-i18n="testimonials.review5.name">Michael T.</h4>
+                                    <p data-i18n="testimonials.review5.role">Computer Science Student</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-brick animate-on-scroll">
+                        <div class="testimonial-content">
+                            <div class="star-rating">★★★★★</div>
+                            <p class="testimonial-text" data-i18n="testimonials.review6.text">"I attend conferences worldwide and VoiceSketch helps me capture every presentation. The visual notes make it easy to share insights with my team back home."</p>
+                            <div class="testimonial-author">
+                                <div class="testimonial-avatar">👩‍💼</div>
+                                <div class="testimonial-info">
+                                    <h4 data-i18n="testimonials.review6.name">Anna S.</h4>
+                                    <p data-i18n="testimonials.review6.role">Marketing Director</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -5642,8 +6572,8 @@
             });
         }, observerOptions);
 
-        // Observe all animated elements
-        document.querySelectorAll('.feature-card, .whats-new-card, .timeline-item, .animate-on-scroll').forEach(el => {
+        // Observe all animated elements (including masonry testimonials and reel cards)
+        document.querySelectorAll('.feature-card, .whats-new-card, .timeline-item, .animate-on-scroll, .testimonial-brick').forEach(el => {
             observer.observe(el);
         });
 
@@ -5656,7 +6586,7 @@
             rootMargin: '100px 0px'
         });
 
-        document.querySelectorAll('.bg-shape, .wave, .float-item, .typing-text, .visual-card, .record-btn, .mic-bar, .typing-cursor, .ai-core, .mini-card, .arrow-flow, .export-file, .carousel-progress-bar, .features-bg-shapes .shape').forEach(el => {
+        document.querySelectorAll('.bg-shape, .wave, .float-item, .typing-text, .visual-card, .record-btn, .mic-bar, .typing-cursor, .ai-core, .mini-card, .arrow-flow, .export-file, .features-bg-shapes .shape').forEach(el => {
             animObserver.observe(el);
         });
 
@@ -5736,120 +6666,57 @@
             });
         });
 
-        // Testimonials Carousel
-        const track = document.getElementById('testimonial-track');
-        const dots = document.querySelectorAll('.carousel-dot');
-        const prevBtn = document.getElementById('carousel-prev');
-        const nextBtn = document.getElementById('carousel-next');
-        const progressBar = document.getElementById('carousel-progress-bar');
-        let currentSlide = 0;
-        const totalSlides = 6;
-        let autoplayInterval;
-        let progressAnimation;
+        // Feature Reel — drag to scroll + dot indicators
+        (function() {
+            const reel = document.getElementById('reel-track');
+            const dots = document.querySelectorAll('.reel-dot');
+            if (!reel) return;
 
-        function goToSlide(index) {
-            currentSlide = index;
-            if (currentSlide < 0) currentSlide = totalSlides - 1;
-            if (currentSlide >= totalSlides) currentSlide = 0;
+            let isDragging = false;
+            let startX = 0;
+            let scrollLeft = 0;
 
-            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            reel.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                startX = e.pageX - reel.offsetLeft;
+                scrollLeft = reel.scrollLeft;
+                reel.style.userSelect = 'none';
+            });
 
+            reel.addEventListener('mouseleave', () => { isDragging = false; });
+            reel.addEventListener('mouseup', () => { isDragging = false; reel.style.userSelect = ''; });
+            reel.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                e.preventDefault();
+                const x = e.pageX - reel.offsetLeft;
+                const walk = (x - startX) * 1.5;
+                reel.scrollLeft = scrollLeft - walk;
+            });
+
+            // Update dots on scroll
+            reel.addEventListener('scroll', () => {
+                const cardWidth = 340 + 24; // card + gap
+                const idx = Math.round(reel.scrollLeft / cardWidth);
+                dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+            }, { passive: true });
+
+            // Click dot to scroll
             dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === currentSlide);
-                dot.setAttribute('aria-selected', i === currentSlide ? 'true' : 'false');
+                dot.addEventListener('click', () => {
+                    reel.scrollTo({ left: i * (340 + 24), behavior: 'smooth' });
+                });
             });
+        })();
 
-            // Reset progress bar animation
-            resetProgress();
-        }
-
-        function nextSlide() {
-            goToSlide(currentSlide + 1);
-        }
-
-        function prevSlide() {
-            goToSlide(currentSlide - 1);
-        }
-
-        function resetProgress() {
-            progressBar.style.animation = 'none';
-            progressBar.offsetHeight; // Trigger reflow
-            progressBar.style.animation = 'progress 4s linear';
-        }
-
-        // Event listeners
-        prevBtn.addEventListener('click', () => {
-            prevSlide();
-            resetAutoplay();
+        // Stagger whats-new card animations
+        document.querySelectorAll('.whats-new-card').forEach((card, i) => {
+            card.style.transitionDelay = `${i * 0.08}s`;
         });
 
-        nextBtn.addEventListener('click', () => {
-            nextSlide();
-            resetAutoplay();
+        // Stagger masonry testimonials
+        document.querySelectorAll('.testimonial-brick').forEach((brick, i) => {
+            brick.style.transitionDelay = `${i * 0.07}s`;
         });
-
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                goToSlide(index);
-                resetAutoplay();
-            });
-        });
-
-        // Autoplay
-        function startAutoplay() {
-            autoplayInterval = setInterval(nextSlide, 4000);
-        }
-
-        function resetAutoplay() {
-            clearInterval(autoplayInterval);
-            startAutoplay();
-        }
-
-        // Touch/swipe support
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        track.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-        }, {
-            passive: true
-        });
-
-        track.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        }, {
-            passive: true
-        });
-
-        function handleSwipe() {
-            const swipeThreshold = 50;
-            const diff = touchStartX - touchEndX;
-
-            if (Math.abs(diff) > swipeThreshold) {
-                if (diff > 0) {
-                    nextSlide();
-                } else {
-                    prevSlide();
-                }
-                resetAutoplay();
-            }
-        }
-
-        // Pause autoplay on hover
-        const carousel = document.querySelector('.testimonials-carousel');
-        carousel.addEventListener('mouseenter', () => {
-            clearInterval(autoplayInterval);
-            progressBar.style.animationPlayState = 'paused';
-        });
-
-        carousel.addEventListener('mouseleave', () => {
-            startAutoplay();
-            progressBar.style.animationPlayState = 'running';
-        });
-
-        // Start autoplay
-        startAutoplay();
 
         // Accordion toggle
         document.querySelectorAll('.privacy-card-header').forEach(header => {
