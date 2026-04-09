@@ -141,6 +141,9 @@
 
     <link rel="icon" type="image/png" href="assets/logo.png">
     <link rel="preload" href="assets/logo.png" as="image">
+    <link rel="preload" href="assets/screen-summary.png" as="image">
+    <link rel="preload" href="assets/screen-record.png" as="image">
+    <link rel="preload" href="assets/screen-export.png" as="image">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -579,7 +582,7 @@
             width: 24px;
             height: 24px;
         }
-        /* Hero Visual - phone mockup on right side */
+        /* Hero Visual - real screenshot fan */
 
         .hero-visual {
             display: flex;
@@ -588,190 +591,96 @@
             position: relative;
             z-index: 1;
             animation: fade-up 0.9s ease-out 0.4s both;
+            height: 580px;
         }
 
         .hero-phone-wrap {
             position: relative;
             width: 300px;
+            height: 580px;
         }
 
-        .hero-phone {
-            width: 300px;
-            background: var(--surface-dark);
-            border-radius: 46px;
-            padding: 14px;
-            box-shadow:
-                0 60px 120px rgba(0,0,0,0.22),
-                0 20px 40px rgba(0,0,0,0.12),
-                inset 0 0 0 1px rgba(255,255,255,0.08);
-            position: relative;
-        }
-
-        .hero-phone-screen {
-            background: #f8f9fc;
-            border-radius: 34px;
-            overflow: hidden;
-            height: 560px;
-            position: relative;
-        }
-
-        /* Phone status bar */
-        .hero-phone-status {
-            height: 44px;
-            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-            display: flex;
-            align-items: flex-end;
-            padding: 0 1.25rem 0.5rem;
-            justify-content: space-between;
-        }
-
-        .hero-phone-status .status-time {
-            color: rgba(255,255,255,0.9);
-            font-size: 0.7rem;
-            font-weight: 600;
-        }
-
-        /* Phone nav bar */
-        .hero-phone-nav {
-            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-            padding: 0.75rem 1.25rem 1rem;
-        }
-
-        .hero-phone-nav h3 {
-            color: white;
-            font-size: 1.05rem;
-            font-weight: 700;
-        }
-
-        .hero-phone-nav p {
-            color: rgba(255,255,255,0.75);
-            font-size: 0.7rem;
-            margin-top: 0.15rem;
-        }
-
-        /* Search bar in phone */
-        .hero-phone-search {
-            margin: 0.75rem 1rem;
-            background: rgba(255,255,255,0.95);
-            border-radius: 12px;
-            padding: 0.6rem 0.85rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-
-        .hero-phone-search .search-icon {
-            font-size: 0.8rem;
-            opacity: 0.5;
-        }
-
-        .hero-phone-search span {
-            font-size: 0.75rem;
-            color: #999;
-        }
-
-        .hero-phone-search .search-cursor {
-            width: 1.5px;
-            height: 0.9rem;
-            background: var(--primary-red);
-            animation: blink 1s step-end infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
-        /* Phone session cards */
-        .hero-phone-sessions {
-            padding: 0.25rem 0.75rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.6rem;
-        }
-
-        .hero-session-card {
-            background: white;
-            border-radius: 14px;
-            padding: 0.75rem 0.9rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-            border: 1px solid rgba(0,0,0,0.04);
-        }
-
-        .hero-session-card.highlighted {
-            border-color: rgba(229,57,53,0.25);
-            box-shadow: 0 2px 12px rgba(229,57,53,0.12);
-        }
-
-        .hero-session-card .session-type {
-            font-size: 0.62rem;
-            font-weight: 700;
-            color: var(--primary-red);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.25rem;
-        }
-
-        .hero-session-card .session-title {
-            font-size: 0.78rem;
-            font-weight: 600;
-            color: #1a1a2e;
-            margin-bottom: 0.2rem;
-        }
-
-        .hero-session-card .session-meta {
-            font-size: 0.65rem;
-            color: #999;
-        }
-
-        .hero-session-card .session-highlight {
-            display: inline;
-            background: rgba(255, 154, 60, 0.25);
-            border-radius: 3px;
-            padding: 0 2px;
-        }
-
-        /* Phone tab bar */
-        .hero-phone-tabs {
+        /* Fan of three screenshots */
+        .hero-screen {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(248,249,252,0.96);
-            backdrop-filter: blur(20px);
-            border-top: 1px solid rgba(0,0,0,0.06);
-            display: flex;
-            justify-content: space-around;
-            padding: 0.5rem 0 0.75rem;
+            border-radius: 36px;
+            overflow: hidden;
+            box-shadow:
+                0 40px 80px rgba(0,0,0,0.18),
+                0 12px 24px rgba(0,0,0,0.1),
+                0 0 0 1px rgba(0,0,0,0.06);
         }
 
-        .hero-phone-tab {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.2rem;
+        .hero-screen img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
 
-        .hero-phone-tab .tab-icon {
-            font-size: 1.1rem;
+        /* Back-left: recording screen */
+        .hero-screen-back {
+            width: 210px;
+            height: 440px;
+            left: -30px;
+            top: 70px;
+            transform: rotate(-8deg) translateX(-10px);
+            z-index: 1;
+            opacity: 0.85;
+            animation: float-back 6s ease-in-out infinite;
         }
 
-        .hero-phone-tab .tab-label {
-            font-size: 0.55rem;
-            color: #999;
-            font-weight: 500;
+        /* Back-right: export screen */
+        .hero-screen-right {
+            width: 200px;
+            height: 420px;
+            right: -40px;
+            top: 90px;
+            transform: rotate(7deg) translateX(10px);
+            z-index: 1;
+            opacity: 0.8;
+            animation: float-right 7s ease-in-out 1s infinite;
         }
 
-        .hero-phone-tab.active .tab-label {
-            color: var(--primary-red);
+        /* Front/center: AI summaries — the money shot */
+        .hero-screen-front {
+            width: 260px;
+            height: 540px;
+            left: 50%;
+            top: 20px;
+            transform: translateX(-50%);
+            z-index: 2;
+            animation: float-front 5s ease-in-out 0.5s infinite;
         }
 
-        /* Streak badge floating next to phone */
+        @keyframes float-front {
+            0%, 100% { transform: translateX(-50%) translateY(0px); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        @keyframes float-back {
+            0%, 100% { transform: rotate(-8deg) translateX(-10px) translateY(0px); }
+            50% { transform: rotate(-8deg) translateX(-10px) translateY(-6px); }
+        }
+
+        @keyframes float-right {
+            0%, 100% { transform: rotate(7deg) translateX(10px) translateY(0px); }
+            50% { transform: rotate(7deg) translateX(10px) translateY(-8px); }
+        }
+
+        @media (max-width: 900px) {
+            .hero-visual { height: 420px; }
+            .hero-phone-wrap { width: 240px; height: 420px; }
+            .hero-screen-front { width: 200px; height: 400px; }
+            .hero-screen-back { width: 160px; height: 330px; left: -20px; top: 50px; }
+            .hero-screen-right { display: none; }
+        }
+
+        /* Floating badges over the screenshots */
         .hero-streak-badge {
             position: absolute;
-            right: -40px;
-            top: 120px;
+            right: -20px;
+            top: 30px;
             background: var(--glass-bg-heavy);
             backdrop-filter: var(--glass-blur);
             -webkit-backdrop-filter: var(--glass-blur);
@@ -782,6 +691,7 @@
             animation: float-badge 4s ease-in-out infinite;
             text-align: center;
             min-width: 90px;
+            z-index: 3;
         }
 
         .hero-streak-badge .streak-fire {
@@ -802,11 +712,10 @@
             font-weight: 500;
         }
 
-        /* Search result badge floating */
         .hero-search-badge {
             position: absolute;
-            left: -50px;
-            bottom: 160px;
+            left: -20px;
+            bottom: 80px;
             background: var(--glass-bg-heavy);
             backdrop-filter: var(--glass-blur);
             -webkit-backdrop-filter: var(--glass-blur);
@@ -816,6 +725,7 @@
             box-shadow: var(--glass-shadow-hover);
             animation: float-badge 5s ease-in-out 1s infinite;
             text-align: center;
+            z-index: 3;
         }
 
         .hero-search-badge .search-num {
@@ -3741,53 +3651,20 @@
                 </a>
             </div>
 
-            <!-- Right: Phone mockup -->
+            <!-- Right: Real screenshot fan -->
             <div class="hero-visual">
                 <div class="hero-phone-wrap">
-                    <div class="hero-phone">
-                        <div class="hero-phone-screen">
-                            <!-- Status bar -->
-                            <div class="hero-phone-status">
-                                <span class="status-time">9:41</span>
-                                <span class="status-time">●●●</span>
-                            </div>
-                            <!-- Nav -->
-                            <div class="hero-phone-nav">
-                                <h3>Sessions</h3>
-                                <p>Search across all your notes</p>
-                            </div>
-                            <!-- Search bar -->
-                            <div class="hero-phone-search">
-                                <span class="search-icon">🔍</span>
-                                <span>product roadmap</span>
-                                <div class="search-cursor"></div>
-                            </div>
-                            <!-- Results -->
-                            <div class="hero-phone-sessions">
-                                <div class="hero-session-card highlighted">
-                                    <div class="session-type">Meeting · 3 matches</div>
-                                    <div class="session-title">Q2 <span class="session-highlight">Product Roadmap</span> Review</div>
-                                    <div class="session-meta">Yesterday · 42 min</div>
-                                </div>
-                                <div class="hero-session-card">
-                                    <div class="session-type">Lecture · 1 match</div>
-                                    <div class="session-title">Intro to <span class="session-highlight">Product</span> Strategy</div>
-                                    <div class="session-meta">Apr 2 · 58 min</div>
-                                </div>
-                                <div class="hero-session-card">
-                                    <div class="session-type">Brainstorm · 2 matches</div>
-                                    <div class="session-title"><span class="session-highlight">Roadmap</span> Planning Sprint</div>
-                                    <div class="session-meta">Mar 28 · 24 min</div>
-                                </div>
-                            </div>
-                            <!-- Tab bar -->
-                            <div class="hero-phone-tabs">
-                                <div class="hero-phone-tab"><span class="tab-icon">🏠</span><span class="tab-label">Home</span></div>
-                                <div class="hero-phone-tab active"><span class="tab-icon" style="filter:hue-rotate(0deg);">🔍</span><span class="tab-label" style="color:var(--primary-red);">Search</span></div>
-                                <div class="hero-phone-tab"><span class="tab-icon">📋</span><span class="tab-label">History</span></div>
-                                <div class="hero-phone-tab"><span class="tab-icon">👤</span><span class="tab-label">Profile</span></div>
-                            </div>
-                        </div>
+                    <!-- Back-left: recording screen -->
+                    <div class="hero-screen hero-screen-back">
+                        <img src="assets/screen-record.png" alt="VoiceSketch recording screen" width="210" height="440" loading="eager">
+                    </div>
+                    <!-- Back-right: export screen -->
+                    <div class="hero-screen hero-screen-right">
+                        <img src="assets/screen-export.png" alt="VoiceSketch export screen" width="200" height="420" loading="eager">
+                    </div>
+                    <!-- Front/center: AI summaries -->
+                    <div class="hero-screen hero-screen-front">
+                        <img src="assets/screen-summary.png" alt="VoiceSketch AI summaries screen" width="260" height="540" loading="eager">
                     </div>
                     <!-- Floating badges -->
                     <div class="hero-streak-badge">
