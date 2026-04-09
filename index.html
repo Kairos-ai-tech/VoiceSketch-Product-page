@@ -3135,113 +3135,6 @@
             margin-bottom: 1rem;
             letter-spacing: 2px;
         }
-        /* Carousel Navigation */
-        
-        .carousel-nav {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-        
-        .carousel-btn {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            border: 1px solid var(--glass-border);
-            background: var(--glass-bg-heavy);
-            backdrop-filter: var(--glass-blur);
-            -webkit-backdrop-filter: var(--glass-blur);
-            cursor: pointer;
-            font-family: inherit;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.4s var(--spring-ease);
-            color: var(--primary-red);
-            box-shadow: var(--glass-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.6);
-        }
-        
-        .carousel-btn:hover {
-            background: var(--primary-red);
-            color: white;
-            border-color: var(--primary-red);
-            transform: scale(1.1);
-            box-shadow: 0 8px 24px rgba(229, 57, 53, 0.3);
-        }
-        
-        .carousel-btn:active {
-            transform: scale(0.95);
-        }
-        
-        .carousel-btn:focus-visible {
-            outline: 2px solid var(--primary-red);
-            outline-offset: 2px;
-        }
-        
-        .carousel-btn svg {
-            width: 20px;
-            height: 20px;
-        }
-        
-        .carousel-dots {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            justify-content: center;
-            max-width: 120px;
-        }
-        
-        .carousel-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: rgba(229, 57, 53, 0.15);
-            cursor: pointer;
-            transition: all 0.4s var(--spring-ease);
-            border: none;
-            padding: 0;
-        }
-        
-        .carousel-dot.active {
-            background: var(--primary-red);
-            transform: scale(1.3);
-            box-shadow: 0 2px 8px rgba(229, 57, 53, 0.3);
-        }
-        
-        .carousel-dot:hover {
-            background: rgba(229, 57, 53, 0.5);
-        }
-        /* Auto-play indicator */
-        
-        .carousel-progress {
-            position: absolute;
-            bottom: -30px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background: rgba(229, 57, 53, 0.1);
-            border-radius: 2px;
-            overflow: hidden;
-        }
-        
-        .carousel-progress-bar {
-            height: 100%;
-            background: var(--primary-red);
-            width: 0%;
-            animation: progress 4s linear infinite;
-        }
-        
-        @keyframes progress {
-            0% {
-                width: 0%;
-            }
-            100% {
-                width: 100%;
-            }
-        }
         /* Responsive: 768px */
         
         @media (max-width: 768px) {
@@ -3689,10 +3582,10 @@
         <!-- v1.1 Feature Reel -->
         <section class="feature-reel">
             <div style="text-align:center;margin-bottom:0.5rem;">
-                <span class="reel-version-pill">✦ v1.1.0 Now Available</span>
+                <span class="reel-version-pill" data-i18n="reel.pill">✦ v1.1.0 Now Available</span>
             </div>
-            <p class="feature-reel-heading">What's new in VoiceSketch</p>
-            <p class="feature-reel-sub">Four powerful upgrades shipped in our latest release</p>
+            <p class="feature-reel-heading" data-i18n="reel.heading">What's new in VoiceSketch</p>
+            <p class="feature-reel-sub" data-i18n="reel.sub">Five powerful upgrades shipped in our latest release</p>
 
             <div class="reel-track" id="reel-track">
 
@@ -3720,10 +3613,10 @@
                         </div>
                     </div>
                     <div class="reel-card-body">
-                        <div class="reel-new-tag">New in v1.1</div>
+                        <div class="reel-new-tag" data-i18n="reel.newTag">New in v1.1</div>
                         <div class="reel-card-icon">🔍</div>
-                        <h3>Full-Text Search</h3>
-                        <p>Instantly find any word or phrase across all your sessions. Lightning-fast FTS5 search with highlighted snippets and smart filter chips.</p>
+                        <h3 data-i18n="reel.search.title">Full-Text Search</h3>
+                        <p data-i18n="reel.search.desc">Instantly find any word or phrase across all your sessions. Lightning-fast FTS5 search with highlighted snippets and smart filter chips.</p>
                     </div>
                 </div>
 
@@ -3748,10 +3641,10 @@
                         </div>
                     </div>
                     <div class="reel-card-body">
-                        <div class="reel-new-tag">New in v1.1</div>
+                        <div class="reel-new-tag" data-i18n="reel.newTag">New in v1.1</div>
                         <div class="reel-card-icon">📄</div>
-                        <h3>File Import & OCR</h3>
-                        <p>Import PDFs, Word documents, and photos from the Files app. Text is extracted automatically and transformed into AI visual summaries.</p>
+                        <h3 data-i18n="reel.fileImport.title">File Import & OCR</h3>
+                        <p data-i18n="reel.fileImport.desc">Import PDFs, Word documents, and photos from the Files app. Text is extracted automatically and transformed into AI visual summaries.</p>
                     </div>
                 </div>
 
@@ -3774,10 +3667,10 @@
                         </div>
                     </div>
                     <div class="reel-card-body">
-                        <div class="reel-new-tag">New in v1.1</div>
+                        <div class="reel-new-tag" data-i18n="reel.newTag">New in v1.1</div>
                         <div class="reel-card-icon">🔥</div>
-                        <h3>Streaks & Badges</h3>
-                        <p>Build a daily recording habit and earn achievement badges. Track your 7-day and 14-day streaks right from your profile tab.</p>
+                        <h3 data-i18n="reel.streaks.title">Streaks & Badges</h3>
+                        <p data-i18n="reel.streaks.desc">Build a daily recording habit and earn achievement badges. Track your 7-day and 14-day streaks right from your profile tab.</p>
                     </div>
                 </div>
 
@@ -3796,10 +3689,10 @@
                         </div>
                     </div>
                     <div class="reel-card-body">
-                        <div class="reel-new-tag">New in v1.1</div>
+                        <div class="reel-new-tag" data-i18n="reel.newTag">New in v1.1</div>
                         <div class="reel-card-icon">🔗</div>
-                        <h3>Shared Session Viewer</h3>
-                        <p>Share any session as a web link. Recipients can view your visual notes, transcript, and action items in a beautiful web viewer — no app required.</p>
+                        <h3 data-i18n="reel.shareViewer.title">Shared Session Viewer</h3>
+                        <p data-i18n="reel.shareViewer.desc">Share any session as a web link. Recipients can view your visual notes, transcript, and action items in a beautiful web viewer — no app required.</p>
                     </div>
                 </div>
 
@@ -3819,10 +3712,10 @@
                         </div>
                     </div>
                     <div class="reel-card-body">
-                        <div class="reel-new-tag">New in v1.1</div>
+                        <div class="reel-new-tag" data-i18n="reel.newTag">New in v1.1</div>
                         <div class="reel-card-icon">🔔</div>
-                        <h3>Smart Notifications</h3>
-                        <p>Gentle reminders to stay on your recording habit with deep-links that open right where you need to be. Weekly digest keeps you on track.</p>
+                        <h3 data-i18n="reel.notifications.title">Smart Notifications</h3>
+                        <p data-i18n="reel.notifications.desc">Gentle reminders to stay on your recording habit with deep-links that open right where you need to be. Weekly digest keeps you on track.</p>
                     </div>
                 </div>
 
@@ -3835,7 +3728,7 @@
                 <div class="reel-dot"></div>
                 <div class="reel-dot"></div>
             </div>
-            <p class="reel-scroll-hint">← Swipe to explore →</p>
+            <p class="reel-scroll-hint" data-i18n="reel.scrollHint">← Swipe to explore →</p>
         </section>
 
         <!-- Why VoiceSketch Section -->
@@ -4847,7 +4740,7 @@
                 "nav.reviews": "Reviews",
                 "nav.community": "Community",
                 "meta.title": "VoiceSketch - Transform Voice into Visual Learning",
-                "hero.h1": "Turn every voice into visual knowledge",
+                "hero.h1": "Turn <em>every voice</em><br>into visual knowledge",
                 "hero.tagline": "Record meetings, import documents, and search everything — VoiceSketch turns audio into AI-powered visual notes.",
                 "hero.badge.ai": "AI Powered",
                 "hero.badge.languages": "60+ Languages",
@@ -4963,6 +4856,21 @@
                 "terms.lastUpdated": "Last updated: February 7, 2026",
                 "terms.acceptance.title": "Acceptance of Terms",
                 "terms.acceptance.content": "By downloading, installing, or using VoiceSketch (\"the App\"), you agree to be bound by these Terms of Service (\"Terms\") and End User License Agreement (\"EULA\"). If you do not agree to these Terms, please do not use the App.\n\nThese Terms constitute a legally binding agreement between you (\"End-User\") and Kairos AI Tech (\"we,\" \"us,\" or \"our\"), the developer of VoiceSketch. These Terms are not between you and Apple Inc. (\"Apple\"). Kairos AI Tech, not Apple, is solely responsible for the App and its content. Your use of the App is also governed by our Privacy Policy, which is incorporated by reference into these Terms.\n\nYou must be at least 13 years old to use this App. If you are under 18, you confirm that you have obtained parental or guardian consent to use the App.",
+                "reel.pill": "✦ v1.1.0 Now Available",
+                "reel.heading": "What's new in VoiceSketch",
+                "reel.sub": "Five powerful upgrades shipped in our latest release",
+                "reel.newTag": "New in v1.1",
+                "reel.search.title": "Full-Text Search",
+                "reel.search.desc": "Instantly find any word or phrase across all your sessions. Lightning-fast FTS5 search with highlighted snippets and smart filter chips.",
+                "reel.fileImport.title": "File Import & OCR",
+                "reel.fileImport.desc": "Import PDFs, Word documents, and photos from the Files app. Text is extracted automatically and transformed into AI visual summaries.",
+                "reel.streaks.title": "Streaks & Badges",
+                "reel.streaks.desc": "Build a daily recording habit and earn achievement badges. Track your 7-day and 14-day streaks right from your profile tab.",
+                "reel.shareViewer.title": "Shared Session Viewer",
+                "reel.shareViewer.desc": "Share any session as a web link. Recipients can view your visual notes, transcript, and action items in a beautiful web viewer — no app required.",
+                "reel.notifications.title": "Smart Notifications",
+                "reel.notifications.desc": "Gentle reminders to stay on your recording habit with deep-links that open right where you need to be. Weekly digest keeps you on track.",
+                "reel.scrollHint": "← Swipe to explore →",
                 "terms.license.title": "License Scope",
                 "terms.license.content": "We grant you a non-transferable, non-exclusive license to use VoiceSketch on any Apple-branded products that you own or control, as permitted by the Usage Rules set forth in the Apple Media Services Terms and Conditions.\n\n\u2022 This license does not allow you to use the App on any device you do not own or control\n\u2022 You may not distribute or make the App available over a network where it could be used by multiple devices at the same time\n\u2022 You may not rent, lease, lend, sell, redistribute, or sublicense the App\n\u2022 You may not copy, reverse-engineer, disassemble, attempt to derive the source code of, modify, or create derivative works of the App\n\nThe terms of this license must not conflict with the Apple Media Services Terms and Conditions. In the event of any conflict, the Apple Media Services Terms and Conditions shall govern.",
                 "terms.service.title": "Description of Service",
@@ -5155,6 +5063,10 @@
                 "terms.lastUpdated": "最後更新：2026年2月7日",
                 "terms.acceptance.title": "接受條款",
                 "terms.acceptance.content": "下載、安裝或使用 VoiceSketch（「本應用程式」），即表示您同意受這些服務條款（「條款」）的約束。如果您不同意這些條款，請勿使用本應用程式。\n\n這些條款構成您與 VoiceSketch（「我們」）之間具有法律約束力的協議。您對本應用程式的使用還受我們的隱私政策管轄，該政策透過引用納入這些條款。\n\n您必須年滿 13 歲才能使用本應用程式。如果您未滿 18 歲，您確認已獲得父母或監護人的同意。",
+                "terms.license.title": "授權範圍",
+                "terms.license.content": "我們授予您不可轉讓、非獨家的授權，依照 Apple 媒體服務條款和條件規定的使用規則，在您擁有或控制的任何 Apple 品牌產品上使用 VoiceSketch。\n\n\u2022 此授權不允許您在未擁有或控制的裝置上使用本應用程式\n\u2022 您不得透過網路分發或使本應用程式可供多裝置同時使用\n\u2022 您不得出租、租用、借出、銷售、再分發或轉授權本應用程式\n\u2022 您不得複製、逆向工程、反彙編或嘗試獲取原始碼、修改或創作衍生作品\n\n此授權條款不得與 Apple 媒體服務條款和條件相衝突。如有衝突，以 Apple 媒體服務條款和條件為準。",
+                "terms.maintenance.title": "維護與支援",
+                "terms.maintenance.content": "Kairos AI Tech 依照這些條款的規定或適用法律的要求，全權負責提供 VoiceSketch 的任何維護和支援服務。\n\n\u2022 Apple 對本應用程式的維護和支援服務不承擔任何義務\n\u2022 支援服務可透過電子郵件 kairos.ai.tech@gmail.com 取得\n\u2022 我們致力於在 5 個工作日內回應支援詢問\n\u2022 應用程式更新透過 Apple App Store 提供\n\u2022 我們可能發布更新以修復錯誤、添加功能或解決安全問題\n\u2022 更新後繼續使用本應用程式即表示接受任何變更",
                 "terms.service.title": "服務說明",
                 "terms.service.content": "VoiceSketch 是一款提供以下功能的行動應用程式：\n\n\u2022 即時錄音和轉錄服務\n\u2022 AI 驅動的文字摘要功能\n\u2022 從會議內容生成視覺化呈現\n\u2022 雲端儲存和同步（進階功能）\n\u2022 轉錄、摘要和視覺化的匯出功能\n\n本應用程式整合了第三方服務，包括用於 AI 處理的 OpenAI 和用於資料儲存和認證的 Firebase。我們保留隨時修改、暫停或終止服務任何方面的權利。",
                 "terms.accounts.title": "用戶帳戶與註冊",
@@ -5218,6 +5130,21 @@
                 "discord.subtitle": "與其他 VoiceSketch 使用者交流，分享技巧、提出功能需求，獲得社群和團隊的協助。",
                 "discord.cta": "加入 Discord 伺服器",
                 "footer.from": "來自",
+                "reel.pill": "✦ v1.1.0 現已推出",
+                "reel.heading": "VoiceSketch 的新功能",
+                "reel.sub": "最新版本包含五項強大升級",
+                "reel.newTag": "v1.1 新功能",
+                "reel.search.title": "全文搜尋",
+                "reel.search.desc": "即時搜尋所有錄音中的任何詞彙。閃電般快速的 FTS5 搜尋，配有高亮片段和智慧過濾晶片。",
+                "reel.fileImport.title": "檔案匯入與 OCR",
+                "reel.fileImport.desc": "從「檔案」App 匯入 PDF、Word 文件和照片。文字自動提取並轉化為 AI 視覺摘要。",
+                "reel.streaks.title": "連續記錄與徽章",
+                "reel.streaks.desc": "養成每日錄音習慣並獲得成就徽章。直接在個人資料標籤頁追蹤 7 天和 14 天連續記錄。",
+                "reel.shareViewer.title": "共享錄音檢視器",
+                "reel.shareViewer.desc": "將任何錄音分享為網頁連結。接收者可在精美的網頁檢視器中查看視覺筆記、文字稿和行動項目，無需應用程式。",
+                "reel.notifications.title": "智慧通知",
+                "reel.notifications.desc": "溫和提醒幫助您保持錄音習慣，深度連結直接開啟所需位置。週報摘要讓您保持節奏。",
+                "reel.scrollHint": "← 滑動探索 →",
                 "footer.copyright": "© 2026 VoiceSketch. 保留所有權利。"
             },
             "zh-CN": {
@@ -5343,6 +5270,10 @@
                 "terms.lastUpdated": "最后更新：2026年2月7日",
                 "terms.acceptance.title": "接受条款",
                 "terms.acceptance.content": "下载、安装或使用 VoiceSketch（「本应用」），即表示您同意受这些服务条款（「条款」）的约束。如果您不同意这些条款，请勿使用本应用。\n\n这些条款构成您与 VoiceSketch（「我们」）之间具有法律约束力的协议。您对本应用的使用还受我们的隐私政策管辖，该政策通过引用纳入这些条款。\n\n您必须年满 13 岁才能使用本应用。如果您未满 18 岁，您确认已获得父母或监护人的同意。",
+                "terms.license.title": "许可范围",
+                "terms.license.content": "我们授予您不可转让、非独家的许可，依照 Apple 媒体服务条款和条件规定的使用规则，在您拥有或控制的任何 Apple 品牌产品上使用 VoiceSketch。\n\n\u2022 此许可不允许您在未拥有或控制的设备上使用本应用\n\u2022 您不得通过网络分发或使本应用可供多设备同时使用\n\u2022 您不得出租、租用、借出、销售、再分发或转授权本应用\n\u2022 您不得复制、逆向工程、反汇编或尝试获取源代码、修改或创作衍生作品\n\n此许可条款不得与 Apple 媒体服务条款和条件相冲突。如有冲突，以 Apple 媒体服务条款和条件为准。",
+                "terms.maintenance.title": "维护与支持",
+                "terms.maintenance.content": "Kairos AI Tech 依照这些条款的规定或适用法律的要求，全权负责提供 VoiceSketch 的任何维护和支持服务。\n\n\u2022 Apple 对本应用的维护和支持服务不承担任何义务\n\u2022 支持服务可通过电子邮件 kairos.ai.tech@gmail.com 获得\n\u2022 我们致力于在 5 个工作日内回复支持咨询\n\u2022 应用更新通过 Apple App Store 提供\n\u2022 我们可能发布更新以修复错误、添加功能或解决安全问题\n\u2022 更新后继续使用本应用即表示接受任何变更",
                 "terms.service.title": "服务说明",
                 "terms.service.content": "VoiceSketch 是一款提供以下功能的移动应用：\n\n\u2022 实时录音和转录服务\n\u2022 AI 驱动的文本摘要功能\n\u2022 从会议内容生成可视化呈现\n\u2022 云端存储和同步（高级功能）\n\u2022 转录、摘要和可视化的导出功能\n\n本应用集成了第三方服务，包括用于 AI 处理的 OpenAI 和用于数据存储和认证的 Firebase。我们保留随时修改、暂停或终止服务任何方面的权利。",
                 "terms.accounts.title": "用户账户与注册",
@@ -5406,6 +5337,21 @@
                 "discord.subtitle": "与其他 VoiceSketch 用户交流，分享技巧、提出功能需求，获得社区和团队的帮助。",
                 "discord.cta": "加入 Discord 服务器",
                 "footer.from": "来自",
+                "reel.pill": "✦ v1.1.0 现已推出",
+                "reel.heading": "VoiceSketch 的新功能",
+                "reel.sub": "最新版本包含五项强大升级",
+                "reel.newTag": "v1.1 新功能",
+                "reel.search.title": "全文搜索",
+                "reel.search.desc": "即时搜索所有录音中的任何词汇。闪电般快速的 FTS5 搜索，配有高亮片段和智能过滤芯片。",
+                "reel.fileImport.title": "文件导入与 OCR",
+                "reel.fileImport.desc": "从「文件」App 导入 PDF、Word 文档和照片。文字自动提取并转化为 AI 视觉摘要。",
+                "reel.streaks.title": "连续记录与徽章",
+                "reel.streaks.desc": "养成每日录音习惯并获得成就徽章。直接在个人资料标签页追踪 7 天和 14 天连续记录。",
+                "reel.shareViewer.title": "共享录音查看器",
+                "reel.shareViewer.desc": "将任何录音分享为网页链接。接收者可在精美的网页查看器中查看视觉笔记、文字稿和行动项目，无需应用程序。",
+                "reel.notifications.title": "智能通知",
+                "reel.notifications.desc": "温和提醒帮助您保持录音习惯，深度链接直接打开所需位置。周报摘要让您保持节奏。",
+                "reel.scrollHint": "← 滑动探索 →",
                 "footer.copyright": "© 2026 VoiceSketch. 保留所有权利。"
             },
             ja: {
@@ -5531,6 +5477,10 @@
                 "terms.lastUpdated": "最終更新：2026年2月7日",
                 "terms.acceptance.title": "規約への同意",
                 "terms.acceptance.content": "VoiceSketch（「本アプリ」）をダウンロード、インストール、または使用することにより、お客様はこれらの利用規約（「規約」）に拘束されることに同意します。これらの規約に同意しない場合は、本アプリを使用しないでください。\n\nこれらの規約は、お客様と VoiceSketch（「当社」）との間の法的拘束力のある契約を構成します。本アプリのご利用は、これらの規約に参照により組み込まれるプライバシーポリシーにも準拠します。\n\n本アプリの使用には 13 歳以上である必要があります。18 歳未満の場合、保護者の同意を得ていることを確認します。",
+                "terms.license.title": "ライセンスの範囲",
+                "terms.license.content": "当社は、Apple メディアサービス利用規約に定められた使用規則に従い、お客様が所有または管理する Apple ブランド製品で VoiceSketch を使用するための非譲渡的・非独占的ライセンスを付与します。\n\n\u2022 このライセンスは、所有または管理していないデバイスでの使用を許可しません\n\u2022 複数のデバイスで同時に使用できるネットワーク上でアプリを配布または利用可能にすることはできません\n\u2022 アプリのレンタル、リース、貸与、販売、再配布、またはサブライセンスはできません\n\u2022 アプリのコピー、リバースエンジニアリング、逆アセンブル、ソースコード取得、修改、派生物の作成はできません\n\nこのライセンスの条件は Apple メディアサービス利用規約と矛盾してはなりません。矛盾がある場合は Apple メディアサービス利用規約が優先されます。",
+                "terms.maintenance.title": "メンテナンスとサポート",
+                "terms.maintenance.content": "Kairos AI Tech は、本規約に規定されるか適用法律が要求する範囲で、VoiceSketch のメンテナンスおよびサポートサービスを提供する唯一の責任者です。\n\n\u2022 Apple はアプリに関するメンテナンスおよびサポートサービスを提供する義務を一切負いません\n\u2022 サポートはメール kairos.ai.tech@gmail.com にて受け付けています\n\u2022 サポートのお問い合わせには 5 営業日以内に対応することを目指しています\n\u2022 アプリの更新は Apple App Store を通じて提供されます\n\u2022 バグ修正、機能追加、セキュリティ問題への対応のため更新をリリースする場合があります\n\u2022 更新後にアプリを継続使用することは変更への承諾とみなされます",
                 "terms.service.title": "サービスの説明",
                 "terms.service.content": "VoiceSketch は以下の機能を提供するモバイルアプリケーションです：\n\n\u2022 リアルタイムの音声録音と文字起こしサービス\n\u2022 AI による文章要約機能\n\u2022 会議内容からのビジュアル表現の生成\n\u2022 クラウドストレージと同期（プレミアム機能）\n\u2022 文字起こし、要約、ビジュアルのエクスポート機能\n\n本アプリは、AI 処理用の OpenAI やデータストレージと認証用の Firebase を含むサードパーティサービスと連携しています。当社はサービスのいかなる側面も随時変更、一時停止、または中止する権利を留保します。",
                 "terms.accounts.title": "ユーザーアカウントと登録",
@@ -5594,6 +5544,21 @@
                 "discord.subtitle": "他のVoiceSketchユーザーと交流し、ヒントを共有、機能をリクエスト、コミュニティとチームからサポートを受けましょう。",
                 "discord.cta": "Discordサーバーに参加",
                 "footer.from": "提供",
+                "reel.pill": "✦ v1.1.0 リリース",
+                "reel.heading": "VoiceSketch の新機能",
+                "reel.sub": "最新リリースに含まれる5つの強力なアップグレード",
+                "reel.newTag": "v1.1 新機能",
+                "reel.search.title": "全文検索",
+                "reel.search.desc": "すべてのセッションから任意の単語やフレーズを瞬時に検索。高速FTS5検索で強調スニペットとスマートフィルターを提供。",
+                "reel.fileImport.title": "ファイルインポートとOCR",
+                "reel.fileImport.desc": "ファイルAppからPDF、Word文書、写真をインポート。テキストが自動抽出され、AI視覚サマリーに変換されます。",
+                "reel.streaks.title": "ストリークとバッジ",
+                "reel.streaks.desc": "毎日録音する習慣をつくり、実績バッジを獲得。プロフィールタブで7日・14日ストリークを確認できます。",
+                "reel.shareViewer.title": "セッション共有ビューワー",
+                "reel.shareViewer.desc": "任意のセッションをWebリンクで共有。受信者はアプリなしで美しいWebビューワーでノート・文字起こし・アクションを閲覧できます。",
+                "reel.notifications.title": "スマート通知",
+                "reel.notifications.desc": "記録習慣を維持するための優しいリマインダーと、必要な場所を直接開くディープリンク。週次ダイジェストでペースを維持。",
+                "reel.scrollHint": "← スワイプして探索 →",
                 "footer.copyright": "© 2026 VoiceSketch. All rights reserved."
             },
             ko: {
@@ -5719,6 +5684,10 @@
                 "terms.lastUpdated": "최종 업데이트: 2026년 2월 7일",
                 "terms.acceptance.title": "약관 동의",
                 "terms.acceptance.content": "VoiceSketch(\"본 앱\")를 다운로드, 설치 또는 사용함으로써 귀하는 이 이용약관(\"약관\")에 구속되는 것에 동의합니다. 이 약관에 동의하지 않는 경우 본 앱을 사용하지 마세요.\n\n이 약관은 귀하와 VoiceSketch(\"당사\") 사이의 법적 구속력이 있는 계약을 구성합니다. 본 앱 사용은 이 약관에 참조로 편입된 개인정보 처리방침의 적용도 받습니다.\n\n본 앱을 사용하려면 만 13세 이상이어야 합니다. 만 18세 미만인 경우 부모 또는 보호자의 동의를 얻었음을 확인합니다.",
+                "terms.license.title": "라이선스 범위",
+                "terms.license.content": "당사는 Apple 미디어 서비스 이용 약관에 명시된 사용 규칙에 따라, 귀하가 소유하거나 제어하는 Apple 브랜드 제품에서 VoiceSketch를 사용할 수 있는 비양도적, 비독점적 라이선스를 부여합니다.\n\n\u2022 이 라이선스는 귀하가 소유하거나 제어하지 않는 기기에서 앱을 사용하는 것을 허용하지 않습니다\n\u2022 여러 기기에서 동시에 사용될 수 있는 네트워크에서 앱을 배포하거나 사용 가능하게 할 수 없습니다\n\u2022 앱을 임대, 리스, 대여, 판매, 재배포 또는 재라이선스할 수 없습니다\n\u2022 앱을 복사, 리버스 엔지니어링, 역어셈블, 소스 코드 추출, 수정 또는 파생물 생성을 할 수 없습니다\n\n이 라이선스 조건은 Apple 미디어 서비스 이용 약관과 충돌해서는 안 됩니다. 충돌이 발생한 경우 Apple 미디어 서비스 이용 약관이 적용됩니다.",
+                "terms.maintenance.title": "유지 관리 및 지원",
+                "terms.maintenance.content": "Kairos AI Tech은 본 약관에 명시되거나 적용 법률에서 요구하는 대로 VoiceSketch에 대한 유지 관리 및 지원 서비스를 제공할 유일한 책임자입니다.\n\n\u2022 Apple은 앱에 관한 유지 관리 및 지원 서비스를 제공할 의무가 없습니다\n\u2022 지원은 kairos.ai.tech@gmail.com 이메일로 제공됩니다\n\u2022 지원 문의에 5 영업일 이내에 응답하는 것을 목표로 합니다\n\u2022 앱 업데이트는 Apple App Store를 통해 제공됩니다\n\u2022 버그 수정, 기능 추가 또는 보안 문제 해결을 위해 업데이트를 릴리스할 수 있습니다\n\u2022 업데이트 후 앱을 계속 사용하면 변경 사항에 동의한 것으로 간주됩니다",
                 "terms.service.title": "서비스 설명",
                 "terms.service.content": "VoiceSketch는 다음 기능을 제공하는 모바일 애플리케이션입니다:\n\n\u2022 실시간 오디오 녹음 및 전사 서비스\n\u2022 AI 기반 텍스트 요약 기능\n\u2022 회의 콘텐츠에서 시각적 표현 생성\n\u2022 클라우드 스토리지 및 동기화 (프리미엄 기능)\n\u2022 전사, 요약 및 시각화 내보내기 기능\n\n본 앱은 AI 처리를 위한 OpenAI와 데이터 저장 및 인증을 위한 Firebase를 포함한 제3자 서비스와 통합됩니다. 당사는 서비스의 모든 측면을 언제든지 수정, 일시 중단 또는 중단할 권리를 보유합니다.",
                 "terms.accounts.title": "사용자 계정 및 등록",
@@ -5782,6 +5751,21 @@
                 "discord.subtitle": "다른 VoiceSketch 사용자와 교류하고, 팁을 공유하고, 기능을 요청하고, 커뮤니티와 팀의 도움을 받으세요.",
                 "discord.cta": "Discord 서버 참여",
                 "footer.from": "제공",
+                "reel.pill": "✦ v1.1.0 출시",
+                "reel.heading": "VoiceSketch의 새로운 기능",
+                "reel.sub": "최신 릴리스에 포함된 5가지 강력한 업그레이드",
+                "reel.newTag": "v1.1 신기능",
+                "reel.search.title": "전체 텍스트 검색",
+                "reel.search.desc": "모든 세션에서 단어나 구문을 즉시 검색. 빠른 FTS5 검색으로 하이라이트 스니펫과 스마트 필터를 제공합니다.",
+                "reel.fileImport.title": "파일 가져오기 및 OCR",
+                "reel.fileImport.desc": "파일 앱에서 PDF, Word 문서, 사진을 가져옵니다. 텍스트가 자동으로 추출되어 AI 시각 요약으로 변환됩니다.",
+                "reel.streaks.title": "스트릭 및 배지",
+                "reel.streaks.desc": "매일 녹음 습관을 만들고 성취 배지를 획득하세요. 프로필 탭에서 7일·14일 스트릭을 확인할 수 있습니다.",
+                "reel.shareViewer.title": "공유 세션 뷰어",
+                "reel.shareViewer.desc": "모든 세션을 웹 링크로 공유하세요. 받는 사람이 앱 없이 세련된 웹 뷰어에서 노트, 전사, 액션을 볼 수 있습니다.",
+                "reel.notifications.title": "스마트 알림",
+                "reel.notifications.desc": "기록 습관을 유지하는 부드러운 알림과 필요한 위치를 직접 여는 딥 링크. 주간 다이제스트로 계획을 유지하세요.",
+                "reel.scrollHint": "← 스와이프하여 탐색 →",
                 "footer.copyright": "© 2026 VoiceSketch. All rights reserved."
             },
             fr: {
@@ -5907,6 +5891,10 @@
                 "terms.lastUpdated": "Dernière mise à jour : 7 février 2026",
                 "terms.acceptance.title": "Acceptation des conditions",
                 "terms.acceptance.content": "En téléchargeant, installant ou utilisant VoiceSketch (« l'Application »), vous acceptez d'être lié par ces Conditions d'utilisation (« Conditions »). Si vous n'acceptez pas ces Conditions, veuillez ne pas utiliser l'Application.\n\nCes Conditions constituent un accord juridiquement contraignant entre vous et VoiceSketch (« nous »). Votre utilisation de l'Application est également régie par notre Politique de confidentialité, incorporée par référence dans ces Conditions.\n\nVous devez avoir au moins 13 ans pour utiliser cette Application. Si vous avez moins de 18 ans, vous confirmez avoir obtenu le consentement d'un parent ou tuteur.",
+                "terms.license.title": "Portée de la licence",
+                "terms.license.content": "Nous vous accordons une licence non transférable et non exclusive pour utiliser VoiceSketch sur tout produit de marque Apple que vous possédez ou contrôlez, conformément aux règles d'utilisation définies dans les Conditions des services multimédias Apple.\n\n\u2022 Cette licence ne vous autorise pas à utiliser l'App sur un appareil que vous ne possédez ou contrôlez pas\n\u2022 Vous ne pouvez pas distribuer l'App sur un réseau où elle pourrait être utilisée par plusieurs appareils simultanément\n\u2022 Vous ne pouvez pas louer, céder, prêter, vendre, redistribuer ou sous-licencier l'App\n\u2022 Vous ne pouvez pas copier, décompiler, désassembler, tenter d'extraire le code source, modifier ou créer des œuvres dérivées\n\nCes conditions ne peuvent pas entrer en conflit avec les Conditions des services multimédias Apple. En cas de conflit, les Conditions des services multimédias Apple prévaudront.",
+                "terms.maintenance.title": "Maintenance et support",
+                "terms.maintenance.content": "Kairos AI Tech est seul responsable de la fourniture de tout service de maintenance et support pour VoiceSketch, tel que spécifié dans ces Conditions ou requis par la loi applicable.\n\n\u2022 Apple n'a aucune obligation de fournir des services de maintenance ou de support pour l'App\n\u2022 Le support est disponible par e-mail à kairos.ai.tech@gmail.com\n\u2022 Nous visons à répondre aux demandes de support dans les 5 jours ouvrables\n\u2022 Les mises à jour de l'App sont fournies via l'Apple App Store\n\u2022 Nous pouvons publier des mises à jour pour corriger des bugs, ajouter des fonctionnalités ou résoudre des problèmes de sécurité\n\u2022 L'utilisation continue de l'App après les mises à jour constitue l'acceptation de tout changement",
                 "terms.service.title": "Description du service",
                 "terms.service.content": "VoiceSketch est une application mobile qui fournit :\n\n\u2022 Services d'enregistrement audio et de transcription en temps réel\n\u2022 Capacités de résumé de texte alimentées par l'IA\n\u2022 Génération de représentations visuelles à partir du contenu des réunions\n\u2022 Stockage cloud et synchronisation (fonctionnalité premium)\n\u2022 Fonctionnalité d'exportation pour les transcriptions, résumés et visualisations\n\nL'Application s'intègre à des services tiers incluant OpenAI pour le traitement IA et Firebase pour le stockage de données et l'authentification. Nous nous réservons le droit de modifier, suspendre ou interrompre tout aspect du service à tout moment.",
                 "terms.accounts.title": "Comptes utilisateurs et inscription",
@@ -5970,6 +5958,21 @@
                 "discord.subtitle": "Échangez avec d'autres utilisateurs de VoiceSketch, partagez des astuces, demandez des fonctionnalités et obtenez de l'aide.",
                 "discord.cta": "Rejoindre le Serveur Discord",
                 "footer.from": "de",
+                "reel.pill": "✦ v1.1.0 disponible",
+                "reel.heading": "Nouveautés dans VoiceSketch",
+                "reel.sub": "Cinq puissantes améliorations dans notre dernière version",
+                "reel.newTag": "Nouveau en v1.1",
+                "reel.search.title": "Recherche plein texte",
+                "reel.search.desc": "Trouvez instantanément n'importe quel mot ou phrase dans toutes vos sessions. Recherche FTS5 ultra-rapide avec extraits en surbrillance et filtres intelligents.",
+                "reel.fileImport.title": "Import de fichiers et OCR",
+                "reel.fileImport.desc": "Importez des PDF, documents Word et photos depuis l'app Fichiers. Le texte est extrait automatiquement et transformé en résumés visuels IA.",
+                "reel.streaks.title": "Séries et Badges",
+                "reel.streaks.desc": "Créez une habitude d'enregistrement quotidien et gagnez des badges. Suivez vos séries de 7 et 14 jours depuis l'onglet Profil.",
+                "reel.shareViewer.title": "Visionneuse de session partagée",
+                "reel.shareViewer.desc": "Partagez n'importe quelle session sous forme de lien web. Les destinataires visualisent vos notes, transcription et actions dans un viewer soigné, sans app.",
+                "reel.notifications.title": "Notifications intelligentes",
+                "reel.notifications.desc": "Des rappels doux pour maintenir votre habitude avec des liens profonds qui ouvrent exactement où vous en avez besoin. Digest hebdomadaire pour rester sur la bonne voie.",
+                "reel.scrollHint": "← Glisser pour explorer →",
                 "footer.copyright": "© 2026 VoiceSketch. Tous droits réservés."
             },
             es: {
@@ -6095,6 +6098,10 @@
                 "terms.lastUpdated": "Última actualización: 7 de febrero de 2026",
                 "terms.acceptance.title": "Aceptación de los términos",
                 "terms.acceptance.content": "Al descargar, instalar o usar VoiceSketch (\"la Aplicación\"), aceptas estar vinculado por estos Términos de servicio (\"Términos\"). Si no estás de acuerdo con estos Términos, por favor no uses la Aplicación.\n\nEstos Términos constituyen un acuerdo legalmente vinculante entre tú y VoiceSketch (\"nosotros\"). Tu uso de la Aplicación también se rige por nuestra Política de privacidad, incorporada por referencia en estos Términos.\n\nDebes tener al menos 13 años para usar esta Aplicación. Si eres menor de 18 años, confirmas que has obtenido el consentimiento de tus padres o tutores.",
+                "terms.license.title": "Alcance de la licencia",
+                "terms.license.content": "Te concedemos una licencia no transferible y no exclusiva para usar VoiceSketch en cualquier producto de marca Apple que poseas o controles, según lo permitido por las Reglas de uso establecidas en los Términos y condiciones de los Servicios multimedia de Apple.\n\n\u2022 Esta licencia no te permite usar la App en ningún dispositivo que no poseas o controles\n\u2022 No puedes distribuir la App en una red donde pueda ser usada por múltiples dispositivos simultáneamente\n\u2022 No puedes alquilar, arrendar, prestar, vender, redistribuir o sublicenciar la App\n\u2022 No puedes copiar, realizar ingeniería inversa, desensamblar, intentar obtener el código fuente, modificar o crear obras derivadas\n\nLos términos de esta licencia no deben entrar en conflicto con los Términos y condiciones de los Servicios multimedia de Apple. En caso de conflicto, prevalecerán los Términos y condiciones de Apple.",
+                "terms.maintenance.title": "Mantenimiento y soporte",
+                "terms.maintenance.content": "Kairos AI Tech es el único responsable de proporcionar servicios de mantenimiento y soporte para VoiceSketch, según lo especificado en estos Términos o según lo requiera la ley aplicable.\n\n\u2022 Apple no tiene ninguna obligación de proporcionar servicios de mantenimiento o soporte para la App\n\u2022 El soporte está disponible por correo electrónico en kairos.ai.tech@gmail.com\n\u2022 Intentamos responder a las consultas de soporte en 5 días hábiles\n\u2022 Las actualizaciones de la App se proporcionan a través de la App Store de Apple\n\u2022 Podemos publicar actualizaciones para corregir errores, agregar funciones o solucionar problemas de seguridad\n\u2022 El uso continuado de la App después de las actualizaciones constituye la aceptación de los cambios",
                 "terms.service.title": "Descripción del servicio",
                 "terms.service.content": "VoiceSketch es una aplicación móvil que proporciona:\n\n\u2022 Servicios de grabación de audio y transcripción en tiempo real\n\u2022 Capacidades de resumen de texto impulsadas por IA\n\u2022 Generación de representaciones visuales del contenido de reuniones\n\u2022 Almacenamiento en la nube y sincronización (función premium)\n\u2022 Funcionalidad de exportación para transcripciones, resúmenes y visualizaciones\n\nLa Aplicación se integra con servicios de terceros incluyendo OpenAI para procesamiento de IA y Firebase para almacenamiento de datos y autenticación. Nos reservamos el derecho de modificar, suspender o descontinuar cualquier aspecto del servicio en cualquier momento.",
                 "terms.accounts.title": "Cuentas de usuario y registro",
@@ -6158,6 +6165,21 @@
                 "discord.subtitle": "Conéctate con otros usuarios de VoiceSketch, comparte consejos, solicita funciones y obtén ayuda de la comunidad y nuestro equipo.",
                 "discord.cta": "Unirse al Servidor Discord",
                 "footer.from": "de",
+                "reel.pill": "✦ v1.1.0 disponible",
+                "reel.heading": "Novedades en VoiceSketch",
+                "reel.sub": "Cinco potentes mejoras en nuestra última versión",
+                "reel.newTag": "Nuevo en v1.1",
+                "reel.search.title": "Búsqueda de texto completo",
+                "reel.search.desc": "Encuentra al instante cualquier palabra o frase en todas tus sesiones. Búsqueda FTS5 ultrarrápida con fragmentos resaltados y filtros inteligentes.",
+                "reel.fileImport.title": "Importación de archivos y OCR",
+                "reel.fileImport.desc": "Importa PDFs, documentos Word y fotos desde la app Archivos. El texto se extrae automáticamente y se transforma en resúmenes visuales IA.",
+                "reel.streaks.title": "Rachas y Medallas",
+                "reel.streaks.desc": "Crea un hábito de grabación diaria y gana insignias. Sigue tus rachas de 7 y 14 días desde la pestaña Perfil.",
+                "reel.shareViewer.title": "Visor de sesión compartida",
+                "reel.shareViewer.desc": "Comparte cualquier sesión como enlace web. Los destinatarios ven tus notas, transcripción y acciones en un visor web elegante, sin app.",
+                "reel.notifications.title": "Notificaciones inteligentes",
+                "reel.notifications.desc": "Recordatorios suaves para mantener tu hábito con enlaces profundos que abren justo donde necesitas estar. Digest semanal para mantenerte en curso.",
+                "reel.scrollHint": "← Desliza para explorar →",
                 "footer.copyright": "© 2026 VoiceSketch. Todos los derechos reservados."
             },
             it: {
@@ -6283,6 +6305,10 @@
                 "terms.lastUpdated": "Ultimo aggiornamento: 7 febbraio 2026",
                 "terms.acceptance.title": "Accettazione dei termini",
                 "terms.acceptance.content": "Scaricando, installando o utilizzando VoiceSketch (\"l'App\"), accetti di essere vincolato da questi Termini di servizio (\"Termini\"). Se non accetti questi Termini, ti preghiamo di non utilizzare l'App.\n\nQuesti Termini costituiscono un accordo legalmente vincolante tra te e VoiceSketch (\"noi\"). L'uso dell'App è anche regolato dalla nostra Informativa sulla privacy, incorporata per riferimento in questi Termini.\n\nDevi avere almeno 13 anni per utilizzare questa App. Se hai meno di 18 anni, confermi di aver ottenuto il consenso di un genitore o tutore.",
+                "terms.license.title": "Ambito della licenza",
+                "terms.license.content": "Ti concediamo una licenza non trasferibile e non esclusiva per utilizzare VoiceSketch su qualsiasi prodotto di marca Apple che possiedi o controlli, come consentito dalle Regole d'uso stabilite nei Termini e condizioni dei Servizi multimediali di Apple.\n\n\u2022 Questa licenza non ti consente di utilizzare l'App su dispositivi che non possiedi o controlli\n\u2022 Non puoi distribuire l'App su una rete dove potrebbe essere utilizzata da più dispositivi contemporaneamente\n\u2022 Non puoi affittare, cedere in leasing, prestare, vendere, ridistribuire o concedere in sublicenza l'App\n\u2022 Non puoi copiare, decompilare, disassemblare, tentare di estrarre il codice sorgente, modificare o creare opere derivate\n\nI termini di questa licenza non devono essere in conflitto con i Termini e condizioni dei Servizi multimediali di Apple. In caso di conflitto, prevarranno i Termini e condizioni dei Servizi multimediali di Apple.",
+                "terms.maintenance.title": "Manutenzione e supporto",
+                "terms.maintenance.content": "Kairos AI Tech è il solo responsabile della fornitura di servizi di manutenzione e supporto per VoiceSketch, come specificato in questi Termini o come richiesto dalla legge applicabile.\n\n\u2022 Apple non ha alcun obbligo di fornire servizi di manutenzione o supporto per l'App\n\u2022 Il supporto è disponibile via e-mail all'indirizzo kairos.ai.tech@gmail.com\n\u2022 Ci impegniamo a rispondere alle richieste di supporto entro 5 giorni lavorativi\n\u2022 Gli aggiornamenti dell'App vengono forniti tramite l'Apple App Store\n\u2022 Potremmo rilasciare aggiornamenti per correggere bug, aggiungere funzionalità o risolvere problemi di sicurezza\n\u2022 Il continuo utilizzo dell'App dopo gli aggiornamenti costituisce l'accettazione di qualsiasi modifica",
                 "terms.service.title": "Descrizione del servizio",
                 "terms.service.content": "VoiceSketch è un'applicazione mobile che fornisce:\n\n\u2022 Servizi di registrazione audio e trascrizione in tempo reale\n\u2022 Funzionalità di sintesi del testo alimentate dall'IA\n\u2022 Generazione di rappresentazioni visive dal contenuto delle riunioni\n\u2022 Archiviazione cloud e sincronizzazione (funzionalità premium)\n\u2022 Funzionalità di esportazione per trascrizioni, riassunti e visualizzazioni\n\nL'App si integra con servizi di terze parti tra cui OpenAI per l'elaborazione IA e Firebase per l'archiviazione dati e l'autenticazione. Ci riserviamo il diritto di modificare, sospendere o interrompere qualsiasi aspetto del servizio in qualsiasi momento.",
                 "terms.accounts.title": "Account utente e registrazione",
@@ -6346,6 +6372,21 @@
                 "discord.subtitle": "Connettiti con altri utenti VoiceSketch, condividi consigli, richiedi funzionalità e ottieni aiuto dalla community e dal nostro team.",
                 "discord.cta": "Unisciti al Server Discord",
                 "footer.from": "da",
+                "reel.pill": "✦ v1.1.0 disponibile",
+                "reel.heading": "Novità in VoiceSketch",
+                "reel.sub": "Cinque potenti upgrade nel nostro ultimo rilascio",
+                "reel.newTag": "Nuovo in v1.1",
+                "reel.search.title": "Ricerca full-text",
+                "reel.search.desc": "Trova istantaneamente qualsiasi parola o frase in tutte le sessioni. Ricerca FTS5 ultra-rapida con frammenti evidenziati e filtri intelligenti.",
+                "reel.fileImport.title": "Importazione file e OCR",
+                "reel.fileImport.desc": "Importa PDF, documenti Word e foto dall'app File. Il testo viene estratto automaticamente e trasformato in riepiloghi visivi IA.",
+                "reel.streaks.title": "Serie e Distintivi",
+                "reel.streaks.desc": "Crea un'abitudine quotidiana di registrazione e guadagna distintivi. Tieni traccia delle serie di 7 e 14 giorni dalla scheda Profilo.",
+                "reel.shareViewer.title": "Visualizzatore sessione condivisa",
+                "reel.shareViewer.desc": "Condividi qualsiasi sessione come link web. I destinatari vedono note, trascrizione e azioni in un visualizzatore web raffinato, senza app.",
+                "reel.notifications.title": "Notifiche intelligenti",
+                "reel.notifications.desc": "Promemoria gentili per mantenere l'abitudine con deep link che aprono esattamente dove hai bisogno. Digest settimanale per restare in carreggiata.",
+                "reel.scrollHint": "← Scorri per esplorare →",
                 "footer.copyright": "© 2026 VoiceSketch. Tutti i diritti riservati."
             }
         };
@@ -6458,7 +6499,14 @@
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (t[key]) {
-                    el.textContent = t[key];
+                    if (key === 'hero.h1') {
+                        // Use DOMParser to safely set HTML content (preserves <em> and <br>)
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(t[key], 'text/html');
+                        el.replaceChildren(...doc.body.childNodes);
+                    } else {
+                        el.textContent = t[key];
+                    }
                 }
             });
             // Update page title
