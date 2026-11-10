@@ -40,8 +40,11 @@ Your page will be available at `https://voicesketch.kairosaitech.com/`
 ## Project Structure
 
 ```
-├── index.html      # Main landing page (fully self-contained)
-├── sitemap.xml     # SEO sitemap
+├── index.html      # English landing page and translation source (fully self-contained)
+├── <lang>/         # Generated static pages: zh-tw, zh-cn, ja, ko, fr, es, it
+├── scripts/        # build-locales.mjs generates the language pages and sitemap
+├── tests/          # check-locales.mjs verifies them
+├── sitemap.xml     # Generated SEO sitemap
 ├── robots.txt      # Search engine directives
 ├── assets/
 │   └── logo.png    # VoiceSketch app logo
@@ -81,7 +84,7 @@ Your page will be available at `https://voicesketch.kairosaitech.com/`
 - **App Store Link**: Update `href="#"` in CTA buttons
 - **Colors**: Modify CSS variables in `:root`
 - **Logo**: Replace `assets/logo.png`
-- **Translations**: Edit the `translations` object in the `<script>` section
+- **Translations**: Edit the `translations` object in the `<script>` section, then run `npm run build` to regenerate the language pages and sitemap (`npm run check` verifies them)
 
 ## Technologies
 
