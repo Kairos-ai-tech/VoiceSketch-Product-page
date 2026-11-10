@@ -79,6 +79,10 @@ Your page will be available at `https://voicesketch.kairosaitech.com/`
 | es | Spanish (Español) |
 | it | Italian (Italiano) |
 
+## Development
+
+Run `npm install` once after cloning. It has no dependencies and only enables the git hooks in `.githooks`, which run `npm run check` before each commit and push.
+
 ## Customization
 
 - **App Store Link**: Update `href="#"` in CTA buttons

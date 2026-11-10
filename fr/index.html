@@ -11,7 +11,7 @@
             var target = null;
             if (params.has('lang')) {
                 var requested = params.get('lang');
-                target = paths[requested] || '/';
+                target = Object.prototype.hasOwnProperty.call(paths, requested) ? paths[requested] : '/';
                 if (requested === 'en') {
                     try { localStorage.setItem('voicesketch-lang', 'en'); } catch (e) {}
                 }
@@ -25,7 +25,7 @@
                 else if (l.indexOf('zh') === 0) detected = 'zh-CN';
                 else detected = ['ja', 'ko', 'fr', 'es', 'it'].filter(function(c) { return l.indexOf(c) === 0; })[0] || null;
                 var lang = saved || detected;
-                if (lang && lang !== 'en' && paths[lang]) target = paths[lang];
+                if (lang && lang !== 'en' && Object.prototype.hasOwnProperty.call(paths, lang) && paths[lang]) target = paths[lang];
             }
             if (target) {
                 var q = params.toString();
