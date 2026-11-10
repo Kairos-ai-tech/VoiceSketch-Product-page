@@ -1,0 +1,10 @@
+{
+  "name": "voicesketch-product-page",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build-locales.mjs",
+    "check": "node scripts/build-locales.mjs --check && node tests/check-locales.mjs",
+    "prepare": "git config core.hooksPath .githooks"
+  }
+}

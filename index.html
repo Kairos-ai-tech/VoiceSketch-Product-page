@@ -1,24 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-page-lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
         (function() {
-            var params = new URLSearchParams(window.location.search);
-            var lang = params.get('lang');
-            var langMap = {
-                'zh-TW': 'zh-Hant',
-                'zh-CN': 'zh-Hans',
-                'ja': 'ja',
-                'ko': 'ko',
-                'fr': 'fr',
-                'es': 'es',
-                'it': 'it'
-            };
-            if (lang && langMap[lang]) {
-                document.documentElement.lang = langMap[lang];
+            var paths = {'zh-TW': '/zh-tw/', 'zh-CN': '/zh-cn/', ja: '/ja/', ko: '/ko/', fr: '/fr/', es: '/es/', it: '/it/', en: '/'};
+            var params = new URLSearchParams(location.search);
+            var target = null;
+            if (params.has('lang')) {
+                var requested = params.get('lang');
+                target = Object.prototype.hasOwnProperty.call(paths, requested) ? paths[requested] : '/';
+                if (requested === 'en') {
+                    try { localStorage.setItem('voicesketch-lang', 'en'); } catch (e) {}
+                }
+                params.delete('lang');
+            } else if (location.pathname === '/' || location.pathname === '/index.html') {
+                var saved = null;
+                try { saved = localStorage.getItem('voicesketch-lang'); } catch (e) {}
+                var l = (navigator.language || '').toLowerCase();
+                var detected = null;
+                if (l.indexOf('zh-tw') === 0 || l === 'zh-hant') detected = 'zh-TW';
+                else if (l.indexOf('zh') === 0) detected = 'zh-CN';
+                else detected = ['ja', 'ko', 'fr', 'es', 'it'].filter(function(c) { return l.indexOf(c) === 0; })[0] || null;
+                var lang = saved || detected;
+                if (lang && lang !== 'en' && Object.prototype.hasOwnProperty.call(paths, lang) && paths[lang]) target = paths[lang];
+            }
+            if (target) {
+                var q = params.toString();
+                location.replace(target + (q ? '?' + q : '') + location.hash);
             }
         })();
     </script>
@@ -28,34 +39,17 @@
     <meta name="author" content="Kairos.ai">
     <meta name="robots" content="index, follow">
     <meta name="googlebot" content="index, follow">
-    <!-- Canonical: dynamically set based on ?lang= parameter for proper indexing of language variants -->
     <link rel="canonical" href="https://voicesketch.kairosaitech.com/">
-    <script>
-        (function() {
-            var params = new URLSearchParams(window.location.search);
-            var supported = ['zh-TW', 'zh-CN', 'ja', 'ko', 'fr', 'es', 'it'];
-            // If ?lang param exists but is empty or unsupported, redirect to clean URL
-            if (params.has('lang') && supported.indexOf(params.get('lang')) === -1) {
-                window.location.replace('https://voicesketch.kairosaitech.com/');
-                return;
-            }
-            var lang = params.get('lang');
-            if (lang && supported.indexOf(lang) !== -1) {
-                var url = 'https://voicesketch.kairosaitech.com/?lang=' + lang;
-                document.querySelector('link[rel="canonical"]').href = url;
-            }
-        })();
-    </script>
 
     <!-- Hreflang tags for international SEO -->
     <link rel="alternate" hreflang="en" href="https://voicesketch.kairosaitech.com/">
-    <link rel="alternate" hreflang="zh-Hant" href="https://voicesketch.kairosaitech.com/?lang=zh-TW">
-    <link rel="alternate" hreflang="zh-Hans" href="https://voicesketch.kairosaitech.com/?lang=zh-CN">
-    <link rel="alternate" hreflang="ja" href="https://voicesketch.kairosaitech.com/?lang=ja">
-    <link rel="alternate" hreflang="ko" href="https://voicesketch.kairosaitech.com/?lang=ko">
-    <link rel="alternate" hreflang="fr" href="https://voicesketch.kairosaitech.com/?lang=fr">
-    <link rel="alternate" hreflang="es" href="https://voicesketch.kairosaitech.com/?lang=es">
-    <link rel="alternate" hreflang="it" href="https://voicesketch.kairosaitech.com/?lang=it">
+    <link rel="alternate" hreflang="zh-Hant" href="https://voicesketch.kairosaitech.com/zh-tw/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://voicesketch.kairosaitech.com/zh-cn/">
+    <link rel="alternate" hreflang="ja" href="https://voicesketch.kairosaitech.com/ja/">
+    <link rel="alternate" hreflang="ko" href="https://voicesketch.kairosaitech.com/ko/">
+    <link rel="alternate" hreflang="fr" href="https://voicesketch.kairosaitech.com/fr/">
+    <link rel="alternate" hreflang="es" href="https://voicesketch.kairosaitech.com/es/">
+    <link rel="alternate" hreflang="it" href="https://voicesketch.kairosaitech.com/it/">
     <link rel="alternate" hreflang="x-default" href="https://voicesketch.kairosaitech.com/">
 
     <!-- Open Graph / Facebook -->
@@ -73,30 +67,6 @@
     <meta property="og:locale:alternate" content="fr_FR">
     <meta property="og:locale:alternate" content="es_ES">
     <meta property="og:locale:alternate" content="it_IT">
-    <script>
-        (function() {
-            var params = new URLSearchParams(window.location.search);
-            var lang = params.get('lang');
-            var supported = ['zh-TW', 'zh-CN', 'ja', 'ko', 'fr', 'es', 'it'];
-            // Skip if ?lang= is empty/invalid (redirect already triggered above)
-            if (lang && supported.indexOf(lang) !== -1) {
-                var url = 'https://voicesketch.kairosaitech.com/?lang=' + lang;
-                var ogUrl = document.querySelector('meta[property="og:url"]');
-                if (ogUrl) ogUrl.content = url;
-                var localeMap = {
-                    'zh-TW': 'zh_TW',
-                    'zh-CN': 'zh_CN',
-                    'ja': 'ja_JP',
-                    'ko': 'ko_KR',
-                    'fr': 'fr_FR',
-                    'es': 'es_ES',
-                    'it': 'it_IT'
-                };
-                var ogLocale = document.querySelector('meta[property="og:locale"]');
-                if (ogLocale && localeMap[lang]) ogLocale.content = localeMap[lang];
-            }
-        })();
-    </script>
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
@@ -2877,6 +2847,8 @@
         }
         
         .lang-option {
+            display: block;
+            text-decoration: none;
             padding: 0.75rem 1rem;
             cursor: pointer;
             transition: background 0.2s ease;
@@ -3476,7 +3448,7 @@
             <a href="#how-it-works" data-i18n="nav.howItWorks">How It Works</a>
             <a href="#testimonials" data-i18n="nav.reviews">Reviews</a>
             <a href="#community" data-i18n="nav.community">Community</a>
-            <a href="#terms" data-i18n="nav.terms">Terms</a>
+            <a href="#terms" data-i18n="nav.terms">Terms of Service</a>
             <a href="#privacy" data-i18n="nav.privacy">Privacy</a>
             <!-- Language Selector -->
             <div class="lang-selector">
@@ -3492,17 +3464,17 @@
                     </svg>
                 </button>
                 <div class="lang-dropdown" id="lang-dropdown" role="listbox" aria-label="Language">
-                    <div class="lang-option active" role="option" tabindex="-1" aria-selected="true" onclick="setLanguage('en')" data-lang="en">English</div>
-                    <div class="lang-option" role="option" tabindex="-1" aria-selected="false" onclick="setLanguage('zh-TW')" data-lang="zh-TW">繁體中文</div>
-                    <div class="lang-option" role="option" tabindex="-1" aria-selected="false" onclick="setLanguage('zh-CN')" data-lang="zh-CN">简体中文</div>
-                    <div class="lang-option" role="option" tabindex="-1" aria-selected="false" onclick="setLanguage('ja')" data-lang="ja">日本語</div>
-                    <div class="lang-option" role="option" tabindex="-1" aria-selected="false" onclick="setLanguage('ko')" data-lang="ko">한국어</div>
-                    <div class="lang-option" role="option" tabindex="-1" aria-selected="false" onclick="setLanguage('fr')" data-lang="fr">Français</div>
-                    <div class="lang-option" role="option" tabindex="-1" aria-selected="false" onclick="setLanguage('es')" data-lang="es">Español</div>
-                    <div class="lang-option" role="option" tabindex="-1" aria-selected="false" onclick="setLanguage('it')" data-lang="it">Italiano</div>
+                    <a class="lang-option active" role="option" tabindex="-1" aria-selected="true" href="/" hreflang="en" onclick="rememberLang('en')" data-lang="en">English</a>
+                    <a class="lang-option" role="option" tabindex="-1" aria-selected="false" href="/zh-tw/" hreflang="zh-Hant" onclick="rememberLang('zh-TW')" data-lang="zh-TW">繁體中文</a>
+                    <a class="lang-option" role="option" tabindex="-1" aria-selected="false" href="/zh-cn/" hreflang="zh-Hans" onclick="rememberLang('zh-CN')" data-lang="zh-CN">简体中文</a>
+                    <a class="lang-option" role="option" tabindex="-1" aria-selected="false" href="/ja/" hreflang="ja" onclick="rememberLang('ja')" data-lang="ja">日本語</a>
+                    <a class="lang-option" role="option" tabindex="-1" aria-selected="false" href="/ko/" hreflang="ko" onclick="rememberLang('ko')" data-lang="ko">한국어</a>
+                    <a class="lang-option" role="option" tabindex="-1" aria-selected="false" href="/fr/" hreflang="fr" onclick="rememberLang('fr')" data-lang="fr">Français</a>
+                    <a class="lang-option" role="option" tabindex="-1" aria-selected="false" href="/es/" hreflang="es" onclick="rememberLang('es')" data-lang="es">Español</a>
+                    <a class="lang-option" role="option" tabindex="-1" aria-selected="false" href="/it/" hreflang="it" onclick="rememberLang('it')" data-lang="it">Italiano</a>
                 </div>
             </div>
-            <a href="https://apps.apple.com/us/app/voicesketch-ai-meeting-notes/id6757849645" class="nav-cta app-store-link" data-i18n="hero.cta">Download</a>
+            <a href="https://apps.apple.com/us/app/voicesketch-ai-meeting-notes/id6757849645" class="nav-cta app-store-link" data-i18n="hero.cta">Download on App Store</a>
         </div>
     </nav>
 
@@ -3643,7 +3615,7 @@
                     <div class="reel-card-body">
                         <div class="reel-new-tag" data-i18n="reel.newTag">New in v1.1</div>
                         <div class="reel-card-icon">📄</div>
-                        <h3 data-i18n="reel.fileImport.title">File Import & OCR</h3>
+                        <h3 data-i18n="reel.fileImport.title">File Import &amp; OCR</h3>
                         <p data-i18n="reel.fileImport.desc">Import PDFs, Word documents, and photos from the Files app. Text is extracted automatically and transformed into AI visual summaries.</p>
                     </div>
                 </div>
@@ -3669,7 +3641,7 @@
                     <div class="reel-card-body">
                         <div class="reel-new-tag" data-i18n="reel.newTag">New in v1.1</div>
                         <div class="reel-card-icon">🔥</div>
-                        <h3 data-i18n="reel.streaks.title">Streaks & Badges</h3>
+                        <h3 data-i18n="reel.streaks.title">Streaks &amp; Badges</h3>
                         <p data-i18n="reel.streaks.desc">Build a daily recording habit and earn achievement badges. Track your 7-day and 14-day streaks right from your profile tab.</p>
                     </div>
                 </div>
@@ -3842,7 +3814,7 @@
                             <div class="visual-card">
                                 <div class="card-image purple">🧬</div>
                                 <div class="card-text">
-                                    <h5 data-i18n="demo.card3.title">DNA & Genetics</h5>
+                                    <h5 data-i18n="demo.card3.title">DNA &amp; Genetics</h5>
                                     <p data-i18n="demo.card3.desc">Mitochondria contains its own circular DNA</p>
                                 </div>
                             </div>
@@ -3870,13 +3842,13 @@
                     <div class="whats-new-card animate-on-scroll">
                         <div class="whats-new-icon">📄</div>
                         <span class="new-badge" data-i18n="whatsNew.newLabel">New</span>
-                        <h3 data-i18n="whatsNew.fileImport.title">File Import & OCR</h3>
+                        <h3 data-i18n="whatsNew.fileImport.title">File Import &amp; OCR</h3>
                         <p data-i18n="whatsNew.fileImport.desc">Import PDFs, Word docs, and photos from the Files app. Text is extracted automatically and turned into AI-powered visual summaries.</p>
                     </div>
                     <div class="whats-new-card animate-on-scroll">
                         <div class="whats-new-icon">🔥</div>
                         <span class="new-badge" data-i18n="whatsNew.newLabel">New</span>
-                        <h3 data-i18n="whatsNew.streaks.title">Streaks & Badges</h3>
+                        <h3 data-i18n="whatsNew.streaks.title">Streaks &amp; Badges</h3>
                         <p data-i18n="whatsNew.streaks.desc">Build a daily recording habit and earn achievement badges. Your streak is displayed prominently on your Profile tab as motivation.</p>
                     </div>
                     <div class="whats-new-card animate-on-scroll">
@@ -3970,7 +3942,7 @@
                             <path d="M9 21V9"/>
                         </svg>
                         </div>
-                        <h3 data-i18n="features.text.title">Photo & Text Import</h3>
+                        <h3 data-i18n="features.text.title">Photo &amp; Text Import</h3>
                         <p data-i18n="features.text.desc">Import photos of whiteboards or documents, or paste any text. AI automatically extracts and summarizes content visually.</p>
                     </div>
                     <div class="feature-card">
@@ -3992,7 +3964,7 @@
                             <line x1="12" y1="3" x2="12" y2="15"/>
                         </svg>
                         </div>
-                        <h3 data-i18n="features.cloud.title">Cloud Sync & Export</h3>
+                        <h3 data-i18n="features.cloud.title">Cloud Sync &amp; Export</h3>
                         <p data-i18n="features.cloud.desc">Sync across devices with Firebase backup. Export to PDF, PNG, or RTF. Choose from 5 summary styles including Cornell Notes.</p>
                     </div>
                 </div>
@@ -4061,7 +4033,7 @@
                     <div class="timeline-item">
                         <div class="timeline-number">3</div>
                         <div class="timeline-content">
-                            <h3 data-i18n="howItWorks.step3.title">Review & Export</h3>
+                            <h3 data-i18n="howItWorks.step3.title">Review &amp; Export</h3>
                             <p data-i18n="howItWorks.step3.desc">Browse your visual notes, sync across devices with Firebase, and export to PDF, PNG, or RTF. Your knowledge, beautifully organized.</p>
                             <div class="step-demo">
                                 <div class="export-demo">
@@ -4286,10 +4258,11 @@
                     </div>
                 </button>
                     <div class="privacy-card-body">
-                        <div class="privacy-card-content" data-i18n="terms.acceptance.content">By downloading, installing, or using VoiceSketch ("the App"), you agree to be bound by these Terms of Service ("Terms") and End User License Agreement ("EULA"). If you do not agree to these Terms, please do not use the App. These
-                            Terms constitute a legally binding agreement between you ("End-User") and Kairos AI Tech ("we," "us," or "our"), the developer of VoiceSketch. These Terms are not between you and Apple Inc. ("Apple"). Kairos AI Tech, not Apple,
-                            is solely responsible for the App and its content. Your use of the App is also governed by our Privacy Policy, which is incorporated by reference into these Terms. You must be at least 13 years old to use this App. If you are
-                            under 18, you confirm that you have obtained parental or guardian consent to use the App.</div>
+                        <div class="privacy-card-content" data-i18n="terms.acceptance.content">By downloading, installing, or using VoiceSketch ("the App"), you agree to be bound by these Terms of Service ("Terms") and End User License Agreement ("EULA"). If you do not agree to these Terms, please do not use the App.
+
+These Terms constitute a legally binding agreement between you ("End-User") and Kairos AI Tech ("we," "us," or "our"), the developer of VoiceSketch. These Terms are not between you and Apple Inc. ("Apple"). Kairos AI Tech, not Apple, is solely responsible for the App and its content. Your use of the App is also governed by our Privacy Policy, which is incorporated by reference into these Terms.
+
+You must be at least 13 years old to use this App. If you are under 18, you confirm that you have obtained parental or guardian consent to use the App.</div>
                     </div>
                 </div>
 
@@ -4303,10 +4276,14 @@
                     </div>
                 </button>
                     <div class="privacy-card-body">
-                        <div class="privacy-card-content" data-i18n="terms.license.content">We grant you a non-transferable, non-exclusive license to use VoiceSketch on any Apple-branded products that you own or control, as permitted by the Usage Rules set forth in the Apple Media Services Terms and Conditions. &#8226;
-                            This license does not allow you to use the App on any device you do not own or control &#8226; You may not distribute or make the App available over a network where it could be used by multiple devices at the same time &#8226;
-                            You may not rent, lease, lend, sell, redistribute, or sublicense the App &#8226; You may not copy, reverse-engineer, disassemble, attempt to derive the source code of, modify, or create derivative works of the App The terms
-                            of this license must not conflict with the Apple Media Services Terms and Conditions. In the event of any conflict, the Apple Media Services Terms and Conditions shall govern.</div>
+                        <div class="privacy-card-content" data-i18n="terms.license.content">We grant you a non-transferable, non-exclusive license to use VoiceSketch on any Apple-branded products that you own or control, as permitted by the Usage Rules set forth in the Apple Media Services Terms and Conditions.
+
+• This license does not allow you to use the App on any device you do not own or control
+• You may not distribute or make the App available over a network where it could be used by multiple devices at the same time
+• You may not rent, lease, lend, sell, redistribute, or sublicense the App
+• You may not copy, reverse-engineer, disassemble, attempt to derive the source code of, modify, or create derivative works of the App
+
+The terms of this license must not conflict with the Apple Media Services Terms and Conditions. In the event of any conflict, the Apple Media Services Terms and Conditions shall govern.</div>
                     </div>
                 </div>
 
@@ -4320,9 +4297,15 @@
                     </div>
                 </button>
                     <div class="privacy-card-body">
-                        <div class="privacy-card-content" data-i18n="terms.service.content">VoiceSketch is a mobile application that provides: &#8226; Real-time audio recording and transcription services &#8226; AI-powered text summarization capabilities &#8226; Visual representation generation from meeting content &#8226;
-                            Cloud storage and synchronization (premium feature) &#8226; Export functionality for transcripts, summaries, and visualizations The App integrates with third-party services including OpenAI for AI processing and Firebase for
-                            data storage and authentication. We reserve the right to modify, suspend, or discontinue any aspect of the service at any time.</div>
+                        <div class="privacy-card-content" data-i18n="terms.service.content">VoiceSketch is a mobile application that provides:
+
+• Real-time audio recording and transcription services
+• AI-powered text summarization capabilities
+• Visual representation generation from meeting content
+• Cloud storage and synchronization (premium feature)
+• Export functionality for transcripts, summaries, and visualizations
+
+The App integrates with third-party services including OpenAI for AI processing and Firebase for data storage and authentication. We reserve the right to modify, suspend, or discontinue any aspect of the service at any time.</div>
                     </div>
                 </div>
 
@@ -4336,9 +4319,14 @@
                     </div>
                 </button>
                     <div class="privacy-card-body">
-                        <div class="privacy-card-content" data-i18n="terms.maintenance.content">Kairos AI Tech is solely responsible for providing any maintenance and support services for VoiceSketch, as specified in these Terms or as required under applicable law. &#8226; Apple has no obligation whatsoever to furnish any
-                            maintenance and support services with respect to the App &#8226; Support is available via email at kairos.ai.tech@gmail.com &#8226; We aim to respond to support inquiries within 5 business days &#8226; App updates are provided
-                            through the Apple App Store &#8226; We may release updates to fix bugs, add features, or address security issues &#8226; Continued use of the App after updates constitutes acceptance of any changes</div>
+                        <div class="privacy-card-content" data-i18n="terms.maintenance.content">Kairos AI Tech is solely responsible for providing any maintenance and support services for VoiceSketch, as specified in these Terms or as required under applicable law.
+
+• Apple has no obligation whatsoever to furnish any maintenance and support services with respect to the App
+• Support is available via email at kairos.ai.tech@gmail.com
+• We aim to respond to support inquiries within 5 business days
+• App updates are provided through the Apple App Store
+• We may release updates to fix bugs, add features, or address security issues
+• Continued use of the App after updates constitutes acceptance of any changes</div>
                     </div>
                 </div>
 
@@ -4352,9 +4340,20 @@
                     </div>
                 </button>
                     <div class="privacy-card-body">
-                        <div class="privacy-card-content" data-i18n="terms.accounts.content">Account Creation: &#8226; You must provide accurate and complete registration information &#8226; You are responsible for maintaining the confidentiality of your account credentials &#8226; You must be at least 13 years old to
-                            create an account &#8226; Each user may maintain only one account Account Security: &#8226; You are solely responsible for all activities under your account &#8226; Notify us immediately of any unauthorized use of your account
-                            &#8226; We are not liable for losses due to unauthorized account access Account Verification: &#8226; Email verification is required for full account functionality &#8226; Unverified accounts have limited access to features</div>
+                        <div class="privacy-card-content" data-i18n="terms.accounts.content">Account Creation:
+• You must provide accurate and complete registration information
+• You are responsible for maintaining the confidentiality of your account credentials
+• You must be at least 13 years old to create an account
+• Each user may maintain only one account
+
+Account Security:
+• You are solely responsible for all activities under your account
+• Notify us immediately of any unauthorized use of your account
+• We are not liable for losses due to unauthorized account access
+
+Account Verification:
+• Email verification is required for full account functionality
+• Unverified accounts have limited access to features</div>
                     </div>
                 </div>
 
@@ -4368,10 +4367,25 @@
                     </div>
                 </button>
                     <div class="privacy-card-body">
-                        <div class="privacy-card-content" data-i18n="terms.acceptableUse.content">You agree NOT to use VoiceSketch for: Prohibited Activities: &#8226; Illegal activities or violation of applicable laws &#8226; Recording conversations without proper consent &#8226; Harassment, threats, or abusive behavior &#8226;
-                            Sharing copyrighted content without permission &#8226; Uploading malicious code or attempting to hack the service &#8226; Creating fake accounts or impersonating others &#8226; Spamming or sending unsolicited communications
-                            &#8226; Commercial use without proper licensing Content Restrictions: &#8226; No hate speech, discriminatory, or offensive content &#8226; No personal information of others without consent &#8226; No content that violates privacy
-                            rights &#8226; No misleading or fraudulent information Violation of these terms may result in account suspension or termination.</div>
+                        <div class="privacy-card-content" data-i18n="terms.acceptableUse.content">You agree NOT to use VoiceSketch for:
+
+Prohibited Activities:
+• Illegal activities or violation of applicable laws
+• Recording conversations without proper consent
+• Harassment, threats, or abusive behavior
+• Sharing copyrighted content without permission
+• Uploading malicious code or attempting to hack the service
+• Creating fake accounts or impersonating others
+• Spamming or sending unsolicited communications
+• Commercial use without proper licensing
+
+Content Restrictions:
+• No hate speech, discriminatory, or offensive content
+• No personal information of others without consent
+• No content that violates privacy rights
+• No misleading or fraudulent information
+
+Violation of these terms may result in account suspension or termination.</div>
                     </div>
                 </div>
 
@@ -4385,12 +4399,28 @@
                     </div>
                 </button>
                     <div class="privacy-card-body">
-                        <div class="privacy-card-content" data-i18n="terms.ip.content">VoiceSketch Intellectual Property: &#8226; The App, including design, code, and features, is owned by VoiceSketch &#8226; All trademarks, logos, and service marks are our property &#8226; You may not copy, modify, or distribute
-                            our intellectual property Your Content: &#8226; You retain ownership of your original recordings and content &#8226; You grant us a license to process your content to provide services &#8226; You are responsible for ensuring
-                            you have rights to all uploaded content &#8226; We do not claim ownership of your personal recordings or transcriptions AI-Generated Content: &#8226; Summaries and visualizations are generated using AI services &#8226; You
-                            have rights to AI-generated content based on your input &#8226; We do not use your content to train AI models without consent Third-Party Content: &#8226; Respect copyright and intellectual property rights of others &#8226;
-                            Obtain proper permissions before recording others Intellectual Property Claims: &#8226; Kairos AI Tech, not Apple, is responsible for the investigation, defense, settlement, and discharge of any third-party intellectual property
-                            infringement claim related to the App</div>
+                        <div class="privacy-card-content" data-i18n="terms.ip.content">VoiceSketch Intellectual Property:
+• The App, including design, code, and features, is owned by VoiceSketch
+• All trademarks, logos, and service marks are our property
+• You may not copy, modify, or distribute our intellectual property
+
+Your Content:
+• You retain ownership of your original recordings and content
+• You grant us a license to process your content to provide services
+• You are responsible for ensuring you have rights to all uploaded content
+• We do not claim ownership of your personal recordings or transcriptions
+
+AI-Generated Content:
+• Summaries and visualizations are generated using AI services
+• You have rights to AI-generated content based on your input
+• We do not use your content to train AI models without consent
+
+Third-Party Content:
+• Respect copyright and intellectual property rights of others
+• Obtain proper permissions before recording others
+
+Intellectual Property Claims:
+• Kairos AI Tech, not Apple, is responsible for the investigation, defense, settlement, and discharge of any third-party intellectual property infringement claim related to the App</div>
                     </div>
                 </div>
 
@@ -4404,10 +4434,29 @@
                     </div>
                 </button>
                     <div class="privacy-card-body">
-                        <div class="privacy-card-content" data-i18n="terms.privacyData.content">Your privacy is important to us. Our data practices are governed by our Privacy Policy, which includes: Data Collection: &#8226; We collect minimal data necessary for app functionality &#8226; Audio recordings are stored locally
-                            by default &#8226; Cloud storage is optional and encrypted Data Use: &#8226; Personal data is used only to provide and improve services &#8226; We do not sell personal information to third parties &#8226; Analytics data is
-                            anonymized and aggregated Data Protection: &#8226; Industry-standard encryption for data in transit and at rest &#8226; Regular security audits and updates &#8226; Compliance with GDPR, CCPA, and other privacy regulations Your
-                            Rights: &#8226; Access, correct, or delete your personal information &#8226; Export your data in portable formats &#8226; Opt out of optional data collection For complete details, please review our Privacy Policy.</div>
+                        <div class="privacy-card-content" data-i18n="terms.privacyData.content">Your privacy is important to us. Our data practices are governed by our Privacy Policy, which includes:
+
+Data Collection:
+• We collect minimal data necessary for app functionality
+• Audio recordings are stored locally by default
+• Cloud storage is optional and encrypted
+
+Data Use:
+• Personal data is used only to provide and improve services
+• We do not sell personal information to third parties
+• Analytics data is anonymized and aggregated
+
+Data Protection:
+• Industry-standard encryption for data in transit and at rest
+• Regular security audits and updates
+• Compliance with GDPR, CCPA, and other privacy regulations
+
+Your Rights:
+• Access, correct, or delete your personal information
+• Export your data in portable formats
+• Opt out of optional data collection
+
+For complete details, please review our Privacy Policy.</div>
                     </div>
                 </div>
 
@@ -4421,11 +4470,29 @@
                     </div>
                 </button>
                     <div class="privacy-card-body">
-                        <div class="privacy-card-content" data-i18n="terms.subscription.content">Premium Subscriptions: &#8226; Premium features are available through in-app purchase subscriptions &#8226; Subscriptions automatically renew unless cancelled &#8226; Pricing and features are subject to change with notice Payment
-                            Terms: &#8226; Payments are processed through Apple's App Store &#8226; All fees are non-refundable unless required by law &#8226; Prices include applicable taxes where required Cancellation: &#8226; Cancel anytime through
-                            your App Store account settings &#8226; Access to premium features continues until the end of the current billing period &#8226; No partial refunds for unused subscription time Free Trial: &#8226; Free trials may be offered
-                            for premium features &#8226; Trial converts to paid subscription unless cancelled &#8226; Previous trial users may not be eligible for additional trials Changes to Pricing: &#8226; We may change subscription prices with 30
-                            days notice &#8226; Price changes apply to new subscriptions and renewals</div>
+                        <div class="privacy-card-content" data-i18n="terms.subscription.content">Premium Subscriptions:
+• Premium features are available through in-app purchase subscriptions
+• Subscriptions automatically renew unless cancelled
+• Pricing and features are subject to change with notice
+
+Payment Terms:
+• Payments are processed through Apple's App Store
+• All fees are non-refundable unless required by law
+• Prices include applicable taxes where required
+
+Cancellation:
+• Cancel anytime through your App Store account settings
+• Access to premium features continues until the end of the current billing period
+• No partial refunds for unused subscription time
+
+Free Trial:
+• Free trials may be offered for premium features
+• Trial converts to paid subscription unless cancelled
+• Previous trial users may not be eligible for additional trials
+
+Changes to Pricing:
+• We may change subscription prices with 30 days notice
+• Price changes apply to new subscriptions and renewals</div>
                     </div>
                 </div>
 
@@ -4439,15 +4506,36 @@
                     </div>
                 </button>
                     <div class="privacy-card-body">
-                        <div class="privacy-card-content" data-i18n="terms.disclaimers.content">Warranty: &#8226; Kairos AI Tech is solely responsible for any product warranties, whether express or implied by law, to the extent not effectively disclaimed &#8226; In the event of any failure of the App to conform to any applicable
-                            warranty, you may notify Apple, and Apple will refund the purchase price for the App (if any) &#8226; To the maximum extent permitted by applicable law, Apple has no other warranty obligation whatsoever with respect to the
-                            App Service Disclaimers: &#8226; VoiceSketch is provided "as is" without warranties of any kind &#8226; We do not guarantee 100% accuracy of transcriptions or AI-generated content &#8226; Service availability may be subject
-                            to interruptions or maintenance &#8226; Third-party integrations may affect app functionality Product Claims: &#8226; Kairos AI Tech, not Apple, is responsible for addressing any claims relating to the App or your use of it,
-                            including but not limited to: (i) product liability claims; (ii) any claim that the App fails to conform to any applicable legal or regulatory requirement; and (iii) claims arising under consumer protection, privacy, or similar
-                            legislation Limitation of Liability: &#8226; Our liability is limited to the amount paid for the service, to the extent permitted by applicable law &#8226; We are not liable for indirect, incidental, or consequential damages
-                            &#8226; We are not responsible for data loss due to device failure or user error &#8226; Users are responsible for maintaining backups of important data AI and Transcription Accuracy: &#8226; AI-generated summaries and transcriptions
-                            may contain errors &#8226; Users should review all generated content for accuracy &#8226; We recommend human verification for critical or sensitive content &#8226; Accuracy may vary based on audio quality, accents, and technical
-                            terms Third-Party Services: &#8226; We are not responsible for third-party service interruptions &#8226; OpenAI, Firebase, and other integrations have their own terms &#8226; Changes to third-party services may affect app functionality</div>
+                        <div class="privacy-card-content" data-i18n="terms.disclaimers.content">Warranty:
+• Kairos AI Tech is solely responsible for any product warranties, whether express or implied by law, to the extent not effectively disclaimed
+• In the event of any failure of the App to conform to any applicable warranty, you may notify Apple, and Apple will refund the purchase price for the App (if any)
+• To the maximum extent permitted by applicable law, Apple has no other warranty obligation whatsoever with respect to the App
+
+Service Disclaimers:
+• VoiceSketch is provided "as is" without warranties of any kind
+• We do not guarantee 100% accuracy of transcriptions or AI-generated content
+• Service availability may be subject to interruptions or maintenance
+• Third-party integrations may affect app functionality
+
+Product Claims:
+• Kairos AI Tech, not Apple, is responsible for addressing any claims relating to the App or your use of it, including but not limited to: (i) product liability claims; (ii) any claim that the App fails to conform to any applicable legal or regulatory requirement; and (iii) claims arising under consumer protection, privacy, or similar legislation
+
+Limitation of Liability:
+• Our liability is limited to the amount paid for the service, to the extent permitted by applicable law
+• We are not liable for indirect, incidental, or consequential damages
+• We are not responsible for data loss due to device failure or user error
+• Users are responsible for maintaining backups of important data
+
+AI and Transcription Accuracy:
+• AI-generated summaries and transcriptions may contain errors
+• Users should review all generated content for accuracy
+• We recommend human verification for critical or sensitive content
+• Accuracy may vary based on audio quality, accents, and technical terms
+
+Third-Party Services:
+• We are not responsible for third-party service interruptions
+• OpenAI, Firebase, and other integrations have their own terms
+• Changes to third-party services may affect app functionality</div>
                     </div>
                 </div>
 
@@ -4461,9 +4549,16 @@
                     </div>
                 </button>
                     <div class="privacy-card-body">
-                        <div class="privacy-card-content" data-i18n="terms.indemnification.content">You agree to indemnify, defend, and hold harmless VoiceSketch and its officers, directors, employees, and agents from and against any claims, damages, losses, or expenses arising from: &#8226; Your use of the App in violation of
-                            these Terms &#8226; Your violation of any applicable laws or regulations &#8226; Recording others without proper consent or authorization &#8226; Copyright infringement or intellectual property violations &#8226; Any content
-                            you upload, share, or process through the App &#8226; Unauthorized use of your account due to your negligence This indemnification survives termination of your account and these Terms.</div>
+                        <div class="privacy-card-content" data-i18n="terms.indemnification.content">You agree to indemnify, defend, and hold harmless VoiceSketch and its officers, directors, employees, and agents from and against any claims, damages, losses, or expenses arising from:
+
+• Your use of the App in violation of these Terms
+• Your violation of any applicable laws or regulations
+• Recording others without proper consent or authorization
+• Copyright infringement or intellectual property violations
+• Any content you upload, share, or process through the App
+• Unauthorized use of your account due to your negligence
+
+This indemnification survives termination of your account and these Terms.</div>
                     </div>
                 </div>
 
@@ -4477,10 +4572,26 @@
                     </div>
                 </button>
                     <div class="privacy-card-body">
-                        <div class="privacy-card-content" data-i18n="terms.termination.content">Termination by You: &#8226; You may delete your account at any time through the app settings &#8226; Cancellation of subscriptions must be done through the App Store &#8226; Your data will be deleted according to our data retention
-                            policy Termination by Us: &#8226; We may suspend or terminate accounts for Terms violations &#8226; Termination may be immediate for serious violations &#8226; We will provide notice when possible, except for immediate safety
-                            concerns Effect of Termination: &#8226; Access to the App and services will be immediately revoked &#8226; Your data will be deleted according to our Privacy Policy &#8226; Premium subscription benefits will cease immediately
-                            &#8226; These Terms survive termination where applicable Data Recovery: &#8226; Deleted accounts cannot be recovered &#8226; Export your data before account deletion &#8226; We may retain some data as required by law</div>
+                        <div class="privacy-card-content" data-i18n="terms.termination.content">Termination by You:
+• You may delete your account at any time through the app settings
+• Cancellation of subscriptions must be done through the App Store
+• Your data will be deleted according to our data retention policy
+
+Termination by Us:
+• We may suspend or terminate accounts for Terms violations
+• Termination may be immediate for serious violations
+• We will provide notice when possible, except for immediate safety concerns
+
+Effect of Termination:
+• Access to the App and services will be immediately revoked
+• Your data will be deleted according to our Privacy Policy
+• Premium subscription benefits will cease immediately
+• These Terms survive termination where applicable
+
+Data Recovery:
+• Deleted accounts cannot be recovered
+• Export your data before account deletion
+• We may retain some data as required by law</div>
                     </div>
                 </div>
 
@@ -4494,12 +4605,26 @@
                     </div>
                 </button>
                     <div class="privacy-card-body">
-                        <div class="privacy-card-content" data-i18n="terms.governingLaw.content">These Terms are governed by and construed in accordance with the laws of the State of California, United States, without regard to conflict of law principles. Dispute Resolution: &#8226; Informal Resolution: Contact us first to
-                            resolve disputes informally &#8226; Arbitration: Disputes will be resolved through binding arbitration &#8226; Class Action Waiver: You waive the right to participate in class actions &#8226; Jurisdiction: Courts in the State
-                            of California have exclusive jurisdiction Exceptions to Arbitration: &#8226; Small claims court matters under jurisdictional limits &#8226; Intellectual property disputes &#8226; Injunctive relief requests Third-Party Beneficiary:
-                            &#8226; You acknowledge and agree that Apple, and Apple's subsidiaries, are third-party beneficiaries of these Terms &#8226; Upon your acceptance of these Terms, Apple shall have the right (and will be deemed to have accepted
-                            the right) to enforce these Terms against you as a third-party beneficiary Legal Compliance: &#8226; You represent and warrant that you are not located in a country that is subject to a U.S. Government embargo, or that has
-                            been designated by the U.S. Government as a "terrorist supporting" country &#8226; You are not listed on any U.S. Government list of prohibited or restricted parties</div>
+                        <div class="privacy-card-content" data-i18n="terms.governingLaw.content">These Terms are governed by and construed in accordance with the laws of the State of California, United States, without regard to conflict of law principles.
+
+Dispute Resolution:
+• Informal Resolution: Contact us first to resolve disputes informally
+• Arbitration: Disputes will be resolved through binding arbitration
+• Class Action Waiver: You waive the right to participate in class actions
+• Jurisdiction: Courts in the State of California have exclusive jurisdiction
+
+Exceptions to Arbitration:
+• Small claims court matters under jurisdictional limits
+• Intellectual property disputes
+• Injunctive relief requests
+
+Third-Party Beneficiary:
+• You acknowledge and agree that Apple, and Apple's subsidiaries, are third-party beneficiaries of these Terms
+• Upon your acceptance of these Terms, Apple shall have the right (and will be deemed to have accepted the right) to enforce these Terms against you as a third-party beneficiary
+
+Legal Compliance:
+• You represent and warrant that you are not located in a country that is subject to a U.S. Government embargo, or that has been designated by the U.S. Government as a "terrorist supporting" country
+• You are not listed on any U.S. Government list of prohibited or restricted parties</div>
                     </div>
                 </div>
 
@@ -4513,9 +4638,20 @@
                     </div>
                 </button>
                     <div class="privacy-card-body">
-                        <div class="privacy-card-content" data-i18n="terms.changes.content">We reserve the right to modify these Terms at any time. Changes will be effective when: &#8226; Posted within the App with updated "Last modified" date &#8226; Notification sent to registered email addresses &#8226; For material
-                            changes, 30 days advance notice will be provided Your Options: &#8226; Continued use of the App constitutes acceptance of changes &#8226; If you disagree with changes, discontinue use and delete your account &#8226; Some changes
-                            may be required by law or for security reasons Version Control: &#8226; Previous versions of Terms are archived and available upon request &#8226; The current version always supersedes previous versions</div>
+                        <div class="privacy-card-content" data-i18n="terms.changes.content">We reserve the right to modify these Terms at any time. Changes will be effective when:
+
+• Posted within the App with updated "Last modified" date
+• Notification sent to registered email addresses
+• For material changes, 30 days advance notice will be provided
+
+Your Options:
+• Continued use of the App constitutes acceptance of changes
+• If you disagree with changes, discontinue use and delete your account
+• Some changes may be required by law or for security reasons
+
+Version Control:
+• Previous versions of Terms are archived and available upon request
+• The current version always supersedes previous versions</div>
                     </div>
                 </div>
 
@@ -4553,10 +4689,17 @@
                     </div>
                 </button>
                     <div class="privacy-card-body">
-                        <div class="privacy-card-content" data-i18n="privacy.collect.content">&#8226; Account Information: Email address, display name, and authentication data &#8226; Audio Recordings: Voice recordings you choose to process (stored locally by default) &#8226; Transcriptions: Text converted from your audio
-                            recordings &#8226; Usage Data: App features used, session duration, and performance metrics &#8226; Device Information: Device type, operating system version, and app version &#8226; Location Data: Only if explicitly granted
-                            for meeting location features (optional) We do NOT collect: &#8226; Personal conversations unless you explicitly record them &#8226; Background audio when the app is not in use &#8226; Contacts, photos, or other personal files
-                            without permission</div>
+                        <div class="privacy-card-content" data-i18n="privacy.collect.content">• Account Information: Email address, display name, and authentication data
+• Audio Recordings: Voice recordings you choose to process (stored locally by default)
+• Transcriptions: Text converted from your audio recordings
+• Usage Data: App features used, session duration, and performance metrics
+• Device Information: Device type, operating system version, and app version
+• Location Data: Only if explicitly granted for meeting location features (optional)
+
+We do NOT collect:
+• Personal conversations unless you explicitly record them
+• Background audio when the app is not in use
+• Contacts, photos, or other personal files without permission</div>
                     </div>
                 </div>
 
@@ -4570,9 +4713,18 @@
                     </div>
                 </button>
                     <div class="privacy-card-body">
-                        <div class="privacy-card-content" data-i18n="privacy.use.content">&#8226; Provide Core Services: Process audio, generate transcriptions and summaries &#8226; Improve User Experience: Enhance app functionality and performance &#8226; Account Management: Authenticate users and sync data across
-                            devices &#8226; Customer Support: Respond to inquiries and troubleshoot issues &#8226; Legal Compliance: Meet legal obligations and protect user rights &#8226; Security: Detect and prevent fraud, abuse, and security threats
-                            We will NEVER: &#8226; Sell your personal information to third parties &#8226; Use your recordings for advertising purposes &#8226; Share your content without explicit consent &#8226; Access your recordings without your permission</div>
+                        <div class="privacy-card-content" data-i18n="privacy.use.content">• Provide Core Services: Process audio, generate transcriptions and summaries
+• Improve User Experience: Enhance app functionality and performance
+• Account Management: Authenticate users and sync data across devices
+• Customer Support: Respond to inquiries and troubleshoot issues
+• Legal Compliance: Meet legal obligations and protect user rights
+• Security: Detect and prevent fraud, abuse, and security threats
+
+We will NEVER:
+• Sell your personal information to third parties
+• Use your recordings for advertising purposes
+• Share your content without explicit consent
+• Access your recordings without your permission</div>
                     </div>
                 </div>
 
@@ -4586,9 +4738,14 @@
                     </div>
                 </button>
                     <div class="privacy-card-body">
-                        <div class="privacy-card-content" data-i18n="privacy.storage.content">&#8226; Local Storage: Audio recordings and transcriptions are stored locally on your device by default &#8226; Cloud Storage: Optional premium feature with end-to-end encryption &#8226; Data Encryption: All data is encrypted both
-                            in transit and at rest &#8226; Access Controls: Strict access controls limit who can access your data &#8226; Regular Security Audits: We regularly review and update our security measures &#8226; Data Minimization: We only
-                            collect and store data necessary for app functionality Your recordings remain private and are never accessed for training AI models without explicit consent.</div>
+                        <div class="privacy-card-content" data-i18n="privacy.storage.content">• Local Storage: Audio recordings and transcriptions are stored locally on your device by default
+• Cloud Storage: Optional premium feature with end-to-end encryption
+• Data Encryption: All data is encrypted both in transit and at rest
+• Access Controls: Strict access controls limit who can access your data
+• Regular Security Audits: We regularly review and update our security measures
+• Data Minimization: We only collect and store data necessary for app functionality
+
+Your recordings remain private and are never accessed for training AI models without explicit consent.</div>
                     </div>
                 </div>
 
@@ -4602,11 +4759,20 @@
                     </div>
                 </button>
                     <div class="privacy-card-body">
-                        <div class="privacy-card-content" data-i18n="privacy.thirdParty.content">VoiceSketch integrates with the following third-party services: &#8226; OpenAI: For text summarization and image generation (content is processed but not stored by OpenAI) &#8226; Firebase (Google): For authentication, cloud storage,
-                            and analytics &#8226; Apple Services: For in-app purchases and speech recognition AI Data Sharing Disclosure: &#8226; When you use AI-powered features (summarization, image generation), your text content is sent to OpenAI for
-                            processing &#8226; OpenAI processes this data solely to provide the requested service and does not use it to train their models &#8226; No audio recordings are sent to OpenAI — only transcribed text &#8226; You will be prompted
-                            for consent before any AI processing occurs &#8226; You can use VoiceSketch's core recording and transcription features without sharing data with AI services We ensure all partners meet our privacy and security standards. All
-                            third-party services that receive user data provide a level of protection equal to or greater than that required by these terms.</div>
+                        <div class="privacy-card-content" data-i18n="privacy.thirdParty.content">VoiceSketch integrates with the following third-party services:
+
+• OpenAI: For text summarization and image generation (content is processed but not stored by OpenAI)
+• Firebase (Google): For authentication, cloud storage, and analytics
+• Apple Services: For in-app purchases and speech recognition
+
+AI Data Sharing Disclosure:
+• When you use AI-powered features (summarization, image generation), your text content is sent to OpenAI for processing
+• OpenAI processes this data solely to provide the requested service and does not use it to train their models
+• No audio recordings are sent to OpenAI — only transcribed text
+• You will be prompted for consent before any AI processing occurs
+• You can use VoiceSketch's core recording and transcription features without sharing data with AI services
+
+We ensure all partners meet our privacy and security standards. All third-party services that receive user data provide a level of protection equal to or greater than that required by these terms.</div>
                     </div>
                 </div>
 
@@ -4636,9 +4802,17 @@
                     </div>
                 </button>
                     <div class="privacy-card-body">
-                        <div class="privacy-card-content" data-i18n="privacy.children.content">VoiceSketch is not intended for children under 13 years of age. We do not knowingly collect personal information from children under 13. If you are a parent or guardian and believe your child has provided personal information:
-                            &#8226; Contact us immediately at kairos.ai.tech@gmail.com &#8226; We will promptly delete the information &#8226; We may require verification of your identity For users aged 13-17: &#8226; Parental consent may be required
-                            in some jurisdictions &#8226; Special protection measures apply to accounts of minors &#8226; Educational use requires school administrator approval</div>
+                        <div class="privacy-card-content" data-i18n="privacy.children.content">VoiceSketch is not intended for children under 13 years of age. We do not knowingly collect personal information from children under 13.
+
+If you are a parent or guardian and believe your child has provided personal information:
+• Contact us immediately at kairos.ai.tech@gmail.com
+• We will promptly delete the information
+• We may require verification of your identity
+
+For users aged 13-17:
+• Parental consent may be required in some jurisdictions
+• Special protection measures apply to accounts of minors
+• Educational use requires school administrator approval</div>
                     </div>
                 </div>
 
@@ -4652,9 +4826,15 @@
                     </div>
                 </button>
                     <div class="privacy-card-body">
-                        <div class="privacy-card-content" data-i18n="privacy.gdpr.content">For users in the European Union, we comply with the General Data Protection Regulation (GDPR): &#8226; Lawful Basis: We process data based on consent, contract performance, or legitimate interests &#8226; Data Protection Officer:
-                            Available at kairos.ai.tech@gmail.com &#8226; Supervisory Authority: You can lodge complaints with your local data protection authority &#8226; Data Transfers: International transfers are protected by appropriate safeguards
-                            &#8226; Automated Decision Making: We do not make automated decisions that significantly affect you EU users have enhanced rights under GDPR, including the right to data portability and the right to be forgotten.</div>
+                        <div class="privacy-card-content" data-i18n="privacy.gdpr.content">For users in the European Union, we comply with the General Data Protection Regulation (GDPR):
+
+• Lawful Basis: We process data based on consent, contract performance, or legitimate interests
+• Data Protection Officer: Available at kairos.ai.tech@gmail.com
+• Supervisory Authority: You can lodge complaints with your local data protection authority
+• Data Transfers: International transfers are protected by appropriate safeguards
+• Automated Decision Making: We do not make automated decisions that significantly affect you
+
+EU users have enhanced rights under GDPR, including the right to data portability and the right to be forgotten.</div>
                     </div>
                 </div>
 
@@ -4668,9 +4848,17 @@
                     </div>
                 </button>
                     <div class="privacy-card-body">
-                        <div class="privacy-card-content" data-i18n="privacy.ccpa.content">For California residents, we comply with the California Consumer Privacy Act (CCPA): &#8226; Right to Know: What personal information we collect and how it's used &#8226; Right to Delete: Request deletion of personal information
-                            &#8226; Right to Opt-Out: Opt out of the sale of personal information (we don't sell data) &#8226; Right to Non-Discrimination: We won't discriminate for exercising CCPA rights To exercise CCPA rights: &#8226; Email: kairos.ai.tech@gmail.com
-                            &#8226; Subject line: "CCPA Rights Request" &#8226; Include: Full name, email address, and specific request</div>
+                        <div class="privacy-card-content" data-i18n="privacy.ccpa.content">For California residents, we comply with the California Consumer Privacy Act (CCPA):
+
+• Right to Know: What personal information we collect and how it's used
+• Right to Delete: Request deletion of personal information
+• Right to Opt-Out: Opt out of the sale of personal information (we don't sell data)
+• Right to Non-Discrimination: We won't discriminate for exercising CCPA rights
+
+To exercise CCPA rights:
+• Email: kairos.ai.tech@gmail.com
+• Subject line: "CCPA Rights Request"
+• Include: Full name, email address, and specific request</div>
                     </div>
                 </div>
 
@@ -4684,9 +4872,15 @@
                     </div>
                 </button>
                     <div class="privacy-card-body">
-                        <div class="privacy-card-content" data-i18n="privacy.retention.content">We retain your information only as long as necessary: &#8226; Account Data: Retained while your account is active &#8226; Recordings: Deleted according to your settings (default: 30 days) &#8226; Usage Analytics: Aggregated and
-                            anonymized after 2 years &#8226; Legal Requirements: May be retained longer if required by law &#8226; Deleted Accounts: All data permanently deleted within 30 days You can adjust retention settings in the app or request immediate
-                            deletion.</div>
+                        <div class="privacy-card-content" data-i18n="privacy.retention.content">We retain your information only as long as necessary:
+
+• Account Data: Retained while your account is active
+• Recordings: Deleted according to your settings (default: 30 days)
+• Usage Analytics: Aggregated and anonymized after 2 years
+• Legal Requirements: May be retained longer if required by law
+• Deleted Accounts: All data permanently deleted within 30 days
+
+You can adjust retention settings in the app or request immediate deletion.</div>
                     </div>
                 </div>
 
@@ -4716,8 +4910,8 @@
             </svg>
             <span data-i18n="footer.from">from</span> <a href="https://www.kairosaitech.com" target="_blank">Kairos.ai</a>
         </div>
-        <p data-i18n="footer.copyright">&copy; 2026 VoiceSketch. All rights reserved.</p>
-        <p class="footer-links"><a href="#terms" class="footer-link" data-i18n="nav.terms">Terms of Service</a> &nbsp;|&nbsp; <a href="#privacy" class="footer-link" data-i18n="nav.privacy">Privacy Policy</a></p>
+        <p data-i18n="footer.copyright">© 2026 VoiceSketch. All rights reserved.</p>
+        <p class="footer-links"><a href="#terms" class="footer-link" data-i18n="nav.terms">Terms of Service</a> &nbsp;|&nbsp; <a href="#privacy" class="footer-link" data-i18n="nav.privacy">Privacy</a></p>
     </footer>
 
     <!-- Mobile Sticky CTA -->
@@ -4740,6 +4934,7 @@
                 "nav.reviews": "Reviews",
                 "nav.community": "Community",
                 "meta.title": "VoiceSketch - Transform Voice into Visual Learning",
+                "meta.description": "VoiceSketch converts spoken content into AI-powered visual summaries. Record meetings, lectures, or import photos of whiteboards. Features Siri shortcuts, iOS widgets, 5 summary styles, and dark mode.",
                 "hero.h1": "Turn <em>every voice</em><br>into visual knowledge",
                 "hero.tagline": "Record meetings, import documents, and search everything — VoiceSketch turns audio into AI-powered visual notes.",
                 "hero.badge.ai": "AI Powered",
@@ -4947,6 +5142,7 @@
                 "nav.whatsNew": "最新功能",
                 "nav.community": "社群",
                 "meta.title": "VoiceSketch - 將語音轉化為視覺學習",
+                "meta.description": "VoiceSketch 將語音內容轉化為 AI 視覺摘要。錄製會議與課堂，或匯入白板照片。支援 Siri 捷徑、iOS 小工具、5 種摘要風格與深色模式。",
                 "hero.h1": "將每一聲音轉化為視覺知識",
                 "hero.tagline": "錄製會議、匯入文件並搜尋一切——VoiceSketch 將音頻轉化為 AI 視覺筆記。",
                 "hero.badge.ai": "AI 驅動",
@@ -5154,6 +5350,7 @@
                 "nav.whatsNew": "最新功能",
                 "nav.community": "社区",
                 "meta.title": "VoiceSketch - 将语音转化为视觉学习",
+                "meta.description": "VoiceSketch 将语音内容转化为 AI 视觉摘要。录制会议与课堂，或导入白板照片。支持 Siri 快捷指令、iOS 小组件、5 种摘要风格和深色模式。",
                 "hero.h1": "将每个声音转化为视觉知识",
                 "hero.tagline": "录制会议、导入文档并搜索一切——VoiceSketch 将音频转化为 AI 视觉笔记。",
                 "hero.badge.ai": "AI 驱动",
@@ -5361,6 +5558,7 @@
                 "nav.whatsNew": "新機能",
                 "nav.community": "コミュニティ",
                 "meta.title": "VoiceSketch - 音声をビジュアル学習に変換",
+                "meta.description": "VoiceSketch は音声コンテンツを AI によるビジュアル要約に変換します。会議や講義を録音したり、ホワイトボードの写真を取り込めます。Siri ショートカット、iOS ウィジェット、5 種類の要約スタイル、ダークモードに対応。",
                 "hero.h1": "あらゆる音声を視覚的な知識へ",
                 "hero.tagline": "会議を録音し、書類をインポートし、すべてを検索できます — VoiceSketch は音声をAI視覚ノートに変換します。",
                 "hero.badge.ai": "AI搭載",
@@ -5568,6 +5766,7 @@
                 "nav.whatsNew": "새로운 기능",
                 "nav.community": "커뮤니티",
                 "meta.title": "VoiceSketch - 음성을 시각적 학습으로 변환",
+                "meta.description": "VoiceSketch는 음성 콘텐츠를 AI 시각 요약으로 바꿔 줍니다. 회의와 강의를 녹음하거나 화이트보드 사진을 가져올 수 있습니다. Siri 단축어, iOS 위젯, 5가지 요약 스타일, 다크 모드를 지원합니다.",
                 "hero.h1": "모든 음성을 시각적 지식으로",
                 "hero.tagline": "회의 녹음, 문서 가져오기, 전체 검색 — VoiceSketch가 오디오를 AI 시각 노트로 변환합니다.",
                 "hero.badge.ai": "AI 기반",
@@ -5775,6 +5974,7 @@
                 "nav.whatsNew": "Nouveautés",
                 "nav.community": "Communauté",
                 "meta.title": "VoiceSketch - Transformez la voix en apprentissage visuel",
+                "meta.description": "VoiceSketch transforme le contenu oral en résumés visuels propulsés par l'IA. Enregistrez réunions et cours, ou importez des photos de tableaux blancs. Raccourcis Siri, widgets iOS, 5 styles de résumé et mode sombre.",
                 "hero.h1": "Transformez chaque voix en connaissance visuelle",
                 "hero.tagline": "Enregistrez des réunions, importez des documents et recherchez tout — VoiceSketch transforme l'audio en notes visuelles IA.",
                 "hero.badge.ai": "Propulsé par l'IA",
@@ -5982,6 +6182,7 @@
                 "nav.whatsNew": "Novedades",
                 "nav.community": "Comunidad",
                 "meta.title": "VoiceSketch - Transforma la voz en aprendizaje visual",
+                "meta.description": "VoiceSketch convierte contenido hablado en resúmenes visuales con IA. Graba reuniones y clases, o importa fotos de pizarras. Incluye atajos de Siri, widgets de iOS, 5 estilos de resumen y modo oscuro.",
                 "hero.h1": "Convierte cada voz en conocimiento visual",
                 "hero.tagline": "Graba reuniones, importa documentos y busca todo — VoiceSketch convierte el audio en notas visuales con IA.",
                 "hero.badge.ai": "Potenciado por IA",
@@ -6189,6 +6390,7 @@
                 "nav.whatsNew": "Novità",
                 "nav.community": "Community",
                 "meta.title": "VoiceSketch - Trasforma la voce in apprendimento visivo",
+                "meta.description": "VoiceSketch trasforma i contenuti vocali in riepiloghi visivi basati sull'IA. Registra riunioni e lezioni o importa foto di lavagne. Include scorciatoie Siri, widget iOS, 5 stili di riepilogo e modalità scura.",
                 "hero.h1": "Trasforma ogni voce in conoscenza visiva",
                 "hero.tagline": "Registra riunioni, importa documenti e cerca tutto — VoiceSketch trasforma l'audio in note visive IA.",
                 "hero.badge.ai": "Alimentato da IA",
@@ -6402,7 +6604,7 @@
             it: "IT"
         };
 
-        let currentLang = localStorage.getItem('voicesketch-lang') || 'en';
+        let currentLang = document.documentElement.getAttribute('data-page-lang') || 'en';
 
         const APP_STORE_APP_PATH = '/app/voicesketch-ai-meeting-notes/id6757849645';
         const APP_STORE_BASE = 'https://apps.apple.com';
@@ -6435,86 +6637,34 @@
             document.querySelector('.lang-btn').setAttribute('aria-expanded', dropdown.classList.contains('active'));
         }
 
-        // Mapping from internal lang codes to hreflang codes
-        const hreflangMap = {
-            en: 'en',
-            'zh-TW': 'zh-Hant',
-            'zh-CN': 'zh-Hans',
-            ja: 'ja',
-            ko: 'ko',
-            fr: 'fr',
-            es: 'es',
-            it: 'it'
+        const langPaths = {
+            en: '/',
+            'zh-TW': '/zh-tw/',
+            'zh-CN': '/zh-cn/',
+            ja: '/ja/',
+            ko: '/ko/',
+            fr: '/fr/',
+            es: '/es/',
+            it: '/it/'
         };
 
-        const baseUrl = 'https://voicesketch.kairosaitech.com/';
-
-        function getLangUrl(lang) {
-            return lang === 'en' ? baseUrl : baseUrl + '?lang=' + lang;
+        function rememberLang(lang) {
+            try {
+                localStorage.setItem('voicesketch-lang', lang);
+            } catch (e) {}
         }
 
-        function updateCanonicalAndHreflang(lang) {
-            // Update canonical to self-reference
-            const canonical = document.querySelector('link[rel="canonical"]');
-            if (canonical) {
-                canonical.href = getLangUrl(lang);
-            }
-
-            // Only update URL if ?lang= is already in the URL (user explicitly navigated)
-            // Don't add ?lang= for browser-detected languages to avoid Google seeing redirects
-            const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.has('lang') || lang === 'en') {
-                const newUrl = lang === 'en' ? window.location.pathname : window.location.pathname + '?lang=' + lang;
-                history.replaceState(null, '', newUrl);
-            }
-        }
-
-        function setLanguage(lang) {
-            currentLang = lang;
-            localStorage.setItem('voicesketch-lang', lang);
-            applyTranslations(lang);
+        function applyLangUi(lang) {
             document.getElementById('current-lang').textContent = langNames[lang];
-            document.getElementById('lang-dropdown').classList.remove('active');
-            document.querySelector('.lang-btn').setAttribute('aria-expanded', 'false');
-
-            // Update App Store links based on language (only if no IP country detected)
-            if (!appStoreCountryFromIP) {
-                appStoreCountry = langToAppStoreCountry[lang] || 'us';
-                updateAppStoreLinks();
-            }
-
-            // Update canonical tag and URL
-            updateCanonicalAndHreflang(lang);
-
-            // Update active state and aria-selected
             document.querySelectorAll('.lang-option').forEach(opt => {
                 var isSelected = opt.dataset.lang === lang;
                 opt.classList.toggle('active', isSelected);
                 opt.setAttribute('aria-selected', isSelected);
             });
-        }
-
-        function applyTranslations(lang) {
-            const t = translations[lang] || translations.en;
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (t[key]) {
-                    if (key === 'hero.h1') {
-                        // Use DOMParser to safely set HTML content (preserves <em> and <br>)
-                        const parser = new DOMParser();
-                        const doc = parser.parseFromString(t[key], 'text/html');
-                        el.replaceChildren(...doc.body.childNodes);
-                    } else {
-                        el.textContent = t[key];
-                    }
-                }
-            });
-            // Update page title
-            if (t['meta.title']) {
-                document.title = t['meta.title'];
+            if (!appStoreCountryFromIP) {
+                appStoreCountry = langToAppStoreCountry[lang] || 'us';
+                updateAppStoreLinks();
             }
-            // Update html lang attribute
-            document.documentElement.lang = lang;
         }
 
         // Close dropdown when clicking outside
@@ -6527,46 +6677,9 @@
 
         // Initialize language on page load
         document.addEventListener('DOMContentLoaded', () => {
-            const supportedLangs = ['en', 'zh-TW', 'zh-CN', 'ja', 'ko', 'fr', 'es', 'it'];
-
-            // Priority 1: URL ?lang= parameter (important for SEO/Google indexing)
             const urlParams = new URLSearchParams(window.location.search);
-            const urlLang = urlParams.get('lang');
 
-            // If ?lang param exists but is empty or unsupported, redirect to clean URL
-            if (urlParams.has('lang') && !supportedLangs.includes(urlLang)) {
-                window.location.replace(window.location.pathname);
-                return;
-            }
-
-            if (urlLang && supportedLangs.includes(urlLang)) {
-                currentLang = urlLang;
-            } else {
-                // Priority 2: Saved preference
-                const savedLang = localStorage.getItem('voicesketch-lang');
-
-                if (!savedLang) {
-                    // Priority 3: Browser language detection
-                    const browserLang = navigator.language || navigator.userLanguage;
-                    if (browserLang.startsWith('zh-TW') || browserLang === 'zh-Hant') {
-                        currentLang = 'zh-TW';
-                    } else if (browserLang.startsWith('zh')) {
-                        currentLang = 'zh-CN';
-                    } else if (browserLang.startsWith('ja')) {
-                        currentLang = 'ja';
-                    } else if (browserLang.startsWith('ko')) {
-                        currentLang = 'ko';
-                    } else if (browserLang.startsWith('fr')) {
-                        currentLang = 'fr';
-                    } else if (browserLang.startsWith('es')) {
-                        currentLang = 'es';
-                    } else if (browserLang.startsWith('it')) {
-                        currentLang = 'it';
-                    }
-                }
-            }
-
-            setLanguage(currentLang);
+            applyLangUi(currentLang);
 
             // Detect user's country via IP for App Store routing (cached for 24h)
             var cachedCountry = localStorage.getItem('voicesketch-country');
@@ -6830,7 +6943,7 @@
                     }
                 } else if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
-                    if (focused.dataset.lang) setLanguage(focused.dataset.lang);
+                    if (focused.dataset.lang) focused.click();
                     closeDropdown();
                 } else if (e.key === 'Escape') {
                     closeDropdown();
